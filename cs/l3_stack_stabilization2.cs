@@ -1,0 +1,104 @@
+﻿// meta_puzzles by Sebastien Rubens
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// openmsg has waived all copyright and related or neighboring rights
+// to openmsg.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+using System;
+using System.Collections.Generic;
+
+namespace l3_stack_stabilization2
+{
+
+class Solution {
+
+    public long getMinimumSecondsRequired(int N, int[] R, int A, int B) {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=290955626029019
+        // Constraints :
+        //      1 ≤ N    ≤ 50
+        //      1 ≤ Ri   ≤ 1,000,000,000
+        //      1 ≤ A, B ≤ 100
+        // Complexity: O(N ^ 2)
+
+        if (N == 0 || R.Length == 0)
+            return 0;
+
+        var U = new List<int>(R);  // copy
+
+        // Extend the range of input data
+        long _A = A;
+        long _B = B;
+
+        //
+        long total_cost = 0;
+        var costs = new List<int>(N);
+        for (int i = 0; i < N; ++i)
+            costs.Add(0);
+        var intervals = new List<int>(N);
+        intervals.Add(0);
+        for (int i = 1; i < N; ++i)
+        {
+            int min_inflate = U[i - 1] - U[i] + 1;  // fits in 32bits
+            // inflate first
+            if (min_inflate > 0)
+            {
+                total_cost += min_inflate * _A;  // fits in 64-bits
+                U[i] += min_inflate;  // fits in 32bits by definition
+                costs[i] = min_inflate;  // fits in 32bits by definition
+            }
+            // track continous intervals
+            if (min_inflate < 0)
+            {
+                intervals.Add(i);
+                continue;
+            }
+            // deflate eventually
+            while (true)
+            {
+                var first = intervals[intervals.Count - 1];
+                var nb_tot = 1 + i - first;
+                //
+                int nb_pos = 0;
+                int min_positive1 = 0;
+                for (int curr = first, last = i + 1; curr < last; ++curr)
+                {
+                    var value = costs[curr];
+                    if (value > 0)
+                    {
+                        ++nb_pos;
+                        min_positive1 = min_positive1 > 0 ? Math.Min(min_positive1, value) : value;
+                    }
+                }
+                //
+                int min_positive2 = first > 0 ? (U[first] - U[first - 1]) : U[0];
+                int min_positive = Math.Min(min_positive1, min_positive2 - 1);
+                int nb_neg = nb_tot - nb_pos;
+                long cost_change = (nb_neg * _B - nb_pos * _A) * min_positive;
+                if (cost_change >= 0)
+                    break;
+                total_cost += cost_change;
+                for (int j = first; j < i + 1; ++j)
+                {
+                    costs[j] -= min_positive;
+                    U[j] -= min_positive;
+                }
+                if (first > 0)
+                {
+                    if (U[first] == U[first - 1] + 1)
+                        intervals.RemoveAt(intervals.Count - 1);
+                }
+                if (min_positive <= 0)
+                    break;
+            }
+        }
+        return total_cost;
+    }
+
+}
+
+}
