@@ -21,7 +21,7 @@ meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's care
 
 The complete solutions are provided in following languages:
 * Python (3): was developed first
-* C\++(17): was developed second, but the code is written in a "plausible" medium developer style.
+* C\++(17): was developed second and the code is written in a "plausible" medium developer style (it just works with basic C++ and no fancy optimisation).
 
 Mostly complete solutions are provided in the following languages (The code base will be updated soon with the solution missing)
 * C# (7): based on C\++17
