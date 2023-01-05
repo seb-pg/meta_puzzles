@@ -27,9 +27,9 @@ Mostly complete solutions are provided in the following languages (The code base
 * C# (7): based on C\++17
 * Rust (1.66): based on C\++17
 
-The intent is to use these solutions in a multi-language comparison, with additional languages (solution being written) such as Go, Swift, Scala, and Kotlin.
+The intent is to use these solutions in a multi-language comparison, with additional languages (solutions being written) such as Go, Swift, Scala, and Kotlin.
 
-The idea is to evaluate which languages would be suitable to write strategies on a wide scale.  Rationale:  if you are working for a hedge fund (or a bank) and have people writing trading strategies, one might want to use a common language for that purpose.
+The idea is to evaluate which languages would be suitable to write quantitative strategies on a wide scale:  if you are working for a hedge fund (or a bank) and have people writing trading strategies, one might want to use a common language for that purpose.
 
 A possible model is to use an easy language, such as Python, and "productionize" strategies with "real software developer".  Another strategy is to use a language easy to pick up, less likely to create problem (on a wide scale), offers good performances, and overall, provide a good value for money.
 
