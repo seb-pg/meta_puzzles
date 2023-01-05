@@ -96,7 +96,7 @@ int32_t getMaxVisitableWebpagesCpp17(uint32_t N, const std::vector<int32_t>& L)
         // assign length of cycle to vertices
         vertex->cycle_len = cycle_len;
         curr = vertex->next;
-        while (curr != vertex)
+        while (curr.get() != vertex.get())
         {
             curr->cycle_len = cycle_len;
             curr = curr->next;
