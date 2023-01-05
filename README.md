@@ -75,5 +75,5 @@ A few solutions are missing for now, usually involving shared pointer (aka Rc in
 
 ## Notes
 
-The solutions are  provided "as is". While the author is happy to reasonable
+The solutions are  provided "as is". While the author is happy to provide reasonable
 assistance, there is no guarantee any assistance will be provided.
