@@ -54,6 +54,7 @@ C\++20 (or C\++23) would have helped making the code shorter and easier to read,
 The code is written using a "plausible" medium developer style, and not much emphasis is spent on optimisation:
 * it is intentional that, sometimes, shared_pointer are used when not needed (as it matches the Python's code and provides an additional opportunity for  benchmark).
 * explicit int width: Meta seems to live in a meta  world where int is 32 bits, and long long is 64 bits.  int32_t/int64_t are used instead.
+* Meta also leaves in a world where it is normal to pass vector or string by value, rather than reference.  This is corrected so functions can be hooked up without overhead when measuring performances.
 * l3_rabbit_hole2: iterative and recursive solutions are provided (could be interested for speed benchmark).
 * l4_mathematical_art: for GCC, it can use "order_of_key" on std::set to match Python's code as std::distance in STL is linear on std::set, not logarithmic.
 
