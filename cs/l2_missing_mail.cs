@@ -1,14 +1,16 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
 // To the extent possible under law, the person who associated CC0 with
-// openmsg has waived all copyright and related or neighboring rights
-// to openmsg.
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
 //
 // You should have received a copy of the CC0 legalcode along with this
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -70,6 +72,48 @@ class Solution {
 
         return results.Max(obj => obj.total_value);
     }
+
+    class Args
+    {
+        public int[] V;
+        public int C;
+        public double S;
+        public double res;
+    }
+
+    public static int tests()
+    {
+        Console.WriteLine("\nl2_missing_mail");
+        var s = new Solution();
+        int nb_errors = 0;
+
+        Func<Args, double> _getMaxExpectedProfit = (Args args) => s.getMaxExpectedProfit(args.V.Length, args.V, args.C, args.S);
+
+        var args_list = new Args[] {
+            new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=5, S=0.0, res=25.0 },
+            new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=5, S=1.0, res=9 },
+            new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=3, S=0.5, res=17.0 },
+            new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=3, S=0.15, res=20.10825 },
+        };
+
+        var nb = 1;
+        foreach (Args args in args_list)
+        {
+            var res = _getMaxExpectedProfit(args);
+            if (Math.Abs(res - args.res) < 0.000001)
+                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
+            else
+            {
+                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
+                Console.WriteLine("  expected= {0}", args.res);
+                nb_errors += 1;
+            }
+            ++nb;
+        }
+
+        return nb_errors;
+    }
+
 }
 
 }

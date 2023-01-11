@@ -1,10 +1,11 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
 // To the extent possible under law, the person who associated CC0 with
-// openmsg has waived all copyright and related or neighboring rights
-// to openmsg.
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
 //
 // You should have received a copy of the CC0 legalcode along with this
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -36,6 +37,44 @@ class Solution {
             pos = target;
         }
         return nb;
+    }
+
+    class Args
+    {
+        public int N;
+        public int[] C;
+        public int res;
+    }
+
+    public static int tests()
+    {
+        Console.WriteLine("\nl1_rotary_lock1");
+        var s = new Solution();
+        int nb_errors = 0;
+
+        Func<Args, double> _getMinCodeEntryTime = (Args args) => s.getMinCodeEntryTime(args.N, args.C.Length, args.C);
+
+        var args_list = new Args[] {
+            new Args { N=3, C=new int[] { 1, 2, 3 }, res=2 },
+            new Args { N=10, C=new int[] { 9, 4, 4, 8 }, res=11 },
+        };
+
+        var nb = 1;
+        foreach (Args args in args_list)
+        {
+            var res = _getMinCodeEntryTime(args);
+            if (res == args.res)
+                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
+            else
+            {
+                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
+                Console.WriteLine("  expected= {0}", args.res);
+                nb_errors += 1;
+            }
+            ++nb;
+        }
+
+        return nb_errors;
     }
 
 }

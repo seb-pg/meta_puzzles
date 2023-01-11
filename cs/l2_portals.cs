@@ -1,10 +1,11 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
 // To the extent possible under law, the person who associated CC0 with
-// openmsg has waived all copyright and related or neighboring rights
-// to openmsg.
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
 //
 // You should have received a copy of the CC0 legalcode along with this
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -40,9 +41,9 @@ class Solution {
 
         public void Enqueue(TElement element, TPriority priority)
         {
-                ++nb;
-                queue[(priority, nb)] = element;
-            }
+            ++nb;
+            queue[(priority, nb)] = element;
+        }
 
         public TElement Dequeue()
         {
@@ -167,6 +168,46 @@ class Solution {
         }
         return -1;
     }
+
+    class Args
+    {
+        public char[,]? G;
+        public int res;
+    }
+
+    public static int tests()
+    {
+        Console.WriteLine("\nl2_portals");
+        var s = new Solution();
+        int nb_errors = 0;
+
+        Func<Args, double> _getSecondsRequired = (Args args) => s.getSecondsRequired(args.G!.GetLength(0), args.G!.GetLength(1), args.G!);
+
+        var args_list = new Args[] {
+            new Args { G=new char[,] { { '.', 'E', '.' }, { '.', '#', 'E' }, { '.', 'S', '#' } }, res=4 },
+            new Args { G=new char[,] { { 'a', '.', 'S', 'a' }, { '#', '#', '#', '#' }, { 'E', 'b', '.', 'b' } }, res=-1 },
+            new Args { G=new char[,] { { 'a', 'S', '.', 'b' }, { '#', '#', '#', '#' }, { 'E', 'b', '.', 'a' } }, res=4 },
+            new Args { G=new char[,] { { 'x', 'S', '.', '.', 'x', '.', '.', 'E', 'x' } }, res=3 },
+        };
+
+        var nb = 1;
+        foreach (Args args in args_list)
+        {
+            var res = _getSecondsRequired(args);
+            if (res == args.res)
+                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
+            else
+            {
+                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
+                Console.WriteLine("  expected= {0}", args.res);
+                nb_errors += 1;
+            }
+            ++nb;
+        }
+
+        return nb_errors;
+    }
+
 }
 
 }

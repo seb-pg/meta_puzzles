@@ -1,10 +1,11 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
 // To the extent possible under law, the person who associated CC0 with
-// openmsg has waived all copyright and related or neighboring rights
-// to openmsg.
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
 //
 // You should have received a copy of the CC0 legalcode along with this
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -97,6 +98,49 @@ class Solution {
             }
         }
         return total_cost;
+    }
+
+    class Args
+    {
+        public int[] R;
+        public int A;
+        public int B;
+        public int res;
+    }
+
+    public static int tests()
+    {
+        Console.WriteLine("\nl3_rabbit_hole2");
+        var s = new Solution();
+        int nb_errors = 0;
+
+        Func<Args, double> _getMinimumSecondsRequired = (Args args) => s.getMinimumSecondsRequired(args.R.Length, args.R, args.A, args.B);
+
+        var args_list = new Args[] {
+            new Args { R=new int[] { 2, 5, 3, 6, 5 }, A=1, B=1, res=5 },
+            new Args { R=new int[] { 100, 100, 100 }, A=2, B=3, res=5 },
+            new Args { R=new int[] { 100, 100, 100 }, A=7, B=3, res=9 },
+            new Args { R=new int[] { 6, 5, 4, 3 }, A=10, B=1, res=19 },
+            new Args { R=new int[] { 100, 100, 1, 1 }, A=2, B=1, res=207 },
+            new Args { R=new int[] { 6, 5, 2, 4, 4, 7 }, A=1, B=1, res=10 },
+        };
+
+        var nb = 1;
+        foreach (Args args in args_list)
+        {
+            var res = _getMinimumSecondsRequired(args);
+            if (res == args.res)
+                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
+            else
+            {
+                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
+                Console.WriteLine("  expected= {0}", args.res);
+                nb_errors += 1;
+            }
+            ++nb;
+        }
+
+        return nb_errors;
     }
 
 }

@@ -1,10 +1,11 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
 // To the extent possible under law, the person who associated CC0 with
-// openmsg has waived all copyright and related or neighboring rights
-// to openmsg.
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
 //
 // You should have received a copy of the CC0 legalcode along with this
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -20,7 +21,7 @@ namespace l3_rabbit_hole2
 
 class Solution {
 
-    class Vertex
+    class Vertex : IComparable<Vertex>
     {
         public int nb = 0;
         public int weight = 0;  // 0 means unused
@@ -55,6 +56,15 @@ class Solution {
             target = other.target;
             inputs = other.inputs;
             max_len = other.max_len;
+        }
+
+        public int CompareTo(Vertex? other)
+        {
+            if (nb < other!.nb)
+                return -1;
+            if (nb > other!.nb)
+                return 1;
+            return 0;
         }
 
     };
@@ -311,31 +321,74 @@ class Solution {
     }
 
     public int getMaxVisitableWebpages(int N, int M, int[] A, int[] B) {
-            // https://www.metacareers.com/profile/coding_puzzles/?puzzle=254501763097320
-            // Constraints :
-            //      2 ≤ N ≤ 500,000   N different web pages
-            //      1 ≤ M ≤ 500,000   M links present across the pages
-            //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Aiand links to a different page Bi
-            //      Ai ≠ Bi           a page cannot link to itself
-            //      Complexity: O(V + E * log(E))  because of call to keep_unique()
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=254501763097320
+        // Constraints :
+        //      2 ≤ N ≤ 500,000   N different web pages
+        //      1 ≤ M ≤ 500,000   M links present across the pages
+        //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Aiand links to a different page Bi
+        //      Ai ≠ Bi           a page cannot link to itself
+        //      Complexity: O(V + E * log(E))  because of call to keep_unique()
 
-            const bool iterative = false;
+        const bool iterative = false;
 
-            // just in case
-            if (A.Length == 0 || B.Length == 0)
-                return 0;
+        // just in case
+        if (A.Length == 0 || B.Length == 0)
+            return 0;
 
-            // calculate edges
-            var edges = new List<Edge>(M);
-            for (int i = 0; i < M; ++i)
-                edges.Add(new Edge( A[i], B[i] ));  // O(E)
-                                                         //
-            edges = keep_uniques(edges);  // O(E * log(E))
-            var vertices = build_children(edges);  // O(V + 2*E)
-            var sccs = calculate_sccs(vertices, iterative);  // O(V + E), calculate strongly connected components
-            make_dag(vertices, sccs);  // O(V + E)
-            var res = dag_max_len(vertices, iterative);  // O(V + E)
-            return res;
+        // calculate edges
+        var edges = new List<Edge>(M);
+        for (int i = 0; i < M; ++i)
+            edges.Add(new Edge( A[i], B[i] ));  // O(E)
+                                                        //
+        edges = keep_uniques(edges);  // O(E * log(E))
+        var vertices = build_children(edges);  // O(V + 2*E)
+        var sccs = calculate_sccs(vertices, iterative);  // O(V + E), calculate strongly connected components
+        make_dag(vertices, sccs);  // O(V + E)
+        var res = dag_max_len(vertices, iterative);  // O(V + E)
+        return res;
+    }
+
+    class Args
+    {
+        public int[]? A;
+        public int[]? B;
+        public int res;
+    }
+
+    public static int tests()
+    {
+        Console.WriteLine("\nl3_rabbit_hole2");
+        var s = new Solution();
+        int nb_errors = 0;
+
+        Func<Args, double> _getMaxVisitableWebpages = (Args args) =>
+        {
+            var max_len = Math.Max(args.A!.Max(), args.B!.Max());
+            return s.getMaxVisitableWebpages(max_len, args.A!.Length, args.A!, args.B!);
+        };
+
+        var args_list = new Args[] {
+            new Args { A=new int[] { 1, 2, 3, 4 }, B=new int[] { 4, 1, 2, 1 }, res=4 },
+            new Args { A=new int[] { 3, 5, 3, 1, 3, 2 }, B=new int[] { 2, 1, 2, 4, 5, 4 }, res=4 },
+            new Args { A=new int[] { 3, 2, 5, 9, 10, 3, 3, 9, 4 }, B=new int[] { 9, 5, 7, 8, 6, 4, 5, 3, 9 }, res=5 },
+        };
+
+        var nb = 1;
+        foreach (Args args in args_list)
+        {
+            var res = _getMaxVisitableWebpages(args);
+            if (res == args.res)
+                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
+            else
+            {
+                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
+                Console.WriteLine("  expected= {0}", args.res);
+                nb_errors += 1;
+            }
+            ++nb;
+        }
+
+        return nb_errors;
     }
 
 }

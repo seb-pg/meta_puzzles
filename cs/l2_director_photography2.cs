@@ -1,14 +1,16 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
 // To the extent possible under law, the person who associated CC0 with
-// openmsg has waived all copyright and related or neighboring rights
-// to openmsg.
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
 //
 // You should have received a copy of the CC0 legalcode along with this
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
+using System;
 using System.Collections.Generic;
 
 namespace l2_director_photography2
@@ -73,15 +75,21 @@ class Solution {
         // Count PABs : O(N)
         long nb = 0;
         foreach (int i in possible)
-            nb += (long)(counts[i - X].p - counts[i - Y - 1].p) * (counts[i + Y].b - counts[i + X - 1].b);
+        {
+            var a = counts[i - X].p - counts[i - Y - 1].p;
+            var b = counts[i + Y].b - counts[i + X - 1].b;
+            nb += (long)a * (long)b;
+        }
 
         // Count BAPs : O(N)
         foreach (int i in possible)
-            nb += (long)(counts[i - X].b - counts[i - Y - 1].b) * (counts[i + Y].p - counts[i + X - 1].p);
+        {
+            var a = counts[i - X].b - counts[i - Y - 1].b;
+            var b = counts[i + Y].p - counts[i + X - 1].p;
+            nb += (long)a * (long)b;
+        }
 
-        //return nb;
-        return (T)(object)nb;
-
+        return (T)Convert.ChangeType(nb, typeof(T));
     }
 
     public long getArtisticPhotographCount(int N, string C, int X, int Y) {
@@ -92,6 +100,46 @@ class Solution {
         // Complexity: O(N) ~ O(N * (Y-X+1)) because Y-X << N
 
         return _getArtisticPhotographCount<long>(N, C, X, Y);
+    }
+
+    class Args
+    {
+        public string C;
+        public int X;
+        public int Y;
+        public int res;
+    }
+
+    public static int tests()
+    {
+        Console.WriteLine("\nl2_director_photography2");
+        var s = new Solution();
+        int nb_errors = 0;
+
+        Func<Args, double> _getArtisticPhotographCount = (Args args) => s.getArtisticPhotographCount(args.C.Length, args.C, args.X, args.Y);
+
+        var args_list = new Args[] {
+            new Args { C="APABA", X=1, Y=2, res=1 },
+            new Args { C="APABA", X=2, Y=3, res=0 },
+            new Args { C=".PBAAP.B", X=1, Y=3, res=3 },
+        };
+
+        var nb = 1;
+        foreach (Args args in args_list)
+        {
+            var res = _getArtisticPhotographCount(args);
+            if (res == args.res)
+                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
+            else
+            {
+                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
+                Console.WriteLine("  expected= {0}", args.res);
+                nb_errors += 1;
+            }
+            ++nb;
+        }
+
+        return nb_errors;
     }
 
 }
