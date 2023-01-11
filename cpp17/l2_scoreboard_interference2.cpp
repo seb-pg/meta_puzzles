@@ -38,7 +38,7 @@ int32_t getMinProblemCountCpp17(uint32_t N, const std::vector<int32_t>& S)
         auto score_mod_3 = score % 3;
         two_remainder |= (score_mod_3 >> 1);
         one_remainder |= (score_mod_3 & 1);
-        need_one = need_one or (score == 1);
+        need_one = need_one || (score == 1);
         if (max_score < score)
         {
             second_max_score = max_score;
