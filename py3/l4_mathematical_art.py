@@ -1,10 +1,11 @@
 # meta_puzzles by Sebastien Rubens
+#
 # Please go to https://github.com/seb-pg/meta_puzzles/README.md
 # for more information
 #
 # To the extent possible under law, the person who associated CC0 with
-# openmsg has waived all copyright and related or neighboring rights
-# to openmsg.
+# meta_puzzles has waived all copyright and related or neighboring rights
+# to meta_puzzles.
 #
 # You should have received a copy of the CC0 legalcode along with this
 # work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -164,7 +165,7 @@ def build_test(test=None, N=2_000_000):
                 D.append('L')
                 L.append(src - dst)
             src = dst
-        cases = [(L, D, 0)]
+        cases = ((L, D), 0)
     elif test == 'hsnake':
         # infinite snake
         D, L = [], []
@@ -172,7 +173,7 @@ def build_test(test=None, N=2_000_000):
         for i in range(N):
             D.append(directions[i % 4])
             L.append(1)
-        cases = [(L, D, 0)]
+        cases = ((L, D), 0)
     elif test in ['grid', 'grid2']:
         # grid
         n = (N + 7) // 8
@@ -198,7 +199,7 @@ def build_test(test=None, N=2_000_000):
         if test == 'grid2':
             L[n * 4] = n + 1  # reset this one
         expected = (2 * n) ** 2
-        cases = [(L, D, expected)]
+        cases = ((L, D), expected)
     elif test == 'spiral':
         # spiral with no intersect
         D, L = [], []
@@ -208,7 +209,7 @@ def build_test(test=None, N=2_000_000):
                 l += 1
             D.append(directions[i % 4])
             L.append(l)
-        cases = [(L, D, 0)]
+        cases = ((L, D), 0)
     else:
         cases = []
     return cases
@@ -223,7 +224,7 @@ def tests():
         (([1, 1, 1, 1, 1, 1], "RDURLU", ), 1),
     ]
     extra1_cases = "extra1", [
-        #build_test('grid', 2_000_000),
+        build_test('grid', 100_000),
     ]
 
     return getPlusSignCount, fn, [meta_cases, extra1_cases]

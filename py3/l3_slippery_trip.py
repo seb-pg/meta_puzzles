@@ -1,10 +1,11 @@
 # meta_puzzles by Sebastien Rubens
+#
 # Please go to https://github.com/seb-pg/meta_puzzles/README.md
 # for more information
 #
 # To the extent possible under law, the person who associated CC0 with
-# openmsg has waived all copyright and related or neighboring rights
-# to openmsg.
+# meta_puzzles has waived all copyright and related or neighboring rights
+# to meta_puzzles.
 #
 # You should have received a copy of the CC0 legalcode along with this
 # work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -55,7 +56,7 @@ def getMaxCollectableCoins(R: int, C: int, G: List[List[str]]) -> int:
     counts = [0] * 256
     res = 0
     for row in G[::-1]:  # O(R)
-        count_count_star, count_right, count_down = get_counts(row, counts)  # O(C)
+        count_star, count_right, count_down = get_counts(row, counts)  # O(C)
         nb_coins_immediately_down = min(count_star, 1)
         if count_right == C:  # we can only go right
             res = 0

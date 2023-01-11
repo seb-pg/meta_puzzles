@@ -1,10 +1,11 @@
 # meta_puzzles by Sebastien Rubens
+#
 # Please go to https://github.com/seb-pg/meta_puzzles/README.md
 # for more information
 #
 # To the extent possible under law, the person who associated CC0 with
-# openmsg has waived all copyright and related or neighboring rights
-# to openmsg.
+# meta_puzzles has waived all copyright and related or neighboring rights
+# to meta_puzzles.
 #
 # You should have received a copy of the CC0 legalcode along with this
 # work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -31,7 +32,6 @@ def getMinCodeEntryTime(N: int, M: int, C: List[int]) -> int:
         return 0
     solutions = {(1, 1): 0}
     for i, target in enumerate(C[:M]):  # M iterations
-        print('-')
         new_solutions = {}
         for (dial1, dial2), distance in solutions.items():  # 2*M iterations at most
             # we turn dial1
@@ -42,8 +42,6 @@ def getMinCodeEntryTime(N: int, M: int, C: List[int]) -> int:
             distance2 = distance + get_distance(target, dial2, N)
             key2 = min(dial1, target), max(dial1, target)
             new_solutions[key2] = min(new_solutions.get(key2, sys.maxsize), distance2)
-        for k, v in sorted(new_solutions.items()):
-            print(k, v)
         solutions = new_solutions
     return min(solutions.values())
 
@@ -51,20 +49,20 @@ def getMinCodeEntryTime(N: int, M: int, C: List[int]) -> int:
 def tests():
     def fn(N, C): return N, len(C), C
     meta_cases = "meta", [
-        #((3, [1, 2, 3], ), 2),
-        #((10, [9, 4, 4, 8], ), 6),
+        ((3, [1, 2, 3], ), 2),
+        ((10, [9, 4, 4, 8], ), 6),
     ]
     extra1_cases = "extra1", [
-        #((0, [], ), 0),
-        #((3, [], ), 0),
-        #((10, [], ), 0),
-        #((10, [4], ), 3),
-        #((10, [9], ), 2),
-        #((10, [9, 9, 9, 9], ), 2),
+        ((0, [], ), 0),
+        ((3, [], ), 0),
+        ((10, [], ), 0),
+        ((10, [4], ), 3),
+        ((10, [9], ), 2),
+        ((10, [9, 9, 9, 9], ), 2),
     ]
     extra2_cases = "extra2", [
-        #((10, [6, 2, 4, 8], ), 10),  # <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
-        #((10, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], ), 9),  # <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+        ((10, [6, 2, 4, 8], ), 10),  # <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+        ((10, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1], ), 9),  # <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
         ((4, [4, 3, 2, 1, 2, 3, 4], ), 5),  # <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
     ]
     return getMinCodeEntryTime, fn, [meta_cases, extra1_cases, extra2_cases]

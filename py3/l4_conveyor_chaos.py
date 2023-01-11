@@ -1,10 +1,11 @@
 # meta_puzzles by Sebastien Rubens
+#
 # Please go to https://github.com/seb-pg/meta_puzzles/README.md
 # for more information
 #
 # To the extent possible under law, the person who associated CC0 with
-# openmsg has waived all copyright and related or neighboring rights
-# to openmsg.
+# meta_puzzles has waived all copyright and related or neighboring rights
+# to meta_puzzles.
 #
 # You should have received a copy of the CC0 legalcode along with this
 # work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -117,7 +118,6 @@ def add_entries(N, intervals):  # O(N*log(N))
         p.n = n
         _, child = p.children[0]
         p.children[0] = p.middle, child
-    exit()
     return intervals
 
 
@@ -197,14 +197,14 @@ def tests():
     extra1_cases = "extra1", [
         (([2, 4, 5, 8, 9], [5000, 0, 7000, 2000, 9000], [7000, 4000, 11000, 8000, 11000], ), 36.5),
         #
-        (([10], [0], [1_000_000], ), 1_000_000.0),
-        (([10], [0], [500_000], ), 1_000_000.0),
-        (([9], [500_000], [1_000_000], ), 1_000_000.0),
-        (([10, 9], [0, 500_000], [500_000, 1_000_000], ), 1_000_000.0),
+        (([10], [0], [1_000_000], ), 500_000.0),
+        (([10], [0], [500_000], ), 125_000.0),
+        (([9], [500_000], [1_000_000], ), 125_000.0),
+        (([10, 9], [0, 500_000], [500_000, 1_000_000], ), 250_000.0),
         #
-        (([20, 10], [200000, 400000], [600000, 800000], ), 155000.0),
-        (([20, 10], [400000, 200000], [800000, 600000], ), 155000.0),
-        (([20, 20, 10], [100000, 500000, 200000], [300000, 700000, 600000], ), 155000.0),
+        (([20, 10], [200000, 400000], [600000, 800000], ), 120_000.0),
+        (([20, 10], [400000, 200000], [800000, 600000], ), 120_000.0),
+        (([20, 20, 10], [100000, 500000, 200000], [300000, 700000, 600000], ), 100_000.0),
         #
         (([1], [0], [1_000_000], ), 500_000.0),
         (([1], [250_000], [750_000], ), 125_000.0),
@@ -216,8 +216,7 @@ def tests():
          [700_000, 500_000, 1000_000, 700_000, 600_000], ), 215000.0),  # direction=1 ; p=3 (base 247500.0)
     ]
 
-    return getMinExpectedHorizontalTravelDistance, fn, [meta_cases], lambda res, exp: (res - exp) < 0.000001
-    #return getMinExpectedHorizontalTravelDistance, fn, [meta_cases, extra1_cases], lambda res, exp: (res - exp) < 0.000001
+    return getMinExpectedHorizontalTravelDistance, fn, [meta_cases, extra1_cases], lambda res, exp: abs(res - exp) < 0.000001
 
 
 # End

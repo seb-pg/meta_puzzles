@@ -1,10 +1,11 @@
 # meta_puzzles by Sebastien Rubens
+#
 # Please go to https://github.com/seb-pg/meta_puzzles/README.md
 # for more information
 #
 # To the extent possible under law, the person who associated CC0 with
-# openmsg has waived all copyright and related or neighboring rights
-# to openmsg.
+# meta_puzzles has waived all copyright and related or neighboring rights
+# to meta_puzzles.
 #
 # You should have received a copy of the CC0 legalcode along with this
 # work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -78,7 +79,7 @@ def tests():
         # what if all Hi*Di are equal?
         (([9, 1, 3, 4], [0, 10, 4, 3], 1, ), 100.0),
     ]
-    return getMaxDamageDealt, fn, [meta_cases, extra1_cases], lambda res, exp: (res - exp) < 0.000001
+    return getMaxDamageDealt, fn, [meta_cases, extra1_cases], lambda res, exp: abs(res - exp) < 0.000001
 
 
 # End

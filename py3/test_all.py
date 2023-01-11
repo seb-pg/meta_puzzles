@@ -1,10 +1,11 @@
 # meta_puzzles by Sebastien Rubens
+#
 # Please go to https://github.com/seb-pg/meta_puzzles/README.md
 # for more information
 #
 # To the extent possible under law, the person who associated CC0 with
-# openmsg has waived all copyright and related or neighboring rights
-# to openmsg.
+# meta_puzzles has waived all copyright and related or neighboring rights
+# to meta_puzzles.
 #
 # You should have received a copy of the CC0 legalcode along with this
 # work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
@@ -35,6 +36,7 @@ def format_args(args):
 
 if __name__ == "__main__":
     tests_fns = get_local_modules()
+    nb_errors = 0
     for tests_name, tests_fn in tests_fns:
         ret = tests_fn()
         test_fn, extend_fn, all_tests = ret[:3]
@@ -47,19 +49,16 @@ if __name__ == "__main__":
             if not tests:
                 print("  no tests")
                 continue
-            for args, expected in tests:
-                print()
-                print("  args=", *args)
+            for nb, (args, expected) in enumerate(tests, 1):
                 ex_args = extend_fn(*args)
-                print("  args=", *ex_args)
                 res = test_fn(*ex_args)
                 if not cmp(res, expected):
-                    print("  res=", res, "ERROR <---------------------")
+                    nb_errors += 1
+                    print("  %s, test #%s: res=%s ERROR <---------------------" % (sub_name, nb, res))
                     print("  expected=", expected)
                 else:
-                    print("  res=", res, "CORRECT")
-        if tests_name == 'l2_rotary_lock2':
-            exit()
+                    print("  %s, test #%s: res=%s CORRECT" % (sub_name, nb, res))
+    print("\n%s errors found" % nb_errors)
 
 
 # End
