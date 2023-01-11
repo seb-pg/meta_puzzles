@@ -47,9 +47,11 @@ auto run_list_of_tests(const std::string& module_name,
 			auto args = cargs;  // copy, because Meta's functions' parameters are not const
 			auto res = fn(args);
 
-			bool is_same = res == expected;
+			bool is_same = true;
 			if constexpr (std::is_same_v<double, _Ret> || std::is_same_v<float, _Ret>)
-				is_same = std::abs(res - expected) < precision;
+				is_same = std::abs(res - expected) <= precision;
+			else:
+				is_same = res == expected;
 
 			std::cout << "  " << name << ", test #" << nb << ": ";
 			if (is_same)
