@@ -73,45 +73,27 @@ class Solution {
         return results.Max(obj => obj.total_value);
     }
 
-    class Args
+    class Args : test_all.Res<double>
     {
         public int[] V;
         public int C;
         public double S;
-        public double res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl2_missing_mail");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMaxExpectedProfit = (Args args) => s.getMaxExpectedProfit(args.V.Length, args.V, args.C, args.S);
+        Func<Args, double> _getMaxExpectedProfit = (Args p) => s.getMaxExpectedProfit(p.V.Length, p.V, p.C, p.S);  // TODO: check with epsilon
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=5, S=0.0, res=25.0 },
             new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=5, S=1.0, res=9 },
             new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=3, S=0.5, res=17.0 },
             new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=3, S=0.15, res=20.10825 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMaxExpectedProfit(args);
-            if (Math.Abs(res - args.res) < 0.000001)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l2_missing_mail", args_list, _getMaxExpectedProfit, 0.000001);
     }
 
 }

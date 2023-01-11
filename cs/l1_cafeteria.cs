@@ -11,6 +11,7 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace l1_cafetaria
 {
@@ -40,43 +41,25 @@ class Solution {
         return nb;
     }
 
-    class Args
+    class Args : test_all.Res<long>
     {
         public long N;
         public long K;
         public long[] S;
-        public long res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl1_cafetaria");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMaxAdditionalDinersCount = (Args args) => s.getMaxAdditionalDinersCount(args.N, args.K, args.S.Length, args.S);
+        Func<Args, long> _getMaxAdditionalDinersCount = (Args p) => s.getMaxAdditionalDinersCount(p.N, p.K, p.S.Length, p.S);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { N=10, K=1, S=new long[] { 2, 6 }, res=3 },
             new Args { N=15, K=2, S=new long[] { 11, 6, 14 }, res=1 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMaxAdditionalDinersCount(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l1_cafetaria", args_list, _getMaxAdditionalDinersCount);
     }
 
 }

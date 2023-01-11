@@ -11,6 +11,7 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace l1_stack_stabilization1
 {
@@ -40,42 +41,24 @@ class Solution {
         return nb;
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public int[] S;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl1_stack_stabilization1");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMinimumDeflatedDiscCount = (Args args) => s.getMinimumDeflatedDiscCount(args.S.Length, args.S);
+        Func<Args, int> _getMinimumDeflatedDiscCount = (Args p) => s.getMinimumDeflatedDiscCount(p.S.Length, p.S);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { S=new int[] { 2, 5, 3, 6, 5 }, res=3 },
             new Args { S=new int[] { 100, 100, 100 }, res=2 },
             new Args { S=new int[] { 6, 5, 4, 3 }, res=-1 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMinimumDeflatedDiscCount(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l1_stack_stabilization1", args_list, _getMinimumDeflatedDiscCount);
     }
 
 }

@@ -11,6 +11,7 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace l1_uniform_integers
 {
@@ -57,43 +58,25 @@ class Solution {
         return (int)(nb);
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public long A;
         public long B;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl1_uniform_integers");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getUniformIntegerCountInInterval = (Args args) => s.getUniformIntegerCountInInterval(args.A, args.B);
+        Func<Args, int> _getUniformIntegerCountInInterval = (Args p) => s.getUniformIntegerCountInInterval(p.A, p.B);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { A=75, B=300, res=5 },
             new Args { A=1, B=9, res=9 },
             new Args { A=999999999999, B=999999999999, res=1 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getUniformIntegerCountInInterval(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l1_uniform_integers", args_list, _getUniformIntegerCountInInterval);
     }
 
 }

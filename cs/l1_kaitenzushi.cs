@@ -11,6 +11,7 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace l1_kaitenzushi
@@ -50,43 +51,25 @@ class Solution {
         return nb;
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public int[] D;
         public int K;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl1_kaitenzushi");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMaximumEatenDishCount = (Args args) => s.getMaximumEatenDishCount(args.D.Length, args.D, args.K);
+        Func<Args, int> _getMaximumEatenDishCount = (Args p) => s.getMaximumEatenDishCount(p.D.Length, p.D, p.K);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { D=new int[] { 1, 2, 3, 3, 2, 1 }, K=1, res=5 },
             new Args { D=new int[] { 1, 2, 3, 3, 2, 1 }, K=2, res=4 },
             new Args { D=new int[] { 1, 2, 1, 2, 1, 2, 1 }, K=2, res=2 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMaximumEatenDishCount(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l1_kaitenzushi", args_list, _getMaximumEatenDishCount);
     }
 
 }

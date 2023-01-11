@@ -11,6 +11,7 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace l2_hops
@@ -32,42 +33,24 @@ class Solution {
         return N - P.Min();
     }
 
-    class Args
+    class Args : test_all.Res<long>
     {
         public int F;
         public long[] P;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl2_hops");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getSecondsRequired = (Args args) => s.getSecondsRequired(args.F, args.P.Length, args.P);
+        Func<Args, long> _getSecondsRequired = (Args p) => s.getSecondsRequired(p.F, p.P.Length, p.P);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { F=3, P=new long[] { 1 }, res=2 },
             new Args { F=6, P=new long[] { 5, 2, 4 }, res=4 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getSecondsRequired(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l2_hops", args_list, _getSecondsRequired);
     }
 
 }

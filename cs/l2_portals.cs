@@ -169,43 +169,25 @@ class Solution {
         return -1;
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public char[,]? G;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl2_portals");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getSecondsRequired = (Args args) => s.getSecondsRequired(args.G!.GetLength(0), args.G!.GetLength(1), args.G!);
+        Func<Args, int> _getSecondsRequired = (Args p) => s.getSecondsRequired(p.G!.GetLength(0), p.G!.GetLength(1), p.G!);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { G=new char[,] { { '.', 'E', '.' }, { '.', '#', 'E' }, { '.', 'S', '#' } }, res=4 },
             new Args { G=new char[,] { { 'a', '.', 'S', 'a' }, { '#', '#', '#', '#' }, { 'E', 'b', '.', 'b' } }, res=-1 },
             new Args { G=new char[,] { { 'a', 'S', '.', 'b' }, { '#', '#', '#', '#' }, { 'E', 'b', '.', 'a' } }, res=4 },
             new Args { G=new char[,] { { 'x', 'S', '.', '.', 'x', '.', '.', 'E', 'x' } }, res=3 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getSecondsRequired(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l2_portals", args_list, _getSecondsRequired);
     }
 
 }

@@ -11,6 +11,8 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace l0_abcs
 {
@@ -25,42 +27,24 @@ class Solution {
         return A + B + C;
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public int A, B, C;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl0_abcs");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, int> _getSum = (Args args) => s.getSum(args.A, args.B, args.C);
+        Func<Args, int> _getSum = (Args p) => s.getSum(p.A, p.B, p.C);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { A=1, B=2, C=3, res=6 },
             new Args { A=100, B=100, C=100, res=300 },
             new Args { A=85, B=16, C=93, res=194 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getSum(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l0_abcs", args_list, _getSum);
     }
 
 }

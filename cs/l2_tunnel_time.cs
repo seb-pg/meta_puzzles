@@ -89,44 +89,26 @@ namespace l2_tunnel_time
         return travel_time;
     }
 
-    class Args
+    class Args : test_all.Res<long>
     {
         public long C;
         public long[] A;
         public long[] B;
         public long K;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl2_tunnel_time");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getSecondsElapsed = (Args args) => s.getSecondsElapsed(args.C, args.A.Length, args.A, args.B, args.K);
+        Func<Args, long> _getSecondsElapsed = (Args p) => s.getSecondsElapsed(p.C, p.A.Length, p.A, p.B, p.K);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { C=10, A=new long[] { 1, 6 }, B=new long[] { 3, 7 }, K=7, res=22 },
             new Args { C=50, A=new long[] { 39, 19, 28 }, B=new long[] { 49, 27, 35 }, K=15, res=35 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getSecondsElapsed(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l2_tunnel_time", args_list, _getSecondsElapsed);   
     }
 
 }

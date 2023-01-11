@@ -11,6 +11,7 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace l1_scoreboard_interference1
 {
@@ -40,42 +41,24 @@ class Solution {
         return min_number_of_twos + min_number_of_ones;
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public int[] S;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl1_scoreboard_interference1");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMinProblemCount = (Args args) => s.getMinProblemCount(args.S.Length, args.S);
+        Func<Args, int> _getMinProblemCount = (Args p) => s.getMinProblemCount(p.S.Length, p.S);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { S=new int[] { 1, 2, 3, 4, 5, 6 }, res=4 },
             new Args { S=new int[] { 4, 3, 3, 4 }, res=3 },
             new Args { S=new int[] { 2, 4, 6, 8 }, res=4 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMinProblemCount(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l1_scoreboard_interference1", args_list, _getMinProblemCount);
     }
 
 }

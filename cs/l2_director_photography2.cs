@@ -102,44 +102,26 @@ class Solution {
         return _getArtisticPhotographCount<long>(N, C, X, Y);
     }
 
-    class Args
+    class Args : test_all.Res<long>
     {
         public string C;
         public int X;
         public int Y;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl2_director_photography2");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getArtisticPhotographCount = (Args args) => s.getArtisticPhotographCount(args.C.Length, args.C, args.X, args.Y);
+        Func<Args, long> _getArtisticPhotographCount = (Args p) => s.getArtisticPhotographCount(p.C.Length, p.C, p.X, p.Y);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { C="APABA", X=1, Y=2, res=1 },
             new Args { C="APABA", X=2, Y=3, res=0 },
             new Args { C=".PBAAP.B", X=1, Y=3, res=3 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getArtisticPhotographCount(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l2_director_photography2", args_list, _getArtisticPhotographCount);
     }
 
 }

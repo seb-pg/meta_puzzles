@@ -116,43 +116,25 @@ class Solution {
         return res;
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public char[,] G;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl3_slippery_strip");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMaxCollectableCoins = (Args args) => s.getMaxCollectableCoins(args.G.GetLength(0), args.G.GetLength(1), args.G);
+        Func<Args, int> _getMaxCollectableCoins = (Args p) => s.getMaxCollectableCoins(p.G.GetLength(0), p.G.GetLength(1), p.G);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { G=new char[,] { { '.', '*', '*', '*' }, { '*', '*', 'v', '>', }, { '.', '*', '.', '.' } }, res=4 },
             new Args { G=new char[,] { { '>', '*', '*' }, { '*', '>', '*' } , { '*', '*', '>' } }, res=4 },
             new Args { G=new char[,] { { '>', '>' }, { '*', '*' } }, res=0 },
             new Args { G=new char[,] { { '>', '*', 'v', '*', '>', '*' }, { '*', 'v', '*', 'v', '>', '*' }, { '.', '*', '>', '.', '.', '*' }, { '.', '*', '.', '.', '*', 'v' } }, res=6 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMaxCollectableCoins(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l3_slippery_strip", args_list, _getMaxCollectableCoins);
     }
 
 }

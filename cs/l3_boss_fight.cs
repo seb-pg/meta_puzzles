@@ -98,44 +98,26 @@ class Solution {
         return max_damage / (double)(B);
     }
 
-    class Args
+    class Args : test_all.Res<double>
     {
         public int[] H;
         public int[] D;
         public int B;
-        public double res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl3_boss_fight");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMaxDamageDealt = (Args args) => s.getMaxDamageDealt(args.H.Length, args.H, args.D, args.B);
+        Func<Args, double> _getMaxDamageDealt = (Args p) => s.getMaxDamageDealt(p.H.Length, p.H, p.D, p.B);  // TODO: check with epsilon
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { H=new int[] { 2, 1, 4 }, D=new int[] { 3, 1, 2 }, B=4, res=6.5 },
             new Args { H=new int[] { 1, 1, 2, 100 }, D=new int[] { 1, 2, 1, 3 }, B=8, res=62.75 },
             new Args { H=new int[] { 1, 1, 2, 3 }, D=new int[] { 1, 2, 1, 100 }, B=8, res=62.75 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMaxDamageDealt(args);
-            if (Math.Abs(res - args.res) < 0.000001)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l3_boss_fight", args_list, _getMaxDamageDealt, 0.000001);
     }
 
 }

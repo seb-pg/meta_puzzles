@@ -100,23 +100,20 @@ class Solution {
         return total_cost;
     }
 
-    class Args
+    class Args : test_all.Res<long>
     {
         public int[] R;
         public int A;
         public int B;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl3_rabbit_hole2");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMinimumSecondsRequired = (Args args) => s.getMinimumSecondsRequired(args.R.Length, args.R, args.A, args.B);
+        Func<Args, long> _getMinimumSecondsRequired = (Args p) => s.getMinimumSecondsRequired(p.R.Length, p.R, p.A, p.B);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { R=new int[] { 2, 5, 3, 6, 5 }, A=1, B=1, res=5 },
             new Args { R=new int[] { 100, 100, 100 }, A=2, B=3, res=5 },
             new Args { R=new int[] { 100, 100, 100 }, A=7, B=3, res=9 },
@@ -125,22 +122,7 @@ class Solution {
             new Args { R=new int[] { 6, 5, 2, 4, 4, 7 }, A=1, B=1, res=10 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMinimumSecondsRequired(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l3_rabbit_hole2", args_list, _getMinimumSecondsRequired);
     }
 
 }

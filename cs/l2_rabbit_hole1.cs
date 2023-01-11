@@ -117,42 +117,24 @@ class Solution {
         return max_chain;
     }
 
-    class Args
+    class Args : test_all.Res<int>
     {
         public int[]? L;
-        public int res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl2_rabbit_hole1");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getMaxVisitableWebpages = (Args args) => s.getMaxVisitableWebpages(args.L!.Length, args.L!);
+        Func<Args, int> _getMaxVisitableWebpages = (Args p) => s.getMaxVisitableWebpages(p.L!.Length, p.L!);
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { L=new int[] { 4, 1, 2, 1 }, res=4 },
             new Args { L=new int[] { 4, 3, 5, 1, 2 }, res=3 },
             new Args { L=new int[] { 2, 4, 2, 2, 3 }, res=4 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getMaxVisitableWebpages(args);
-            if (res == args.res)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l2_rabbit_hole1", args_list, _getMaxVisitableWebpages);    
     }
 
 }

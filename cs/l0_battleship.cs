@@ -11,6 +11,7 @@
 // work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 using System;
+using System.Collections.Generic;
 
 namespace l0_battleship
 {
@@ -32,41 +33,23 @@ class Solution {
         return ret / (double)(R * C);
     }
 
-    class Args
+    class Args : test_all.Res<double>
     {
         public int[,] G;
-        public double res;
     }
 
     public static int tests()
     {
-        Console.WriteLine("\nl0_battleship");
         var s = new Solution();
-        int nb_errors = 0;
 
-        Func<Args, double> _getHitProbability = (Args args) => s.getHitProbability(args.G.GetLength(0), args.G.GetLength(1), args.G);
+        Func<Args, double> _getHitProbability = (Args p) => s.getHitProbability(p.G.GetLength(0), p.G.GetLength(1), p.G);  // TODO: check with epsilon
 
-        var args_list = new Args[] {
+        var args_list = new List<Args> {
             new Args { G=new int[,] {{ 0, 0, 1 }, { 1, 0, 1 } }, res=0.5 },
             new Args { G=new int[,] {{ 1, 1 }, { 1, 1 } }, res=1.0 },
         };
 
-        var nb = 1;
-        foreach (Args args in args_list)
-        {
-            var res = _getHitProbability(args);
-            if (Math.Abs(res - args.res) < 0.000001)
-                Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
-            else
-            {
-                Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                Console.WriteLine("  expected= {0}", args.res);
-                nb_errors += 1;
-            }
-            ++nb;
-        }
-
-        return nb_errors;
+        return test_all.TestAll.run_all_tests("l0_battleship", args_list, _getHitProbability, 0.000001);
     }
 
 }
