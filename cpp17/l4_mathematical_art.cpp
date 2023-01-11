@@ -1,5 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -293,7 +293,7 @@ auto build_grid(uint32_t N, int32_t inc = 1)
     return std::make_tuple(l, d, expected);
 }
 
-void tests()
+auto tests()
 {
     const auto _getPlusSignCount = [](Args& p)
     {
@@ -317,7 +317,7 @@ void tests()
     //auto [L, D, e] = build_grid(100'000, -1);
     //auto n = getPlusSignCount((int)D.size(), L, D);
 
-    run_list_of_tests("l4_mathematical_art", tests, _getPlusSignCount);
+    return run_list_of_tests("l4_mathematical_art", tests, _getPlusSignCount);
 }
 
 }  // namespace l4_mathematical_art

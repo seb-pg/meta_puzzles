@@ -1,4 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -47,7 +48,7 @@ struct Args
     std::vector<vector<int>> G;
 };
 
-void tests()
+auto tests()
 {
     const auto _getHitProbability = [](Args& p)
     {
@@ -62,7 +63,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l0_battleship", tests, _getHitProbability, 0.000001);
+    return run_list_of_tests("l0_battleship", tests, _getHitProbability, 0.000001);
 }
 
 }  // namespace l0_battleship

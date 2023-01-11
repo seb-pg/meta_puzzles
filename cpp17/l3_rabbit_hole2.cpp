@@ -1,5 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -127,15 +127,16 @@ struct Tarjan
         ListVertices_t scc;
         if (v->low_link == v->index)
         {
-            VertexPtr_t w;
-            while (w.get() != v.get())
+            while (true)
             {
-                w = stack.back();
+                auto w = stack.back();
                 stack.pop_back();
                 w->low_link = v->low_link;
                 w->on_stack = false;
                 scc.emplace_back(w);
-            }
+                if (w.get() == v.get())
+                    break;
+            };
         }
         if (scc.size() > 1)
             sccs.emplace_back(scc);
@@ -345,8 +346,8 @@ int32_t getMaxVisitableWebpagesCpp17(uint32_t N, uint32_t M, const std::vector<i
     // calculate edges
     std::vector<Edge> edges;
     edges.reserve(M);
-    for (size_t i = 0; i < M; ++i)
-        edges.emplace_back(Edge{ static_cast<index_t>(A[i]), static_cast<index_t>(B[i]) });  // O(E)
+    for (size_t i = 0; i < M; ++i)  // O(E)
+        edges.emplace_back(Edge{ static_cast<index_t>(A[i]), static_cast<index_t>(B[i]) });
 
     //
     keep_uniques(edges);  // O(E * log(E))
@@ -370,7 +371,7 @@ struct Args
     std::vector<int> B;
 };
 
-void tests()
+auto tests()
 {
     const auto _getMaxVisitableWebpages = [](Args& p)
     {
@@ -398,7 +399,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l3_rabbit_hole2", tests, _getMaxVisitableWebpages);
+    return run_list_of_tests("l3_rabbit_hole2", tests, _getMaxVisitableWebpages);
 }
 
 }  // namespace l3_rabbit_hole2

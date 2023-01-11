@@ -1,5 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -55,7 +55,7 @@ struct Args
     std::vector<int> S;
 };
 
-void tests()
+auto tests()
 {
     const auto _getMinProblemCount = [](Args& p)
     {
@@ -71,7 +71,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l1_scoreboard_interference1", tests, _getMinProblemCount);
+    return run_list_of_tests("l1_scoreboard_interference1", tests, _getMinProblemCount);
 }
 
 }  // namespace l1_scoreboard_interference1

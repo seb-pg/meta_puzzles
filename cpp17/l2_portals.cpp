@@ -1,5 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -189,7 +189,7 @@ struct Args
     std::vector<std::string> G;
 };
 
-void tests()
+auto tests()
 {
     const auto _getSecondsRequired = [](Args& p)
     {
@@ -205,15 +205,15 @@ void tests()
 
     std::vector<NamedTests<Args, int>> tests = {
         { "Meta", {
-                //{ { { ".E.", ".#E", ".S#" } }, 4 },
-                //{ { { "a.Sa", "####", "Eb.b" } }, -1 },
-                //{ { { "aS.b", "####", "Eb.a" } }, 4 },
+                { { { ".E.", ".#E", ".S#" } }, 4 },
+                { { { "a.Sa", "####", "Eb.b" } }, -1 },
+                { { { "aS.b", "####", "Eb.a" } }, 4 },
                 { { { "xS..x..Ex" } }, 3 },
             }
         },
     };
 
-    run_list_of_tests("l2_portals", tests, _getSecondsRequired);
+    return run_list_of_tests("l2_portals", tests, _getSecondsRequired);
 }
 
 }  // namespace l2_portals

@@ -1,5 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -117,7 +117,7 @@ struct Args
     std::vector<int> C;
 };
 
-void tests()
+auto tests()
 {
     const auto _getMinCodeEntryTime = [](Args& p)
     {
@@ -147,7 +147,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l2_rotary_lock2", tests, _getMinCodeEntryTime);
+    return run_list_of_tests("l2_rotary_lock2", tests, _getMinCodeEntryTime);
 }
 
 }  // namespace l2_rotary_lock2

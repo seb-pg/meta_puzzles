@@ -88,7 +88,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\N\projects\3rd_party\boost_1_78_0;C:\N\projects\3rd_party\rapidjson\include;c:\N\projects\3rd_party\reckless\reckless\include;C:\N\projects\3rd_party\simdjson\include;</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -110,7 +109,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\N\projects\3rd_party\boost_1_78_0;C:\N\projects\3rd_party\rapidjson\include;c:\N\projects\3rd_party\reckless\reckless\include;C:\N\projects\3rd_party\simdjson\include;</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -132,7 +130,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\N\projects\3rd_party\boost_1_78_0;C:\N\projects\3rd_party\rapidjson\include;c:\N\projects\3rd_party\reckless\reckless\include;C:\N\projects\3rd_party\simdjson\include;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <FloatingPointModel>Strict</FloatingPointModel>
       <StringPooling>true</StringPooling>
@@ -155,7 +152,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\N\projects\3rd_party\boost_1_78_0;C:\N\projects\3rd_party\rapidjson\include;c:\N\projects\3rd_party\reckless\reckless\include;C:\N\projects\3rd_party\simdjson\include;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <StringPooling>true</StringPooling>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>

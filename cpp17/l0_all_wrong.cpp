@@ -1,4 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -46,7 +47,7 @@ struct Args
     std::string C;
 };
 
-void tests()
+auto tests()
 {
     const auto _getWrongAnswers = [](Args& p)
     {
@@ -61,7 +62,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l0_all_wrong", tests, _getWrongAnswers);
+    return run_list_of_tests("l0_all_wrong", tests, _getWrongAnswers);
 }
 
 }  // namespace l0_all_wrong

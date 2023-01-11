@@ -1,5 +1,5 @@
 // meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -30,15 +30,17 @@ struct NamedTests
 };
 
 template<typename _Args, typename _Ret, typename _Fn>
-void run_list_of_tests(const std::string& module_name,
+auto run_list_of_tests(const std::string& module_name,
 	const std::vector<NamedTests<_Args, _Ret>>& list_of_tests, _Fn fn, double precision=0.0)
 {
 	static_assert(std::is_same_v<_Ret, std::invoke_result_t<_Fn, _Args&>>);  // Would prefer to use a (C++20) concept
 
 	auto prev_precision = std::cout.precision(std::numeric_limits<double>::max_digits10);
+	uint32_t nb_errors = 0;
 	for (const auto& [name, tests] : list_of_tests)
 	{
 		std::cout << std::endl << module_name << " " << name << std::endl;
+		uint32_t nb = 1;
 		for (const auto& [cargs, expected] : tests)
 		{
 			auto args = cargs;  // copy, because Meta's functions' parameters are not const
@@ -48,18 +50,22 @@ void run_list_of_tests(const std::string& module_name,
 			if constexpr (std::is_same_v<double, _Ret> || std::is_same_v<float, _Ret>)
 				is_same = (res - expected) < precision;
 
+			std::cout << "  " << name << ", test #" << nb << ": ";
 			if (is_same)
 			{
-				std::cout << "  res= " << res << " CORRECT" << std::endl;
+				std::cout << "res=" << " CORRECT" << std::endl;
 			}
 			else
 			{
-				std::cout << "  res= " << res << " ERROR <---------------------" << std::endl;
+				++nb_errors;
+				std::cout << "res=" << res << " ERROR <---------------------" << std::endl;
 				std::cout << "  expected= " << expected << std::endl;
 			}
+			++nb;
 		}
 	}
 	std::cout.precision(prev_precision);
+	return nb_errors;
 }
 
 

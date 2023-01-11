@@ -1,4 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -60,7 +61,7 @@ struct Args
     std::vector<long long> S;  // error: could not convert ‘p.l1_cafeteria::Args::S’ from ‘vector<long int>’ to ‘vector<long long int>’
 };
 
-void tests()
+auto tests()
 {
     const auto _getMaxAdditionalDinersCount = [](Args& p)
     {
@@ -75,7 +76,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l1_cafetaria", tests, _getMaxAdditionalDinersCount);
+    return run_list_of_tests("l1_cafetaria", tests, _getMaxAdditionalDinersCount);
 }
 
 }  // namespace l1_cafetaria

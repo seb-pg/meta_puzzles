@@ -1,4 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -95,7 +96,7 @@ struct Args
     int Y;
 };
 
-void tests()
+auto tests()
 {
     const auto _getArtisticPhotographCount = [](Args& p)
     {
@@ -111,7 +112,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l1_director_photography1", tests, _getArtisticPhotographCount);
+    return run_list_of_tests("l1_director_photography1", tests, _getArtisticPhotographCount);
 }
 
 }  // namespace l1_director_photography1

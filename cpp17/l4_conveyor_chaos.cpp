@@ -1,5 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -342,7 +342,7 @@ NamedTests<Args, double> make_cases(const std::string& name, uint32_t N)
     return res;
 }
 
-void tests()
+auto tests()
 {
     const auto _getMinExpectedHorizontalTravelDistance = [](Args& p)
     {
@@ -377,7 +377,7 @@ void tests()
     //tests.clear();
     //tests.emplace_back(make_cases("generated", 2'000'000));
 
-    run_list_of_tests("l4_conveyor_chaos", tests, _getMinExpectedHorizontalTravelDistance, 0.000001);
+    return run_list_of_tests("l4_conveyor_chaos", tests, _getMinExpectedHorizontalTravelDistance, 0.000001);
 }
 
 }  // namespace l4_conveyor_chaos

@@ -1,5 +1,5 @@
-﻿// meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+// meta_puzzles by Sebastien Rubens
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -110,7 +110,7 @@ struct Args
     std::vector<std::string> G;
 };
 
-void tests()
+auto tests()
 {
     const auto _getMaxCollectableCoins = [](Args& p)
     {
@@ -164,7 +164,7 @@ void tests()
         },
     };
 
-    run_list_of_tests("l3_slippery_strip", tests, _getMaxCollectableCoins);
+    return run_list_of_tests("l3_slippery_strip", tests, _getMaxCollectableCoins);
 }
 
 }  // namespace l3_slippery_strip

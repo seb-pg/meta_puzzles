@@ -1,5 +1,5 @@
 // meta_puzzles by Sebastien Rubens
-// This file is part of https://github.com/seb-pg/meta_puzzles
+//
 // Please go to https://github.com/seb-pg/meta_puzzles/README.md
 // for more information
 //
@@ -44,30 +44,32 @@ int main(int argc, char* argv[])
     (void)argc;
     (void)argv;
 
-    l0_abcs::tests();
-    l0_all_wrong::tests();
-    l0_battleship::tests();
-    l1_cafeteria::tests();
-    l1_director_photography1::tests();
-    l1_kaitenzushi::tests();
-    l1_rotary_lock1::tests();
-    l1_scoreboard_interference1::tests();
-    l1_stack_stabilization1::tests();
-    l1_uniform_integers::tests();
-    l2_director_photography2::tests();
-    l2_hops::tests();
-    l2_missing_mail::tests();
-    l2_portals::tests();
-    l2_rabbit_hole1::tests();
-    l2_rotary_lock2::tests();
-    l2_scoreboard_interference2::tests();
-    l2_tunnel_time::tests();
-    l3_boss_fight::tests();
-    l3_rabbit_hole2::tests();
-    l3_slippery_strip::tests();
-    l3_stack_stabilization2::tests();
-    l4_conveyor_chaos::tests();
-    l4_mathematical_art::tests();
+    uint32_t nb_errors = 0;
+    nb_errors += l0_abcs::tests();
+    nb_errors += l0_all_wrong::tests();
+    nb_errors += l0_battleship::tests();
+    nb_errors += l1_cafeteria::tests();
+    nb_errors += l1_director_photography1::tests();
+    nb_errors += l1_kaitenzushi::tests();
+    nb_errors += l1_rotary_lock1::tests();
+    nb_errors += l1_scoreboard_interference1::tests();
+    nb_errors += l1_stack_stabilization1::tests();
+    nb_errors += l1_uniform_integers::tests();
+    nb_errors += l2_director_photography2::tests();
+    nb_errors += l2_hops::tests();
+    nb_errors += l2_missing_mail::tests();
+    nb_errors += l2_portals::tests();
+    nb_errors += l2_rabbit_hole1::tests();
+    nb_errors += l2_rotary_lock2::tests();
+    nb_errors += l2_scoreboard_interference2::tests();
+    nb_errors += l2_tunnel_time::tests();
+    nb_errors += l3_boss_fight::tests();
+    nb_errors += l3_rabbit_hole2::tests();
+    nb_errors += l3_slippery_strip::tests();
+    nb_errors += l3_stack_stabilization2::tests();
+    nb_errors += l4_conveyor_chaos::tests();
+    nb_errors += l4_mathematical_art::tests();
+    std::cout << std::endl << nb_errors << " errors found" << std::endl;
     return 0;
 }
 
