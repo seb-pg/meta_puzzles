@@ -13,6 +13,7 @@
 #pragma once
 
 #include <stddef.h>  // size_t
+#include <cmath>  // abs
 #include <cstdint>  // int**_t
 #include <functional>
 #include <iostream>
@@ -48,7 +49,7 @@ auto run_list_of_tests(const std::string& module_name,
 
 			bool is_same = res == expected;
 			if constexpr (std::is_same_v<double, _Ret> || std::is_same_v<float, _Ret>)
-				is_same = (res - expected) < precision;
+				is_same = std::abs(res - expected) < precision;
 
 			std::cout << "  " << name << ", test #" << nb << ": ";
 			if (is_same)

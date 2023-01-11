@@ -61,6 +61,10 @@ auto tests()
                 { { { { 1, 1 }, { 1, 1 } } }, 1.0 },
             }
         },
+        { "extra1", {
+                { { { { 0, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 } } }, 0.25 },
+            }
+        },
     };
 
     return run_list_of_tests("l0_battleship", tests, _getHitProbability, 0.000001);
