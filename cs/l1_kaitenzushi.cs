@@ -61,7 +61,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getMaximumEatenDishCount = (Args p) => s.getMaximumEatenDishCount(p.D.Length, p.D, p.K);
+        Func<Args, int> wrapper = (Args p) => s.getMaximumEatenDishCount(p.D.Length, p.D, p.K);
 
         var args_list = new List<Args> {
             new Args { D=new int[] { 1, 2, 3, 3, 2, 1 }, K=1, res=5 },
@@ -69,7 +69,7 @@ class Solution {
             new Args { D=new int[] { 1, 2, 1, 2, 1, 2, 1 }, K=2, res=2 },
         };
 
-        return test_all.TestAll.run_all_tests("l1_kaitenzushi", args_list, _getMaximumEatenDishCount);
+        return test_all.TestAll.run_all_tests("l1_kaitenzushi", args_list, wrapper);
     }
 
 }

@@ -113,7 +113,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, long> _getArtisticPhotographCount = (Args p) => s.getArtisticPhotographCount(p.C.Length, p.C, p.X, p.Y);
+        Func<Args, long> wrapper = (Args p) => s.getArtisticPhotographCount(p.C.Length, p.C, p.X, p.Y);
 
         var args_list = new List<Args> {
             new Args { C="APABA", X=1, Y=2, res=1 },
@@ -121,7 +121,7 @@ class Solution {
             new Args { C=".PBAAP.B", X=1, Y=3, res=3 },
         };
 
-        return test_all.TestAll.run_all_tests("l2_director_photography2", args_list, _getArtisticPhotographCount);
+        return test_all.TestAll.run_all_tests("l2_director_photography2", args_list, wrapper);
     }
 
 }

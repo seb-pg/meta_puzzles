@@ -77,7 +77,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getMinProblemCount = (Args p) => s.getMinProblemCount(p.S.Length, p.S);
+        Func<Args, int> wrapper = (Args p) => s.getMinProblemCount(p.S.Length, p.S);
 
         var args_list = new List<Args> {
             new Args { S=new int[] { 1, 2, 3, 4, 5 }, res=3 },
@@ -86,7 +86,7 @@ class Solution {
             new Args { S=new int[] { 8 }, res=3 },
         };
 
-        return test_all.TestAll.run_all_tests("l2_scoreboard_interference2", args_list, _getMinProblemCount);   
+        return test_all.TestAll.run_all_tests("l2_scoreboard_interference2", args_list, wrapper);   
     }
 
 }

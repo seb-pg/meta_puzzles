@@ -178,7 +178,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getSecondsRequired = (Args p) => s.getSecondsRequired(p.G!.GetLength(0), p.G!.GetLength(1), p.G!);
+        Func<Args, int> wrapper = (Args p) => s.getSecondsRequired(p.G!.GetLength(0), p.G!.GetLength(1), p.G!);
 
         var args_list = new List<Args> {
             new Args { G=new char[,] { { '.', 'E', '.' }, { '.', '#', 'E' }, { '.', 'S', '#' } }, res=4 },
@@ -187,7 +187,7 @@ class Solution {
             new Args { G=new char[,] { { 'x', 'S', '.', '.', 'x', '.', '.', 'E', 'x' } }, res=3 },
         };
 
-        return test_all.TestAll.run_all_tests("l2_portals", args_list, _getSecondsRequired);
+        return test_all.TestAll.run_all_tests("l2_portals", args_list, wrapper);
     }
 
 }

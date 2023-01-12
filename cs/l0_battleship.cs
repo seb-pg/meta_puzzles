@@ -42,14 +42,14 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, double> _getHitProbability = (Args p) => s.getHitProbability(p.G.GetLength(0), p.G.GetLength(1), p.G);  // TODO: check with epsilon
+        Func<Args, double> wrapper = (Args p) => s.getHitProbability(p.G.GetLength(0), p.G.GetLength(1), p.G);  // TODO: check with epsilon
 
         var args_list = new List<Args> {
             new Args { G=new int[,] {{ 0, 0, 1 }, { 1, 0, 1 } }, res=0.5 },
             new Args { G=new int[,] {{ 1, 1 }, { 1, 1 } }, res=1.0 },
         };
 
-        return test_all.TestAll.run_all_tests("l0_battleship", args_list, _getHitProbability, 0.000001);
+        return test_all.TestAll.run_all_tests("l0_battleship", args_list, wrapper, 0.000001);
     }
 
 }

@@ -68,7 +68,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getUniformIntegerCountInInterval = (Args p) => s.getUniformIntegerCountInInterval(p.A, p.B);
+        Func<Args, int> wrapper = (Args p) => s.getUniformIntegerCountInInterval(p.A, p.B);
 
         var args_list = new List<Args> {
             new Args { A=75, B=300, res=5 },
@@ -76,7 +76,7 @@ class Solution {
             new Args { A=999999999999, B=999999999999, res=1 },
         };
 
-        return test_all.TestAll.run_all_tests("l1_uniform_integers", args_list, _getUniformIntegerCountInInterval);
+        return test_all.TestAll.run_all_tests("l1_uniform_integers", args_list, wrapper);
     }
 
 }

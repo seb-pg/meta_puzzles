@@ -43,14 +43,14 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, long> _getSecondsRequired = (Args p) => s.getSecondsRequired(p.F, p.P.Length, p.P);
+        Func<Args, long> wrapper = (Args p) => s.getSecondsRequired(p.F, p.P.Length, p.P);
 
         var args_list = new List<Args> {
             new Args { F=3, P=new long[] { 1 }, res=2 },
             new Args { F=6, P=new long[] { 5, 2, 4 }, res=4 },
         };
 
-        return test_all.TestAll.run_all_tests("l2_hops", args_list, _getSecondsRequired);
+        return test_all.TestAll.run_all_tests("l2_hops", args_list, wrapper);
     }
 
 }

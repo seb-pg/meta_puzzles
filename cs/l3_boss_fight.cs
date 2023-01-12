@@ -109,7 +109,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, double> _getMaxDamageDealt = (Args p) => s.getMaxDamageDealt(p.H.Length, p.H, p.D, p.B);  // TODO: check with epsilon
+        Func<Args, double> wrapper = (Args p) => s.getMaxDamageDealt(p.H.Length, p.H, p.D, p.B);  // TODO: check with epsilon
 
         var args_list = new List<Args> {
             new Args { H=new int[] { 2, 1, 4 }, D=new int[] { 3, 1, 2 }, B=4, res=6.5 },
@@ -117,7 +117,7 @@ class Solution {
             new Args { H=new int[] { 1, 1, 2, 3 }, D=new int[] { 1, 2, 1, 100 }, B=8, res=62.75 },
         };
 
-        return test_all.TestAll.run_all_tests("l3_boss_fight", args_list, _getMaxDamageDealt, 0.000001);
+        return test_all.TestAll.run_all_tests("l3_boss_fight", args_list, wrapper, 0.000001);
     }
 
 }

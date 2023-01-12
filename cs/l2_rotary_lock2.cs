@@ -90,14 +90,14 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, long> _getMinCodeEntryTime = (Args p) => s.getMinCodeEntryTime(p.N, p.C.Length, p.C);
+        Func<Args, long> wrapper = (Args p) => s.getMinCodeEntryTime(p.N, p.C.Length, p.C);
 
         var args_list = new List<Args> {
             new Args { N=3, C=new int[] { 1, 2, 3 }, res=2 },
             new Args { N=10, C=new int[] { 9, 4, 4, 8 }, res=6 },
         };
 
-        return test_all.TestAll.run_all_tests("l2_rotary_lock2", args_list, _getMinCodeEntryTime);    
+        return test_all.TestAll.run_all_tests("l2_rotary_lock2", args_list, wrapper);    
     }
 
 }

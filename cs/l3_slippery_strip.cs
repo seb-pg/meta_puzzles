@@ -125,7 +125,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getMaxCollectableCoins = (Args p) => s.getMaxCollectableCoins(p.G.GetLength(0), p.G.GetLength(1), p.G);
+        Func<Args, int> wrapper = (Args p) => s.getMaxCollectableCoins(p.G.GetLength(0), p.G.GetLength(1), p.G);
 
         var args_list = new List<Args> {
             new Args { G=new char[,] { { '.', '*', '*', '*' }, { '*', '*', 'v', '>', }, { '.', '*', '.', '.' } }, res=4 },
@@ -134,7 +134,7 @@ class Solution {
             new Args { G=new char[,] { { '>', '*', 'v', '*', '>', '*' }, { '*', 'v', '*', 'v', '>', '*' }, { '.', '*', '>', '.', '.', '*' }, { '.', '*', '.', '.', '*', 'v' } }, res=6 },
         };
 
-        return test_all.TestAll.run_all_tests("l3_slippery_strip", args_list, _getMaxCollectableCoins);
+        return test_all.TestAll.run_all_tests("l3_slippery_strip", args_list, wrapper);
     }
 
 }

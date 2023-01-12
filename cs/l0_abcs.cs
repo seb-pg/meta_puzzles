@@ -36,7 +36,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getSum = (Args p) => s.getSum(p.A, p.B, p.C);
+        Func<Args, int> wrapper = (Args p) => s.getSum(p.A, p.B, p.C);
 
         var args_list = new List<Args> {
             new Args { A=1, B=2, C=3, res=6 },
@@ -44,7 +44,7 @@ class Solution {
             new Args { A=85, B=16, C=93, res=194 },
         };
 
-        return test_all.TestAll.run_all_tests("l0_abcs", args_list, _getSum);
+        return test_all.TestAll.run_all_tests("l0_abcs", args_list, wrapper);
     }
 
 }

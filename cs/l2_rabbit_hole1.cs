@@ -126,7 +126,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getMaxVisitableWebpages = (Args p) => s.getMaxVisitableWebpages(p.L!.Length, p.L!);
+        Func<Args, int> wrapper = (Args p) => s.getMaxVisitableWebpages(p.L!.Length, p.L!);
 
         var args_list = new List<Args> {
             new Args { L=new int[] { 4, 1, 2, 1 }, res=4 },
@@ -134,7 +134,7 @@ class Solution {
             new Args { L=new int[] { 2, 4, 2, 2, 3 }, res=4 },
         };
 
-        return test_all.TestAll.run_all_tests("l2_rabbit_hole1", args_list, _getMaxVisitableWebpages);    
+        return test_all.TestAll.run_all_tests("l2_rabbit_hole1", args_list, wrapper);    
     }
 
 }

@@ -358,7 +358,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getMaxVisitableWebpages = (Args p) =>
+        Func<Args, int> wrapper = (Args p) =>
         {
             var max_len = Math.Max(p.A!.Max(), p.B!.Max());
             return s.getMaxVisitableWebpages(max_len, p.A!.Length, p.A!, p.B!);
@@ -370,7 +370,7 @@ class Solution {
             new Args { A=new int[] { 3, 2, 5, 9, 10, 3, 3, 9, 4 }, B=new int[] { 9, 5, 7, 8, 6, 4, 5, 3, 9 }, res=5 },
         };
 
-        return test_all.TestAll.run_all_tests("l3_rabbit_hole2", args_list, _getMaxVisitableWebpages);
+        return test_all.TestAll.run_all_tests("l3_rabbit_hole2", args_list, wrapper);
 
     }
 

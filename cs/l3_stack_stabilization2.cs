@@ -111,7 +111,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, long> _getMinimumSecondsRequired = (Args p) => s.getMinimumSecondsRequired(p.R.Length, p.R, p.A, p.B);
+        Func<Args, long> wrapper = (Args p) => s.getMinimumSecondsRequired(p.R.Length, p.R, p.A, p.B);
 
         var args_list = new List<Args> {
             new Args { R=new int[] { 2, 5, 3, 6, 5 }, A=1, B=1, res=5 },
@@ -122,7 +122,7 @@ class Solution {
             new Args { R=new int[] { 6, 5, 2, 4, 4, 7 }, A=1, B=1, res=10 },
         };
 
-        return test_all.TestAll.run_all_tests("l3_rabbit_hole2", args_list, _getMinimumSecondsRequired);
+        return test_all.TestAll.run_all_tests("l3_rabbit_hole2", args_list, wrapper);
     }
 
 }

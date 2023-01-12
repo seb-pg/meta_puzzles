@@ -50,7 +50,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, int> _getMinimumDeflatedDiscCount = (Args p) => s.getMinimumDeflatedDiscCount(p.S.Length, p.S);
+        Func<Args, int> wrapper = (Args p) => s.getMinimumDeflatedDiscCount(p.S.Length, p.S);
 
         var args_list = new List<Args> {
             new Args { S=new int[] { 2, 5, 3, 6, 5 }, res=3 },
@@ -58,7 +58,7 @@ class Solution {
             new Args { S=new int[] { 6, 5, 4, 3 }, res=-1 },
         };
 
-        return test_all.TestAll.run_all_tests("l1_stack_stabilization1", args_list, _getMinimumDeflatedDiscCount);
+        return test_all.TestAll.run_all_tests("l1_stack_stabilization1", args_list, wrapper);
     }
 
 }

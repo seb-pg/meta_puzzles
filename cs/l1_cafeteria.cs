@@ -52,14 +52,14 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, long> _getMaxAdditionalDinersCount = (Args p) => s.getMaxAdditionalDinersCount(p.N, p.K, p.S.Length, p.S);
+        Func<Args, long> wrapper = (Args p) => s.getMaxAdditionalDinersCount(p.N, p.K, p.S.Length, p.S);
 
         var args_list = new List<Args> {
             new Args { N=10, K=1, S=new long[] { 2, 6 }, res=3 },
             new Args { N=15, K=2, S=new long[] { 11, 6, 14 }, res=1 },
         };
 
-        return test_all.TestAll.run_all_tests("l1_cafetaria", args_list, _getMaxAdditionalDinersCount);
+        return test_all.TestAll.run_all_tests("l1_cafetaria", args_list, wrapper);
     }
 
 }

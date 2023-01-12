@@ -40,14 +40,14 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, string> _getWrongAnswers = (Args p) => s.getWrongAnswers(p.C.Length, p.C);
+        Func<Args, string> wrapper = (Args p) => s.getWrongAnswers(p.C.Length, p.C);
 
         var args_list = new List<Args> {
             new Args { C="ABA", res="BAB" },
             new Args { C="BBBBB", res="AAAAA" },
         };
 
-        return test_all.TestAll.run_all_tests("l0_all_wrong", args_list, _getWrongAnswers);
+        return test_all.TestAll.run_all_tests("l0_all_wrong", args_list, wrapper);
     }
 
 }
