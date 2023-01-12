@@ -43,7 +43,7 @@ long long getSecondsRequired(long long N, int F, vector<long long> P) {
 
 struct Args
 {
-    int N;
+    long long N;
     std::vector<long long> P;
 };
 
