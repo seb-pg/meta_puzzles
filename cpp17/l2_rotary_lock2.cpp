@@ -119,7 +119,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMinCodeEntryTime = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMinCodeEntryTime(p.N, static_cast<int>(p.C.size()), p.C);
     };
@@ -147,7 +147,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l2_rotary_lock2", tests, _getMinCodeEntryTime);
+    return run_all_tests("l2_rotary_lock2", tests, wrapper);
 }
 
 }  // namespace l2_rotary_lock2

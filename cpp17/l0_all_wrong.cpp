@@ -49,7 +49,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getWrongAnswers = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getWrongAnswers(static_cast<int>(p.C.size()), p.C);
     };
@@ -62,7 +62,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l0_all_wrong", tests, _getWrongAnswers);
+    return run_all_tests("l0_all_wrong", tests, wrapper);
 }
 
 }  // namespace l0_all_wrong

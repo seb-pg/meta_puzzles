@@ -50,7 +50,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getHitProbability = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getHitProbability(static_cast<int>(p.G.size()), p.G.empty() ? 0 : static_cast<int>(p.G[0].size()), p.G);
     };
@@ -67,7 +67,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l0_battleship", tests, _getHitProbability, 0.000001);
+    return run_all_tests("l0_battleship", tests, wrapper, 0.000001);
 }
 
 }  // namespace l0_battleship

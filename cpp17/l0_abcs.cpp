@@ -40,7 +40,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getSum = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getSum(p.A, p.B, p.C);
     };
@@ -54,7 +54,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l0_abcs", tests, _getSum);
+    return run_all_tests("l0_abcs", tests, wrapper);
 }
 
 } // namespace l0_abcs

@@ -67,7 +67,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMaximumEatenDishCount = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMaximumEatenDishCount(static_cast<int>(p.D.size()), p.D, static_cast<int>(p.K));
     };
@@ -81,7 +81,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l1_kaitenzushi", tests, _getMaximumEatenDishCount);
+    return run_all_tests("l1_kaitenzushi", tests, wrapper);
 }
 
 }  // namespace l1_kaitenzushi

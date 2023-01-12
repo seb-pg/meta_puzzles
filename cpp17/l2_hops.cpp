@@ -49,7 +49,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getSecondsRequired = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getSecondsRequired(p.N, static_cast<int>(p.P.size()), p.P);
     };
@@ -62,7 +62,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l2_hops", tests, _getSecondsRequired);
+    return run_all_tests("l2_hops", tests, wrapper);
 }
 
 }  // namespace l2_hops

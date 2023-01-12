@@ -98,7 +98,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getArtisticPhotographCount = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getArtisticPhotographCount(static_cast<int>(p.C.size()), p.C, p.X, p.Y);
     };
@@ -116,7 +116,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l2_director_photography2", tests, _getArtisticPhotographCount);
+    return run_all_tests("l2_director_photography2", tests, wrapper);
 }
 
 }  // namespace l2_director_photography2

@@ -295,7 +295,7 @@ auto build_grid(uint32_t N, int32_t inc = 1)
 
 auto tests()
 {
-    const auto _getPlusSignCount = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getPlusSignCount(static_cast<int>(p.L.size()), p.L, p.D);
     };
@@ -317,7 +317,7 @@ auto tests()
     //auto [L, D, e] = build_grid(100'000, -1);
     //auto n = getPlusSignCount((int)D.size(), L, D);
 
-    return run_list_of_tests("l4_mathematical_art", tests, _getPlusSignCount);
+    return run_all_tests("l4_mathematical_art", tests, wrapper);
 }
 
 }  // namespace l4_mathematical_art

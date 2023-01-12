@@ -95,7 +95,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getSecondsElapsed = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         auto min_len = static_cast<int>(std::min(p.A.size(), p.B.size()));
         return getSecondsElapsed(p.C, min_len, p.A, p.B, p.K);
@@ -119,7 +119,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l2_tunnel_time", tests, _getSecondsElapsed);
+    return run_all_tests("l2_tunnel_time", tests, wrapper);
 }
 
 }  // namespace l2_tunnel_time

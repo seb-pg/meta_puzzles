@@ -87,7 +87,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMaxExpectedProfit = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMaxExpectedProfit(static_cast<int>(p.V.size()), p.V, p.C, p.S);
     };
@@ -102,7 +102,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l2_missing_mail", tests, _getMaxExpectedProfit, 0.000001);
+    return run_all_tests("l2_missing_mail", tests, wrapper, 0.000001);
 }
 
 }  // namespace l2_missing_mail

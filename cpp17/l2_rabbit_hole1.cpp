@@ -129,7 +129,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMaxVisitableWebpages = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMaxVisitableWebpages(static_cast<int>(p.L.size()), p.L);
     };
@@ -173,7 +173,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l2_rabbit_hole1", tests, _getMaxVisitableWebpages);
+    return run_all_tests("l2_rabbit_hole1", tests, wrapper);
 }
 
 }  // namespace l2_rabbit_hole1

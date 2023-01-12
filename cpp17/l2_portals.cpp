@@ -191,7 +191,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getSecondsRequired = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         std::vector<std::vector<char>> H;
         H.reserve(p.G.size());
@@ -213,7 +213,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l2_portals", tests, _getSecondsRequired);
+    return run_all_tests("l2_portals", tests, wrapper);
 }
 
 }  // namespace l2_portals

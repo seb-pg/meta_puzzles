@@ -56,7 +56,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMinimumDeflatedDiscCount = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMinimumDeflatedDiscCount(static_cast<int>(p.S.size()), p.S);
     };
@@ -70,7 +70,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l1_stack_stabilization1", tests, _getMinimumDeflatedDiscCount);
+    return run_all_tests("l1_stack_stabilization1", tests, wrapper);
 }
 
 }  // namespace l1_stack_stabilization1

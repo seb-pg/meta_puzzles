@@ -106,7 +106,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMaxDamageDealt = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMaxDamageDealt(static_cast<int>(p.H.size()), p.H, p.D, p.B);
     };
@@ -126,7 +126,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l3_boss_fight", tests, _getMaxDamageDealt, 0.000001);
+    return run_all_tests("l3_boss_fight", tests, wrapper, 0.000001);
 }
 
 }  // namespace l3_boss_fight

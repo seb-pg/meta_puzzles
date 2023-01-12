@@ -31,7 +31,7 @@ struct NamedTests
 };
 
 template<typename _Args, typename _Ret, typename _Fn>
-auto run_list_of_tests(const std::string& module_name,
+auto run_all_tests(const std::string& module_name,
 	const std::vector<NamedTests<_Args, _Ret>>& list_of_tests, _Fn fn, double precision=0.0)
 {
 	static_assert(std::is_same_v<_Ret, std::invoke_result_t<_Fn, _Args&>>);  // Would prefer to use a (C++20) concept

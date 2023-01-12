@@ -63,7 +63,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMaxAdditionalDinersCount = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMaxAdditionalDinersCount(p.N, p.K, static_cast<int>(p.S.size()), p.S);
     };
@@ -76,7 +76,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l1_cafetaria", tests, _getMaxAdditionalDinersCount);
+    return run_all_tests("l1_cafetaria", tests, wrapper);
 }
 
 }  // namespace l1_cafetaria

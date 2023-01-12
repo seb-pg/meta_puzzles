@@ -72,7 +72,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getUniformIntegerCountInInterval = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getUniformIntegerCountInInterval(p.A, p.B);
     };
@@ -104,7 +104,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l1_uniform_integers", tests, _getUniformIntegerCountInInterval);
+    return run_all_tests("l1_uniform_integers", tests, wrapper);
 }
 
 }  // namespace l1_uniform_integers

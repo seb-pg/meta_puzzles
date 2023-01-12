@@ -112,7 +112,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMaxCollectableCoins = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         std::vector<std::vector<char>> H;
         H.reserve(p.G.size());
@@ -164,7 +164,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l3_slippery_strip", tests, _getMaxCollectableCoins);
+    return run_all_tests("l3_slippery_strip", tests, wrapper);
 }
 
 }  // namespace l3_slippery_strip

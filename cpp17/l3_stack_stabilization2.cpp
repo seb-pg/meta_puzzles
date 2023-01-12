@@ -119,7 +119,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMinimumSecondsRequired = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMinimumSecondsRequired(static_cast<int>(p.R.size()), p.R, p.A, p.B);
     };
@@ -155,7 +155,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l3_stack_stabilization2", tests, _getMinimumSecondsRequired);
+    return run_all_tests("l3_stack_stabilization2", tests, wrapper);
 }
 
 }  // namespace l3_stack_stabilization2

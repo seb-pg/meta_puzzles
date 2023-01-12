@@ -373,7 +373,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMaxVisitableWebpages = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         auto max_len = static_cast<int32_t>(std::max(*std::max_element(std::cbegin(p.A), std::cend(p.A)), *std::max_element(std::cbegin(p.B), std::cend(p.B))));
         return getMaxVisitableWebpages(max_len, static_cast<int>(p.A.size()), p.A, p.B);
@@ -399,7 +399,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l3_rabbit_hole2", tests, _getMaxVisitableWebpages);
+    return run_all_tests("l3_rabbit_hole2", tests, wrapper);
 }
 
 }  // namespace l3_rabbit_hole2

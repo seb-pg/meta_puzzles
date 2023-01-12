@@ -344,7 +344,7 @@ NamedTests<Args, double> make_cases(const std::string& name, uint32_t N)
 
 auto tests()
 {
-    const auto _getMinExpectedHorizontalTravelDistance = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMinExpectedHorizontalTravelDistance(static_cast<int>(p.A.size()), p.H, p.A, p.B);
     };
@@ -377,7 +377,7 @@ auto tests()
     //tests.clear();
     //tests.emplace_back(make_cases("generated", 2'000'000));
 
-    return run_list_of_tests("l4_conveyor_chaos", tests, _getMinExpectedHorizontalTravelDistance, 0.000001);
+    return run_all_tests("l4_conveyor_chaos", tests, wrapper, 0.000001);
 }
 
 }  // namespace l4_conveyor_chaos

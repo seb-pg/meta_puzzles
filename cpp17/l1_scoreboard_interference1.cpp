@@ -57,7 +57,7 @@ struct Args
 
 auto tests()
 {
-    const auto _getMinProblemCount = [](Args& p)
+    const auto wrapper = [](Args& p)
     {
         return getMinProblemCount(static_cast<int>(p.S.size()), p.S);
     };
@@ -71,7 +71,7 @@ auto tests()
         },
     };
 
-    return run_list_of_tests("l1_scoreboard_interference1", tests, _getMinProblemCount);
+    return run_all_tests("l1_scoreboard_interference1", tests, wrapper);
 }
 
 }  // namespace l1_scoreboard_interference1
