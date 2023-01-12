@@ -50,7 +50,7 @@ auto run_all_tests(const std::string& module_name,
 			bool is_same = true;
 			if constexpr (std::is_same_v<double, _Ret> || std::is_same_v<float, _Ret>)
 				is_same = std::abs(res - expected) <= precision;
-			else:
+			else
 				is_same = res == expected;
 
 			std::cout << "  " << name << ", test #" << nb << ": ";
