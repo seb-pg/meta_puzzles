@@ -35,8 +35,6 @@ mod l3_rabbit_hole2;
 mod l3_slippery_strip;
 mod l3_stack_stabilization2;
 
-mod l2_rabbit_hole1;
-
 pub trait Result<T> {
     fn get_result(&self) -> T;
 }
