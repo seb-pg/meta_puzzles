@@ -26,12 +26,12 @@ mod l2_director_photography2;
 mod l2_hops;
 mod l2_missing_mail;
 mod l2_portals;
+mod l2_rabbit_hole1;
 mod l2_rotary_lock2;
 mod l2_scoreboard_interference2;
 mod l2_tunnel_time;
 
 mod l3_boss_fight;
-mod l3_rabbit_hole2;
 mod l3_slippery_strip;
 mod l3_stack_stabilization2;
 
@@ -39,7 +39,7 @@ pub trait Result<T> {
     fn get_result(&self) -> T;
 }
 
-fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&Args) -> Ret, precision: Option<f64>) -> u32
+fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&Args) -> Ret, _precision: Option<f64>) -> u32
     where Args: Result<Ret>, Ret: std::fmt::Display + std::cmp::PartialEq // + std::ops::Sub
 {
     let mut nb_errors: u32 = 0;
@@ -48,13 +48,7 @@ fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&A
     for args in &args_list
     {
         let res = fnc(args);
-        let mut is_same: bool = true;
-        if precision.is_some() {
-            //is_same = (res - args.get_result()).abs() < precision.unwrap();  // FIXME
-            is_same = res == args.get_result();
-        } else{
-            is_same = res == args.get_result();
-        }
+        let is_same: bool = res == args.get_result();  // FIXME: use (res - args.get_result()).abs() < precision.unwrap()
         if is_same {
             println!("  test #{}: res={} CORRECT", nb, res);
         }
@@ -93,7 +87,7 @@ fn main() {
     nb_errors += l2_hops::tests();
     nb_errors += l2_missing_mail::tests();  // FIXME: double comparison issue in the test (does not use epsilon yet)
     nb_errors += l2_portals::tests();
-    //nb_errors += l2_rabbit_hole1::tests();  // TODO: not implemented yet
+    nb_errors += l2_rabbit_hole1::tests();
     nb_errors += l2_rotary_lock2::tests();
     nb_errors += l2_scoreboard_interference2::tests();
     nb_errors += l2_tunnel_time::tests();
