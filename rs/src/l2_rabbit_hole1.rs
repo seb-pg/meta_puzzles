@@ -147,12 +147,12 @@ pub fn tests() -> u32
     let wrapper = |p: &Args| -> RetType { getMaxVisitableWebpages(p.L.len() as i32, &p.L) };
 
     let args_list : Vec<Args> = vec![
-        //Args{ L: vec![ 4, 1, 2, 1 ], res: 4 },
-        //Args{ L: vec![ 4, 3, 5, 1, 2 ], res: 3 },
-        //Args{ L: vec![ 2, 4, 2, 2, 3 ], res: 4 },
+        Args{ L: vec![ 4, 1, 2, 1 ], res: 4 },
+        Args{ L: vec![ 4, 3, 5, 1, 2 ], res: 3 },
+        Args{ L: vec![ 2, 4, 2, 2, 3 ], res: 4 },
         // extra1
         Args{ L: vec![ 1 ], res: 1 },  // Link from page 1 to page 1 (not allowed)
-        //Args{ L: vec![ 1, 2 ], res: 1 },  // Link from page 2 to page 2 (not allowed)
+        Args{ L: vec![ 1, 2 ], res: 1 },  // Link from page 2 to page 2 (not allowed)
         Args{ L: vec![ 2, 1 ], res: 2 },
         Args{ L: vec![ 3, 3, 4, 3 ], res: 3 },
         Args{ L: vec![ 4, 5, 6, 5, 6, 4 ], res: 4 },
