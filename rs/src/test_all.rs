@@ -1,4 +1,16 @@
-mod l0_abc;
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+mod l0_abcs;
 mod l0_all_wrong;
 mod l0_battleship;
 
@@ -19,139 +31,82 @@ mod l2_scoreboard_interference2;
 mod l2_tunnel_time;
 
 mod l3_boss_fight;
+mod l3_rabbit_hole2;
 mod l3_slippery_strip;
 mod l3_stack_stabilization2;
+
+mod l2_rabbit_hole1;
+
+pub trait Result<T> {
+    fn get_result(&self) -> T;
+}
+
+fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&Args) -> Ret, precision: Option<f64>) -> u32
+    where Args: Result<Ret>, Ret: std::fmt::Display + std::cmp::PartialEq // + std::ops::Sub
+{
+    let mut nb_errors: u32 = 0;
+    println!("\n{}", name);
+    let mut nb: u32 = 1;
+    for args in &args_list
+    {
+        let res = fnc(args);
+        let mut is_same: bool = true;
+        if precision.is_some() {
+            //is_same = (res - args.get_result()).abs() < precision.unwrap();  // FIXME
+            is_same = res == args.get_result();
+        } else{
+            is_same = res == args.get_result();
+        }
+        if is_same {
+            println!("  test #{}: res={} CORRECT", nb, res);
+        }
+        else
+        {
+            println!("  test #{}: res={} ERROR <---------------------", nb, res);
+            println!("  expected= {}", args.get_result());
+            nb_errors += 1;
+        }
+        nb += 1;
+    }
+    return nb_errors;
+}
+
 
 #[allow(non_snake_case)]
 fn main() {
     // The Rust version is based on the C++17 version
-    // The tests are minimum for now, and
-    // not all puzzles solutions have been published yet
-    {
-        println!("l0_abc");
-        let r0 = l0_abc::getSum(2, 3, 4);
-        println!("ret= {}, expected {}\n", r0, 9);
-    }
-    {
-        println!("l0_all_wrong");
-        let r0 = l0_all_wrong::getWrongAnswers(4, "ABBA");
-        println!("ret= {}, expected {}\n", r0, "BAAB");
-    }
-    {
-        println!("l0_battleship");
-        let G: Vec<Vec<i32>> = vec![ vec![ 0, 0, 1 ], vec![ 1, 0, 1 ] ];
-        let r0 = l0_battleship::getHitProbability(2, 3, &G);
-        println!("ret= {}, expected {}\n", r0, 0.5);
-    }
-    {
-        println!("l1_cafeteria");
-        let S: Vec<i64> = vec![ 2, 6 ];
-        let r0 = l1_cafeteria::getMaxAdditionalDinersCount(10, 1, S.len() as i32, &S);
-        println!("ret= {}, expected {}\n", r0, 3);
-    }
-    {
-        println!("l1_director_photography1");
-        let C = ".PBAAP.B";
-        let r0 = l1_director_photography1::getArtisticPhotographCount(C.len() as i32, &C, 1, 3);
-        println!("ret= {}, expected {}\n", r0, 3);
-    }
-    {
-        println!("l1_kaitenzushi");
-        let D: Vec<i32> = vec![ 1, 2, 3, 3, 2, 1 ];
-        let r0 = l1_kaitenzushi::getMaximumEatenDishCount(D.len() as i32, &D, 1);
-        println!("ret= {}, expected {}\n", r0, 5);
-    }
-    {
-        println!("l1_rotary_lock1");
-        let C: Vec<i32> = vec![ 1, 2, 3 ];
-        let r0 = l1_rotary_lock1::getMinCodeEntryTime(3, C.len() as i32, &C);
-        println!("ret= {}, expected {}\n", r0, 2);
-    }
-    {
-        println!("l1_scoreboard_interference1");
-        let S: Vec<i32> = vec![ 1, 2, 3, 4, 5, 6 ];
-        let r0 = l1_scoreboard_interference1::getMinProblemCount(S.len() as i32, &S);
-        println!("ret= {}, expected {}\n", r0, 4);
-    }
-    {
-        println!("l1_stack_stabilization1");
-        let R: Vec<i32> = vec![ 2, 5, 3, 6, 5 ];
-        let r0 = l1_stack_stabilization1::getMinimumDeflatedDiscCount(R.len() as i32, &R);
-        println!("ret= {}, expected {}\n", r0, 3);
-    }
-    {
-        println!("l1_uniform_integers");
-        let r0 = l1_uniform_integers::getMinimumDeflatedDiscCount(75, 300);
-        println!("ret= {}, expected {}\n", r0, 5);
-    }
-    {
-        println!("l2_director_photography2");
-        let C = "PP.A.BB.B";
-        let r0 = l2_director_photography2::getArtisticPhotographCount(C.len() as i32, &C, 1, 3);
-        println!("ret= {}, expected {}\n", r0, 4);
-    }
-    {
-        println!("l2_hops");
-        let P: Vec<i32> = vec![ 5, 2, 4 ];
-        let r0 = l2_hops::getSecondsRequired(6, P.len() as i32, &P);
-        println!("ret= {}, expected {}\n", r0, 4);
-    }
-    {
-        println!("l2_missing_mail");
-        let V: Vec<i32> = vec![ 10, 2, 8, 6, 4 ];
-        let r0 = l2_missing_mail::getMaxExpectedProfit(V.len() as i32, &V, 5, 0.0);
-        println!("ret= {}, expected {}", r0, 25.0);
+    // The tests are minimum for now, and not all puzzles solutions have been published yet
+    let mut nb_errors: u32 = 0;
 
-        let V: Vec<i32> = vec![ 10, 2, 8, 6, 4 ];
-        let r0 = l2_missing_mail::getMaxExpectedProfit(V.len() as i32, &V, 3, 0.15);
-        println!("ret= {}, expected {}\n", r0, 20.10825);
-    }
-    {
-        println!("l2_portals");
-        let C: Vec<String> = vec![ String::from("xS..x..Ex") ];
-        let r0 = l2_portals::_getSecondsRequired(&C);
-        println!("ret= {}, expected {}\n", r0, 3);
-    }
-    {
-        println!("l2_rotary_lock2");
-        let C: Vec<i32> = vec![ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ];
-        let r0 = l2_rotary_lock2::getMinCodeEntryTime(10, C.len() as i32, &C);
-        println!("ret= {}, expected {}\n", r0, 9);
-    }
-    {
-        println!("l2_scoreboard_interference2");
-        let S: Vec<i32> = vec![ 1, 2, 3, 4, 5 ];
-        let r0 = l2_scoreboard_interference2::getMinProblemCount(S.len() as i32, &S);
-        println!("ret= {}, expected {}\n", r0, 3);
-    }
-    {
-        println!("l2_tunnel_time");
-        let A: Vec<i64> = vec![ 19, 28, 39 ];
-        let B: Vec<i64> = vec![ 27, 35, 49 ];
-        let r0 = l2_tunnel_time::getSecondsElapsed(50, A.len() as i32, &A, &B, 26);
-        println!("ret= {}, expected {}\n", r0, 70);
-    }
-    {
-        println!("l3_boss_fight");
-        let H: Vec<i32> = vec![ 2, 1, 4 ];
-        let D: Vec<i32> = vec![ 3, 1, 2 ];
-        let r0 = l3_boss_fight::getMaxDamageDealt(H.len() as i32, &H, &D, 4);
-        println!("ret= {}, expected {}\n", r0, 6.5);
-    }
-    {
-        println!("l3_slippery_strip");
-        let R: Vec<String> = vec![ String::from(">*v*>*"), String::from("*v*v>*"), String::from(".*>..*"), String::from(".*..*v") ];
-        let r0 = l3_slippery_strip::_getMaxCollectableCoins(&R);
-        println!("ret= {}, expected {}", r0, 6);
+    // l0
+    nb_errors += l0_abcs::tests();
+    nb_errors += l0_all_wrong::tests();
+    nb_errors += l0_battleship::tests();
+    // l1
+    nb_errors += l1_cafeteria::tests();
+    nb_errors += l1_director_photography1::tests();
+    nb_errors += l1_kaitenzushi::tests();
+    nb_errors += l1_rotary_lock1::tests();
+    nb_errors += l1_scoreboard_interference1::tests();
+    nb_errors += l1_stack_stabilization1::tests();
+    nb_errors += l1_uniform_integers::tests();
+    // l2
+    nb_errors += l2_director_photography2::tests();
+    nb_errors += l2_hops::tests();
+    nb_errors += l2_missing_mail::tests();  // FIXME: double comparison issue in the test (does not use epsilon yet)
+    nb_errors += l2_portals::tests();
+    //nb_errors += l2_rabbit_hole1::tests();  // TODO: not implemented yet
+    nb_errors += l2_rotary_lock2::tests();
+    nb_errors += l2_scoreboard_interference2::tests();
+    nb_errors += l2_tunnel_time::tests();
+    // l3
+    nb_errors += l3_boss_fight::tests();
+    //nb_errors += l3_rabbit_hole2::tests();  // TODO: not implemented yet
+    nb_errors += l3_slippery_strip::tests();
+    nb_errors += l3_stack_stabilization2::tests();
+    // l4 (not done yet)
+    //nb_errors += l4_conveyor_chaos::tests();  // TODO: not implemented yet
+    //nb_errors += l4_mathematical_art::tests();  // TODO: not implemented yet
 
-        let R: Vec<String> = vec![ String::from("******"), String::from("......"), String::from(">*>vvv"), String::from("......") ];
-        let r0 = l3_slippery_strip::_getMaxCollectableCoins(&R);
-        println!("ret= {}, expected {}\n", r0, 2);
-    }
-    {
-        println!("l3_stack_stabilization2");
-        let R: Vec<i32> = vec![ 1_000_000_000, 500_000_000, 200_000_000, 1_000_000 ];
-        let r0 = l3_stack_stabilization2::getMinimumSecondsRequired(R.len() as i32, &R, 1, 4);
-        println!("ret= {}, expected {}\n", r0, 2_299_000_006 as i64);
-    }
+    println!("\n{} errors found",  nb_errors);
 }

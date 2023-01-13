@@ -1,4 +1,16 @@
-﻿#![allow(non_snake_case)]
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+#![allow(non_snake_case)]
 
 use std::cmp;
 use std::hash::{Hash, Hasher};
@@ -65,4 +77,44 @@ pub fn getMinCodeEntryTime(N: i32, _M: i32, C: &Vec<i32>) -> i64 {
         min_distance = cmp::min(min_distance, distance);
     }
     return min_distance;
+}
+
+
+type RetType = i64;
+
+struct Args
+{
+    N: i32,
+    C: Vec<i32>,
+    res: RetType,
+}
+
+impl super::Result<RetType> for Args {
+    fn get_result(&self) -> RetType
+    {
+        return self.res;
+    }
+}
+
+pub fn tests() -> u32
+{
+    let wrapper = |p: &Args| -> RetType { getMinCodeEntryTime(p.N, p.C.len() as i32, &p.C) };
+
+    let args_list : Vec<Args> = vec![
+        Args{ N: 3, C: vec![ 1, 2, 3 ], res: 2 },
+        Args{ N: 10, C: vec![ 9, 4, 4, 8 ], res: 6 },
+        // extra1
+        Args{ N: 0, C: vec![], res: 0 },
+        Args{ N: 3, C: vec![], res: 0 },
+        Args{ N: 10, C: vec![], res: 0 },
+        Args{ N: 10, C: vec![ 4 ], res: 3 },
+        Args{ N: 10, C: vec![ 9 ], res: 2 },
+        Args{ N: 10, C: vec![ 9, 9, 9, 9 ], res: 2 },
+        // extra2
+        Args{ N: 10, C: vec![ 6, 2, 4, 8 ], res: 10 },
+        Args{ N: 10, C: vec![ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ], res: 9 },
+        Args{ N: 4, C: vec![ 4, 3, 2, 1, 2, 3, 4 ], res: 5 },
+    ];
+
+    return super::run_all_tests("l2_rotary_lock2", args_list, wrapper, Option::None);
 }

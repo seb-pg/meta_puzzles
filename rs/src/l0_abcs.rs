@@ -12,20 +12,18 @@
 
 #![allow(non_snake_case)]
 
-pub fn getSecondsRequired(N: i64, _F: i32, P: &Vec<i64>) -> i64 {
-    if P.is_empty() {
-        return 0;
-    }
-    return N - (*P.iter().min().unwrap() as i64);
+pub fn getSum(A: i32, B: i32, C: i32) -> i32 {
+    return A + B + C;
 }
 
 
-type RetType = i64;
+type RetType = i32;
 
 struct Args
 {
-    N: i64,
-    P: Vec<i64>,
+    A: i32,
+    B: i32,
+    C: i32,
     res: RetType,
 }
 
@@ -38,12 +36,13 @@ impl super::Result<RetType> for Args {
 
 pub fn tests() -> u32
 {
-    let wrapper = |p: &Args| -> RetType { getSecondsRequired(p.N, p.P.len() as i32, &p.P) };
+    let wrapper = |p: &Args| -> RetType { getSum(p.A, p.B, p.C) };
 
     let args_list : Vec<Args> = vec![
-        Args{ N: 3, P: vec![ 1 ], res: 2 },
-        Args{ N: 6, P: vec![ 5, 2, 4 ], res: 4 },
+        Args{ A: 1, B: 2, C: 3, res: 6 },
+        Args{ A: 100, B: 100, C: 100, res: 300 },
+        Args{ A: 85, B: 16, C: 93, res: 194 },
     ];
 
-    return super::run_all_tests("l2_hops", args_list, wrapper, Option::None);
+    return super::run_all_tests("l0_abcs", args_list, wrapper, Option::None);
 }

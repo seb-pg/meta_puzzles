@@ -1,4 +1,16 @@
-﻿#![allow(non_snake_case)]
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+#![allow(non_snake_case)]
 
 use std::rc::Rc;
 use std::cell::RefCell;
@@ -184,4 +196,37 @@ pub fn _getSecondsRequired(G: &Vec<String>) -> i32 {
         H.push(row.chars().collect());
     }
     return getSecondsRequired(H.len() as i32, H[0].len() as i32, &H);
+}
+
+
+type RetType = i32;
+
+struct Args
+{
+    V: Vec<&'static str>,
+    res: RetType,
+}
+
+impl super::Result<RetType> for Args {
+    fn get_result(&self) -> RetType
+    {
+        return self.res;
+    }
+}
+
+pub fn tests() -> u32
+{
+    let wrapper = |p: &Args| -> RetType {
+        let tmp = p.V.iter().map(|s| s.to_string()).collect();
+        return _getSecondsRequired(&tmp);
+    };
+
+    let args_list : Vec<Args> = vec![
+        Args{ V: vec![ ".E.", ".#E", ".S#" ], res: 4 },
+        Args{ V: vec![ "a.Sa", "####", "Eb.b" ], res: -1 },
+        Args{ V: vec![ "aS.b", "####", "Eb.a" ], res: 4 },
+        Args{ V: vec![ "xS..x..Ex" ], res: 3 },
+    ];
+
+    return super::run_all_tests("l2_portals", args_list, wrapper, Option::None);
 }

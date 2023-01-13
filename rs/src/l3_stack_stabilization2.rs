@@ -1,4 +1,16 @@
-﻿#![allow(non_snake_case)]
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+#![allow(non_snake_case)]
 
 pub fn getMinimumSecondsRequired(N: i32, R: &Vec<i32>, A: i32, B: i32) -> i64 {
     use std::cmp;
@@ -76,4 +88,53 @@ pub fn getMinimumSecondsRequired(N: i32, R: &Vec<i32>, A: i32, B: i32) -> i64 {
         }
     }
     return total_cost;
+}
+
+
+type RetType = i64;
+
+struct Args
+{
+    R: Vec<i32>,
+    A: i32,
+    B: i32,
+    res: RetType,
+}
+
+impl super::Result<RetType> for Args {
+    fn get_result(&self) -> RetType
+    {
+        return self.res;
+    }
+}
+
+pub fn tests() -> u32
+{
+    let wrapper = |p: &Args| -> RetType { getMinimumSecondsRequired(p.R.len() as i32, &p.R, p.A, p.B) };
+
+    let args_list : Vec<Args> = vec![
+        Args{ R: vec![ 2, 5, 3, 6, 5 ], A: 1, B: 1, res: 5 },
+        Args{ R: vec![ 100, 100, 100 ], A: 2, B: 3, res: 5 },
+        Args{ R: vec![ 100, 100, 100 ], A: 7, B: 3, res: 9 },
+        Args{ R: vec![ 6, 5, 4, 3 ], A: 10, B: 1, res: 19 },
+        Args{ R: vec![ 100, 100, 1, 1 ], A: 2, B: 1, res: 207 },
+        Args{ R: vec![ 6, 5, 2, 4, 4, 7 ], A: 1, B: 1, res: 10 },
+        // extra1
+        Args{ R: vec![ 10, 6, 2 ], A: 2, B: 1, res: 15 },
+        Args{ R: vec![ 1, 2, 3, 4, 5, 6 ], A: 1, B: 1, res: 0 },
+        Args{ R: vec![ 6, 5, 4, 3, 2, 1 ], A: 1, B: 1, res: 18 },
+        // extra2
+        Args{ R: vec![ 4, 6, 2 ], A: 2, B: 1, res: 9 },
+        Args{ R: vec![ 6, 5, 2, 4, 4, 7], A: 1, B: 1, res: 10 },
+        Args{ R: vec![ 2, 5, 3, 6, 5 ], A: 1, B: 1, res: 5 },
+        Args{ R: vec![ 2, 3, 8, 1, 7, 6  ], A: 2, B: 1, res: 15 },
+        Args{ R: vec![ 5, 4, 3, 6, 8, 1, 10, 11, 6, 1 ], A: 4, B: 1, res: 85 },
+        Args{ R: vec![ 3, 4, 7, 8, 2 ], A: 4, B: 1, res: 24 },
+        Args{ R: vec![ 1, 1, 1, 1, 1 ], A: 4, B: 1, res: 40 },
+        Args{ R: vec![ 1, 1, 1, 1, 1 ], A: 1, B: 4, res: 10 },
+        Args{ R: vec![ 8, 6, 4, 2 ], A: 1, B: 4, res: 18 },
+        Args{ R: vec![ 1_000_000_000, 500_000_000, 200_000_000, 1_000_000], A: 1, B: 4, res: 2_299_000_006 },
+    ];
+
+    return super::run_all_tests("l3_stack_stabilization2", args_list, wrapper, Option::None);
 }

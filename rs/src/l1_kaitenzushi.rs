@@ -1,4 +1,16 @@
-﻿#![allow(non_snake_case)]
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+#![allow(non_snake_case)]
 
 pub fn getMaximumEatenDishCount(_N: i32, D: &Vec<i32>, K: i32) -> i32 {
     // The following is O(1_000_001)
@@ -22,4 +34,34 @@ pub fn getMaximumEatenDishCount(_N: i32, D: &Vec<i32>, K: i32) -> i32 {
         }
     }
     return nb;
+}
+
+
+type RetType = i32;
+
+struct Args
+{
+    D: Vec<i32>,
+    K: i32,
+    res: RetType,
+}
+
+impl super::Result<RetType> for Args {
+    fn get_result(&self) -> RetType
+    {
+        return self.res;
+    }
+}
+
+pub fn tests() -> u32
+{
+    let wrapper = |p: &Args| -> RetType { getMaximumEatenDishCount(p.D.len() as i32, &p.D, p.K) };
+
+    let args_list : Vec<Args> = vec![
+        Args{ D: vec![ 1, 2, 3, 3, 2, 1 ], K: 1, res: 5 },
+        Args{ D: vec![ 1, 2, 3, 3, 2, 1 ], K: 2, res: 4 },
+        Args{ D: vec![ 1, 2, 1, 2, 1, 2, 1 ], K: 2, res: 2 },
+    ];
+
+    return super::run_all_tests("l1_kaitenzushi", args_list, wrapper, Option::None);
 }

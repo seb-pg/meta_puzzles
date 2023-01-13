@@ -1,4 +1,18 @@
-﻿#![allow(non_snake_case)]
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
+#![allow(non_snake_case)]
+
+use std::cmp;
 
 #[derive(Eq)]
 struct Tunnel
@@ -75,4 +89,38 @@ pub fn getSecondsElapsed(C: i64, N: i32, A: &Vec<i64>, B: &Vec<i64>, K: i64) -> 
         }
     }
     return travel_time;
+}
+
+
+type RetType = i64;
+
+struct Args
+{
+    C: i64,
+    A: Vec<i64>,
+    B: Vec<i64>,
+    K: i64,
+    res: RetType,
+}
+
+impl super::Result<RetType> for Args {
+    fn get_result(&self) -> RetType
+    {
+        return self.res;
+    }
+}
+
+pub fn tests() -> u32
+{
+    let wrapper = |p: &Args| -> RetType {
+        let min_len = cmp::min(p.A.len() as i32, p.B.len() as i32);
+        return getSecondsElapsed(p.C, min_len,  &p.A, &p.B, p.K);
+    };
+
+    let args_list : Vec<Args> = vec![
+        Args{ C: 10, A: vec![ 1, 6 ], B: vec![ 3, 7 ], K: 7, res: 22 },
+        // extra1
+    ];
+
+    return super::run_all_tests("l2_tunnel_time", args_list, wrapper, Option::None);
 }
