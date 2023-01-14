@@ -17,7 +17,6 @@
 #include <limits>
 #include <tuple>
 #include <vector>
-#include <unordered_map>
 
 namespace l2_rotary_lock2 {
 

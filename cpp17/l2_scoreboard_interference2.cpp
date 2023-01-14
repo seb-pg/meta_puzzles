@@ -49,7 +49,7 @@ int32_t getMinProblemCountCpp17(uint32_t N, const std::vector<int32_t>& S)
     }
 
     // number of solutions, without any optimisation
-    auto count = static_cast<int32_t>(max_score / 3 + two_remainder + one_remainder);
+    auto count = max_score / 3 + two_remainder + one_remainder;
 
     // not optimisation is possible if "two_remainder and one_remainder" is not true
     if (two_remainder * one_remainder != 1)
