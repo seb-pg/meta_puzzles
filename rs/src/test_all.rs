@@ -73,15 +73,15 @@ fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&A
     for args in &args_list
     {
         let res = fnc(args);
-        let result = args.get_result();
-        let is_same = res.compare(&result, _precision);
+        let expected = args.get_result();
+        let is_same = res.compare(&expected, _precision);
         if is_same {
             println!("  test #{}: res={} CORRECT", nb, res);
         }
         else
         {
             println!("  test #{}: res={} ERROR <---------------------", nb, res);
-            println!("  expected= {}", &result);
+            println!("  expected= {}", &expected);
             nb_errors += 1;
         }
         nb += 1;
