@@ -45,13 +45,13 @@ pub trait Result<T> {
 // TODO: ... and a single specialization for f32/f64?
 
 trait ResultEquality {
-    fn compare(&self, rhs: Self, precision: Option<f64>) -> bool;
+    fn compare(&self, rhs: &Self, precision: Option<f64>) -> bool;
 }
 
 macro_rules! result_equality_impl {
     ($($t:ty)*) => ($(
         impl ResultEquality for $t {
-            fn compare(&self, rhs: $t, _precision: Option<f64>) -> bool { return *self == rhs; }
+            fn compare(&self, rhs: &$t, _precision: Option<f64>) -> bool { return *self == *rhs; }
         }
     )*)
 }
@@ -59,8 +59,8 @@ macro_rules! result_equality_impl {
 result_equality_impl! { usize u8 u16 u32 u64 u128 isize i8 i16 i32 i64 i128 String }
 
 impl ResultEquality for f64 {
-    fn compare(&self, rhs: f64, precision: Option<f64>) -> bool {
-        return (*self - rhs) < precision.unwrap();
+    fn compare(&self, rhs: &f64, precision: Option<f64>) -> bool {
+        return (*self - *rhs) < precision.unwrap();
     }
 }
 
@@ -73,14 +73,15 @@ fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&A
     for args in &args_list
     {
         let res = fnc(args);
-        let is_same = res.compare(args.get_result(), _precision);
+        let result = args.get_result();
+        let is_same = res.compare(&result, _precision);
         if is_same {
             println!("  test #{}: res={} CORRECT", nb, res);
         }
         else
         {
             println!("  test #{}: res={} ERROR <---------------------", nb, res);
-            println!("  expected= {}", args.get_result());
+            println!("  expected= {}", &result);
             nb_errors += 1;
         }
         nb += 1;
