@@ -32,6 +32,7 @@ mod l2_scoreboard_interference2;
 mod l2_tunnel_time;
 
 mod l3_boss_fight;
+mod l3_rabbit_hole2;
 mod l3_slippery_strip;
 mod l3_stack_stabilization2;
 
@@ -39,8 +40,32 @@ pub trait Result<T> {
     fn get_result(&self) -> T;
 }
 
+// TODO: without using macros...
+// TODO: ... is there a way to have a generic implementation of "compare",
+// TODO: ... and a single specialization for f32/f64?
+
+trait ResultEquality {
+    fn compare(&self, rhs: Self, precision: Option<f64>) -> bool;
+}
+
+macro_rules! result_equality_impl {
+    ($($t:ty)*) => ($(
+        impl ResultEquality for $t {
+            fn compare(&self, rhs: $t, _precision: Option<f64>) -> bool { return *self == rhs; }
+        }
+    )*)
+}
+
+result_equality_impl! { usize u8 u16 u32 u64 u128 isize i8 i16 i32 i64 i128 String }
+
+impl ResultEquality for f64 {
+    fn compare(&self, rhs: f64, precision: Option<f64>) -> bool {
+        return (*self - rhs) < precision.unwrap();
+    }
+}
+
 fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&Args) -> Ret, _precision: Option<f64>) -> u32
-    where Args: Result<Ret>, Ret: std::fmt::Display + std::cmp::PartialEq // + std::ops::Sub
+    where Args: Result<Ret>, Ret: std::fmt::Display + ResultEquality
 {
     let mut nb_errors: u32 = 0;
     println!("\n{}", name);
@@ -48,7 +73,7 @@ fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&A
     for args in &args_list
     {
         let res = fnc(args);
-        let is_same: bool = res == args.get_result();  // FIXME: use (res - args.get_result()).abs() < precision.unwrap()
+        let is_same = res.compare(args.get_result(), _precision);
         if is_same {
             println!("  test #{}: res={} CORRECT", nb, res);
         }
@@ -85,7 +110,7 @@ fn main() {
     // l2
     nb_errors += l2_director_photography2::tests();
     nb_errors += l2_hops::tests();
-    nb_errors += l2_missing_mail::tests();  // FIXME: double comparison issue in the test (does not use epsilon yet)
+    nb_errors += l2_missing_mail::tests();
     nb_errors += l2_portals::tests();
     nb_errors += l2_rabbit_hole1::tests();
     nb_errors += l2_rotary_lock2::tests();

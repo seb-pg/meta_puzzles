@@ -102,9 +102,10 @@ pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
     for vertex in &vertices {
         let next_vertex = vertex.clone().borrow().next.as_ref().unwrap().clone();
         let _vertex = vertex.borrow_mut();
-        // The following code in the "if section" is to support self reference vertex (where "vertex.next == vertex")
-        // This is beyond the stated problem, but supported by tests
-        // Rust would panic with "already borrowed: BorrowMutError', src/l2_rabbit_hole1.rs:118:44" without this
+        // TODO: improve the following...
+        // TODO: ...The following code in the "if section" is to support self reference vertex (where "vertex.next == vertex")
+        // TODO: ...// This is beyond the stated problem, but supported by tests
+        // TODO: ...// Rust would panic with "already borrowed: BorrowMutError', src/l2_rabbit_hole1.rs:118:44" without this
         if vertex.as_ptr() == next_vertex.as_ptr() {
             if _vertex.in_cycle {
                 max_chain = cmp::max(max_chain, _vertex.cycle_len);
