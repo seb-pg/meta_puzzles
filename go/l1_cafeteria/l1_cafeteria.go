@@ -17,7 +17,7 @@ import (
 	"sort"
 )
 
-func getMaxAdditionalDinersCount(N int64, K int64, M int, S []int64) int64 {
+func getMaxAdditionalDinersCount(N int64, K int64, M int32, S []int64) int64 {
 	d := K + 1
 	taken := make([]int64, 0, len(S)+2)
 	taken = append(taken, 0-K)
@@ -45,7 +45,7 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int64 { return getMaxAdditionalDinersCount(p.N, p.K, len(p.S), p.S) }
+	wrapper := func(p Args) int64 { return getMaxAdditionalDinersCount(p.N, p.K, int32(len(p.S)), p.S) }
 
 	args_lists := []Args{
 		{10, 1, []int64{2, 6}, 3},

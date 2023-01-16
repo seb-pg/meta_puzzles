@@ -27,9 +27,9 @@ func (t Tunnel) length() int64 {
 	return t.b - t.a
 }
 
-func getSecondsElapsed(C int64, N int, A []int64, B []int64, K int64) int64 {
+func getSecondsElapsed(C int64, N int32, A []int64, B []int64, K int64) int64 {
 	tunnels := make([]Tunnel, N)
-	for i := 0; i < N; i += 1 {
+	for i := int32(0); i < N; i += 1 {
 		tunnels = append(tunnels, Tunnel{A[i], B[i]})
 	}
 
@@ -74,7 +74,7 @@ func (self Args) GetResult() any {
 
 func Tests() uint {
 	wrapper := func(p Args) int64 {
-		min_len := std.Min(len(p.A), len(p.B))
+		min_len := int32(std.Min(len(p.A), len(p.B)))
 		return getSecondsElapsed(p.C, min_len, p.A, p.B, p.K)
 	}
 

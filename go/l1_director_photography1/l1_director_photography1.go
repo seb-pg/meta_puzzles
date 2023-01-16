@@ -21,11 +21,11 @@ type Counts struct {
 	b int
 }
 
-func _getArtisticPhotographCount[T int64 | int](N int, C string, X int, Y int) T {
+func _getArtisticPhotographCount[T int64 | int32](N int32, C string, X int32, Y int32) T {
 	w := Y + 1
 	count := Counts{0, 0}
-	counts := make([]Counts, 0, len(C)+w*2)
-	for i := 0; i < w; i += 1 { // add space at the beginning to avoid special treatment of indices later
+	counts := make([]Counts, 0, len(C)+int(w*2))
+	for i := int32(0); i < w; i += 1 { // add space at the beginning to avoid special treatment of indices later
 		counts = append(counts, Counts{0, 0})
 	}
 	for _, ci := range C {
@@ -37,12 +37,12 @@ func _getArtisticPhotographCount[T int64 | int](N int, C string, X int, Y int) T
 		counts = append(counts, count)
 	}
 	last := counts[len(counts)-1]
-	for i := 0; i < w; i += 1 { // add space at the end to avoid special treatment of indices later
+	for i := int32(0); i < w; i += 1 { // add space at the end to avoid special treatment of indices later
 		counts = append(counts, last)
 	}
 
 	// To make things more readable, we are finding first the point where 'A' is found: O(N)
-	possible := make([]int, 0, len(C))
+	possible := make([]int32, 0, len(C))
 	j := w
 	for _, ci := range C {
 		if ci == 'A' {
@@ -67,15 +67,15 @@ func _getArtisticPhotographCount[T int64 | int](N int, C string, X int, Y int) T
 	return nb // result should always be positive
 }
 
-func getArtisticPhotographCount(N int, C string, X int, Y int) int {
-	return int(_getArtisticPhotographCount[int](N, C, X, Y))
+func getArtisticPhotographCount(N int32, C string, X int32, Y int32) int32 {
+	return _getArtisticPhotographCount[int32](N, C, X, Y)
 }
 
 type Args struct {
 	C   string
-	X   int
-	Y   int
-	res int
+	X   int32
+	Y   int32
+	res int32
 }
 
 func (self Args) GetResult() any {
@@ -83,7 +83,7 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int { return getArtisticPhotographCount(len(p.C), p.C, p.X, p.Y) }
+	wrapper := func(p Args) int32 { return getArtisticPhotographCount(int32(len(p.C)), p.C, p.X, p.Y) }
 
 	args_lists := []Args{
 		{"APABA", 1, 2, 1},

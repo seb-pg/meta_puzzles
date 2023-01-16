@@ -14,7 +14,7 @@ package l0_all_wrong
 
 import "meta_puzzles/test"
 
-func getWrongAnswers(N int, C string) string {
+func getWrongAnswers(N int32, C string) string {
 	var ret string
 	for _, ch := range C {
 		if ch == 'A' {
@@ -36,7 +36,7 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) string { return getWrongAnswers(len(p.C), p.C) }
+	wrapper := func(p Args) string { return getWrongAnswers(int32(len(p.C)), p.C) }
 
 	args_lists := []Args{
 		{"ABA", "BAB"},

@@ -14,11 +14,11 @@ package l1_kaitenzushi
 
 import "meta_puzzles/test"
 
-func getMaximumEatenDishCount(N int, D []int, K int) int {
+func getMaximumEatenDishCount(N int32, D []int32, K int32) int32 {
 	eaten := make([]bool, 1_000_001)
 	last_eaten := make([]uint, K, K)
-	oldest_eaten := 0
-	nb := 0
+	oldest_eaten := int32(0)
+	nb := int32(0)
 	for _, _dish := range D {
 		dish := uint(_dish)
 		if !eaten[dish] {
@@ -34,9 +34,9 @@ func getMaximumEatenDishCount(N int, D []int, K int) int {
 }
 
 type Args struct {
-	D   []int
-	K   int
-	res int
+	D   []int32
+	K   int32
+	res int32
 }
 
 func (self Args) GetResult() any {
@@ -44,12 +44,12 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int { return getMaximumEatenDishCount(len(p.D), p.D, p.K) }
+	wrapper := func(p Args) int32 { return getMaximumEatenDishCount(int32(len(p.D)), p.D, p.K) }
 
 	args_lists := []Args{
-		{[]int{1, 2, 3, 3, 2, 1}, 1, 5},
-		{[]int{1, 2, 3, 3, 2, 1}, 2, 4},
-		{[]int{1, 2, 1, 2, 1, 2, 1}, 2, 2},
+		{[]int32{1, 2, 3, 3, 2, 1}, 1, 5},
+		{[]int32{1, 2, 3, 3, 2, 1}, 2, 4},
+		{[]int32{1, 2, 1, 2, 1, 2, 1}, 2, 2},
 	}
 
 	return test.RunAllTests("l1_kaitenzushi", args_lists, wrapper)

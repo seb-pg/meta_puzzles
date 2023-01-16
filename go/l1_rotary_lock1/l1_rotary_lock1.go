@@ -12,17 +12,13 @@
 
 package l1_rotary_lock1
 
-import "meta_puzzles/test"
+import (
+	"meta_puzzles/std"
+	"meta_puzzles/test"
+)
 
-func min(a int, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func getMinCodeEntryTime(N int, M int, C []int) int64 {
-	pos := int(1)
+func getMinCodeEntryTime(N int32, M int32, C []int32) int64 {
+	pos := int32(1)
 	nb := int64(0)
 	for _, target := range C {
 		positive_move := (target - pos) % N // positive move
@@ -30,15 +26,15 @@ func getMinCodeEntryTime(N int, M int, C []int) int64 {
 			positive_move += N
 		}
 		negative_move := N - positive_move
-		nb += int64(min(positive_move, negative_move))
+		nb += int64(std.Min(positive_move, negative_move))
 		pos = target
 	}
 	return nb
 }
 
 type Args struct {
-	N   int
-	C   []int
+	N   int32
+	C   []int32
 	res int64
 }
 
@@ -47,11 +43,11 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int64 { return getMinCodeEntryTime(p.N, len(p.C), p.C) }
+	wrapper := func(p Args) int64 { return getMinCodeEntryTime(p.N, int32(len(p.C)), p.C) }
 
 	args_lists := []Args{
-		{3, []int{1, 2, 3}, 2},
-		{10, []int{9, 4, 4, 8}, 11},
+		{3, []int32{1, 2, 3}, 2},
+		{10, []int32{9, 4, 4, 8}, 11},
 	}
 
 	return test.RunAllTests("l1_rotary_lock1", args_lists, wrapper)

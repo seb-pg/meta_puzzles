@@ -14,11 +14,11 @@ package l2_scoreboard_interference2
 
 import "meta_puzzles/test"
 
-func getMinProblemCount(N int, S []int) int {
-	max_score := 0
-	second_max_score := 0
-	two_remainder := 0
-	one_remainder := 0
+func getMinProblemCount(N int32, S []int32) int32 {
+	max_score := int32(0)
+	second_max_score := int32(0)
+	two_remainder := int32(0)
+	one_remainder := int32(0)
 	need_one := false
 
 	for _, score := range S {
@@ -62,8 +62,8 @@ func getMinProblemCount(N int, S []int) int {
 }
 
 type Args struct {
-	S   []int
-	res int
+	S   []int32
+	res int32
 }
 
 func (self Args) GetResult() any {
@@ -71,29 +71,29 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int { return getMinProblemCount(len(p.S), p.S) }
+	wrapper := func(p Args) int32 { return getMinProblemCount(int32(len(p.S)), p.S) }
 
 	args_lists := []Args{
-		{[]int{1, 2, 3, 4, 5}, 3},
-		{[]int{4, 3, 3, 4}, 2},
-		{[]int{2, 4, 6, 8}, 4},
-		{[]int{8}, 3},
+		{[]int32{1, 2, 3, 4, 5}, 3},
+		{[]int32{4, 3, 3, 4}, 2},
+		{[]int32{2, 4, 6, 8}, 4},
+		{[]int32{8}, 3},
 		// extra1
-		{[]int{4, 3, 3, 4}, 2},
-		{[]int{2, 4, 6, 8}, 4},
-		{[]int{8}, 3},
-		{[]int{1, 2, 3}, 2},
-		{[]int{5, 7}, 3},
-		{[]int{5, 9, 10}, 5},
-		{[]int{5, 9, 11}, 4},
-		{[]int{4, 5, 6}, 3},
-		{[]int{2, 4, 7}, 4},
+		{[]int32{4, 3, 3, 4}, 2},
+		{[]int32{2, 4, 6, 8}, 4},
+		{[]int32{8}, 3},
+		{[]int32{1, 2, 3}, 2},
+		{[]int32{5, 7}, 3},
+		{[]int32{5, 9, 10}, 5},
+		{[]int32{5, 9, 11}, 4},
+		{[]int32{4, 5, 6}, 3},
+		{[]int32{2, 4, 7}, 4},
 		// extra2
-		{[]int{1, 2, 4}, 3},
-		{[]int{2, 4}, 2},
-		{[]int{4, 5}, 3},
-		{[]int{9, 12}, 4},
-		{[]int{11, 13}, 5},
+		{[]int32{1, 2, 4}, 3},
+		{[]int32{2, 4}, 2},
+		{[]int32{4, 5}, 3},
+		{[]int32{9, 12}, 4},
+		{[]int32{11, 13}, 5},
 	}
 
 	return test.RunAllTests("l2_scoreboard_interference2", args_lists, wrapper)

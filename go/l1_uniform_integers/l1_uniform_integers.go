@@ -35,7 +35,7 @@ func ones(log_value int) int64 {
 	return ret
 }
 
-func getUniformIntegerCountInInterval(A int64, B int64) int {
+func getUniformIntegerCountInInterval(A int64, B int64) int32 {
 	// Each of the following lines is O(log(max(A, B)))
 	len_a := len_str(A)
 	len_b := len_str(B)
@@ -53,13 +53,13 @@ func getUniformIntegerCountInInterval(A int64, B int64) int {
 	if len_a == len_b {
 		nb -= 9
 	}
-	return int(nb)
+	return int32(nb)
 }
 
 type Args struct {
 	A   int64
 	B   int64
-	res int
+	res int32
 }
 
 func (self Args) GetResult() any {
@@ -67,7 +67,7 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int { return getUniformIntegerCountInInterval(p.A, p.B) }
+	wrapper := func(p Args) int32 { return getUniformIntegerCountInInterval(p.A, p.B) }
 
 	args_lists := []Args{
 		{75, 300, 5},

@@ -17,7 +17,7 @@ import (
 	"meta_puzzles/test"
 )
 
-func getSecondsRequired(N int64, F int, P []int64) int64 {
+func getSecondsRequired(N int64, F int32, P []int64) int64 {
 	// When you think about it, the solution is very simple!
 	if len(P) == 0 {
 		return 0
@@ -36,7 +36,7 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int64 { return getSecondsRequired(p.N, len(p.P), p.P) }
+	wrapper := func(p Args) int64 { return getSecondsRequired(p.N, int32(len(p.P)), p.P) }
 
 	args_lists := []Args{
 		{3, []int64{1}, 2},

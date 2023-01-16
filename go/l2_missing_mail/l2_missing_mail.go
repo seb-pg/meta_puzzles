@@ -46,7 +46,7 @@ func MinMaxElementPred[T Result](elements []T, pred Predicate[T]) *T {
 
 // </TODO replace the following>
 
-func getMaxExpectedProfit(N int, V []int, C int, S float64) float64 {
+func getMaxExpectedProfit(N int32, V []int32, C int32, S float64) float64 {
 	if S == 0 {
 		return std.Accumulate(V, 0.0) - float64(C)
 	}
@@ -78,8 +78,8 @@ func getMaxExpectedProfit(N int, V []int, C int, S float64) float64 {
 }
 
 type Args struct {
-	V   []int
-	C   int
+	V   []int32
+	C   int32
 	S   float64
 	res float64
 }
@@ -89,13 +89,13 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) float64 { return getMaxExpectedProfit(len(p.V), p.V, p.C, p.S) }
+	wrapper := func(p Args) float64 { return getMaxExpectedProfit(int32(len(p.V)), p.V, p.C, p.S) }
 
 	args_lists := []Args{
-		{[]int{10, 2, 8, 6, 4}, 5, 0.0, 25.0},
-		{[]int{10, 2, 8, 6, 4}, 5, 1.0, 9.0},
-		{[]int{10, 2, 8, 6, 4}, 3, 0.5, 17.0},
-		{[]int{10, 2, 8, 6, 4}, 3, 0.15, 25.0},
+		{[]int32{10, 2, 8, 6, 4}, 5, 0.0, 25.0},
+		{[]int32{10, 2, 8, 6, 4}, 5, 1.0, 9.0},
+		{[]int32{10, 2, 8, 6, 4}, 3, 0.5, 17.0},
+		{[]int32{10, 2, 8, 6, 4}, 3, 0.15, 25.0},
 	}
 
 	return test.RunAllTests("l2_missing_mail", args_lists, wrapper)

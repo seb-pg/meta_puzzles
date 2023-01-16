@@ -12,17 +12,13 @@
 
 package l1_stack_stabilization1
 
-import "meta_puzzles/test"
+import (
+	"meta_puzzles/std"
+	"meta_puzzles/test"
+)
 
-func min(x int, y int) int {
-	if x < y {
-		return x
-	}
-	return y
-}
-
-func getMinimumDeflatedDiscCount(N int, R []int) int {
-	nb := 0
+func getMinimumDeflatedDiscCount(N int32, R []int32) int32 {
+	nb := int32(0)
 	it := len(R) - 1
 	current_radius := R[it]
 	it -= 1
@@ -35,14 +31,14 @@ func getMinimumDeflatedDiscCount(N int, R []int) int {
 		if target_radius < next_radius {
 			nb += 1
 		}
-		current_radius = min(next_radius, target_radius)
+		current_radius = std.Min(next_radius, target_radius)
 	}
 	return nb
 }
 
 type Args struct {
-	S   []int
-	res int
+	S   []int32
+	res int32
 }
 
 func (self Args) GetResult() any {
@@ -50,12 +46,12 @@ func (self Args) GetResult() any {
 }
 
 func Tests() uint {
-	wrapper := func(p Args) int { return getMinimumDeflatedDiscCount(len(p.S), p.S) }
+	wrapper := func(p Args) int32 { return getMinimumDeflatedDiscCount(int32(len(p.S)), p.S) }
 
 	args_lists := []Args{
-		{[]int{2, 5, 3, 6, 5}, 3},
-		{[]int{100, 100, 100}, 2},
-		{[]int{6, 5, 4, 3}, -1},
+		{[]int32{2, 5, 3, 6, 5}, 3},
+		{[]int32{100, 100, 100}, 2},
+		{[]int32{6, 5, 4, 3}, -1},
 	}
 
 	return test.RunAllTests("l1_stack_stabilization1", args_lists, wrapper)
