@@ -26,6 +26,7 @@ The complete solutions are provided in following languages:
 Mostly complete solutions are provided in the following languages (The code base will be updated soon with the solution missing)
 * C# (compatible with .Net 7.0 and mostly compatible with .Net Code 3.1): based on C\++17
 * Rust (1.66): based on C\++17
+* Go (1.9.4): based on C\++17, uses generics which are not supported by Meta online tests.
 
 The intent is to use these solutions in a multi-language comparison, with additional languages (solutions being written) such as Go, Swift, Scala, and Kotlin.
 
