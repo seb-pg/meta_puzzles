@@ -12,6 +12,65 @@
 
 package main
 
+import (
+	"fmt"
+
+	// l0
+	"meta_puzzles/l0_abcs"
+	"meta_puzzles/l0_all_wrong"
+	"meta_puzzles/l0_battleship"
+	"meta_puzzles/l1_cafeteria"
+	"meta_puzzles/l1_director_photography1"
+	"meta_puzzles/l1_kaitenzushi"
+	"meta_puzzles/l1_rotary_lock1"
+	"meta_puzzles/l1_scoreboard_interference1"
+	"meta_puzzles/l1_stack_stabilization1"
+	"meta_puzzles/l1_uniform_integers"
+	"meta_puzzles/l2_director_photography2"
+	"meta_puzzles/l2_hops"
+	"meta_puzzles/l2_missing_mail"
+	"meta_puzzles/l2_rotary_lock2"
+	"meta_puzzles/l2_scoreboard_interference2"
+	// l1
+	// l2
+)
+
 func main() {
-	// Yes, they are coming!
+	nb_errors := uint(0)
+
+	// l0
+	nb_errors += l0_abcs.Tests()
+	nb_errors += l0_all_wrong.Tests()
+	nb_errors += l0_battleship.Tests()
+
+	// l1
+	nb_errors += l1_cafeteria.Tests()
+	nb_errors += l1_director_photography1.Tests()
+	nb_errors += l1_kaitenzushi.Tests()
+	nb_errors += l1_rotary_lock1.Tests()
+	nb_errors += l1_scoreboard_interference1.Tests()
+	nb_errors += l1_stack_stabilization1.Tests()
+	nb_errors += l1_uniform_integers.Tests()
+
+	// l2
+	nb_errors += l2_director_photography2.Tests()
+	nb_errors += l2_hops.Tests()
+	nb_errors += l2_missing_mail.Tests()
+	//nb_errors += l2_portals.Tests()
+	//nb_errors += l2_rabbit_hole1.Tests()
+	nb_errors += l2_rotary_lock2.Tests()
+	nb_errors += l2_scoreboard_interference2.Tests()
+	//nb_errors += l2_tunnel_time.Tests()
+
+	// l3
+	//nb_errors += l3_boss_fight.Tests()
+	//nb_errors += l3_rabbit_hole2.Tests()
+	//nb_errors += l3_slippery_strip.Tests()
+	//nb_errors += l3_stack_stabilization2.Tests()
+
+	// l4
+	//nb_errors += l4_conveyor_chaos.Tests()
+	//nb_errors += l4_mathematical_art.Tests()
+
+	fmt.Printf("\n%d errors\n", nb_errors)
 }
