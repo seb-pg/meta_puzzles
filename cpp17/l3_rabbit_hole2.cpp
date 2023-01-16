@@ -375,7 +375,9 @@ auto tests()
 {
     const auto wrapper = [](Args& p)
     {
-        auto max_len = static_cast<int32_t>(std::max(*std::max_element(std::cbegin(p.A), std::cend(p.A)), *std::max_element(std::cbegin(p.B), std::cend(p.B))));
+        auto max_elt_a = std::max_element(std::cbegin(p.A), std::cend(p.A));
+        auto max_elt_b = std::max_element(std::cbegin(p.B), std::cend(p.B));
+        auto max_len = static_cast<int32_t>(std::max(*max_elt_a, *max_elt_b));
         return getMaxVisitableWebpages(max_len, static_cast<int>(p.A.size()), p.A, p.B);
     };
 

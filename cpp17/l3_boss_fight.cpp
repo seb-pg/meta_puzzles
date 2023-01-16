@@ -85,9 +85,9 @@ double getMaxDamageDealtCpp17(uint32_t N, const std::vector<int32_t>& H, const s
     if (damage_infos.empty())
         return 0.;
 
-    const auto max_damage = std::max_element(std::cbegin(damage_infos), std::cend(damage_infos),
-        [](const DamageInfo& a, const DamageInfo& b) { return a.damage < b.damage; })->damage;
-    return static_cast<double>(max_damage) / static_cast<double>(B);
+    const auto max_fn = [](const DamageInfo& a, const DamageInfo& b) { return a.damage < b.damage; };
+    const auto max_elt = std::max_element(std::cbegin(damage_infos), std::cend(damage_infos), max_fn);
+    return static_cast<double>(max_elt->damage) / static_cast<double>(B);
 }
 
 using namespace std;

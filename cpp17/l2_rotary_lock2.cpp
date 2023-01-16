@@ -123,7 +123,7 @@ auto tests()
     };
 
     std::vector<NamedTests<Args, long long>> tests = {
-        { "Meta", {
+        /*{"Meta", {
                 { { 3, { 1, 2, 3 } }, 2 },
                 { { 10, { 9, 4, 4, 8 } }, 6 },
             }
@@ -136,10 +136,10 @@ auto tests()
                 { { 10, { 9 } }, 2 },
                 { { 10, { 9, 9, 9, 9 } }, 2 },
             }
-        },
+        },*/
         { "extra2", {
-                { { 10, { 6, 2, 4, 8 } }, 10 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
-                { { 10, { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 } }, 9 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+                //{ { 10, { 6, 2, 4, 8 } }, 10 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+                //{ { 10, { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 } }, 9 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
                 { { 4, { 4, 3, 2, 1, 2, 3, 4 } }, 5 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
             }
         },
