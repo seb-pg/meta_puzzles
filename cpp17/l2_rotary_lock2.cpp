@@ -82,7 +82,6 @@ long long getMinCodeEntryTimeCpp17(int32_t N, uint32_t M, const std::vector<int3
 
     if (C.empty())
         return 0;
-    constexpr auto max_value = std::numeric_limits<int64_t>::max();
     solutions_t solutions = { {{1, 1}, 0} };
     for (const auto& target : C)
     {
@@ -97,7 +96,7 @@ long long getMinCodeEntryTimeCpp17(int32_t N, uint32_t M, const std::vector<int3
         }
         solutions.swap(new_solutions);
     }
-    auto min_distance = max_value;
+    auto min_distance = std::numeric_limits<solutions_t::mapped_type>::max();
     for (const auto& [dials, distance] : solutions)
         min_distance = std::min(min_distance, distance);
     return min_distance;

@@ -36,8 +36,6 @@ int64_t getMinimumSecondsRequiredCpp17(uint32_t N, const std::vector<int32_t>& R
     auto U = R;
 
     // Extend the range of input data
-
-    //
     total_cost_t total_cost = 0;
     std::vector<unit_cost_t> costs(N, 0);
     std::vector<uint32_t> intervals;
