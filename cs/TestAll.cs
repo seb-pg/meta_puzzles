@@ -49,8 +49,7 @@ namespace test_all
                     Console.WriteLine("  test #{0}: res={1} CORRECT", nb, res);
                 else
                 {
-                    Console.WriteLine("  test #{0}: res={1} ERROR <---------------------", nb, res);
-                    Console.WriteLine("  expected= {0}", args.res);
+                    Console.WriteLine("  test #{0}: res={1} expected={2} ERROR <-----", nb, res, args.res);
                     nb_errors += 1;
                 }
                 ++nb;
