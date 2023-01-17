@@ -56,13 +56,12 @@ auto run_all_tests(const std::string& module_name,
 			std::cout << "  " << name << ", test #" << nb << ": ";
 			if (is_same)
 			{
-				std::cout << "res=" << " CORRECT" << std::endl;
+				std::cout << "res=" << res << " CORRECT" << std::endl;
 			}
 			else
 			{
 				++nb_errors;
-				std::cout << "res=" << res << " ERROR <---------------------" << std::endl;
-				std::cout << "  expected= " << expected << std::endl;
+				std::cout << "res=" << res << "expected=" << expected << " ERROR <-----" << std::endl;
 			}
 			++nb;
 		}
