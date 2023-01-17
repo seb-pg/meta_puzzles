@@ -19,6 +19,8 @@ import (
 	"meta_puzzles/l0_abcs"
 	"meta_puzzles/l0_all_wrong"
 	"meta_puzzles/l0_battleship"
+
+	// l1
 	"meta_puzzles/l1_cafeteria"
 	"meta_puzzles/l1_director_photography1"
 	"meta_puzzles/l1_kaitenzushi"
@@ -26,13 +28,19 @@ import (
 	"meta_puzzles/l1_scoreboard_interference1"
 	"meta_puzzles/l1_stack_stabilization1"
 	"meta_puzzles/l1_uniform_integers"
+
+	// l2
 	"meta_puzzles/l2_director_photography2"
 	"meta_puzzles/l2_hops"
 	"meta_puzzles/l2_missing_mail"
 	"meta_puzzles/l2_rotary_lock2"
 	"meta_puzzles/l2_scoreboard_interference2"
-	// l1
-	// l2
+	"meta_puzzles/l2_tunnel_time"
+
+	// l3
+	"meta_puzzles/l3_boss_fight"
+	"meta_puzzles/l3_slippery_strip"
+	"meta_puzzles/l3_stack_stabilization2"
 )
 
 func main() {
@@ -60,13 +68,13 @@ func main() {
 	//nb_errors += l2_rabbit_hole1.Tests()
 	nb_errors += l2_rotary_lock2.Tests()
 	nb_errors += l2_scoreboard_interference2.Tests()
-	//nb_errors += l2_tunnel_time.Tests()
+	nb_errors += l2_tunnel_time.Tests()
 
 	// l3
-	//nb_errors += l3_boss_fight.Tests()
+	nb_errors += l3_boss_fight.Tests()
 	//nb_errors += l3_rabbit_hole2.Tests()
-	//nb_errors += l3_slippery_strip.Tests()
-	//nb_errors += l3_stack_stabilization2.Tests()
+	nb_errors += l3_slippery_strip.Tests()
+	nb_errors += l3_stack_stabilization2.Tests()
 
 	// l4
 	//nb_errors += l4_conveyor_chaos.Tests()

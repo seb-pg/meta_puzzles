@@ -12,7 +12,10 @@
 
 package l0_battleship
 
-import "meta_puzzles/test"
+import (
+	"math"
+	"meta_puzzles/test"
+)
 
 func getHitProbability(R int32, C int32, G [][]int32) float64 {
 	var ret int32 = 0
@@ -41,5 +44,6 @@ func Tests() uint {
 		{[][]int32{{1, 1}, {1, 1}}, 1.0},
 	}
 
-	return test.RunAllTests("l0_battleship", args_lists, wrapper, 0.000001)
+	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000001 }
+	return test.RunAllTests("l0_battleship", args_lists, wrapper, pred)
 }

@@ -13,6 +13,7 @@
 package l2_missing_mail
 
 import (
+	"math"
 	"meta_puzzles/std"
 	"meta_puzzles/test"
 )
@@ -25,26 +26,6 @@ type Result struct {
 func (r Result) both() float64 {
 	return r.mail_room_value + r.total_value
 }
-
-// <TODO replace the following>
-
-type Predicate[T Result] func(x, y T) bool
-
-func MinMaxElementPred[T Result](elements []T, pred Predicate[T]) *T {
-	// similar to C++ std::max_element
-	min_pos := 0
-	for pos, elt := range elements {
-		if pos == 0 {
-			continue
-		}
-		if pred(elt, elements[min_pos]) {
-			min_pos = pos
-		}
-	}
-	return &elements[min_pos]
-}
-
-// </TODO replace the following>
 
 func getMaxExpectedProfit(N int32, V []int32, C int32, S float64) float64 {
 	if S == 0 {
@@ -62,8 +43,8 @@ func getMaxExpectedProfit(N int32, V []int32, C int32, S float64) float64 {
 
 		// Possibility #1 : pick up packages on this day
 		// We need to add the best(max) possible total_value among all saved so far
-		max_fn1 := func(e1 Result, e2 Result) bool { return e1.both() > e2.both() }
-		pickup_value := float64(Vi-C) + MinMaxElementPred(results, max_fn1).both() // TODO: <-- replace this
+		max_fn1 := func(a Result, b Result) bool { return a.both() > b.both() }
+		pickup_value := float64(Vi-C) + std.MaxMinElement(results, max_fn1).both()
 
 		// Possibility #2 : do not pick up packages on this day
 		for idx, _ := range results {
@@ -73,8 +54,8 @@ func getMaxExpectedProfit(N int32, V []int32, C int32, S float64) float64 {
 		results = append(results, Result{0, pickup_value})
 	}
 
-	max_fn2 := func(e1 Result, e2 Result) bool { return e1.total_value > e2.total_value }
-	return MinMaxElementPred(results, max_fn2).total_value
+	max_fn2 := func(a Result, b Result) bool { return a.total_value > b.total_value }
+	return std.MaxMinElement(results, max_fn2).total_value
 }
 
 type Args struct {
@@ -95,8 +76,9 @@ func Tests() uint {
 		{[]int32{10, 2, 8, 6, 4}, 5, 0.0, 25.0},
 		{[]int32{10, 2, 8, 6, 4}, 5, 1.0, 9.0},
 		{[]int32{10, 2, 8, 6, 4}, 3, 0.5, 17.0},
-		{[]int32{10, 2, 8, 6, 4}, 3, 0.15, 25.0},
+		{[]int32{10, 2, 8, 6, 4}, 3, 0.15, 20.10825},
 	}
 
-	return test.RunAllTests("l2_missing_mail", args_lists, wrapper)
+	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000001 }
+	return test.RunAllTests("l2_missing_mail", args_lists, wrapper, pred)
 }
