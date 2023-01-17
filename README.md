@@ -72,6 +72,13 @@ The solutions in Rust, "ported" from C++: the algorithms should be identical, bu
 
 A few solutions are missing for now, usually involving shared pointer (aka Rc in rust).  I am trying to find an elegant way to deal with them, using the latest stable Rust version (no overnight build).
 
+
+<u>go/*</u>
+
+The solutions in Go, "ported" from C++: the algorithms should be identical.
+
+A few solutions are missing for now, usually involving a collection similar to [C\++] std::set.
+
 ----
 
 ## Notes
