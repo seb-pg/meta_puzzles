@@ -38,7 +38,7 @@ func insert_solution(new_solutions solutions_t, N int32, target int32, dial1 int
 	new_distance := distance + int64(get_distance(target, dial1, N))
 	key := Dials{std.Min(dial2, target), std.Max(dial2, target)}
 	value := int64(math.MaxInt64)
-	if previous_value, ok := new_solutions[key]; ok {
+	if previous_value, found := new_solutions[key]; found {
 		value = previous_value
 	}
 	new_solutions[key] = std.Min(value, new_distance)

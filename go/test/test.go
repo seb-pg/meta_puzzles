@@ -25,8 +25,7 @@ func RunAllTests[Args Result, Ret std.Comparable](name string, args_lists []Args
 		if is_same {
 			fmt.Printf("  test #%v: res=%v CORRECT\n", nb+1, res)
 		} else {
-			fmt.Printf("  test #%v: res=%v ERROR <---------------------\n", nb+1, res)
-			fmt.Printf("  expected= %v\n", expected)
+			fmt.Printf("  test #%v: res=%v expected=%v ERROR <-----\n", nb+1, res, expected)
 			nb_errors += 1
 		}
 	}

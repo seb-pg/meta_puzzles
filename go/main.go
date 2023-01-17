@@ -33,6 +33,7 @@ import (
 	"meta_puzzles/l2_director_photography2"
 	"meta_puzzles/l2_hops"
 	"meta_puzzles/l2_missing_mail"
+	"meta_puzzles/l2_rabbit_hole1"
 	"meta_puzzles/l2_rotary_lock2"
 	"meta_puzzles/l2_scoreboard_interference2"
 	"meta_puzzles/l2_tunnel_time"
@@ -65,7 +66,7 @@ func main() {
 	nb_errors += l2_hops.Tests()
 	nb_errors += l2_missing_mail.Tests()
 	//nb_errors += l2_portals.Tests()
-	//nb_errors += l2_rabbit_hole1.Tests()
+	nb_errors += l2_rabbit_hole1.Tests()
 	nb_errors += l2_rotary_lock2.Tests()
 	nb_errors += l2_scoreboard_interference2.Tests()
 	nb_errors += l2_tunnel_time.Tests()
