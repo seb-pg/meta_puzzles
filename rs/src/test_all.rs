@@ -80,8 +80,7 @@ fn run_all_tests<Args, Ret>(name: &'static str, args_list: Vec<Args>, fnc: fn(&A
         }
         else
         {
-            println!("  test #{}: res={} ERROR <---------------------", nb, res);
-            println!("  expected= {}", &expected);
+            println!("  test #{}: res={} expected={} ERROR <-----", nb, res, expected);
             nb_errors += 1;
         }
         nb += 1;
