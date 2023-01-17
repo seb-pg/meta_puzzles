@@ -53,11 +53,10 @@ if __name__ == "__main__":
                 ex_args = extend_fn(*args)
                 res = test_fn(*ex_args)
                 if not cmp(res, expected):
-                    nb_errors += 1
-                    print("  %s, test #%s: res=%s ERROR <---------------------" % (sub_name, nb, res))
-                    print("  expected=", expected)
-                else:
                     print("  %s, test #%s: res=%s CORRECT" % (sub_name, nb, res))
+                else:
+                    print("  %s, test #%s: res=%s expected=%s ERROR <-----" % (sub_name, nb, res, expected))
+                    nb_errors += 1
     print("\n%s errors found" % nb_errors)
 
 
