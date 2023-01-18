@@ -23,12 +23,12 @@ The complete solutions are provided in following languages:
 * Python (3): was developed first
 * C\++(17): was developed second and the code is written in a "plausible" medium developer style (it just works with basic C++ and no fancy optimisation).
 
-Mostly complete solutions are provided in the following languages (The code base will be updated soon with the solution missing)
+Mostly complete solutions are provided in the following languages (The code is updated regularly)
 * C# (compatible with .Net 7.0 and mostly compatible with .Net Code 3.1): based on C\++17
 * Rust (1.66): based on C\++17
 * Go (1.9.4): based on C\++17, uses generics which are not supported by Meta online tests.
 
-The intent is to use these solutions in a multi-language comparison, with additional languages (solutions being written) such as Go, Swift, Scala, and Kotlin.
+The intent is to use these solutions in a multi-language comparison, with additional languages (solutions being written) such as Swift, Scala, and Kotlin.
 
 The idea is to evaluate which languages would be suitable to write quantitative strategies on a wide scale:  if you are working for a hedge fund (or a bank) and have people writing trading strategies, one might want to use a common language for that purpose.
 
@@ -44,12 +44,18 @@ This first phase is about comparing basic language ecosystem needs, i.e. just th
 <u>py3/*</u>
 
 The solutions in Python 3, all tested on Meta's website.
+
+The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code..
+
 Written in my "quick and dirty" Python style.
 
 
 <u>cpp17/*</u>
 
-The solutions in C\++17, all tested on Meta's website.
+The solutions in C\++17 (complete).
+
+The solutions provided  are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
+
 C\++20 (or C\++23) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
 
 The code is written using a "plausible" medium developer style, and not much emphasis is spent on optimisation:
@@ -62,22 +68,32 @@ The code is written using a "plausible" medium developer style, and not much emp
 
 <u>cs/*</u>
 
-The solutions in C#, ported from C++.
-l4_conveyor_chaos and l4_mathematical_art are being reviewed.
+The solutions in C#, ported from C++ (mostly complete, 2 solutions missing).
 
+The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code..
 
-<u>rs/*</u>
-
-The solutions in Rust, "ported" from C++: the algorithms should be identical, but the code is written in a rustacean style.
-
-A few solutions are missing for now, usually involving shared pointer (aka Rc in rust).  I am trying to find an elegant way to deal with them, using the latest stable Rust version (no overnight build).
+Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does not provided an(log(n)) equivalent of [C\++] std::lower_bound for [C\++] std::set or std::map equivalents.
 
 
 <u>go/*</u>
 
-The solutions in Go, "ported" from C++: the algorithms should be identical.
+The solutions in Go, "ported" from C++ (mostly complete, 3 solutions are missing).
 
-A few solutions are missing for now, usually involving a collection similar to [C\++] std::set.
+The code makes use of Generics, which are not supported by Meta's website!
+The solutions provided are passing all Meta's tests on their website (once the generics are removed). Meta's basic tests and some additional are also provided in the source code.
+
+Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing because an equivalent of [C\++] std::set is needed.
+
+
+<u>rs/*</u>
+
+The solutions in Rust, "ported" from C++ (mostly complete, 3 solutions are missing).
+
+The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code..
+
+Solutions l3_rabbit_hole2, l4_conveyor_chaos and l4_mathematical_art are missing because Rust is not programmer friendly when using std::Rc, an equivalent of [C\++] std::shared_ptr.
+Additionally, it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
+
 
 ----
 
