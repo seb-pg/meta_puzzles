@@ -40,6 +40,7 @@ import (
 
 	// l3
 	"meta_puzzles/l3_boss_fight"
+	"meta_puzzles/l3_rabbit_hole2"
 	"meta_puzzles/l3_slippery_strip"
 	"meta_puzzles/l3_stack_stabilization2"
 )
@@ -73,7 +74,7 @@ func main() {
 
 	// l3
 	nb_errors += l3_boss_fight.Tests()
-	//nb_errors += l3_rabbit_hole2.Tests()
+	nb_errors += l3_rabbit_hole2.Tests()
 	nb_errors += l3_slippery_strip.Tests()
 	nb_errors += l3_stack_stabilization2.Tests()
 
