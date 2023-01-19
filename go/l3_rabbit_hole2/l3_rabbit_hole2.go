@@ -107,10 +107,9 @@ func build_children(edges []Edge) ListVertices_t {
 }
 
 type Tarjan struct {
-	vertices ListVertices_t
-	sccs     []ListVertices_t
-	stack    ListVertices_t
-	index    index_t
+	sccs  []ListVertices_t
+	stack ListVertices_t
+	index index_t
 }
 
 func (self *Tarjan) init(v VertexPtr_t) {
@@ -155,7 +154,7 @@ func (self *Tarjan) recurse(v VertexPtr_t) {
 }
 
 func calculate_sccs(vertices ListVertices_t) []ListVertices_t {
-	calc := Tarjan{vertices, make([]ListVertices_t, 0), make(ListVertices_t, 0), 0}
+	calc := Tarjan{make([]ListVertices_t, 0), make(ListVertices_t, 0), 0}
 	for _, v := range vertices {
 		if v.index == index_not_set {
 			calc.recurse(v)
