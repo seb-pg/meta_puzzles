@@ -248,7 +248,7 @@ static index_t dag_max_len_recurse(VertexPtr_t& v)
     for (auto& w : v->children)
     {
         index_t curr_len = 0;
-        if (w->max_len == 0)
+        if (w->max_len == 0 && v.get() != w.get())  // avoid self referencing
             curr_len = dag_max_len_recurse(w);
         else
             curr_len = w->max_len;
@@ -288,7 +288,7 @@ static index_t dag_max_len_iterate(VertexPtr_t v)
         if (f.recurse_object.get() == w.get())
         {
         }
-        else if (w->max_len == 0)
+        else if (w->max_len == 0 && v.get() != w.get())  // avoid self referencing
         {
             f.recurse_object = w;
             call_stack.emplace_back(Frame2{ w });
@@ -309,7 +309,8 @@ static index_t dag_max_len(ListVertices_t& vertices, bool iterative = false)
     for (auto& v : vertices)
         if (v->weight > 0)
             for (auto& w : v->children)
-                ++w->inputs;
+                if (v.get() != w.get())  // avoid self referencing
+                    ++w->inputs;
     index_t ret = 0;
     for (auto& v : vertices)
     {
@@ -381,7 +382,7 @@ auto tests()
 
     std::vector<NamedTests<Args, int>> tests = {
         { "Meta", {
-                { { { 1, 2, 3, 4 }, { 4, 1, 2, 1 } }, 4 },
+                {{{1, 2, 3, 4}, {4, 1, 2, 1}}, 4},
                 { { { 3, 5, 3, 1, 3, 2 }, { 2, 1, 2, 4, 5, 4 } }, 4 },
                 { { { 3, 2, 5, 9, 10, 3, 3, 9, 4 }, { 9, 5, 7, 8, 6, 4, 5, 3, 9 } }, 5 },
             }
@@ -394,7 +395,8 @@ auto tests()
                 { { { 1, 3, 2 }, { 3, 2, 3 } }, 3 },
                 { { { 2, 1 }, { 1, 2 } }, 2 },
                 { { { 3, 5, 3, 1, 3, 2 }, { 2, 2, 2, 4, 5, 4 } }, 4 },
-                { { { 3, 5, 3, 1, 3, 2 }, { 2, 2, 3, 4, 5, 4 } }, 2 },
+                { { { 3, 5, 3, 1, 3, 2 }, { 2, 2, 5, 4, 5, 4 } }, 4 },  // 3 is referencing 5 twice
+                { { { 3, 5, 3, 1, 3, 2 }, { 2, 2, 3, 4, 5, 4 } }, 4 },  // 3 is self referencing
             }
         },
     };
