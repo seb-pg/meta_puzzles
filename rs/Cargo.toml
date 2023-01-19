@@ -7,6 +7,12 @@ edition = "2021"
 
 [dependencies]
 
+[profile.release]
+opt-level = 3
+ltO = true
+strip = "debuginfo"
+panic = "abort"
+
 [[bin]]
 name = "test_all"
 path = "src/test_all.rs"
