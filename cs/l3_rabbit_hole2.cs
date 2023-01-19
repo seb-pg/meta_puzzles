@@ -288,7 +288,7 @@ class Solution {
         foreach (var w in v.children)
         {
             int curr_len = 0;
-            if (w.max_len == 0)
+            if (w.max_len == 0 && !Object.ReferenceEquals(v, w))  // avoid self referencing
                 curr_len = dag_max_len_recurse(w);
             else
                 curr_len = w.max_len;
@@ -303,7 +303,8 @@ class Solution {
         foreach (var v in vertices)
             if (v.weight > 0)
                 foreach (var w in v.children)
-                    ++w.inputs;
+                    if (!Object.ReferenceEquals(v, w))  // avoid self referencing
+                        ++w.inputs;
         int ret = 0;
         foreach (var v in vertices)
         {
@@ -366,10 +367,19 @@ class Solution {
             new Args { A=new int[] { 1, 2, 3, 4 }, B=new int[] { 4, 1, 2, 1 }, res=4 },
             new Args { A=new int[] { 3, 5, 3, 1, 3, 2 }, B=new int[] { 2, 1, 2, 4, 5, 4 }, res=4 },
             new Args { A=new int[] { 3, 2, 5, 9, 10, 3, 3, 9, 4 }, B=new int[] { 9, 5, 7, 8, 6, 4, 5, 3, 9 }, res=5 },
+            //
+            new Args { A=new int[] { 3, 2, 5, 9, 10, 3, 3, 9, 4,  9, 11, 12, 13, 14, 14     }, B=new int[] { 9, 5, 7, 8,  6, 4, 5, 3, 9, 11, 12,  9,  4,  4,  2     }, res=8 },
+            new Args { A=new int[] { 3, 2, 5, 9, 10, 3, 3, 9, 4,  9, 11, 12, 13, 14, 14     }, B=new int[] { 9, 5, 7, 8,  6, 4, 5, 3, 9, 11, 12,  9,  2,  4,  9     }, res=8 },
+            new Args { A=new int[] { 3, 2, 5, 9, 10, 3, 3, 9, 4,  9, 11, 12, 14, 13, 13, 13 }, B=new int[] { 9, 5, 7, 8,  6, 4, 5, 3, 9, 11, 12,  9,  2,  4,  5,  8 }, res=8 },
+            new Args { A=new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6 }, B=new int[] { 3, 4, 3, 4, 5, 6, 5, 6, 7, 8, 7, 8 }, res=4 },
+            new Args { A=new int[] { 1, 3, 2 }, B=new int[] { 3, 2, 3 }, res=3 },
+            new Args { A=new int[] { 2, 1 }, B=new int[] { 1, 2 }, res=2 },
+            new Args { A=new int[] { 3, 5, 3, 1, 3, 2 }, B=new int[] { 2, 2, 2, 4, 5, 4 }, res=4 },
+            new Args { A=new int[] { 3, 5, 3, 1, 3, 2 }, B=new int[] { 2, 2, 5, 4, 5, 4 }, res=4 },  // 3 is referencing 5 twice
+            new Args { A=new int[] { 3, 5, 3, 1, 3, 2 }, B=new int[] { 2, 2, 3, 4, 5, 4 }, res=4 },  // 3 is self referencing
         };
 
         return test_all.TestAll.run_all_tests("l3_rabbit_hole2", args_list, wrapper);
-
     }
 
 }
