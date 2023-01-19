@@ -95,6 +95,10 @@
       <FloatingPointModel>Strict</FloatingPointModel>
       <AdditionalOptions>/external:W0 %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>5262;4820;5045</DisableSpecificWarnings>
+      <Optimization>MaxSpeed</Optimization>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +120,8 @@
       <FloatingPointModel>Strict</FloatingPointModel>
       <AdditionalOptions>/external:W0 %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>5262;4820;5045</DisableSpecificWarnings>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +143,10 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/external:W0 %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>5262;4820;5045</DisableSpecificWarnings>
+      <Optimization>MaxSpeed</Optimization>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,6 +169,8 @@
       <FloatingPointModel>Strict</FloatingPointModel>
       <AdditionalOptions>/external:W0 %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>5262;4820;5045</DisableSpecificWarnings>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
