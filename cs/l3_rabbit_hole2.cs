@@ -135,21 +135,19 @@ class Solution {
             public int child_nb = 0;
             public Vertex? recurse_object = null!;
 
-                public Frame1(Vertex _v)
+            public Frame1(Vertex _v)
             {
                 v = _v;
                 recurse_object = null!;
             }
         };
 
-        public List<Vertex> vertices;
         public List<List<Vertex>> sccs;
         public List<Vertex> stack;
         public int index = 0;
 
-        public Tarjan(List<Vertex> _vertices)
+        public Tarjan()
         {
-            vertices = _vertices;
             sccs = new List<List<Vertex>>();
             stack = new List<Vertex>();
             index = 0;
@@ -238,7 +236,7 @@ class Solution {
 
     static List<List<Vertex>> calculate_sccs(List<Vertex> vertices, bool iterative = false)
     {
-        var calc = new Tarjan(vertices);
+        var calc = new Tarjan();
         foreach (var v in vertices)
             if (v.index == -1)
             {
