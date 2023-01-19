@@ -92,3 +92,22 @@ func Accumulate[T Number, R Number](elements []T, init R) R {
 	}
 	return init
 }
+
+func UniquePred[T any](elements []T, pred predicate_t[T]) int {
+	// equivalent of std::unique
+	last_elt := 0
+	for _, elt := range elements[1:] {
+		if pred(elt, elements[last_elt]) {
+			continue
+		}
+		last_elt += 1
+		elements[last_elt] = elt
+	}
+	return last_elt
+}
+
+func Unique[T Comparable](elements []T) int {
+	// equivalent of std::unique
+	fn := func(lhs, rhs T) bool { return lhs == rhs }
+	return UniquePred(elements, fn)
+}
