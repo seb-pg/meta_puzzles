@@ -52,7 +52,7 @@ if __name__ == "__main__":
             for nb, (args, expected) in enumerate(tests, 1):
                 ex_args = extend_fn(*args)
                 res = test_fn(*ex_args)
-                if not cmp(res, expected):
+                if cmp(res, expected):
                     print("  %s, test #%s: res=%s CORRECT" % (sub_name, nb, res))
                 else:
                     print("  %s, test #%s: res=%s expected=%s ERROR <-----" % (sub_name, nb, res, expected))

@@ -177,7 +177,7 @@ def dag_max_len(vertices, iterative):  # O(V + E)
     def recurse(v):
         max_len = 0
         for w in v.children:
-            if w.max_len == 0:
+            if w.max_len == 0 and id(v) != id(w):
                 curr_len = recurse(w)
             else:
                 curr_len = w.max_len
@@ -201,7 +201,7 @@ def dag_max_len(vertices, iterative):  # O(V + E)
             w = v.children[f.child_nb]
             if id(f.recurse_object) == id(w):  # deal with return from recursion
                 pass
-            elif w.max_len == 0:
+            elif w.max_len == 0 and id(v) != id(w):
                 f.recurse_object = w
                 call_stack.append(Frame2(w))  # enter recursion
                 continue
@@ -215,7 +215,8 @@ def dag_max_len(vertices, iterative):  # O(V + E)
     for v in vertices:  # O(V + E)
         if v.weight > 0:
             for w in v.children:
-                w.inputs += 1
+                if id(v) != id(w):
+                    w.inputs += 1
 
     fn = iterate if iterative else recurse
     return max(fn(v) for v in vertices if v.weight and v.inputs == 0)
@@ -230,7 +231,7 @@ def getMaxVisitableWebpages(N: int, M: int, A: List[int], B: List[int]) -> int:
     #   Ai ≠ Bi           a page cannot link to itself
     # Complexity: O(V + E*log(E))  because of call to keep_unique()
 
-    iterative = True  # iterative SCC is too slow to pass tests (almost expected and sad)
+    iterative = False  # iterative SCC is too slow to pass tests (almost expected and sad)
     if not iterative:
         import sys
         sys.setrecursionlimit(500_010)
@@ -265,7 +266,8 @@ def tests():
         (([1, 3, 2], [3, 2, 3], ), 3),
         (([2, 1], [1, 2], ), 2),
         (([3, 5, 3, 1, 3, 2], [2, 2, 2, 4, 5, 4], ), 4),
-        (([3, 5, 3, 1, 3, 2], [2, 2, 3, 4, 5, 4], ), 2),
+        (([3, 5, 3, 1, 3, 2], [2, 2, 5, 4, 5, 4], ), 4),  # 3 is referencing 5 twice
+        (([3, 5, 3, 1, 3, 2], [2, 2, 3, 4, 5, 4], ), 4),  # 3 is self referencing
     ]
     return getMaxVisitableWebpages, fn, [meta_cases, extra1_cases]
 
