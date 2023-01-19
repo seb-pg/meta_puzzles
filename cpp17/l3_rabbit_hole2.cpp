@@ -103,13 +103,11 @@ struct Tarjan
         VertexPtr_t recurse_object = {};
     };
 
-    const ListVertices_t& vertices;
     std::vector<ListVertices_t> sccs;
     ListVertices_t stack;
     index_t index = 0;
 
-    Tarjan(const ListVertices_t& vertices)
-        : vertices(vertices)
+    Tarjan()
     {
     }
 
@@ -196,7 +194,7 @@ struct Tarjan
 
 static auto calculate_sccs(ListVertices_t& vertices, bool iterative = false)
 {
-    auto calc = Tarjan(vertices);
+    auto calc = Tarjan();
     for (auto& v : vertices)
         if (v->index == index_not_set)
         {
