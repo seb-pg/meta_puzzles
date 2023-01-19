@@ -15,6 +15,9 @@
 use std::rc::Rc;
 use std::cell::RefCell;
 
+type VertexSP = Rc<RefCell<Vertex>>;
+type ListVerticesT = Vec<VertexSP>;
+
 #[derive(Clone)]
 struct Vertex {
     _nb: usize,
@@ -31,8 +34,9 @@ impl Vertex {
     }
 }
 
-type VertexSP = Rc<RefCell<Vertex>>;
-type ListVerticesT = Vec<VertexSP>;
+fn get_next(v: &Vertex) -> VertexSP {
+    return v.next.as_ref().unwrap().clone();
+}
 
 pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
     use std::cmp;
@@ -55,7 +59,7 @@ pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
     // find the entrance vertices (could be []): O(N)
     let mut entrance_vertices = ListVerticesT::with_capacity(_N);
     for vertex in &vertices {
-        if vertex.borrow_mut().inputs == 0 {
+        if vertex.borrow().inputs == 0 {
             entrance_vertices.push(vertex.clone());
         }
     }
@@ -66,7 +70,7 @@ pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
         let mut _curr_vertex = curr_vertex.borrow_mut();
         _curr_vertex.in_cycle = false;
         //
-        let next_vertex = _curr_vertex.next.as_ref().unwrap().clone();
+        let next_vertex = get_next(&_curr_vertex);
         let mut _next_vertex = next_vertex.borrow_mut();
         _next_vertex.level = cmp::max(_next_vertex.level, _curr_vertex.level + 1);
         _next_vertex.inputs -= 1;
@@ -83,25 +87,25 @@ pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
         }
         // count length of cycle
         let mut cycle_len: u32 = 1;
-        let mut curr = _vertex.next.as_ref().unwrap().clone();
+        let mut curr = get_next(&_vertex);
         while curr.as_ptr() != vertex.as_ptr() {
             cycle_len += 1;
-            curr = curr.clone().borrow().next.as_ref().unwrap().clone();
+            curr = get_next(&curr.clone().borrow());
         }
         // assign length of cycle to vertices
         _vertex.cycle_len = cycle_len;
-        let mut curr = _vertex.next.as_ref().unwrap().clone();
+        let mut curr = get_next(&_vertex);
         while curr.as_ptr() != vertex.as_ptr() {
             curr.borrow_mut().cycle_len = cycle_len;
-            curr = curr.clone().borrow().next.as_ref().unwrap().clone();
+            curr = get_next(&curr.clone().borrow());
         }
     }
     
     // Now calculate the maximum length: O(N)
     let mut max_chain: u32 = 0;
     for vertex in &vertices {
-        let next_vertex = vertex.clone().borrow().next.as_ref().unwrap().clone();
-        let _vertex = vertex.borrow_mut();
+        let next_vertex = get_next(&vertex.clone().borrow());
+        let _vertex = vertex.borrow();
         // TODO: improve the following...
         // TODO: ...The following code in the "if section" is to support self reference vertex (where "vertex.next == vertex")
         // TODO: ...// This is beyond the stated problem, but supported by tests
@@ -116,7 +120,7 @@ pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
             continue
         }
         // our tests allow a vertex to be the "next" vertex of itself
-        let mut _next_vertex = next_vertex.borrow_mut();
+        let mut _next_vertex = next_vertex.borrow();
         if _vertex.in_cycle {
             max_chain = cmp::max(max_chain, _vertex.cycle_len);
         }
