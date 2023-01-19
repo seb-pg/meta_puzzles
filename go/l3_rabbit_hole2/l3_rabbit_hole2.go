@@ -209,7 +209,7 @@ func dag_max_len_recurse(v VertexPtr_t) index_t {
 	max_len := index_t(0)
 	for _, w := range v.children {
 		curr_len := index_t(0)
-		if w.max_len == 0 {
+		if w.max_len == 0 && v != w { // avoid self referencing
 			curr_len = dag_max_len_recurse(w)
 		} else {
 			curr_len = w.max_len
@@ -224,7 +224,9 @@ func dag_max_len(vertices ListVertices_t) index_t {
 	for _, v := range vertices {
 		if v.weight > 0 {
 			for _, w := range v.children {
-				w.inputs += 1
+				if v != w { // avoid self referencing
+					w.inputs += 1
+				}
 			}
 		}
 	}
@@ -286,7 +288,8 @@ func Tests() uint {
 		{[]int32{1, 3, 2}, []int32{3, 2, 3}, 3},
 		{[]int32{2, 1}, []int32{1, 2}, 2},
 		{[]int32{3, 5, 3, 1, 3, 2}, []int32{2, 2, 2, 4, 5, 4}, 4},
-		{[]int32{3, 5, 3, 1, 3, 2}, []int32{2, 2, 3, 4, 5, 4}, 2},
+		{[]int32{3, 5, 3, 1, 3, 2}, []int32{2, 2, 5, 4, 5, 4}, 4}, // 3 is referencing 5 twice
+		{[]int32{3, 5, 3, 1, 3, 2}, []int32{2, 2, 3, 4, 5, 4}, 4}, // 3 is self referencing
 	}
 
 	return test.RunAllTests("l3_rabbit_hole2", args_lists, wrapper)
