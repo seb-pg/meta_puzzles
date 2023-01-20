@@ -42,12 +42,12 @@ struct NodeInfo : Coord
     bool is_inserted = false;
 };
 
-template<typename P, typename I>
+template<typename Priority, typename Item>
 struct OurPriorityQueue
 {
     // This is to have an "identical" implement to other languages who do not have std::multimap<dist_t, NodeInfoPtr_t>
     // Here, we are wrapping call to what could be the std::multimap<dist_t, NodeInfoPtr_t>
-    using value_type = std::pair<const P, I>;
+    using value_type = std::pair<const Priority, Item>;
 
     bool empty() const
     {
@@ -56,24 +56,25 @@ struct OurPriorityQueue
 
     auto insert(const value_type& vt)
     {
-        const auto& [priority, item] = vt;
-        return m.insert(typename decltype(m)::value_type(std::make_pair(priority, ++nb), item));
+        return m.insert(typename decltype(m)::value_type(std::make_pair(vt.first, ++nb), vt.second));  // std::map version
+        //return m.insert(vt);  // std::map version
     }
 
     auto pop_front()
     {
         const auto node = m.extract(std::begin(m));
-        return std::make_pair(node.key().first, node.mapped());
+        return std::make_pair(node.key().first, node.mapped());  // std::map version
+        //return std::make_pair(node.key(), node.mapped());  // std::multimap version
     }
 
 private:
     uint64_t nb = 0;  // this could wrap at some point (if it was running forever), and makes it not really a multimap equivalent
-    std::map<const std::pair<P, uint64_t>, I> m;
+    std::map<const std::pair<Priority, decltype(nb)>, Item> m;
+    //std::multimap<Priority, Item> m;
 };
 
 using NodeInfoPtr_t = std::shared_ptr<NodeInfo>;
 using GridNodeInfo_t = std::vector<std::vector<NodeInfoPtr_t>>;
-//using PriorityQueue_t = std::multimap<dist_t, NodeInfoPtr_t>;
 using PriorityQueue_t = OurPriorityQueue<dist_t, NodeInfoPtr_t>;
 using HeuristicFunc_t = std::function<dist_t(NodeInfoPtr_t)>;
 using DistFunc_t = std::function<dist_t(NodeInfoPtr_t, NodeInfoPtr_t)>;
