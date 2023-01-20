@@ -84,7 +84,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, double> wrapper = (Args p) => s.getMaxExpectedProfit(p.V.Length, p.V, p.C, p.S);  // TODO: check with epsilon
+        Func<Args, double> wrapper = (Args p) => s.getMaxExpectedProfit(p.V.Length, p.V, p.C, p.S);
 
         var args_list = new List<Args> {
             new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=5, S=0.0, res=25.0 },

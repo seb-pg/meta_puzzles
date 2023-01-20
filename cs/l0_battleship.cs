@@ -42,7 +42,7 @@ class Solution {
     {
         var s = new Solution();
 
-        Func<Args, double> wrapper = (Args p) => s.getHitProbability(p.G.GetLength(0), p.G.GetLength(1), p.G);  // TODO: check with epsilon
+        Func<Args, double> wrapper = (Args p) => s.getHitProbability(p.G.GetLength(0), p.G.GetLength(1), p.G);
 
         var args_list = new List<Args> {
             new Args { G=new int[,] {{ 0, 0, 1 }, { 1, 0, 1 } }, res=0.5 },
