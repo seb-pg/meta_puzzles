@@ -45,9 +45,11 @@ This first phase is about comparing basic language ecosystem needs, i.e. just th
 
 The solutions in Python 3, all tested on Meta's website.
 
-The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code..
+The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
 
 Written in my "quick and dirty" Python style.
+
+"sortedcontainers" has been used to provide "binary tree" like containers/collections needed to solve l4_conveyor_chaos and l4_mathematical_art.
 
 
 <u>cpp17/*</u>
@@ -79,8 +81,7 @@ Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does 
 
 The solutions in Go, "ported" from C++ (mostly complete, 3 solutions are missing).
 
-The code makes use of Generics, which are not supported by Meta's website!
-The solutions provided are passing all Meta's tests on their website (once the generics are removed). Meta's basic tests and some additional are also provided in the source code.
+The solutions provided are passing all Meta's tests on their website (once the generics are removed: they are not supported by Meta's website). Meta's basic tests and some additional are also provided in the source code.
 
 Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing because an equivalent of [C\++] std::set is needed.
 
@@ -91,8 +92,7 @@ The solutions in Rust, "ported" from C++ (mostly complete, 3 solutions are missi
 
 The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code..
 
-Solutions l3_rabbit_hole2, l4_conveyor_chaos and l4_mathematical_art are missing because Rust is not programmer friendly when using std::Rc, an equivalent of [C\++] std::shared_ptr.
-Additionally, it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
+Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
 
 
 ----
