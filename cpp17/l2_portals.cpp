@@ -48,32 +48,27 @@ struct OurPriorityQueue
     // This is to have an "identical" implement to other languages who do not have std::multimap<dist_t, NodeInfoPtr_t>
     // Here, we are wrapping call to what could be the std::multimap<dist_t, NodeInfoPtr_t>
     using value_type = std::pair<const P, I>;
-    using underlier_t = std::map<const std::pair<P, uint64_t>, I>;
-
-    auto begin()
-    {
-        return std::begin(m);
-    }
 
     bool empty() const
     {
         return m.empty();
     }
 
-    auto erase(typename underlier_t::iterator pos)
-    {
-        return m.erase(pos);
-    }
-
     auto insert(const value_type& vt)
     {
         const auto& [priority, item] = vt;
-        return m.insert(typename underlier_t::value_type(std::make_pair(priority, ++nb), item));
+        return m.insert(typename decltype(m)::value_type(std::make_pair(priority, ++nb), item));
+    }
+
+    auto pop_front()
+    {
+        const auto node = m.extract(std::begin(m));
+        return std::make_pair(node.key().first, node.mapped());
     }
 
 private:
     uint64_t nb = 0;  // this could wrap at some point (if it was running forever), and makes it not really a multimap equivalent
-    underlier_t m;
+    std::map<const std::pair<P, uint64_t>, I> m;
 };
 
 using NodeInfoPtr_t = std::shared_ptr<NodeInfo>;
@@ -149,9 +144,7 @@ int getSecondsRequiredCpp17(uint32_t R, uint32_t C, const std::vector<std::vecto
     q.insert(PriorityQueue_t::value_type(h(start_node), start_node));
     while (!q.empty())
     {
-        const auto itb = std::begin(q);
-        const auto [_score, node] = *itb;
-        q.erase(itb);
+        const auto [_score, node] = q.pop_front();
         if (node->node_type == 'E')
             return node->distance;
         // add portal nodes to node
