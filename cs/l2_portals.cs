@@ -25,7 +25,7 @@ class Solution {
 
 
     // Quick implementation of PriorityQueue as Meta does not seem to recognize it
-    class OurPriorityQueue<TElement, TPriority>  // TODO change this!
+    class OurPriorityQueue<TElement, TPriority>
         where TPriority : unmanaged
     {
         SortedDictionary<(TPriority, UInt64), TElement> queue;
