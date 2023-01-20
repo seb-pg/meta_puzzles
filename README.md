@@ -41,7 +41,7 @@ This first phase is about comparing basic language ecosystem needs, i.e. just th
 ## Files description
 
 
-<u>py3/*</u>
+<b><u>py3/*</u></b>
 
 The solutions in Python 3, all tested on Meta's website.
 
@@ -52,7 +52,7 @@ Written in my "quick and dirty" Python style.
 "sortedcontainers" has been used to provide "binary tree" like containers/collections needed to solve l4_conveyor_chaos and l4_mathematical_art.
 
 
-<u>cpp17/*</u>
+<b><u>cpp17/*</u></b>
 
 The solutions in C\++17 (complete).
 
@@ -68,7 +68,7 @@ The code is written using a "plausible" medium developer style, and not much emp
 * l4_mathematical_art: for GCC, it can use "order_of_key" on std::set to match Python's code as std::distance in STL is linear on std::set, not logarithmic.
 
 
-<u>cs/*</u>
+<b><u>cs/*</u></b>
 
 The solutions in C#, ported from C++ (mostly complete, 2 solutions missing).
 
@@ -77,7 +77,7 @@ The solutions provided are passing all Meta's tests on their website. Meta's bas
 Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does not provided an(log(n)) equivalent of [C\++] std::lower_bound for [C\++] std::set or std::map equivalents.
 
 
-<u>go/*</u>
+<b><u>go/*</u></b>
 
 The solutions in Go, "ported" from C++ (mostly complete, 3 solutions are missing).
 
@@ -86,7 +86,7 @@ The solutions provided are passing all Meta's tests on their website (once the g
 Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing because an equivalent of [C\++] std::set is needed.
 
 
-<u>rs/*</u>
+<b><u>rs/*</u></b>
 
 The solutions in Rust, "ported" from C++ (mostly complete, 3 solutions are missing).
 
