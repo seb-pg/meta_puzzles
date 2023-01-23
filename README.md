@@ -15,6 +15,15 @@ work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 ----
 
+## Want to contribute?
+
+Any contribution (code, comments, criticism) is more than welcome.
+
+While I have had to write code in all sort of languages (including some obscure Ada,Cobol, Prolog, Lisp, Pascal, etc) during my academic or professional life, I am mostly a (Asm, C) C\++ and Python programmer these days, so if you feel I mistreated a particular language, please contribute!
+
+
+----
+
 ## meta_puzzles
 
 meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's careers website at https://www.metacareers.com/profile/coding_puzzles/.
