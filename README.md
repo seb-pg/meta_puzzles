@@ -42,7 +42,7 @@ This first phase is about comparing basic language ecosystem needs, i.e. just th
 
 Any contribution (code, comments, criticism) is more than welcome.
 
-While I have had to write code in all sort of languages (including some obscure Ada,Cobol, Prolog, Lisp, Pascal, etc) during my academic or professional life, I am mostly a (Asm, C) C\++ and Python programmer these days, so if you feel I mistreated a particular language, please contribute!
+While I have had to write code in all sort of languages (including some obscure Ada,Cobol, Prolog, Lisp, Pascal, etc) during my academic or professional life, I am mostly a C\++ and Python programmer these days, so if you feel I mistreated a particular language, please contribute!
 
 
 ----
