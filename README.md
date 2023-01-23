@@ -13,14 +13,6 @@ to meta_puzzles.
 You should have received a copy of the CC0 legalcode along with this
 work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-----
-
-## Want to contribute?
-
-Any contribution (code, comments, criticism) is more than welcome.
-
-While I have had to write code in all sort of languages (including some obscure Ada,Cobol, Prolog, Lisp, Pascal, etc) during my academic or professional life, I am mostly a (Asm, C) C\++ and Python programmer these days, so if you feel I mistreated a particular language, please contribute!
-
 
 ----
 
@@ -42,6 +34,15 @@ The intent is to use these solutions in a multi-language comparison, with additi
 If you are working for a hedge fund (or a bank) and have many people writing trading strategies, one might want to use a common language for that purpose. A possible model is to use an easy language, such as Python, and "productionize" strategies with "real software developer".  Another model is to use a language easy to pick up, less likely to create problem (on a wide scale), offers good performances, and overall, provide a good value for money.
 
 This first phase is about comparing basic language ecosystem needs, i.e. just the language with some basic collections.
+
+
+----
+
+## Want to contribute?
+
+Any contribution (code, comments, criticism) is more than welcome.
+
+While I have had to write code in all sort of languages (including some obscure Ada,Cobol, Prolog, Lisp, Pascal, etc) during my academic or professional life, I am mostly a (Asm, C) C\++ and Python programmer these days, so if you feel I mistreated a particular language, please contribute!
 
 
 ----
