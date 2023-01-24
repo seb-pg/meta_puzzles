@@ -55,7 +55,7 @@ struct OurPriorityQueue
 
     void insert(const Priority& priority, Item& item)
     {
-        m.insert({ std::make_pair(priority, ++nb), std::forward<Item>(item) });
+        m.insert({ { priority, ++nb }, item });
     }
 
     auto pop_front()
