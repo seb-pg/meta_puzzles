@@ -46,31 +46,27 @@ template<typename Priority, typename Item>
 struct OurPriorityQueue
 {
     // This is to have an "identical" implement to other languages who do not have std::multimap<dist_t, NodeInfoPtr_t>
-    // Here, we are wrapping call to what could be the std::multimap<dist_t, NodeInfoPtr_t>
-    using value_type = std::pair<const Priority, Item>;
+    // Here, we are wrapping call to what could be the std::multimap<Priority, Item>
 
     bool empty() const
     {
         return m.empty();
     }
 
-    auto insert(const value_type& vt)
+    void insert(const Priority& priority, Item& item)
     {
-        return m.insert(typename decltype(m)::value_type(std::make_pair(vt.first, ++nb), vt.second));  // std::map version
-        //return m.insert(vt);  // std::map version
+        m.insert({ std::make_pair(priority, ++nb), std::forward<Item>(item) });
     }
 
     auto pop_front()
     {
         const auto node = m.extract(std::begin(m));
-        return std::make_pair(node.key().first, node.mapped());  // std::map version
-        //return std::make_pair(node.key(), node.mapped());  // std::multimap version
+        return std::make_pair(node.key(), node.mapped());
     }
 
 private:
     uint64_t nb = 0;  // this could wrap at some point (if it was running forever), and makes it not really a multimap equivalent
     std::map<const std::pair<Priority, decltype(nb)>, Item> m;
-    //std::multimap<Priority, Item> m;
 };
 
 using NodeInfoPtr_t = std::shared_ptr<NodeInfo>;
@@ -89,7 +85,7 @@ static void add_neighbour(PriorityQueue_t& q, HeuristicFunc_t& h, DistFunc_t& d,
     if (!neighbour->is_inserted)
     {
         neighbour->is_inserted = true;
-        q.insert(PriorityQueue_t::value_type(h(neighbour), neighbour));
+        q.insert(h(neighbour), neighbour);
     }
 }
 
@@ -142,7 +138,7 @@ int getSecondsRequiredCpp17(uint32_t R, uint32_t C, const std::vector<std::vecto
     constexpr auto minus_1_col = static_cast<decltype(Coord::col)>(-1);
     constexpr Coord neighbours_directions[] = { {minus_1_row, 0}, {1, 0}, {0, minus_1_col}, {0, 1}};
 
-    q.insert(PriorityQueue_t::value_type(h(start_node), start_node));
+    q.insert(h(start_node), start_node);
     while (!q.empty())
     {
         const auto [_score, node] = q.pop_front();

@@ -50,6 +50,8 @@ struct hash<l2_rotary_lock2::Dials>
 
 namespace l2_rotary_lock2 {
 
+using solutions_t = std::unordered_map<Dials, int64_t>;
+
 static inline int32_t get_distance(int32_t target, int32_t position, int32_t N)
 {
     auto positive_move = (target - position) % N;
@@ -58,8 +60,6 @@ static inline int32_t get_distance(int32_t target, int32_t position, int32_t N)
     const auto negative_move = N - positive_move;  // positive number
     return std::min(positive_move, negative_move);
 }
-
-using solutions_t = std::unordered_map<Dials, int64_t>;
 
 static void insert_solution(solutions_t& new_solutions, int32_t N, int32_t target, int32_t dial1, int32_t dial2, int64_t distance)
 {
