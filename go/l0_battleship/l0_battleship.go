@@ -42,8 +42,10 @@ func Tests() uint {
 	args_lists := []Args{
 		{[][]int32{{0, 0, 1}, {1, 0, 1}}, 0.5},
 		{[][]int32{{1, 1}, {1, 1}}, 1.0},
+		// extra1
+		{[][]int32{{0, 1, 0, 0}, {1, 1, 0, 0}, {0, 0, 0, 0}}, 0.25},
 	}
 
-	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000001 }
+	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000_001 }
 	return test.RunAllTests("l0_battleship", args_lists, wrapper, pred)
 }

@@ -89,6 +89,8 @@ func Tests() uint {
 		{"APABA", 1, 2, 1},
 		{"APABA", 2, 3, 0},
 		{".PBAAP.B", 1, 3, 3},
+		// extra1
+		{"PP.A.BB.B", 1, 3, 4},
 	}
 
 	return test.RunAllTests("l2_director_photography2", args_lists, wrapper)

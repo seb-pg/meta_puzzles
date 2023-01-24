@@ -90,9 +90,9 @@ func Tests() uint {
 		{10, []int32{9}, 2},
 		{10, []int32{9, 9, 9, 9}, 2},
 		// extra2
-		{10, []int32{6, 2, 4, 8}, 10},
-		{10, []int32{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, 9},
-		{4, []int32{4, 3, 2, 1, 2, 3, 4}, 5},
+		{10, []int32{6, 2, 4, 8}, 10},                   // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+		{10, []int32{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, 9}, // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+		{4, []int32{4, 3, 2, 1, 2, 3, 4}, 5},            // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
 	}
 
 	return test.RunAllTests("l2_rotary_lock2", args_lists, wrapper)

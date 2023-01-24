@@ -79,6 +79,6 @@ func Tests() uint {
 		{[]int32{10, 2, 8, 6, 4}, 3, 0.15, 20.10825},
 	}
 
-	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000001 }
+	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000_001 }
 	return test.RunAllTests("l2_missing_mail", args_lists, wrapper, pred)
 }

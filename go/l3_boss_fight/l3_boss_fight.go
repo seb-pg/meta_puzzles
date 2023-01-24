@@ -99,6 +99,6 @@ func Tests() uint {
 		{[]int32{9, 1, 3, 4}, []int32{0, 10, 4, 3}, 1, 100.0},
 	}
 
-	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000001 }
+	pred := func(lhs float64, rhs float64) bool { return math.Abs(lhs-rhs) < 0.000_001 }
 	return test.RunAllTests("l3_boss_fight", args_lists, wrapper, pred)
 }
