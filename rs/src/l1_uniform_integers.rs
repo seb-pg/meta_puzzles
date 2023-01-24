@@ -78,8 +78,18 @@ pub fn tests() -> u32
         Args{ A: 75, B: 300, res: 5 },
         Args{ A: 1, B: 9, res: 9 },
         Args{ A: 999999999999, B: 999999999999, res: 1 },
-        // extra
+        // extra1
         Args{ A: 1, B: 1_000_000_000_000, res: 108 },
+        // extra2
+        Args{ A: 10, B: 99, res: 9 },
+        Args{ A: 11, B: 98, res: 8 },
+        Args{ A: 21, B: 89, res: 7 },
+        Args{ A: 22, B: 88, res: 7 },
+        Args{ A: 23, B: 87, res: 5 },
+        // extra3
+        Args{ A: 11, B: 88, res: 8 },
+        Args{ A: 11, B: 98, res: 8 },
+        Args{ A: 11, B: 99, res: 9 },
     ];
 
     return super::run_all_tests("l1_uniform_integers", args_list, wrapper, Option::None);

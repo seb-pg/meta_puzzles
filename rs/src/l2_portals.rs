@@ -26,17 +26,17 @@ pub struct OurPriorityQueue<P, I>
 impl<P, I> OurPriorityQueue<P, I>
     where I: Ord, P: Ord
 {
-    pub fn insert(&mut self, priority: P, item: I) -> Option<I> {
-        self.nb += 1;
-        self.m.insert((priority, self.nb), item)
+    pub const fn new() -> OurPriorityQueue<P, I> {
+        OurPriorityQueue{ nb: 0, m: std::collections::BTreeMap::<(P, u64), I>::new() }
     }
 
     pub fn is_empty(&self) -> bool {
         self.m.first_key_value().is_none()
     }
 
-    pub const fn new() -> OurPriorityQueue<P, I> {
-        OurPriorityQueue{ nb: 0, m: std::collections::BTreeMap::<(P, u64), I>::new() }
+    pub fn insert(&mut self, priority: P, item: I) -> Option<I> {
+        self.nb += 1;
+        self.m.insert((priority, self.nb), item)
     }
 
     pub fn pop_first(&mut self) -> Option<((P, u64), I)> {

@@ -22,7 +22,6 @@ struct Tunnel
 }
 
 impl Tunnel {
-
     fn length(&self) -> i64 {
         return self.b - self.a;
     }
@@ -74,7 +73,7 @@ pub fn getSecondsElapsed(C: i64, N: i32, A: &Vec<i64>, B: &Vec<i64>, K: i64) -> 
     let mut travel_time: i64 = number_of_complete_track * C;  // O(1)
 
     if total_time_left == 0 {
-        travel_time -= C - i64::from(*B.iter().min().unwrap());  // O(N)
+        travel_time -= C - i64::from(*B.iter().max().unwrap());  // O(N)
     }
     else
     {
@@ -114,12 +113,20 @@ pub fn tests() -> u32
 {
     let wrapper = |p: &Args| -> RetType {
         let min_len = cmp::min(p.A.len() as i32, p.B.len() as i32);
-        return getSecondsElapsed(p.C, min_len,  &p.A, &p.B, p.K);
+        return getSecondsElapsed(p.C, min_len, &p.A, &p.B, p.K);
     };
 
     let args_list : Vec<Args> = vec![
         Args{ C: 10, A: vec![ 1, 6 ], B: vec![ 3, 7 ], K: 7, res: 22 },
+        Args{ C: 50, A: vec![ 39, 19, 28 ], B: vec![ 49, 27, 35 ], K: 15, res: 35 },
         // extra1
+        Args{ C: 50, A: vec![ 19, 28, 39 ], B: vec![ 27, 35, 49 ], K: 1, res: 20 },
+        Args{ C: 50, A: vec![ 19, 28, 39 ], B: vec![ 27, 35, 49 ], K: 8, res: 27 },
+        Args{ C: 50, A: vec![ 19, 28, 39 ], B: vec![ 27, 35, 49 ], K: 9, res: 29 },
+        Args{ C: 50, A: vec![ 19, 28, 39 ], B: vec![ 27, 35, 49 ], K: 15, res: 35 },
+        Args{ C: 50, A: vec![ 19, 28, 39 ], B: vec![ 27, 35, 49 ], K: 16, res: 40 },
+        Args{ C: 50, A: vec![ 19, 28, 39 ], B: vec![ 27, 35, 49 ], K: 25, res: 49 },
+        Args{ C: 50, A: vec![ 19, 28, 39 ], B: vec![ 27, 35, 49 ], K: 26, res: 70 },
     ];
 
     return super::run_all_tests("l2_tunnel_time", args_list, wrapper, Option::None);

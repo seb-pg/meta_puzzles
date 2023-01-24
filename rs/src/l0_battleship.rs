@@ -45,5 +45,5 @@ pub fn tests() -> u32
         Args{ G: vec![ vec![ 0, 1, 0, 0 ], vec![ 1, 1, 0, 0 ], vec![ 0, 0, 0, 0 ] ], res: 0.25 },
     ];
 
-    return super::run_all_tests("l0_battleship", args_list, wrapper, Option::Some(0.000001));
+    return super::run_all_tests("l0_battleship", args_list, wrapper, Option::Some(0.000_001));
 }

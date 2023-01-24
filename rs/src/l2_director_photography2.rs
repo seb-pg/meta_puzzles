@@ -103,6 +103,8 @@ pub fn tests() -> u32
         Args{ C: "APABA", X: 1, Y: 2, res: 1 },
         Args{ C: "APABA", X: 2, Y: 3, res: 0 },
         Args{ C: ".PBAAP.B", X: 1, Y: 3, res: 3 },
+        // extra1
+        Args{ C: "PP.A.BB.B", X: 1, Y: 3, res: 4 },
     ];
 
     return super::run_all_tests("l2_director_photography2", args_list, wrapper, Option::None);

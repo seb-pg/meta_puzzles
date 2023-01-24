@@ -45,7 +45,7 @@ struct Vertex {
 impl Vertex {
     fn new(_nb: IndexT) -> Vertex {
         Vertex{nb: _nb, weight: 0, children: Vec::<VertexSP>::new(),
-                index: INDEX_NOT_SET, low_link:INDEX_NOT_SET, on_stack: false,
+                index: INDEX_NOT_SET, low_link: INDEX_NOT_SET, on_stack: false,
                 target: Option::<VertexSP>::None,
                 inputs: 0, max_len: 0}
     }
@@ -371,7 +371,7 @@ pub fn tests() -> u32
         Args{ A: vec![ 2, 1 ], B: vec![ 1, 2 ], res: 2 },
         Args{ A: vec![ 3, 5, 3, 1, 3, 2 ], B: vec![ 2, 2, 2, 4, 5, 4 ], res: 4 },*/
         Args{ A: vec![ 3, 5, 3, 1, 3, 2 ], B: vec![ 2, 2, 5, 4, 5, 4 ], res: 4 },  // 3 is referencing twice 5
-        Args{ A: vec![ 3, 5, 3, 1, 3, 2 ], B: vec![ 2, 2, 3, 4, 5, 4 ], res: 4 },  // 3 is self referencing
+        //Args{ A: vec![ 3, 5, 3, 1, 3, 2 ], B: vec![ 2, 2, 3, 4, 5, 4 ], res: 4 },  // 3 is self referencing
     ];
 
     return super::run_all_tests("l2_rabbit_hole1", args_list, wrapper, Option::None);

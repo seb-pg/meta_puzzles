@@ -107,5 +107,5 @@ pub fn tests() -> u32
         Args{ H: vec![ 9, 1, 3, 4 ], D: vec![ 0, 10, 4, 3 ], B: 1, res: 100.0 },
     ];
 
-    return super::run_all_tests("l3_boss_fight", args_list, wrapper, Option::Some(0.000001));
+    return super::run_all_tests("l3_boss_fight", args_list, wrapper, Option::Some(0.000_001));
 }

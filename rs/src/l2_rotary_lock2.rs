@@ -111,9 +111,9 @@ pub fn tests() -> u32
         Args{ N: 10, C: vec![ 9 ], res: 2 },
         Args{ N: 10, C: vec![ 9, 9, 9, 9 ], res: 2 },
         // extra2
-        Args{ N: 10, C: vec![ 6, 2, 4, 8 ], res: 10 },
-        Args{ N: 10, C: vec![ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ], res: 9 },
-        Args{ N: 4, C: vec![ 4, 3, 2, 1, 2, 3, 4 ], res: 5 },
+        Args{ N: 10, C: vec![ 6, 2, 4, 8 ], res: 10 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+        Args{ N: 10, C: vec![ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 ], res: 9 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+        Args{ N: 4, C: vec![ 4, 3, 2, 1, 2, 3, 4 ], res: 5 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
     ];
 
     return super::run_all_tests("l2_rotary_lock2", args_list, wrapper, Option::None);

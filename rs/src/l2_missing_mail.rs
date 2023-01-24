@@ -32,7 +32,6 @@ pub fn getMaxExpectedProfit(_N: i32, V: &Vec<i32>, C: i32, S: f64) -> f64 {
         let mut ret: f64 = 0.0;
         for &Vi in V {
             ret += Vi as f64;
-
         }
         return ret - C as f64;
     }
@@ -91,5 +90,5 @@ pub fn tests() -> u32
         Args{ V: vec![ 10, 2, 8, 6, 4 ], C: 3, S: 0.15, res: 20.10825 },
     ];
 
-    return super::run_all_tests("l2_missing_mail", args_list, wrapper, Option::Some(0.000001));
+    return super::run_all_tests("l2_missing_mail", args_list, wrapper, Option::Some(0.000_001));
 }

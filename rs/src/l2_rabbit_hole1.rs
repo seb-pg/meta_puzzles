@@ -30,7 +30,7 @@ struct Vertex {
 
 impl Vertex {
     fn new(_nb: usize) -> Vertex {
-        Vertex{ _nb, inputs: 0,  level: 1, in_cycle: true, cycle_len:  0, next: Option::None }
+        Vertex{ _nb, inputs: 0,  level: 1, in_cycle: true, cycle_len: 0, next: Option::None }
     }
 }
 
@@ -104,28 +104,15 @@ pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
     // Now calculate the maximum length: O(N)
     let mut max_chain: u32 = 0;
     for vertex in &vertices {
-        let next_vertex = get_next(&vertex.clone().borrow());
         let _vertex = vertex.borrow();
-        // TODO: improve the following...
-        // TODO: ...The following code in the "if section" is to support self reference vertex (where "vertex.next == vertex")
-        // TODO: ...// This is beyond the stated problem, but supported by tests
-        // TODO: ...// Rust would panic with "already borrowed: BorrowMutError', src/l2_rabbit_hole1.rs:118:44" without this
-        if vertex.as_ptr() == next_vertex.as_ptr() {
-            if _vertex.in_cycle {
-                max_chain = cmp::max(max_chain, _vertex.cycle_len);
-            }
-            else if _vertex.in_cycle {
-                max_chain = cmp::max(max_chain, _vertex.level + _vertex.cycle_len);
-            }
-            continue
-        }
-        // our tests allow a vertex to be the "next" vertex of itself
-        let mut _next_vertex = next_vertex.borrow();
-        if _vertex.in_cycle {
+        if _vertex.in_cycle { // Note: if the vertex is self-referencing, in_cycle will be true
             max_chain = cmp::max(max_chain, _vertex.cycle_len);
-        }
-        else if _next_vertex.in_cycle {
-            max_chain = cmp::max(max_chain, _vertex.level + _next_vertex.cycle_len);
+        } else {
+            let next_vertex = get_next(&vertex.clone().borrow());
+            let mut _next_vertex = next_vertex.borrow();
+            if _next_vertex.in_cycle {
+                max_chain = cmp::max(max_chain, _vertex.level + _next_vertex.cycle_len);
+            }
         }
     }
     return max_chain as i32;

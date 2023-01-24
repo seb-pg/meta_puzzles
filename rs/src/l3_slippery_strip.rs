@@ -143,7 +143,7 @@ pub fn tests() -> u32
         Args{ G: vec![ ">>", "**" ], res: 0 },
         Args{ G: vec![ ">*v*>*", "*v*v>*", ".*>..*", ".*..*v" ], res: 6 },
         // extra1
-        Args{ G: vec![ ], res: 0 },
+        Args{ G: vec![], res: 0 },
         Args{ G: vec![ "." ], res: 0 },
         Args{ G: vec![ "v" ], res: 0 },
         Args{ G: vec![ ">" ], res: 0 },

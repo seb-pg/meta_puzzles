@@ -118,13 +118,12 @@ fn main() {
     nb_errors += l2_tunnel_time::tests();
     // l3
     nb_errors += l3_boss_fight::tests();
-    nb_errors += l3_rabbit_hole2::tests();  // TODO: fix the FIXME
+    nb_errors += l3_rabbit_hole2::tests();  // TODO: see FIXME
     nb_errors += l3_slippery_strip::tests();
     nb_errors += l3_stack_stabilization2::tests();
     // l4 (not done yet)
     //nb_errors += l4_conveyor_chaos::tests();  // TODO: not implemented yet
     //nb_errors += l4_mathematical_art::tests();  // TODO: not implemented yet
 
-    nb_errors += l3_rabbit_hole2::tests();
     println!("\n{} errors found",  nb_errors);
 }
