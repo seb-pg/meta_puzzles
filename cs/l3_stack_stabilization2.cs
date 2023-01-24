@@ -120,6 +120,21 @@ class Solution {
             new Args { R=new int[] { 6, 5, 4, 3 }, A=10, B=1, res=19 },
             new Args { R=new int[] { 100, 100, 1, 1 }, A=2, B=1, res=207 },
             new Args { R=new int[] { 6, 5, 2, 4, 4, 7 }, A=1, B=1, res=10 },
+            // extra1
+            new Args { R=new int[] { 10, 6, 2 }, A=2, B=1, res=15 },
+            new Args { R=new int[] { 1, 2, 3, 4, 5, 6 }, A=1, B=1, res=0 },
+            new Args { R=new int[] { 6, 5, 4, 3, 2, 1 }, A=1, B=1, res=18 },
+            // extra2
+            new Args { R=new int[] { 4, 6, 2 }, A=2, B=1, res=9 },
+            new Args { R=new int[] { 6, 5, 2, 4, 4, 7 }, A=1, B=1, res=10 },
+            new Args { R=new int[] { 2, 5, 3, 6, 5 }, A=1, B=1, res=5 },
+            new Args { R=new int[] { 2, 3, 8, 1, 7, 6 }, A=2, B=1, res=15 },
+            new Args { R=new int[] { 5, 4, 3, 6, 8, 1, 10, 11, 6, 1 }, A=4, B=1, res=85 },
+            new Args { R=new int[] { 3, 4, 7, 8, 2 }, A=4, B=1, res=24 },
+            new Args { R=new int[] { 1, 1, 1, 1, 1 }, A=4, B=1, res=40 },
+            new Args { R=new int[] { 1, 1, 1, 1, 1 }, A=1, B=4, res=10 },
+            new Args { R=new int[] { 8, 6, 4, 2 }, A=1, B=4, res=18 },
+            new Args { R=new int[] { 1_000_000_000, 500_000_000, 200_000_000, 1_000_000 }, A=1, B=4, res=2_299_000_006 },
         };
 
         return test_all.TestAll.run_all_tests("l3_rabbit_hole2", args_list, wrapper);

@@ -115,9 +115,12 @@ class Solution {
             new Args { H=new int[] { 2, 1, 4 }, D=new int[] { 3, 1, 2 }, B=4, res=6.5 },
             new Args { H=new int[] { 1, 1, 2, 100 }, D=new int[] { 1, 2, 1, 3 }, B=8, res=62.75 },
             new Args { H=new int[] { 1, 1, 2, 3 }, D=new int[] { 1, 2, 1, 100 }, B=8, res=62.75 },
+            // extra1
+            new Args { H=new int[] { 1, 1, 2, 100, 3 }, D=new int[] { 1, 2, 1, 4, 100 }, B=8, res=1337.5 },
+            new Args { H=new int[] { 9, 1, 3, 4 }, D=new int[] { 0, 10, 4, 3 }, B=1, res=100.0 },
         };
 
-        return test_all.TestAll.run_all_tests("l3_boss_fight", args_list, wrapper, 0.000001);
+        return test_all.TestAll.run_all_tests("l3_boss_fight", args_list, wrapper, 0.000_001);
     }
 
 }

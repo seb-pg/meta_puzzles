@@ -132,6 +132,30 @@ class Solution {
             new Args { L=new int[] { 4, 1, 2, 1 }, res=4 },
             new Args { L=new int[] { 4, 3, 5, 1, 2 }, res=3 },
             new Args { L=new int[] { 2, 4, 2, 2, 3 }, res=4 },
+            // extra1
+            new Args { L=new int[] { 1 }, res=1 },
+            new Args { L=new int[] { 1, 2 }, res=1 },
+            new Args { L=new int[] { 2, 1 }, res=2 },
+            new Args { L=new int[] { 3, 3, 4, 3 }, res=3 },
+            new Args { L=new int[] { 4, 5, 6, 5, 6, 4 }, res=4 },
+            new Args { L=new int[] { 6, 5, 4, 5, 6, 4 }, res=4 },
+            new Args { L=new int[] { 3, 3, 4, 1 }, res=4 },
+            new Args { L=new int[] { 2, 3, 2 }, res=3 },
+            new Args { L=new int[] { 2, 4, 2, 2, 3 }, res=4 },
+            new Args { L=new int[] { 6, 5, 4, 3, 2, 1 }, res=2 },
+            // extra2
+            new Args { L=new int[] { 4, 1, 2, 1 }, res=4 },
+            new Args { L=new int[] { 4, 3, 5, 1, 2 }, res=3 },
+            new Args { L=new int[] { 4, 1, 2, 1 }, res=4 },
+            new Args { L=new int[] { 2, 1, 4, 3 }, res=2 },
+            new Args { L=new int[] { 2, 4, 2, 2, 4, 5 }, res=4 },
+            new Args { L=new int[] { 4, 1, 2, 1 }, res=4 },
+            new Args { L=new int[] { 4, 3, 5, 1, 2 }, res=3 },
+            new Args { L=new int[] { 2, 4, 2, 2, 4 }, res=3 },
+            new Args { L=new int[] { 2, 3, 4, 2, 2, 3, 6, 9, 8 }, res=5 },
+            // extra3
+            new Args { L=new int[] { 2, 4, 2, 2, 3, 4, 8, 9, 10, 11, 12, 7 }, res=6 },
+            new Args { L=new int[] { 2, 4, 2, 2, 4, 5, 8, 9, 10, 11, 12, 7 }, res=6 },
         };
 
         return test_all.TestAll.run_all_tests("l2_rabbit_hole1", args_list, wrapper);    

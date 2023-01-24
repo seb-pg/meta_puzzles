@@ -84,6 +84,22 @@ class Solution {
             new Args { S=new int[] { 4, 3, 3, 4 }, res=2 },
             new Args { S=new int[] { 2, 4, 6, 8 }, res=4 },
             new Args { S=new int[] { 8 }, res=3 },
+            // extra1
+            new Args { S=new int[] { 4, 3, 3, 4 }, res=2 },
+            new Args { S=new int[] { 2, 4, 6, 8 }, res=4 },
+            new Args { S=new int[] { 8 }, res=3 },
+            new Args { S=new int[] { 1, 2, 3 }, res=2 },
+            new Args { S=new int[] { 5, 7 }, res=3 },
+            new Args { S=new int[] { 5, 9, 10 }, res=5 },
+            new Args { S=new int[] { 5, 9, 11 }, res=4 },
+            new Args { S=new int[] { 2, 4, 6 }, res=3 },
+            new Args { S=new int[] { 2, 4, 7 }, res=4 },
+            // extra2
+            new Args { S=new int[] { 1, 2, 4 }, res=3 },
+            new Args { S=new int[] { 2, 4 }, res=2 },
+            new Args { S=new int[] { 4, 5 }, res=3 },
+            new Args { S=new int[] { 9, 12 }, res=4 },
+            new Args { S=new int[] { 11, 13 }, res=5 },
         };
 
         return test_all.TestAll.run_all_tests("l2_scoreboard_interference2", args_list, wrapper);   

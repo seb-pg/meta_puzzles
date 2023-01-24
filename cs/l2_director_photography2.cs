@@ -119,6 +119,8 @@ class Solution {
             new Args { C="APABA", X=1, Y=2, res=1 },
             new Args { C="APABA", X=2, Y=3, res=0 },
             new Args { C=".PBAAP.B", X=1, Y=3, res=3 },
+            // extra1
+            new Args { C="PP.A.BB.B", X=1, Y=3, res=4 },
         };
 
         return test_all.TestAll.run_all_tests("l2_director_photography2", args_list, wrapper);

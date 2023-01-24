@@ -93,7 +93,7 @@ class Solution {
             new Args { V=new int[] { 10, 2, 8, 6, 4 }, C=3, S=0.15, res=20.10825 },
         };
 
-        return test_all.TestAll.run_all_tests("l2_missing_mail", args_list, wrapper, 0.000001);
+        return test_all.TestAll.run_all_tests("l2_missing_mail", args_list, wrapper, 0.000_001);
     }
 
 }

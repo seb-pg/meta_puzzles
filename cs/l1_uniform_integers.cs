@@ -74,6 +74,18 @@ class Solution {
             new Args { A=75, B=300, res=5 },
             new Args { A=1, B=9, res=9 },
             new Args { A=999999999999, B=999999999999, res=1 },
+            // extra1
+            new Args { A=1, B=1_000_000_000_000, res=108 },
+            // extra2
+            new Args { A=10, B=99, res=9 },
+            new Args { A=11, B=98, res=8 },
+            new Args { A=21, B=89, res=7 },
+            new Args { A=22, B=88, res=7 },
+            new Args { A=23, B=87, res=5 },
+            // extra3
+            new Args { A=11, B=88, res=8 },
+            new Args { A=11, B=98, res=8 },
+            new Args { A=11, B=99, res=9 },
         };
 
         return test_all.TestAll.run_all_tests("l1_uniform_integers", args_list, wrapper);

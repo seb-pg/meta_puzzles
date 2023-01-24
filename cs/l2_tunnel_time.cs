@@ -106,6 +106,14 @@ namespace l2_tunnel_time
         var args_list = new List<Args> {
             new Args { C=10, A=new long[] { 1, 6 }, B=new long[] { 3, 7 }, K=7, res=22 },
             new Args { C=50, A=new long[] { 39, 19, 28 }, B=new long[] { 49, 27, 35 }, K=15, res=35 },
+            // extra1
+            new Args { C=50, A=new long[] { 19, 28, 39 }, B=new long[] {  27, 35, 49 }, K=1, res=20 },
+            new Args { C=50, A=new long[] { 19, 28, 39 }, B=new long[] {  27, 35, 49 }, K=8, res=27 },
+            new Args { C=50, A=new long[] { 19, 28, 39 }, B=new long[] {  27, 35, 49 }, K=9, res=29 },
+            new Args { C=50, A=new long[] { 19, 28, 39 }, B=new long[] {  27, 35, 49 }, K=15, res=35 },
+            new Args { C=50, A=new long[] { 19, 28, 39 }, B=new long[] {  27, 35, 49 }, K=16, res=40 },
+            new Args { C=50, A=new long[] { 19, 28, 39 }, B=new long[] {  27, 35, 49 }, K=25, res=49 },
+            new Args { C=50, A=new long[] { 19, 28, 39 }, B=new long[] {  27, 35, 49 }, K=26, res=70 },
         };
 
         return test_all.TestAll.run_all_tests("l2_tunnel_time", args_list, wrapper);   

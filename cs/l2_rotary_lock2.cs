@@ -95,6 +95,17 @@ class Solution {
         var args_list = new List<Args> {
             new Args { N=3, C=new int[] { 1, 2, 3 }, res=2 },
             new Args { N=10, C=new int[] { 9, 4, 4, 8 }, res=6 },
+            // extra1
+            new Args { N=0, C=new int[] {}, res=0 },
+            new Args { N=3, C=new int[] {}, res=0 },
+            new Args { N=10, C=new int[] {}, res=0 },
+            new Args { N=10, C=new int[] { 4 }, res=3 },
+            new Args { N=10, C=new int[] { 9 }, res=2 },
+            new Args { N=10, C=new int[] { 9, 9, 9, 9 }, res=2 },
+            // extra2
+            new Args { N=10, C=new int[] { 6, 2, 4, 8 }, res=10 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+            new Args { N=10, C=new int[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }, res=9 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+            new Args { N=4, C=new int[] { 4, 3, 2, 1, 2, 3, 4 }, res=5 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
         };
 
         return test_all.TestAll.run_all_tests("l2_rotary_lock2", args_list, wrapper);    

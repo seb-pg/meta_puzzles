@@ -81,7 +81,7 @@ class Solution {
         // Constraints
         //      2 ≤ R, C ≤ 400, 000
         //      R∗C ≤ 800, 000
-        //      Gi, j ∈{ ".", "*", ">", "v" }
+        //      Gi, j ∈{ ".' }, { '*", ">", "v" }
         //      Complexity: O(N), where N = R * C
 
         var H = new List<List<char>>(R);
@@ -132,6 +132,28 @@ class Solution {
             new Args { G=new char[,] { { '>', '*', '*' }, { '*', '>', '*' } , { '*', '*', '>' } }, res=4 },
             new Args { G=new char[,] { { '>', '>' }, { '*', '*' } }, res=0 },
             new Args { G=new char[,] { { '>', '*', 'v', '*', '>', '*' }, { '*', 'v', '*', 'v', '>', '*' }, { '.', '*', '>', '.', '.', '*' }, { '.', '*', '.', '.', '*', 'v' } }, res=6 },
+            // extra1
+            new Args { G=new char[,] { { } }, res=0 },
+            new Args { G=new char[,] { { '.'  } }, res=0 },
+            new Args { G=new char[,] { { 'v' } }, res=0 },
+            new Args { G=new char[,] { { '>' } }, res=0 },
+            new Args { G=new char[,] { { '*' } }, res=1 },
+            // extra2
+            new Args { G=new char[,] { { '.' }, { '.' }, { '>' }, { '*' } }, res=0 },
+            new Args { G=new char[,] { { '.' }, { '*' }, { '>' }, { '*' } }, res=1 },
+            new Args { G=new char[,] { { '.' }, { '*' }, { '>' }, { '.' } }, res=1 },
+            new Args { G=new char[,] { { '*' }, { '.' }, { '>' }, { '.' } }, res=1 },
+            new Args { G=new char[,] { { '*', '*', '*' }, { '.', '.', '.' }, { '>', 'v', 'v' }, { '.', '.', '.' } }, res=1 },
+            // extra3
+            new Args { G=new char[,] { { '*', '.', '.', '.', '.' }, { '.', '*', '.', '.', '.' }, { '.', '.', '*', '.', '.' }, { '.', '.', '.', '*', '.' } }, res=4 },
+            new Args { G=new char[,] { { '.', '.', '.', '.' }, { '.', '.', '.', '.' }, { '.', '.', '.', '.' }, { '.', '.', '.', '.' } }, res=0 },
+            new Args { G=new char[,] { { '*', '*', '*', '>' }, { '.', '.', '.', '.' } }, res=3 },
+            new Args { G=new char[,] { { '.', '.', '.', '.' } }, res=0 },
+            new Args { G=new char[,] { { 'v', 'v', 'v', 'v' } }, res=0 },
+            new Args { G=new char[,] { { 'v', 'v', 'v', 'v' }, { '.', '.', '.', '.' }, { '>', '>', '>', '>' } }, res=0 },
+            // extra4
+            new Args { G=new char[,] { { '*', '*', '*', '*', '*', '*' }, { '.', '.', '.', '.', '.', '.' }, { '>', '*', '>', 'v', 'v', 'v' }, { '.', '.', '.', '.', '.', '.' } }, res=2 },
+            new Args { G=new char[,] { { '*', '*', '*', '*', '*' }, { '.', '.', '.', '.', '.' }, { '>', '>', 'v', 'v', 'v' }, { '.', '.', '.', '.', '.' } }, res=1 },
         };
 
         return test_all.TestAll.run_all_tests("l3_slippery_strip", args_list, wrapper);

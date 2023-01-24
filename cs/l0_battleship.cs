@@ -47,9 +47,11 @@ class Solution {
         var args_list = new List<Args> {
             new Args { G=new int[,] {{ 0, 0, 1 }, { 1, 0, 1 } }, res=0.5 },
             new Args { G=new int[,] {{ 1, 1 }, { 1, 1 } }, res=1.0 },
+            // extra1
+            new Args { G=new int[,] {{ 0, 1, 0, 0 }, { 1, 1, 0, 0 }, { 0, 0, 0, 0 } }, res=0.25 },
         };
 
-        return test_all.TestAll.run_all_tests("l0_battleship", args_list, wrapper, 0.000001);
+        return test_all.TestAll.run_all_tests("l0_battleship", args_list, wrapper, 0.000_001);
     }
 
 }
