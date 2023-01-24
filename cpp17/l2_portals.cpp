@@ -110,8 +110,8 @@ int getSecondsRequiredCpp17(uint32_t R, uint32_t C, const std::vector<std::vecto
 
     Coord start{ 0, 0 };
     std::vector<Coord> ends;
-    std::unordered_map<char, std::vector<NodeInfoPtr_t>> portals;
     ends.reserve(R * C);
+    std::unordered_map<char, std::vector<NodeInfoPtr_t>> portals;
     for (uint32_t j = 0; j < R; ++j)
     {
         const auto& row = G[j];
