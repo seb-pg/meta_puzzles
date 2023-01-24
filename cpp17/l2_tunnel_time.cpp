@@ -80,7 +80,6 @@ int64_t getSecondsElapsedCpp17(int64_t C, uint32_t N, const std::vector<long lon
 using namespace std;
 
 long long getSecondsElapsed(long long C, int N, vector<long long> A, vector<long long> B, long long K) {
-
     return getSecondsElapsedCpp17(C, static_cast<uint32_t>(N), A, B, K);
 }
 

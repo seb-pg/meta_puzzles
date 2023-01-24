@@ -29,21 +29,23 @@ static inline T _getArtisticPhotographCountCpp17(uint32_t N, const std::string& 
     // Complexity: O(N) ~ O(N * (Y-X+1)) because Y-X << N
 
     static_assert(std::disjunction_v<std::is_same<T, int32_t>, std::is_same<T, int64_t>>);  // Because there is not concept in C++17
+    const auto _X = static_cast<uint32_t>(X);
+    const auto _Y = static_cast<uint32_t>(Y);
 
     (void)N;
 
     struct Counts
     {
-        int32_t p;
-        int32_t b;
+        uint32_t p;
+        uint32_t b;
     };
 
     // count the number of Ps or Bs till a position i: O(N)
-    const auto w = Y + 1;
+    const auto w = _Y + 1;
     Counts count{ 0, 0 };
     std::vector<Counts> counts;
     counts.reserve(C.size() + w * 2);
-    for (int32_t i = 0; i < w; ++i)  // add space at the beginning to avoid special treatment of indices later
+    for (uint32_t i = 0; i < w; ++i)  // add space at the beginning to avoid special treatment of indices later
         counts.emplace_back(Counts{ 0, 0 });
     for (const auto& ci : C)
     {
@@ -54,13 +56,13 @@ static inline T _getArtisticPhotographCountCpp17(uint32_t N, const std::string& 
         counts.emplace_back(count);
     }
     auto& last = counts.back();
-    for (int32_t i = 0; i < w; ++i)  // add space at the end to avoid special treatment of indices later
+    for (uint32_t i = 0; i < w; ++i)  // add space at the end to avoid special treatment of indices later
         counts.emplace_back(last);
 
     // To make things more readable, we are finding first the point where 'A' is found: O(N)
     std::vector<uint32_t> possible;
     possible.reserve(C.size());
-    int32_t j = w;
+    uint32_t j = w;
     for (const auto& ci : C)
     {
         if (ci == 'A')
@@ -69,18 +71,19 @@ static inline T _getArtisticPhotographCountCpp17(uint32_t N, const std::string& 
     }
 
     // Count PABs : O(N)
-    const auto X1 = X - 1;
-    const auto Y1 = Y + 1;
+    const auto X1 = _X - 1;
+    const auto Y1 = _Y + 1;
     T nb = 0;
     for (const auto i : possible)
-        nb += static_cast<T>(counts[i - X].p - counts[i - Y1].p) * (counts[i + Y].b - counts[i + X1].b);
+        nb += static_cast<T>(counts[i - _X].p - counts[i - Y1].p) * static_cast<T>(counts[i + _Y].b - counts[i + X1].b);
 
     // Count BAPs : O(N)
     for (const auto i : possible)
-        nb += static_cast<T>(counts[i - X].b - counts[i - Y1].b) * (counts[i + Y].p - counts[i + X1].p);
+        nb += static_cast<T>(counts[i - _X].b - counts[i - Y1].b) * static_cast<T>(counts[i + _Y].p - counts[i + X1].p);
 
     return nb;  // result should always be positive
 }
+
 
 using namespace std;
 

@@ -67,7 +67,7 @@ auto tests()
         },
     };
 
-    return run_all_tests("l0_battleship", tests, wrapper, 0.000001);
+    return run_all_tests("l0_battleship", tests, wrapper, 0.000'001);
 }
 
 }  // namespace l0_battleship

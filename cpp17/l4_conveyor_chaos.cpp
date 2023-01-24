@@ -377,7 +377,7 @@ auto tests()
     //tests.clear();
     //tests.emplace_back(make_cases("generated", 2'000'000));
 
-    return run_all_tests("l4_conveyor_chaos", tests, wrapper, 0.000001);
+    return run_all_tests("l4_conveyor_chaos", tests, wrapper, 0.000'001);
 }
 
 }  // namespace l4_conveyor_chaos

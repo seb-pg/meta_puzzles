@@ -16,6 +16,7 @@
 #include <cstdint>  // int**_t
 #include <limits>
 #include <tuple>
+#include <unordered_map>
 #include <vector>
 
 namespace l2_rotary_lock2 {
@@ -54,7 +55,7 @@ static inline int32_t get_distance(int32_t target, int32_t position, int32_t N)
     auto positive_move = (target - position) % N;
     if (positive_move < 0)  // modulo must be positive (must check that in C++)
         positive_move += N;
-    auto negative_move = N - positive_move;  // positive number
+    const auto negative_move = N - positive_move;  // positive number
     return std::min(positive_move, negative_move);
 }
 
@@ -62,10 +63,10 @@ using solutions_t = std::unordered_map<Dials, int64_t>;
 
 static void insert_solution(solutions_t& new_solutions, int32_t N, int32_t target, int32_t dial1, int32_t dial2, int64_t distance)
 {
-    auto new_distance = distance + get_distance(target, dial1, N);
-    Dials key = { std::min(dial2, target), std::max(dial2, target) };
-    auto it = new_solutions.find(key);
-    auto value = it == std::end(new_solutions) ? std::numeric_limits<int64_t>::max() : it->second;
+    const auto new_distance = distance + get_distance(target, dial1, N);
+    const Dials key = { std::min(dial2, target), std::max(dial2, target) };
+    const auto it = new_solutions.find(key);
+    const auto value = it == std::end(new_solutions) ? std::numeric_limits<int64_t>::max() : it->second;
     new_solutions[key] = std::min(value, new_distance);
 }
 
@@ -82,6 +83,7 @@ long long getMinCodeEntryTimeCpp17(int32_t N, uint32_t M, const std::vector<int3
 
     if (C.empty())
         return 0;
+
     solutions_t solutions = { {{1, 1}, 0} };
     for (const auto& target : C)
     {
@@ -123,7 +125,7 @@ auto tests()
     };
 
     std::vector<NamedTests<Args, long long>> tests = {
-        /*{"Meta", {
+        {"Meta", {
                 { { 3, { 1, 2, 3 } }, 2 },
                 { { 10, { 9, 4, 4, 8 } }, 6 },
             }
@@ -136,10 +138,10 @@ auto tests()
                 { { 10, { 9 } }, 2 },
                 { { 10, { 9, 9, 9, 9 } }, 2 },
             }
-        },*/
+        },
         { "extra2", {
-                //{ { 10, { 6, 2, 4, 8 } }, 10 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
-                //{ { 10, { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 } }, 9 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+                { { 10, { 6, 2, 4, 8 } }, 10 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+                { { 10, { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 } }, 9 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
                 { { 4, { 4, 3, 2, 1, 2, 3, 4 } }, 5 },  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
             }
         },

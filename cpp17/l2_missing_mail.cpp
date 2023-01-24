@@ -102,7 +102,7 @@ auto tests()
         },
     };
 
-    return run_all_tests("l2_missing_mail", tests, wrapper, 0.000001);
+    return run_all_tests("l2_missing_mail", tests, wrapper, 0.000'001);
 }
 
 }  // namespace l2_missing_mail

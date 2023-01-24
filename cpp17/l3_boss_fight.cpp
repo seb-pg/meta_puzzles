@@ -38,11 +38,11 @@ static bool maximize_damage(uint32_t N, const std::vector<int32_t>& H, const std
         auto j = info.indices[info.order];
         if (j == i)
             continue;
-        damage_t new_damage;
         const auto Hi = static_cast<damage_t>(H[i]);
         const auto Hj = static_cast<damage_t>(H[j]);
         const auto Di = static_cast<damage_t>(D[i]);
         const auto Dj = static_cast<damage_t>(D[j]);
+        damage_t new_damage;
         if (info.order == 0)
             new_damage = Hj * Dj + Hj * Di + Hi * Di;
         else
@@ -126,7 +126,7 @@ auto tests()
         },
     };
 
-    return run_all_tests("l3_boss_fight", tests, wrapper, 0.000001);
+    return run_all_tests("l3_boss_fight", tests, wrapper, 0.000'001);
 }
 
 }  // namespace l3_boss_fight
