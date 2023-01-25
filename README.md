@@ -30,7 +30,7 @@ Mostly complete solutions are provided in the following languages and are based 
 * Go: tested with version 1.9.4. Solutions are using generics which are not supported by Meta online tests.
 
 Language underway...
-* Kotlin: 6 solutions to go
+* Kotlin: tested with version 1.7.21. 6 solutions to go.
 
 Languages probably provided in the future
 * Swift
