@@ -229,7 +229,7 @@ static void populate_costs(uint32_t N, ListIntervals_t& intervals)
     edges.reserve(2 * N);
     for (auto curr = std::crbegin(intervals), end = std::crend(intervals); curr != end; ++curr)
     {
-        auto parent = *curr;
+        const auto& parent = *curr;
         auto weight = 0.5 * parent->weight;
         if (weight == 0)
             continue;
@@ -252,7 +252,7 @@ static void populate_costs(uint32_t N, ListIntervals_t& intervals)
     for (auto curr = edges.crbegin(), end = edges.crend(); curr != end; ++curr)
     {
         auto& parent = *curr->parent;
-        auto& child = *curr->child;
+        const auto& child = *curr->child;
         parent.costs[curr->side] += (child.costs[0] + child.costs[1]) * curr->weight / child.weight;
     }
 }
