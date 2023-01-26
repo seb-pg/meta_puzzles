@@ -22,11 +22,11 @@ meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's care
 
 The complete solutions are provided in the following languages:
 * Python (3): developed first.
-* C\++(17): developed second. The code is written in a "plausible" medium developer style (it just works with basic C++ and no fancy optimisation.
+* C\++ (17): developed second. The code is written in a "plausible" medium developer style (it just works with basic C++ and no fancy optimisation.
 
 Mostly complete solutions are provided in the following languages and are based on the C\++17 version
 * C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.
-* Rust: tested with version 1.66
+* Rust: tested with version 1.66.
 * Go: tested with version 1.9.4. Solutions are using generics which are not supported by Meta online tests.
 * Kotlin: tested with version 1.7.21. See notes!
 
