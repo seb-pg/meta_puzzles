@@ -173,7 +173,7 @@ static void add_entries(uint32_t N, ListIntervals_t& intervals)
         if (last_p != p)
         {
             last_p = p;
-            intervals.emplace_back(std::make_shared<Interval>());  // will reallocate platofrm
+            intervals.emplace_back(std::make_shared<Interval>());  // will reallocate platform
         }
         // First pass, we remove intervals, and deal with add/remove on left/right
         for (auto curr = first; curr != last; ++curr)
