@@ -230,7 +230,7 @@ static void populate_costs(uint32_t N, ListIntervals_t& intervals)
     for (auto curr = std::crbegin(intervals), end = std::crend(intervals); curr != end; ++curr)
     {
         const auto& parent = *curr;
-        auto weight = 0.5 * parent->weight;
+        const auto weight = 0.5 * parent->weight;
         if (weight == 0)
             continue;
         for (uint32_t side = 0; side < 2; ++side)
@@ -238,8 +238,8 @@ static void populate_costs(uint32_t N, ListIntervals_t& intervals)
             const auto& [drop_point, child] = parent->children[side];
             if (child && child->n > 0)
             {
-                auto cost_l = weight * (drop_point - child->xmin);
-                auto cost_r = weight * (child->xmax - drop_point);
+                const auto cost_l = weight * (drop_point - child->xmin);
+                const auto cost_r = weight * (child->xmax - drop_point);
                 child->weight += weight;
                 child->costs[0] += cost_l;
                 child->costs[1] += cost_r;
@@ -267,7 +267,7 @@ static Result calc_dist(uint32_t N, const ListIntervals_t& intervals)
     // calculate min_delta, min_dir, min_p: O(N)
     for (uint32_t i = 0, size = N + 1; i < size; ++i)
     {
-        auto interval = intervals[i];
+        const auto& interval = intervals[i];
         auto delta = interval->costs[0] - interval->costs[1];
         if (res.min_delta > delta)
         {
