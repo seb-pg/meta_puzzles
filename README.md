@@ -28,9 +28,7 @@ Mostly complete solutions are provided in the following languages and are based 
 * C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.
 * Rust: tested with version 1.66
 * Go: tested with version 1.9.4. Solutions are using generics which are not supported by Meta online tests.
-
-Language underway...
-* Kotlin: tested with version 1.7.21. 6 solutions to go.
+* Kotlin: tested with version 1.7.21. See notes!
 
 Languages probably provided in the future
 * Swift
@@ -58,7 +56,7 @@ While I have had to write code in all sort of languages (including some obscure 
 
 <b><u>py3/*</u></b>
 
-The solutions in Python 3 (complete), all tested on Meta's website.
+The solutions using Python 3 (complete), all tested on Meta's website.
 
 The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
 
@@ -69,7 +67,7 @@ Written in my "quick and dirty" Python style.
 
 <b><u>cpp17/*</u></b>
 
-The solutions in C\++17 (complete).
+The solutions using C\++17 (complete).
 
 The solutions provided  are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
 
@@ -87,9 +85,9 @@ The code is written using a "plausible" medium developer style, and not much emp
 
 <b><u>cs/*</u></b>
 
-The solutions in C#, ported from C++ (mostly complete, 2 solutions missing).
+The solutions using C#, ported from C++ (mostly complete, 2 solutions missing).
 
-The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code..
+The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
 
 Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does not provided a log(n) equivalent of [C\++] std::lower_bound for [C\++] std::set or std::map equivalents.
 
@@ -98,7 +96,7 @@ Solution l2_missing_mail and l3_rabbit_hole2 will not be working with .Net Code 
 
 <b><u>go/*</u></b>
 
-The solutions in Go, "ported" from C++ (mostly complete, 3 solutions are missing).
+The solutions using Go, "ported" from C++ (mostly complete, 3 solutions are missing).
 
 The solutions provided are passing all Meta's tests on their website (once the generics are removed: they are not supported by Meta's website). Meta's basic tests and some additional are also provided in the source code.
 
@@ -109,9 +107,22 @@ Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing beca
 
 The solutions in Rust, "ported" from C++ (mostly complete, 3 solutions are missing).
 
-The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code..
+The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
 
 Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
+
+
+<b><u>Kotlin/*</u></b>
+
+The solutions using Kotlin, "ported" from C++ (mostly complete, 2 solutions are missing, however 3 solutions should be working, but do not work on Meta's website: see below).
+
+The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
+
+Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as  Array<Array<String>>.   The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
+
+Solutions l2_rotary_lock2 is failing on Meta's website and also can not finish in the given time.  The solution is a straight port from an uncomplicated C++ code.  This will be investigated.
+
+Solutions l4_conveyor_chaos and l4_mathematical_art are missing so far.
 
 
 ----
