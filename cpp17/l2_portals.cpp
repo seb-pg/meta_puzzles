@@ -65,7 +65,7 @@ struct OurPriorityQueue
     }
 
 private:
-    uint64_t nb = 0;  // this could wrap at some point (if it was running forever), and makes it not really a multimap equivalent
+    uint64_t nb = 0;  // this could wrap at some point (if it was running "near forever"), and makes it not really a multimap equivalent
     std::map<const std::pair<Priority, decltype(nb)>, Item> m;
 };
 
