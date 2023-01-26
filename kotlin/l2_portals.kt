@@ -12,10 +12,6 @@
 
 package l2_portals
 
-import org.w3c.dom.Node
-import java.util.*
-import kotlin.collections.ArrayList
-
 typealias dist_t = Int;
 
 open class Coord(
@@ -37,7 +33,7 @@ class OurPriorityQueue<Priority: Comparable<Priority>, Item>
     // This is to have an "identical" implement to other languages who do not have std::multimap<dist_t, NodeInfoPtr_t>
     // Here, we are wrapping call to what could be the std::multimap<dist_t, NodeInfoPtr_t>
 
-    //typealias value_type = Pair<Priority, Item>;  // Nested or local typealias are not supported
+    //typealias value_type = Pair<Priority, Item>;  // Nested or local typealias are not supported in kotlin
 
     fun empty(): Boolean
     {
@@ -78,7 +74,7 @@ fun add_neighbour(q: PriorityQueue_t, h: HeuristicFunc_t, d: DistFunc_t, node: N
     }
 }
 
-fun _getSecondsRequiredChar(R: Int, C: Int, G: Array<Array<Char>>): Int {
+fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
     // set up grid and portal map
     var grid = GridNodeInfo_t(R);
     for (j in 0 until R)
@@ -155,10 +151,10 @@ fun getSecondsRequired(R: Int, C: Int, G: Array<Array<String>>): Int {
     {
         var row = ArrayList<Char>(in_row.size);
         for (c in in_row)
-            row.add(c[0]);
+            row.add(if (!c.isEmpty()) c[0] else '.');  // FIXME: Meta's website provide corrupted test data!
         H.add(row.toTypedArray());
     }
-    return _getSecondsRequiredChar(H.size, if (H.isEmpty()) 0 else H[0].size, H.toTypedArray());
+    return _getSecondsRequired(H.size, if (H.isEmpty()) 0 else H[0].size, H.toTypedArray());
 }
 
 fun _getSecondsRequiredTest(G: Array<String>): Int {
@@ -178,9 +174,6 @@ class Args(
     val res: Int, ) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
-
-typealias Priority = ULong;
-typealias Item = ULong;
 
 fun tests(): UInt
 {
