@@ -191,7 +191,7 @@ static void add_entries(uint32_t N, ListIntervals_t& intervals)
         // Second pass, we add intervals
         for (auto curr = first; curr != last; ++curr)
         {
-            auto& [_x, i, op] = *curr;
+            const auto& [_x, i, op] = *curr;
             if (op == +1)
                 stack.emplace(i);
 
@@ -235,7 +235,7 @@ static void populate_costs(uint32_t N, ListIntervals_t& intervals)
             continue;
         for (uint32_t side = 0; side < 2; ++side)
         {
-            auto& [drop_point, child] = parent->children[side];
+            const auto& [drop_point, child] = parent->children[side];
             if (child && child->n > 0)
             {
                 auto cost_l = weight * (drop_point - child->xmin);
