@@ -207,8 +207,8 @@ class Solution {
             if (!Object.ReferenceEquals(last_p, p))
             {
                 last_p = p;
-                intervals.Add(new Interval());  // will reallocate platofrm
-            }
+                intervals.Add(new Interval());  // will reallocate platform
+                }
             // First pass, we remove intervals, and deal with add/remove on left/right
             // C# note: GetViewBetween is not log(n) https://stackoverflow.com/questions/9850975/why-sortedsett-getviewbetween-isnt-olog-n
             for (var curr = first; curr != last; ++curr)
