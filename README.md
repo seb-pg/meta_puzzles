@@ -24,7 +24,7 @@ The complete solutions are provided in the following languages:
 * Python (3): developed first.
 * C\++ (17): developed second. The code is written in a "plausible" medium developer style (it just works with basic C++ and no fancy optimisation.
 
-Mostly complete solutions are provided in the following languages and are based on the C\++17 version
+Mostly complete solutions are provided in the following languages and are based on the C\++17 version (only "level 4" solutions are missing)
 * C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.
 * Rust: tested with version 1.66.
 * Go: tested with version 1.9.4. Solutions are using generics which are not supported by Meta online tests.
@@ -33,6 +33,7 @@ Mostly complete solutions are provided in the following languages and are based 
 Languages probably provided in the future
 * Swift
 * Scala
+* Javascript
 
 The intent is to use these solutions in a multi-language comparison and find which languages would be suitable to write quantitative strategies on a wide scale.
 
@@ -105,7 +106,7 @@ Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing beca
 
 <b><u>rs/*</u></b>
 
-The solutions in Rust, "ported" from C++ (mostly complete, 3 solutions are missing).
+The solutions in Rust, "ported" from C++ (mostly complete, 2 solutions are missing).
 
 The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
 
