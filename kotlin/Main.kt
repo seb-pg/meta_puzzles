@@ -2,7 +2,7 @@
 fun main(args: Array<String>) {
     var nb_errors = 0U;
     // l0
-    /*nb_errors += l0_abcs.tests();
+    nb_errors += l0_abcs.tests();
     nb_errors += l0_all_wrong.tests();
     nb_errors += l0_battleship.tests();
     // l1
@@ -26,9 +26,9 @@ fun main(args: Array<String>) {
     nb_errors += l3_boss_fight.tests();
     //nb_errors += l3_rabbit_hole2.tests();  // TODO
     nb_errors += l3_slippery_strip.tests();  // FIXME: is working, but Meta's website seems to not provide corrupted input test data
-    nb_errors += l3_stack_stabilization2.tests();*/
+    nb_errors += l3_stack_stabilization2.tests();
     // l4
-    nb_errors += l4_conveyor_chaos.tests();  // TODO
+    nb_errors += l4_conveyor_chaos.tests();  // FIXME: is working, but Meta's website seems to not provide corrupted input test data
     //nb_errors += l4_mathematical_art.tests();  // TODO
 
     println("\n${nb_errors} errors found");

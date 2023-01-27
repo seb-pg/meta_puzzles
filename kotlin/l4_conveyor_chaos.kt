@@ -291,7 +291,7 @@ fun tests(): UInt
 
     val args_list: List<Args> = listOf(
         Args( arrayOf(10, 20), arrayOf(100_000, 400_000), arrayOf(600_000, 800_000), 155_000.0 ),
-        /*Args( arrayOf(2, 8, 5, 9, 4), arrayOf(5_000, 2_000, 7_000, 9_000, 0), arrayOf(7_000, 8_000, 11_000, 11_000, 4_000), 36.5 ),
+        Args( arrayOf(2, 8, 5, 9, 4), arrayOf(5_000, 2_000, 7_000, 9_000, 0), arrayOf(7_000, 8_000, 11_000, 11_000, 4_000), 36.5 ),
         // extra1
         Args( arrayOf(2, 4, 5, 8, 9), arrayOf(5_000, 0, 7_000, 2_000, 9_000), arrayOf(7_000, 4_000, 11_000, 8_000, 11_000), 36.5 ),
         //
@@ -307,10 +307,8 @@ fun tests(): UInt
         Args( arrayOf(1), arrayOf(0), arrayOf(1_000_000), 500_000.0 ),
         Args( arrayOf(1), arrayOf(250_000), arrayOf(750_000), 125_000.0 ),
         Args( arrayOf(1, 3, 3, 5), arrayOf(400_000, 200_000,  600_000, 400_000), arrayOf(700_000, 500_000, 1_000_000, 700_000), 213_750.0 ),
-        Args( arrayOf(1, 3, 3, 5, 7), arrayOf(400_000, 200_000,  600_000, 400_000, 400_000), arrayOf(700_000, 500_000, 1000_000, 700_000, 600_000), 215_000.0 ),*/
+        Args( arrayOf(1, 3, 3, 5, 7), arrayOf(400_000, 200_000,  600_000, 400_000, 400_000), arrayOf(700_000, 500_000, 1000_000, 700_000, 600_000), 215_000.0 ),
     );
 
     return test.run_all_tests("l4_conveyor_chaos", args_list, wrapper, 0.000_001);
 }
-
-// TODO
