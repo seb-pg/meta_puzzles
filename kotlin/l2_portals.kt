@@ -24,9 +24,9 @@ class NodeInfo(
     col: Int,
     var node_type: Char, ) : Coord(row, col)
 {
-    public var distance: dist_t = dist_t.MAX_VALUE;
-    public var is_inserted: Boolean = false;
-};
+    var distance: dist_t = dist_t.MAX_VALUE;
+    var is_inserted: Boolean = false;
+}
 
 class OurPriorityQueue<Priority: Comparable<Priority>, Item>
 {
@@ -54,7 +54,7 @@ class OurPriorityQueue<Priority: Comparable<Priority>, Item>
 
     var nb: ULong = 0UL;  // this could wrap at some point (if it was running forever), and makes it not really a multimap equivalent
     var m = sortedMapOf<Pair<Priority, ULong>, Item>(compareBy<Pair<Priority, ULong>> { it.first } then compareBy { it.second });
-};
+}
 
 typealias GridNodeInfo_t = ArrayList<ArrayList<NodeInfo>>;
 typealias PriorityQueue_t = OurPriorityQueue<dist_t, NodeInfo>;
@@ -167,7 +167,7 @@ fun _getSecondsRequiredTest(G: Array<String>): Int {
         H.add(row.toTypedArray());
     }
     return getSecondsRequired(H.size, if (H.isEmpty()) 0 else H[0].size, H.toTypedArray());
-};
+}
 
 class Args(
     val V: Array<String>,

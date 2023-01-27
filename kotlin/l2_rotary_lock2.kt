@@ -13,8 +13,8 @@
 package l2_rotary_lock2
 
 class Dials(
-    public var dial1: Int,
-    public var dial2: Int, ) {
+    var dial1: Int,
+    var dial2: Int, ) {
 }
 
 typealias solutions_t = MutableMap<Dials, Long>;

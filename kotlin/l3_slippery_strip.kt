@@ -107,7 +107,7 @@ fun _getMaxCollectableCoinsTest(G: Array<String>): Int {
         H.add(row.toTypedArray());
     }
     return getMaxCollectableCoins(H.size, if (H.isEmpty()) 0 else H[0].size, H.toTypedArray());
-};
+}
 
 class Args(
     val G: Array<String>,

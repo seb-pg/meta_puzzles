@@ -14,11 +14,11 @@ package l2_rabbit_hole1
 
 class Vertex(
     var _nb: Int,
-    public var inputs: UInt = 0U,
-    public var level: UInt = 1U,
-    public var in_cycle: Boolean = true,
-    public var cycle_len: UInt = 0U,
-    public var next: Vertex? = null, ) {
+    var inputs: UInt = 0U,
+    var level: UInt = 1U,
+    var in_cycle: Boolean = true,
+    var cycle_len: UInt = 0U,
+    var next: Vertex? = null, ) {
 }
 
 typealias ListVerticesT = ArrayList<Vertex>;

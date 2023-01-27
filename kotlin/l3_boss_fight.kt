@@ -15,9 +15,9 @@ package l3_boss_fight
 typealias damage_t = ULong;
 
 class DamageInfo(
-    public var order: Int,
-    public var indices: Array<Int> = arrayOf( 0, 1 ),
-    public var damage: damage_t = 0UL, ) {
+    var order: Int,
+    var indices: Array<Int> = arrayOf( 0, 1 ),
+    var damage: damage_t = 0UL, ) {
 }
 
 fun maximize_damage(N: Int, H: Array<Int>, D: Array<Int>, info: DamageInfo): Boolean

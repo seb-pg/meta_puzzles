@@ -13,8 +13,8 @@
 package l2_missing_mail
 
 class Result(
-    public var mail_room_value: Double,
-    public var total_value: Double, ) {
+    var mail_room_value: Double,
+    var total_value: Double, ) {
 
     fun both(): Double {
         return mail_room_value + total_value;
