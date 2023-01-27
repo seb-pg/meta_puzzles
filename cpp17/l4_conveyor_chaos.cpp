@@ -194,7 +194,6 @@ static void add_entries(uint32_t N, ListIntervals_t& intervals)
             const auto& [_x, i, op] = *curr;
             if (op == +1)
                 stack.emplace(i);
-
         }
         //
         const auto& last_n = *(--std::cend(stack));
