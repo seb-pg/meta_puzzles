@@ -179,7 +179,7 @@ static void add_entries(uint32_t N, ListIntervals_t& intervals)
         for (auto curr = first; curr != last; ++curr)
         {
             const auto& [_x, i, op] = *curr;
-            const auto prev = --stack.lower_bound(i);
+            const auto prev = --stack.lower_bound(i);  // Note: multiple platform can be at the same height, we are looking for the "rightmost" interval whose height lower that i
             if (op == -1)
             {
                 i->children[1] = { i->xmax, *prev };
