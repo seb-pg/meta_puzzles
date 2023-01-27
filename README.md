@@ -124,6 +124,7 @@ Solutions l2_portals and l3_slippery_strip should be working (all provided tests
 Solutions l2_rotary_lock2 is failing on Meta's website and also can not finish in the given time.  The solution is a straight port from an uncomplicated C++ code.  This will be investigated.
 
 Solution l4_conveyor_chaos is provided but is hardcoded to return 0 for N > 200,000 the Kotlin solution seems too slow to run in the given time on Meta's website.
+Solution l3_rabbit_hole2 is missing so far.
 Solution l4_mathematical_art is missing so far.
 
 
