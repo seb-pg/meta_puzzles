@@ -32,7 +32,7 @@ Mostly complete solutions are provided in the following languages and are based 
 
 Languages probably provided in the future
 * Swift
-* Scala
+* Scala: 4 out of 24 done so far. See notes!
 * Javascript
 
 The intent is to use these solutions in a multi-language comparison and find which languages would be suitable to write quantitative strategies on a wide scale.
@@ -113,7 +113,7 @@ The solutions provided are passing all Meta's tests on their website. Meta's bas
 Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
 
 
-<b><u>Kotlin/*</u></b>
+<b><u>kotlin/*</u></b>
 
 The solutions using Kotlin, "ported" from C++ (mostly complete, 2 solutions are missing, however 3 solutions should be working, but do not work on Meta's website: see below).
 
@@ -121,11 +121,20 @@ The solutions provided are passing all Meta's tests on their website. Meta's bas
 
 Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as  Array<Array<String>>.   The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
 
-Solutions l2_rotary_lock2 is failing on Meta's website and also can not finish in the given time.  The solution is a straight port from an uncomplicated C++ code.  This will be investigated.
+Solution l2_rotary_lock2 is failing on Meta's website and also can not finish in the given time.  The solution is a straight port from an uncomplicated C++ code.  This will be investigated.
 
 Solution l4_conveyor_chaos is provided but is hardcoded to return 0 for N > 200,000 the Kotlin solution seems too slow to run in the given time on Meta's website.
 Solution l3_rabbit_hole2 is missing so far.
 Solution l4_mathematical_art is missing so far.
+
+
+<b><u>scala/*</u></b>
+
+The solutions using Kotlin, "ported" from Kotlin as the syntax is similar.
+
+Only 4 out 24 solutions are provided.  
+
+Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
 
 
 ----
