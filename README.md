@@ -32,9 +32,9 @@ Mostly complete solutions are provided in the following languages and are based 
 
 Languages probably provided in the future
 * Java: 4 out of 24 done so far. See notes!
-* Scala: 4 out of 24 done so far. See notes!
-* Swift
 * Javascript
+* Scala: 16 out of 24 done so far. See notes!
+* Swift
 
 The intent is to use these solutions in a multi-language comparison and find which languages would be suitable to write quantitative strategies on a wide scale.
 
@@ -133,7 +133,7 @@ Solution l4_mathematical_art is missing so far.
 
 The solutions using Scala, "ported" from Kotlin as the syntax is similar.
 
-Only 4 out 24 solutions are provided.  
+Only 16 out 24 solutions are provided.  
 
 Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
 
