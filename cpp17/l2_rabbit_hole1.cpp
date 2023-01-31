@@ -63,7 +63,7 @@ int32_t getMaxVisitableWebpagesCpp17(uint32_t N, const std::vector<int32_t>& L)
     // find the entrance vertices (could be []): O(N)
     ListVertices_t entrance_vertices;
     entrance_vertices.reserve(vertices.size());
-    for (auto& vertex : vertices)
+    for (const auto& vertex : vertices)
         if (vertex->inputs == 0)
             entrance_vertices.emplace_back(vertex);
 

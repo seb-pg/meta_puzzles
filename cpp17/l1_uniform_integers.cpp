@@ -42,15 +42,15 @@ int32_t getUniformIntegerCountInIntervalCpp17(int64_t A, int64_t B)
     //      The python version works using integer<->string conversion, which is not great
 
     // Each of the following lines is O(log(max(A, B)))
-    auto len_a = len_str(A);
-    auto len_b = len_str(B);
-    auto tmp_a = ones(len_a);
-    auto tmp_b = ones(len_b);
+    const auto len_a = len_str(A);
+    const auto len_b = len_str(B);
+    const auto tmp_a = ones(len_a);
+    const auto tmp_b = ones(len_b);
     
     // Everything else is O(1)
-    auto nb_a = (tmp_a * 10 - A) / tmp_a;
-    auto nb_b = B / tmp_b;
-    auto nb_m = len_b - len_a >= 2 ? 9 * (len_b - len_a - 1) : 0;
+    const auto nb_a = (tmp_a * 10 - A) / tmp_a;
+    const auto nb_b = B / tmp_b;
+    const auto nb_m = len_b - len_a >= 2 ? 9 * (len_b - len_a - 1) : 0;
     auto nb = nb_a + nb_m + nb_b;
     if (len_a == len_b)
         nb -= 9;

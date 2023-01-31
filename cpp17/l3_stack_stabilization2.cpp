@@ -69,7 +69,7 @@ int64_t getMinimumSecondsRequiredCpp17(uint32_t N, const std::vector<int32_t>& R
             int32_t min_positive1 = 0;
             for (auto curr = std::cbegin(costs) + first, last = std::cbegin(costs) + i + 1; curr != last; ++curr)
             {
-                auto value = *curr;
+                const auto value = *curr;
                 if (value > 0)
                 {
                     ++nb_pos;

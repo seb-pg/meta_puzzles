@@ -35,7 +35,7 @@ int64_t getMinCodeEntryTimeCpp17(int32_t N, uint32_t M, const std::vector<int32_
     {
         auto positive_move = (target - pos) % N;  // positive move
         positive_move = positive_move < 0 ? positive_move + N : positive_move;  // modulo can be negative in C++
-        auto negative_move = N - positive_move;
+        const auto negative_move = N - positive_move;
         nb += std::min(positive_move, negative_move);
         pos = target;
     }

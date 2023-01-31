@@ -194,6 +194,7 @@ static void add_entries(uint32_t N, ListIntervals_t& intervals)
             const auto& [_x, i, op] = *curr;
             if (op == +1)
                 stack.emplace(i);
+
         }
         //
         const auto& last_n = *(--std::cend(stack));
@@ -320,6 +321,7 @@ struct Args
 
 NamedTests<Args, double> make_cases(const std::string& name, uint32_t N)
 {
+    const Params params;
     const auto _N = static_cast<int32_t>(N);
     NamedTests<Args, double> res;
     res.name = name;
@@ -328,16 +330,23 @@ NamedTests<Args, double> make_cases(const std::string& name, uint32_t N)
     args.H.reserve(N);
     args.A.reserve(N);
     args.B.reserve(N);
-    for (int i = 1; i < _N + 1; ++i)
+    for (int i = 1; i <= _N; ++i)
     {
         args.H.push_back(_N + 1 - i);
-        args.A.push_back(_N - i);
+        args.A.push_back(_N + 1 - i);
         args.B.push_back(_N + i);
     }
-    //test.second = 4500001500004.375;  // 4500001500004.375 is result for 2'000'000 (~6 seconds)
-    //test.second = 666667666667.67407;  // 666667666667.67407 is result for 1'000'000
-    //test.second = 83333583333.108276;  // 83333583333.108276 is result for 500'000
-    test.second = 83333583333.108276;  // 666676666.70000005 is result for 100'000
+    uint64_t base_cost = 0;
+    uint64_t width = 2 * static_cast<uint64_t>(_N) - 1;
+    uint64_t added_width = 0;
+    for (int i = 0; i < _N; ++i)
+    {
+        added_width += width;
+        base_cost += added_width;
+        width -= 2;
+    }
+    base_cost -= added_width / 2;
+    test.second = static_cast<double>(base_cost) / (params.x_max - params.x_min);
     return res;
 }
 
@@ -349,7 +358,7 @@ auto tests()
     };
 
     std::vector<NamedTests<Args, double>> tests = {
-        { "Meta", {
+        {"Meta", {
                 { { { 10, 20 }, { 100'000, 400'000 }, { 600'000, 800'000 } }, 155'000.0 },
                 { { { 2, 8, 5, 9, 4 }, { 5'000, 2'000, 7'000, 9'000, 0 }, { 7'000, 8'000, 11'000, 11'000, 4'000 } }, 36.5 },
             }
@@ -373,8 +382,9 @@ auto tests()
             }
         },
     };
-    //tests.clear();
-    //tests.emplace_back(make_cases("generated", 2'000'000));
+    //tests.emplace_back(make_cases("generated", 2));
+    //tests.emplace_back(make_cases("generated", 100'000));  // Precision is ok for this value
+    //tests.emplace_back(make_cases("generated", 2'000'000));  // Do not forget to run this in release, and the precision goes wrong
 
     return run_all_tests("l4_conveyor_chaos", tests, wrapper, 0.000'001);
 }

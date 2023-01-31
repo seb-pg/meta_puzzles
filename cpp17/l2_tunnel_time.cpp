@@ -51,7 +51,7 @@ int64_t getSecondsElapsedCpp17(int64_t C, uint32_t N, const std::vector<long lon
         tunnels.emplace_back(Tunnel{ A[i], B[i] });
 
     int64_t tunnel_time_total = 0;
-    for (auto& tunnel : tunnels)
+    for (const auto& tunnel : tunnels)
         tunnel_time_total += tunnel.length();  // could use std::views::zip in C++23
 
     int64_t number_of_complete_track = (K / tunnel_time_total);  // O(1)
@@ -63,7 +63,7 @@ int64_t getSecondsElapsedCpp17(int64_t C, uint32_t N, const std::vector<long lon
     else
     {
         std::sort(std::begin(tunnels), std::end(tunnels));
-        for (auto& tunnel : tunnels)
+        for (const auto& tunnel : tunnels)
         {
             int64_t tunnel_length = tunnel.length();
             if (tunnel_length >= total_time_left)
@@ -96,7 +96,7 @@ auto tests()
 {
     const auto wrapper = [](Args& p)
     {
-        auto min_len = static_cast<int>(std::min(p.A.size(), p.B.size()));
+        const auto min_len = static_cast<int>(std::min(p.A.size(), p.B.size()));
         return getSecondsElapsed(p.C, min_len, p.A, p.B, p.K);
     };
 

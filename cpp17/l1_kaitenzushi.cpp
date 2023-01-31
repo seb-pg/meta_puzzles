@@ -38,11 +38,11 @@ int32_t getMaximumEatenDishCountCpp17(uint32_t N, const std::vector<int32_t>& D,
     int32_t nb = 0;
     for (const auto& _dish : D)
     {
-        auto dish = static_cast<uint32_t>(_dish);
+        const auto dish = static_cast<uint32_t>(_dish);
         if (!eaten[dish])
         {
             oldest_eaten = (oldest_eaten + 1) % K;
-            auto last_eaten_dish = last_eaten[oldest_eaten];
+            const auto last_eaten_dish = last_eaten[oldest_eaten];
             eaten[last_eaten_dish] = false;  // we remove the oldest eaten dish
             eaten[dish] = true;
             last_eaten[oldest_eaten] = dish;  // we add the newest eaten dish to our circular buffer

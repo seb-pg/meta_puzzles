@@ -35,7 +35,7 @@ int32_t getMinProblemCountCpp17(uint32_t N, const std::vector<int32_t>& S)
 
     for (const auto score : S)
     {
-        auto score_mod_3 = score % 3;
+        const auto score_mod_3 = score % 3;
         two_remainder |= (score_mod_3 >> 1);
         one_remainder |= (score_mod_3 & 1);
         need_one = need_one || (score == 1);
@@ -64,7 +64,7 @@ int32_t getMinProblemCountCpp17(uint32_t N, const std::vector<int32_t>& S)
         return count;
     if (max_score % 3 != 1)  // max_score does not have a 1 (so it cannot be replaced)
         return count;
-    auto tmp = max_score - second_max_score;
+    const auto tmp = max_score - second_max_score;
     if (!(tmp == 1 || tmp == 3)) // [ok, not ok(3), ok] || [not ok(1) | here | unimportant]
         count -= 1;
     return count;

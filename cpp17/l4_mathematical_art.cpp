@@ -63,7 +63,7 @@ int64_t distance(const T& container, typename T::value_type y0, typename T::valu
     const auto it_end = std::cend(container);
     const auto it_i = y0 < lo ? it_beg : container.upper_bound(y0);
     const auto it_j = y1 > hi ? it_end : container.lower_bound(y1);
-    auto size = static_cast<int64_t>(container.size());
+    const auto size = static_cast<int64_t>(container.size());
     if (it_i == it_beg && it_j == it_end)
         return size;
     // the following are std optimisation (keeping in mind std::distance is linear),
@@ -95,8 +95,8 @@ static std::tuple<std::vector<Stroke>, std::vector<Stroke>> read_strokes(uint32_
     int64_t x1 = 0, y1 = 0;
     for (uint64_t i = 0; i < N; ++i)
     {
-        auto length = L[i];
-        auto direction = D[i];
+        const auto length = L[i];
+        const auto direction = D[i];
         if (direction == 'R')
         {
             x1 = x0 + length;
@@ -142,7 +142,7 @@ static void merge_strokes(std::vector<Stroke>& strokes)
     auto [x0, y0, total] = *strokes_it++;
     for (; strokes_it != strokes_end; ++strokes_it)
     {
-        auto [x1, y1, inc] = *strokes_it;
+        const auto [x1, y1, inc] = *strokes_it;
         if (x0 != x1)
         {
             x0 = x1;
@@ -262,11 +262,11 @@ auto build_grid(uint32_t N, int32_t inc = 1)
 {
     std::vector<int32_t> l;
     std::string d;
-    auto n = (N + 7) / 8;
+    const auto n = (N + 7) / 8;
     auto w = n * 2 + 1;
     if (inc == -1)
         //w = w + 2 * n + 1;
-        w = w + n + 1;
+        w += n + 1;
     for (auto i = 0u; i < n; ++i)
     {
         d += "RULU";
@@ -289,7 +289,7 @@ auto build_grid(uint32_t N, int32_t inc = 1)
     }
     if (inc == 1)
         l[n * 4] = static_cast<int32_t>(n + 1);
-    auto expected = 4 * n * n;
+    const auto expected = 4 * n * n;
     return std::make_tuple(l, d, expected);
 }
 

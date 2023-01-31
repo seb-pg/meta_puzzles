@@ -216,11 +216,11 @@ static void make_dag(ListVertices_t& vertices, const std::vector<ListVertices_t>
         v->weight = static_cast<index_t>(scc.size());  // update the weight of the Vertex
         ListVertices_t children;  // note: no reserve() here
         for (const auto& w : scc)
-            for (auto& x : w->children)
+            for (const auto& x : w->children)
                 if (v->low_link != x->low_link)
                     children.emplace_back(x);
         v->children = std::move(children);
-        for (auto& w : scc)
+        for (const auto& w : scc)
             if (w.get() != v.get())
             {
                 w->target = v;  // used for children remapping
@@ -228,7 +228,7 @@ static void make_dag(ListVertices_t& vertices, const std::vector<ListVertices_t>
             }
     }
     // remap children to the target node (if applicable)
-    for (auto& v : vertices)
+    for (const auto& v : vertices)
         if (!v->children.empty())
         {
             ListVertices_t children;
@@ -237,7 +237,7 @@ static void make_dag(ListVertices_t& vertices, const std::vector<ListVertices_t>
                 children.emplace_back(w->target.get() ? w->target : w);
             // remove duplicates
             std::sort(std::begin(children), std::end(children), [](const auto& a, const auto& b) { return a->nb < b->nb; });
-            auto last = std::unique(std::begin(children), std::end(children), [](const auto& a, const auto& b) { return a->nb == b->nb; });
+            const auto last = std::unique(std::begin(children), std::end(children), [](const auto& a, const auto& b) { return a->nb == b->nb; });
             children.erase(last, std::end(children));
             v->children = std::move(children);
         }
@@ -307,9 +307,9 @@ static index_t dag_max_len_iterate(VertexPtr_t v)
 
 static index_t dag_max_len(ListVertices_t& vertices, bool iterative = false)
 {
-    for (auto& v : vertices)
+    for (const auto& v : vertices)
         if (v->weight > 0)
-            for (auto& w : v->children)
+            for (const auto& w : v->children)
                 if (v.get() != w.get())  // avoid self referencing
                     ++w->inputs;
     index_t ret = 0;
@@ -375,9 +375,9 @@ auto tests()
 {
     const auto wrapper = [](Args& p)
     {
-        auto max_elt_a = std::max_element(std::cbegin(p.A), std::cend(p.A));
-        auto max_elt_b = std::max_element(std::cbegin(p.B), std::cend(p.B));
-        auto max_len = static_cast<int32_t>(std::max(*max_elt_a, *max_elt_b));
+        const auto max_elt_a = std::max_element(std::cbegin(p.A), std::cend(p.A));
+        const auto max_elt_b = std::max_element(std::cbegin(p.B), std::cend(p.B));
+        const auto max_len = static_cast<int32_t>(std::max(*max_elt_a, *max_elt_b));
         return getMaxVisitableWebpages(max_len, static_cast<int>(p.A.size()), p.A, p.B);
     };
 

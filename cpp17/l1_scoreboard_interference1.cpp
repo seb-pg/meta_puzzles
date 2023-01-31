@@ -35,8 +35,8 @@ int32_t getMinProblemCountCpp17(uint32_t N, const std::vector<int32_t>& S)
     int32_t min_number_of_ones = 0;
     for (const auto& score : S)
     {
-        auto number_of_twos = score / 2;
-        auto number_of_ones = score % 2;
+        const auto number_of_twos = score / 2;
+        const auto number_of_ones = score % 2;
         min_number_of_twos = std::max(min_number_of_twos, number_of_twos);
         min_number_of_ones = std::max(min_number_of_ones, number_of_ones);
     }

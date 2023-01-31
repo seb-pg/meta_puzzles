@@ -58,7 +58,7 @@ double getMaxExpectedProfitCpp17(uint32_t N, const std::vector<int32_t>& V, int3
         // Possibility #1 : pick up packages on this day
         // We need to add the best(max) possible total_value among all saved so far
         const auto max_fn1 = [](const auto& a, const auto& b) { return a.both() < b.both(); };
-        auto pickup_value = (Vi - C) + std::max_element(std::cbegin(results), std::cend(results), max_fn1)->both();
+        const auto pickup_value = (Vi - C) + std::max_element(std::cbegin(results), std::cend(results), max_fn1)->both();
 
         // Possibility #2 : do not pick up packages on this day
         for (auto& [mail_room_value, total_value] : results)

@@ -61,7 +61,7 @@ auto run_all_tests(const std::string& module_name,
 			else
 			{
 				++nb_errors;
-				std::cout << "res=" << res << "expected=" << expected << " ERROR <-----" << std::endl;
+				std::cout << "res=" << res << " expected=" << expected << " ERROR <-----" << std::endl;
 			}
 			++nb;
 		}

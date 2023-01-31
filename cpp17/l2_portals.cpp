@@ -78,7 +78,7 @@ using DistFunc_t = std::function<dist_t(NodeInfoPtr_t, NodeInfoPtr_t)>;
 static void add_neighbour(PriorityQueue_t& q, HeuristicFunc_t& h, DistFunc_t& d,
     const NodeInfoPtr_t& node, NodeInfoPtr_t& neighbour)
 {
-    auto neighbor_distance = d(node, neighbour);
+    const auto neighbor_distance = d(node, neighbour);
     if (neighbor_distance >= neighbour->distance)
         return;
     neighbour->distance = neighbor_distance;
@@ -154,8 +154,8 @@ int getSecondsRequiredCpp17(uint32_t R, uint32_t C, const std::vector<std::vecto
         // add neighbours to node
         for (const auto& [drow, dcol] : neighbours_directions)
         {
-            auto row = node->row + drow;
-            auto col = node->col + dcol;
+            const auto row = node->row + drow;
+            const auto col = node->col + dcol;
             if ((row < R) && (col < C))
             {
                 auto& neighbour = grid[row][col];

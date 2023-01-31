@@ -55,7 +55,7 @@ static inline T _getArtisticPhotographCountCpp17(uint32_t N, const std::string& 
             ++count.b;
         counts.emplace_back(count);
     }
-    auto& last = counts.back();
+    const auto& last = counts.back();
     for (uint32_t i = 0; i < w; ++i)  // add space at the end to avoid special treatment of indices later
         counts.emplace_back(last);
 

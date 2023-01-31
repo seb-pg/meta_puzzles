@@ -35,7 +35,7 @@ static bool maximize_damage(uint32_t N, const std::vector<int32_t>& H, const std
     auto has_same_damage = true;
     for (uint32_t i = 0; i < N; ++i)
     {
-        auto j = info.indices[info.order];
+        const auto j = info.indices[info.order];
         if (j == i)
             continue;
         const auto Hi = static_cast<damage_t>(H[i]);
@@ -75,7 +75,7 @@ double getMaxDamageDealtCpp17(uint32_t N, const std::vector<int32_t>& H, const s
         DamageInfo damage_info{ order };
         while (true)
         {
-            auto has_same_damage = maximize_damage(N, H, D, damage_info);
+            const auto has_same_damage = maximize_damage(N, H, D, damage_info);
             if (has_same_damage)
                 break;
             damage_info.order = 1 - damage_info.order;
