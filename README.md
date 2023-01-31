@@ -31,8 +31,9 @@ Mostly complete solutions are provided in the following languages and are based 
 * Kotlin: tested with version 1.7.21. See notes!
 
 Languages probably provided in the future
-* Swift
+* Java: 4 out of 24 done so far. See notes!
 * Scala: 4 out of 24 done so far. See notes!
+* Swift
 * Javascript
 
 The intent is to use these solutions in a multi-language comparison and find which languages would be suitable to write quantitative strategies on a wide scale.
