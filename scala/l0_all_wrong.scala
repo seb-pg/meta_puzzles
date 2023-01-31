@@ -13,19 +13,20 @@
 package l0_all_wrong
 
 object Solution {
-
-    def getWrongAnswers(N: Int, C: String): String = C.map(c => if (c == 'A') 'B' else 'A')
+    def getWrongAnswers(N: Int, C: String): String = {
+        return C.map(c => if (c == 'A') 'B' else 'A')
+    }
 
 
     class Args(val C: String,
-               val res: String) extends test.Result[String] {
+               val res: String ) extends test.Result[String] {
       override def get_result(): String = res
     }
 
     def tests(): Int = {
-        val wrapper = ((p: Args) => getWrongAnswers(p.C.length, p.C))
+        val wrapper = (p: Args) => getWrongAnswers(p.C.length, p.C)
 
-        val args_list = List[Args](
+        val args_list = Array[Args](
           Args("ABA", "BAB"),
           Args("BBBBB", "AAAAA"),
         )

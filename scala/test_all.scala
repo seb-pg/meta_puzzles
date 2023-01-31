@@ -17,7 +17,7 @@ trait Result[T]:
 
 class TestAll {
 
-def run_all_tests[Args <: Result[Ret], Ret](name: String, args_list: List[Args], fnc: (Args) => Ret): Int =
+def run_all_tests[Args <: Result[Ret], Ret](name: String, args_list: Array[Args], fnc: (Args) => Ret): Int =
 {
     var nb_errors: Int = 0
     printf("\n" + name + "\n")
@@ -37,7 +37,7 @@ def run_all_tests[Args <: Result[Ret], Ret](name: String, args_list: List[Args],
         }
         else {
             println("  test #" + nb + ": res=" + res + " expected=" + expected + " ERROR <-----")
-          nb_errors += 1
+            nb_errors += 1
         }
         nb += 1
     }

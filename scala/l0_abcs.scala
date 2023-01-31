@@ -13,21 +13,22 @@
 package l0_abcs
 
 object Solution {
-
-    def getSum(A: Int, B: Int, C: Int): Int = A + B + C
+    def getSum(A: Int, B: Int, C: Int): Int = {
+        return A + B + C
+    }
 
 
     class Args(val A: Int,
                val B: Int,
                val C: Int,
-               val res: Int) extends test.Result[Int] {
+               val res: Int ) extends test.Result[Int] {
         override def get_result(): Int = res
     }
 
     def tests(): Int = {
-        val wrapper = ((p: Args) => getSum(p.A, p.B, p.C))
+        val wrapper = (p: Args) => getSum(p.A, p.B, p.C)
 
-        val args_list = List[Args](
+        val args_list = Array[Args](
             Args(1, 2, 3, 6),
             Args(100, 100, 100, 300),
             Args(85, 16, 93, 194),

@@ -14,16 +14,13 @@ package l2_rotary_lock2
 
 import scala.collection.immutable.TreeMap
 
-class Dials(
-             var dial1: Int,
+class Dials( var dial1: Int,
              var dial2: Int) extends Ordered[Dials] {
     def compare(rhs: Dials) = if (dial1 != rhs.dial1) (dial1 compare (rhs.dial1)) else (dial2 compare (rhs.dial2))
 }
 
 object Solution {
-
     def getMinCodeEntryTime(N: Int, M: Int, C: Array[Int]): Long = {
-
         type solutions_t = TreeMap[Dials, Long]
 
         def get_distance(target: Int, position: Int, N: Int): Int = {
@@ -79,9 +76,9 @@ object Solution {
 
     def tests(): Int =
     {
-        val wrapper = ((p: Args) => getMinCodeEntryTime(p.N, p.C.size, p.C) )
+        val wrapper = (p: Args) => getMinCodeEntryTime(p.N, p.C.size, p.C)
 
-        val args_list = List[Args](
+        val args_list = Array[Args](
             Args( 3, Array[Int](1, 2, 3), 2 ),
             Args( 10, Array[Int](9, 4, 4, 8), 6 ),
             // extra1

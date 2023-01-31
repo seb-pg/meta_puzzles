@@ -13,21 +13,22 @@
 package l0_battleship
 
 object Solution {
-
-    def getHitProbability(R: Int, C: Int, G: Array[Array[Int]]): Double =
-      G.foldLeft(0) ((acc, row) => acc + row.foldLeft(0) ((acc_row, elt) => acc_row + elt))  / (R * C).toDouble
+    def getHitProbability(R: Int, C: Int, G: Array[Array[Int]]): Float = {
+        val sum = G.foldLeft(0) ((acc, row) => acc + row.foldLeft(0) ((acc_row, elt) => acc_row + elt));
+        return sum.toFloat / (R * C).toFloat
+    }
 
 
     class Args(val G: Array[Array[Int]],
-               val res: Double) extends test.Result[Double] {
-        override def get_result(): Double = res
+               val res: Float ) extends test.Result[Float] {
+        override def get_result(): Float = res
     }
 
     def tests(): Int =
     {
-        val wrapper = ((p: Args) => getHitProbability(p.G.size, p.G(0).size, p.G))
+        val wrapper = (p: Args) => getHitProbability(p.G.size, p.G(0).size, p.G)
 
-        val args_list = List[Args](
+        val args_list = Array[Args](
             Args( Array[Array[Int]]( Array[Int](0, 0, 1), Array[Int](1, 0, 1) ), 0.5 ),
             Args( Array[Array[Int]]( Array[Int](1, 1), Array[Int](1, 1) ), 1.0 ),
             // extra1
