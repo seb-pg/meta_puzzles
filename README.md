@@ -121,7 +121,7 @@ The solutions provided are passing all Meta's tests on their website. Meta's bas
 
 Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as  Array<Array<String>>.   The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
 
-Solution l2_rotary_lock2 is failing on Meta's website and also can not finish in the given time.  The solution is a straight port from an uncomplicated C++ code.  This will be investigated.
+Solution l2_rotary_lock2 is failing on Meta's website and also can not finish in the given time.  The solution is a straight port from an uncomplicated C++ code.  This will be investigated (Both Scala and Java versions were implement and pass the test on Meta's website, which suggests the JVM is not at fault).
 
 Solution l4_conveyor_chaos is provided but is hardcoded to return 0 for N > 200,000 the Kotlin solution seems too slow to run in the given time on Meta's website.
 Solution l3_rabbit_hole2 is missing so far.
