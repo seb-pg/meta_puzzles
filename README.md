@@ -130,7 +130,16 @@ Solution l4_mathematical_art is missing so far.
 
 <b><u>scala/*</u></b>
 
-The solutions using Kotlin, "ported" from Kotlin as the syntax is similar.
+The solutions using Scala, "ported" from Kotlin as the syntax is similar.
+
+Only 4 out 24 solutions are provided.  
+
+Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
+
+
+<b><u>java/*</u></b>
+
+The solutions using Java, "ported" from C++ as the syntax is (not that) similar.
 
 Only 4 out 24 solutions are provided.  
 
