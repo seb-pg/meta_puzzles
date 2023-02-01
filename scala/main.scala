@@ -19,14 +19,14 @@ def main(): Unit = {
     nb_errors += l0_battleship.Solution.tests()
     // l1
     nb_errors += l1_cafeteria.Solution.tests()
-    //nb_errors += l1_director_photography1.Solution.tests()
+    nb_errors += l1_director_photography1.Solution.tests()
     nb_errors += l1_kaitenzushi.Solution.tests()
     nb_errors += l1_rotary_lock1.Solution.tests()
     nb_errors += l1_scoreboard_interference1.Solution.tests()
     nb_errors += l1_stack_stabilization1.Solution.tests()
     nb_errors += l1_uniform_integers.Solution.tests()
     // l2
-    //nb_errors += l2_director_photography2.Solution.tests()
+    nb_errors += l2_director_photography2.Solution.tests()
     nb_errors += l2_hops.Solution.tests()
     nb_errors += l2_missing_mail.Solution.tests()
     //nb_errors += l2_portals.Solution.tests()
@@ -35,7 +35,7 @@ def main(): Unit = {
     nb_errors += l2_scoreboard_interference2.Solution.tests()
     nb_errors += l2_tunnel_time.Solution.tests()
     // l3
-    //nb_errors += l3_boss_fight.Solution.tests()
+    nb_errors += l3_boss_fight.Solution.tests()
     //nb_errors += l3_rabbit_hole2.Solution.tests()
     //nb_errors += l3_slippery_strip.Solution.tests()
     //nb_errors += l3_stack_stabilization2.Solution.tests()

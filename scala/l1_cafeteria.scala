@@ -12,13 +12,13 @@
 
 package l1_cafeteria
 
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.ArrayBuffer
 
 object Solution {
     def getMaxAdditionalDinersCount(N: Long, K: Long, M: Int, S: Array[Long]): Long = {
         val d: Long = K + 1
 
-        var taken = ListBuffer[Long]()
+        var taken = new ArrayBuffer[Long](S.size + 1)
         taken += -K  // we are adding "fake" seats at the beginning
         taken = taken ++ S
         taken += N + d // we are adding "fake" seats at the end

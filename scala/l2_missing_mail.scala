@@ -12,7 +12,7 @@
 
 package l2_missing_mail
 
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.ArrayBuffer
 
 class Result(var mail_room_value: Double,
              var total_value: Double) {
@@ -30,7 +30,7 @@ object Solution {
         }
 
         // Initial result
-        val results = ListBuffer[Result]()
+        val results = new ArrayBuffer[Result](V.size)
         results += new Result(0.0, 0.0)
         for (Vi <- V) {
             // Update the best results for the new day, considering the packages could've stolen in previous round

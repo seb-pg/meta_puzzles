@@ -15,8 +15,8 @@ package l2_hops
 object Solution {
     def getSecondsRequired(N: Long, _F: Int, P: Array[Long]): Long = {
         if (P.isEmpty)
-            return 0;
-        return N - P.min;
+            return 0
+        return N - P.min
     }
 
 

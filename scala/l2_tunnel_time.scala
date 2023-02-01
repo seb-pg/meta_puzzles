@@ -12,7 +12,7 @@
 
 package l2_tunnel_time
 
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.ArrayBuffer
 import scala.util.control.Breaks._
 
 class Tunnel(val a: Long,
@@ -23,7 +23,7 @@ class Tunnel(val a: Long,
 object Solution {
 
     def getSecondsElapsed(C: Long, N: Int, A: Array[Long], B: Array[Long], K: Long): Long = {
-        var tunnels = ListBuffer[Tunnel]()
+        var tunnels = new ArrayBuffer[Tunnel](N)
         for ((a, b) <- A.zip(B))
             tunnels += new Tunnel(a, b)
 

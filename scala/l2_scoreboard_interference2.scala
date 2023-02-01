@@ -51,7 +51,7 @@ object Solution {
         val tmp = max_score - second_max_score
         if (!(tmp == 1 || tmp == 3)) // [ok, not ok(3), ok] || [not ok(1) | here | unimportant]
             count -= 1
-        return count;
+        return count
     }
 
 

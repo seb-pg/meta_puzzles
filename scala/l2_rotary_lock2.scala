@@ -12,7 +12,7 @@
 
 package l2_rotary_lock2
 
-import scala.collection.immutable.TreeMap
+import scala.collection.immutable.SortedMap
 
 class Dials( var dial1: Int,
              var dial2: Int) extends Ordered[Dials] {
@@ -21,7 +21,7 @@ class Dials( var dial1: Int,
 
 object Solution {
     def getMinCodeEntryTime(N: Int, M: Int, C: Array[Int]): Long = {
-        type solutions_t = TreeMap[Dials, Long]
+        type solutions_t = SortedMap[Dials, Long]
 
         def get_distance(target: Int, position: Int, N: Int): Int = {
             var positive_move = (target - position) % N
@@ -47,10 +47,10 @@ object Solution {
             return 0
         }
 
-        var solutions = TreeMap[Dials, Long](new Dials(1, 1) -> 0)
+        var solutions = SortedMap[Dials, Long](new Dials(1, 1) -> 0)
         for (target <- C)
         {
-            var new_solutions = TreeMap[Dials, Long]()
+            var new_solutions = SortedMap[Dials, Long]()
             for ((dials, distance) <- solutions)
             {
                 // we turn dial1

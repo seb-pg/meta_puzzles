@@ -14,7 +14,7 @@ package l0_battleship
 
 object Solution {
     def getHitProbability(R: Int, C: Int, G: Array[Array[Int]]): Float = {
-        val sum = G.foldLeft(0) ((acc, row) => acc + row.foldLeft(0) ((acc_row, elt) => acc_row + elt));
+        val sum = G.foldLeft(0) ((acc, row) => acc + row.foldLeft(0) ((acc_row, elt) => acc_row + elt))
         return sum.toFloat / (R * C).toFloat
     }
 

@@ -30,7 +30,7 @@ object Solution {
             current_radius = next_radius.min(target_radius)
             iter.hasNext
         }
-        return nb;
+        return nb
     }
 
     class Args(val S: Array[Int],
