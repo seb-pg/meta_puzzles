@@ -12,6 +12,8 @@
 
 #include "test_all.h"
 
+#include <vector>
+
 namespace l0_abcs {
 
 int32_t getSumCpp17(int32_t A, int32_t B, int32_t C)

@@ -15,7 +15,9 @@
 #include <algorithm>
 #include <array>
 #include <cstdint>  // int**_t
+#include <string>
 #include <set>
+#include <vector>
 
 namespace l4_conveyor_chaos {
 

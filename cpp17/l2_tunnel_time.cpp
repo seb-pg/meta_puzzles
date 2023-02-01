@@ -14,7 +14,6 @@
 
 #include <algorithm>
 #include <cstdint>  // int**_t
-#include <tuple>
 #include <vector>
 
 namespace l2_tunnel_time {

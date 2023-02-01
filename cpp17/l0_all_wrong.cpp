@@ -14,6 +14,7 @@
 
 #include <algorithm>
 #include <string>
+#include <vector>
 
 namespace l0_all_wrong {
 

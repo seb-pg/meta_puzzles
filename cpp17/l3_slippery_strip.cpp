@@ -14,6 +14,7 @@
 
 #include <algorithm>
 #include <array>
+#include <vector>
 
 namespace l3_slippery_strip {
 

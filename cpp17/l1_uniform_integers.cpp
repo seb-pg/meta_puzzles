@@ -13,6 +13,7 @@
 #include "test_all.h"
 
 #include <cstdint>  // int**_t
+#include <vector>
 
 namespace l1_uniform_integers {
 

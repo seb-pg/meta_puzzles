@@ -53,7 +53,7 @@ int64_t getMinimumSecondsRequiredCpp17(uint32_t N, const std::vector<int32_t>& R
             U[i] += min_inflate;  // fits in 32bits by definition
             costs[i] = min_inflate;  // fits in 32bits by definition
         }
-        // track continous intervals (note: this is not a "else if"!)
+        // track continuous intervals (note: this is not a "else if"!)
         if (Uj < Ui)  // if (min_inflate < 0)
         {
             intervals.emplace_back(i);
