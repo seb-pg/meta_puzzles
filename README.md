@@ -22,18 +22,18 @@ meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's care
 
 The complete solutions are provided in the following languages:
 * Python (3): developed first.
-* C\++ (17): developed second. The code is written in a "plausible" medium developer style (it just works with basic C++ and no fancy optimisation.
+* C\++ (17): developed second.
 
-Mostly complete solutions are provided in the following languages and are based on the C\++17 version (only "level 4" solutions are missing)
+Mostly complete solutions are provided in the following languages and are based on the C\++17 version
 * C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.
+* Go: tested with version 1.9.4.
+* Kotlin: tested with version 1.7.21.
 * Rust: tested with version 1.66.
-* Go: tested with version 1.9.4. Solutions are using generics which are not supported by Meta online tests.
-* Kotlin: tested with version 1.7.21. See notes!
+* Scala: 19 out of 24 done so far.
 
 Languages probably provided in the future
 * Java: 4 out of 24 done so far. See notes!
 * Javascript
-* Scala: 19 out of 24 done so far. See notes!
 * Swift
 
 The intent is to use these solutions in a multi-language comparison and find which languages would be suitable to write quantitative strategies on a wide scale.
@@ -75,8 +75,7 @@ The solutions provided  are passing all Meta's tests on their website. Meta's ba
 
 C\++20 (or C\++23) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
 
-
-The code is written using a "plausible" medium developer style, and not much emphasis is spent on optimisation:
+The code is written using a "plausible" medium developer style (it just works with basic C++), and not much emphasis is spent on optimisation (e.g. using polymorphic allocator would be an obvious low hanging fruit).
 * Meta passes containers, such as std::vector or std::string by value, rather than reference.  The signature are kept but all functions are calling a more more C\++ style function using reference, which can be used for performance testing.
 * Meta used int and long long and seemed to assume they were, respectively, 32 bits and 64 bits.  int32_t/int64_t are used instead passed Meta's function signature.  
 * Meta only used signed integer, rather than using the correct signed/unsigned integer (e.g. distances/counts should always be positive). To make code more readable, minimum casting has been used in the code for readibility, even if sometimes, it was tempting to do the right thing in term of sign correctness.
