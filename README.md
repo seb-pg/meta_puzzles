@@ -21,18 +21,19 @@ work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's careers website at https://www.metacareers.com/profile/coding_puzzles/.
 
 The complete solutions are provided in the following languages:
-* Python (3): developed first.
-* C\++ (17): developed second.
+* Python (3): developed first. [24 out of 24 solutions]
+* C\++ (17): developed second. [24 out of 24 solutions]
 
 Mostly complete solutions are provided in the following languages and are based on the C\++17 version
-* C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.
-* Go: tested with version 1.9.4.
-* Kotlin: tested with version 1.7.21.
-* Rust: tested with version 1.66.
-* Scala: 19 out of 24 done so far.
+* C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.  [22 out of 24 solutions, l4 solutions are missing]
+* Go: tested with version 1.9.4.  [22 out of 24 solutions, l4 are solutions missing]
+* Kotlin: tested with version 1.7.21.  [22 out of 24 solutions should be working, please see notes]
+* Rust: tested with version 1.66. [22 out of 24 solutions, l4 solutions are missing]
+* Scala: tested with version 3.2.1 (and Meta's website uses version <= 2.13).  [19 out of 24 done so far]
+Note: l4 solutions are using a "lower_bound" on reb-black trees, which is not provided by default in the languages above.
 
 Languages probably provided in the future
-* Java: 4 out of 24 done so far. See notes!
+* Java: 4 out of 24 done so far.
 * Javascript
 * Swift
 
