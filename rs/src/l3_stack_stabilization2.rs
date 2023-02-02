@@ -46,7 +46,7 @@ pub fn getMinimumSecondsRequired(N: i32, R: &Vec<i32>, A: i32, B: i32) -> i64 {
             U[i] += min_inflate;  // fits in 32bits by definition
             costs[i] = min_inflate;  // fits in 32bits by definition
         }
-        // track continous intervals
+        // track continuous intervals
         if Uj < Ui {  // min_inflate < 0
             intervals.push(i);
             continue;
