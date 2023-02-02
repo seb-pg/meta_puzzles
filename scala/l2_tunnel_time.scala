@@ -21,7 +21,6 @@ class Tunnel(val a: Long,
 }
 
 object Solution {
-
     def getSecondsElapsed(C: Long, N: Int, A: Array[Long], B: Array[Long], K: Long): Long = {
         var tunnels = new ArrayBuffer[Tunnel](N)
         for ((a, b) <- A.zip(B))
