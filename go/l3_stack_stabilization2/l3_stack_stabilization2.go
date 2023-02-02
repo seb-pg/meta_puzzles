@@ -45,7 +45,7 @@ func getMinimumSecondsRequired(N int32, R []int32, A int32, B int32) int64 {
 			U[i] += min_inflate                          // fits in 32bits by definition
 			costs[i] = min_inflate                       // fits in 32bits by definition
 		}
-		// track continous intervals (note: this is not a "else if"!)
+		// track continuous intervals (note: this is not a "else if"!)
 		if Uj < Ui { // if (min_inflate < 0)
 			intervals = append(intervals, i)
 			continue
