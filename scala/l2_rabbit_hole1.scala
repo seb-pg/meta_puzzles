@@ -48,7 +48,7 @@ object Solution {
         while (!entrance_vertices.isEmpty) {
             //val curr_vertex = entrance_vertices.removeLast()
             val curr_vertex = entrance_vertices.last
-            // entrance_vertices.trimEnd(1) // FIXME: must use this on Meta's website
+            //entrance_vertices.trimEnd(1) // FIXME: must use this on Meta's website
             entrance_vertices.dropRightInPlace(1)  // FIXME: >= 2.13.1 (does not work on Meta's website)
             curr_vertex.in_cycle = false
             //

@@ -43,6 +43,5 @@ def main(): Unit = {
     //nb_errors += l4_conveyor_chaos.Solution.tests()
     //nb_errors += l4_mathematical_art.Solution.tests()
 
-    nb_errors += l3_stack_stabilization2.Solution.tests()
     println("\n" + nb_errors + " errors found")
 }

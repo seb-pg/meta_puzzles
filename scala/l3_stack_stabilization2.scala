@@ -15,11 +15,6 @@ package l3_stack_stabilization2
 import scala.collection.mutable.ArrayBuffer
 import scala.util.control.Breaks._
 
-class Counts(var star: Int = 0,
-             var right: Int = 0,
-             var down: Int = 0 ) {
-}
-
 object Solution {
     def getMinimumSecondsRequired(N: Int, R: Array[Int], A: Int, B: Int): Long = {
         val _A = A.toLong
@@ -85,8 +80,8 @@ object Solution {
                         }
                         if (first > 0) {
                             if (U(first) == U(first - 1) + 1)
-                                intervals.trimEnd(1) // FIXME: must use this on Meta's website
-                                //intervals.dropRightInPlace(1) // FIXME: >= 2.13.1 (does not work on Meta's website)
+                                //intervals.trimEnd(1) // FIXME: must use this on Meta's website
+                                intervals.dropRightInPlace(1) // FIXME: >= 2.13.1 (does not work on Meta's website)
                         }
                         if (min_positive <= 0)
                             break
