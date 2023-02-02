@@ -43,7 +43,7 @@ fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: UInt, _count_ri
         return 0U;
     val k = row.indexOf('v');
     val j = if (k != -1) (k + 1) else 0;
-    var new_row = row_t();
+    val new_row = row_t();
     new_row.addAll(row.slice(j until row.size));
     new_row.addAll(new_row.size, row.slice(0 until j));
     var count_down = _count_down;
@@ -54,7 +54,7 @@ fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: UInt, _count_ri
     while (count_right * count_down != 0U)
     {
         val first = new_row.slice(last until size).indexOf('>') + last;
-        val last = new_row.slice(first until size).indexOf('v') + 1 + first;
+        last = new_row.slice(first until size).indexOf('v') + 1 + first;
         nb_coins_right_then_down = maxOf(nb_coins_right_then_down, new_row.slice(first until last).count() {it == '*'}.toUInt())
         count_down -= 1U;
         count_right -= new_row.slice(first until last).count() { it == '>' }.toUInt();
@@ -63,7 +63,7 @@ fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: UInt, _count_ri
 }
 
 fun _getMaxCollectableCoins(R: Int, C: Int, G: Array<Array<Char>>): Int {
-    var counts = char_counter_t(256);
+    val counts = char_counter_t(256);
     repeat(256) { index -> counts.add(0U) }
     var res = 0U;
     for (i in 0 until G.size)
@@ -86,10 +86,10 @@ fun _getMaxCollectableCoins(R: Int, C: Int, G: Array<Array<Char>>): Int {
 }
 
 fun getMaxCollectableCoins(R: Int, C: Int, G: Array<Array<String>>): Int {
-    var H = ArrayList<Array<Char>>(G.size);
+    val H = ArrayList<Array<Char>>(G.size);
     for (in_row in G)
     {
-        var row = ArrayList<Char>(in_row.size);
+        val row = ArrayList<Char>(in_row.size);
         for (c in in_row)
             row.add(if (!c.isEmpty()) c[0] else '.');  // FIXME: Meta's website provide corrupted test data!
         H.add(row.toTypedArray());
@@ -98,10 +98,10 @@ fun getMaxCollectableCoins(R: Int, C: Int, G: Array<Array<String>>): Int {
 }
 
 fun _getMaxCollectableCoinsTest(G: Array<String>): Int {
-    var H = ArrayList<Array<String>>(G.size);
+    val H = ArrayList<Array<String>>(G.size);
     for (in_row in G)
     {
-        var row = ArrayList<String>(in_row.length);
+        val row = ArrayList<String>(in_row.length);
         for (c in in_row)
             row.add(c.toString());
         H.add(row.toTypedArray());

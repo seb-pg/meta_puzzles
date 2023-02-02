@@ -13,12 +13,12 @@
 package l1_stack_stabilization1
 
 fun getMinimumDeflatedDiscCount(N: Int, R: Array<Int>): Int {
-    var nb: Int = 0;
-    var iter = R.reversed().iterator();
+    var nb = 0;
+    val iter = R.reversed().iterator();
     iter.hasNext();
     var current_radius = iter.next();
     while (iter.hasNext()) {
-        var next_radius = iter.next();
+        val next_radius = iter.next();
         val target_radius = current_radius - 1;
         if (target_radius <= 0) {
             return -1;
@@ -31,14 +31,14 @@ fun getMinimumDeflatedDiscCount(N: Int, R: Array<Int>): Int {
 }
 
 class Args(
-    val S: Array<Int>,
+    val R: Array<Int>,
     val res: Int, ) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
 fun tests(): UInt
 {
-    val wrapper = { p: Args -> getMinimumDeflatedDiscCount(p.S.size, p.S) };
+    val wrapper = { p: Args -> getMinimumDeflatedDiscCount(p.R.size, p.R) };
 
     val args_list: List<Args> = listOf(
         Args( arrayOf(2, 5, 3, 6, 5), 3 ),

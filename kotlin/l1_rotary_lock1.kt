@@ -13,7 +13,7 @@
 package l1_rotary_lock1
 
 fun getMinCodeEntryTime(N: Int, M: Int, C: Array<Int>): Long {
-    var pos: Int = 1;
+    var pos = 1;
     var nb: Long = 0;
     for (target in C) {
         var positive_move = (target - pos) % N;  // positive move

@@ -17,19 +17,28 @@ fun main(args: Array<String>) {
     nb_errors += l2_director_photography2.tests();
     nb_errors += l2_hops.tests();
     nb_errors += l2_missing_mail.tests();
-    nb_errors += l2_portals.tests();  // FIXME: is working, but Meta's website seems to not provide corrupted input test data
+    nb_errors += l2_portals.tests();  // FIXME #A
     nb_errors += l2_rabbit_hole1.tests();
-    nb_errors += l2_rotary_lock2.tests();  // FIXME: is working, but does not pass speed requirement on Meta's website (given 2 other tests seem to be broken on Meta's website...)
+    nb_errors += l2_rotary_lock2.tests();
     nb_errors += l2_scoreboard_interference2.tests();
     nb_errors += l2_tunnel_time.tests();
     // l3
     nb_errors += l3_boss_fight.tests();
     //nb_errors += l3_rabbit_hole2.tests();  // TODO
-    nb_errors += l3_slippery_strip.tests();  // FIXME: is working, but Meta's website seems to not provide corrupted input test data
+    nb_errors += l3_slippery_strip.tests();  // FIXME #A
     nb_errors += l3_stack_stabilization2.tests();
     // l4
-    nb_errors += l4_conveyor_chaos.tests();  // FIXME: is working, but Meta's website seems to not provide corrupted input test data
+    nb_errors += l4_conveyor_chaos.tests();  // FIXME #B
     //nb_errors += l4_mathematical_art.tests();  // TODO
+
+    // FIXME #A: should be working, but Meta's website seems to provide corrupted input test data
+    // FIXME #A: for the tests affected (l2_portals and l3_slippery_strip), Meta should have been using
+    // FIXME #A: Array<String> as test input, but used Array<Array<Char>> in all languages except Kotlin
+    // FIXME #A: where it used Array<Array<String>> instead.  All String represent a single character, and
+    // FIXME #A: each row is shifted to the right, and an empty String is inserted on the left, creating
+    // FIXME #A: a mismatch between the expected value for the input data and result value for the shifted input data
+
+    // FIXME #B: should be working, but does not pass all tests on Meta's website.
 
     println("\n${nb_errors} errors found");
 }

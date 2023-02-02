@@ -17,7 +17,7 @@ fun getMinProblemCount(N: Int, S: Array<Int>): Int {
     var second_max_score = 0;
     var two_remainder = 0;
     var one_remainder = 0;
-    var need_one: Boolean = false;
+    var need_one = false;
 
     for (score in S) {
         val score_mod_3 = score % 3;

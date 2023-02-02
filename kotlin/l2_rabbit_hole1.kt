@@ -24,7 +24,7 @@ class Vertex(
 typealias ListVerticesT = ArrayList<Vertex>;
 
 fun getMaxVisitableWebpages(N: Int, L: Array<Int>): Int {
-    var vertices = ListVerticesT(N);
+    val vertices = ListVerticesT(N);
     for (i in 0 until N) {
         vertices.add(Vertex(i + 1));
     }
@@ -37,7 +37,7 @@ fun getMaxVisitableWebpages(N: Int, L: Array<Int>): Int {
     }
 
     // find the entrance vertices (could be []): O(N)
-    var entrance_vertices = ListVerticesT(N);
+    val entrance_vertices = ListVerticesT(N);
     for (vertex in vertices) {
         if (vertex.inputs == 0U)
             entrance_vertices.add(vertex);

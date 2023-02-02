@@ -15,7 +15,7 @@ package l1_cafeteria
 fun getMaxAdditionalDinersCount(N: Long, K: Long, _M: Int, S: Array<Long>): Long {
     val d: Long = K + 1;
 
-    var taken = ArrayList<Long>(S.size + 1);
+    val taken = ArrayList<Long>(S.size + 1);
     taken.add(-K);  // we are adding "fake" seats at the beginning
     taken.addAll(S);
     taken.add(N + d);  // we are adding "fake" seats at the end

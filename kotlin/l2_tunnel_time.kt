@@ -22,7 +22,7 @@ class Tunnel(
 }
 
 fun getSecondsElapsed(C: Long, N: Int, A: Array<Long>, B: Array<Long>, K: Long): Long {
-    var tunnels = ArrayList<Tunnel>(N);
+    val tunnels = ArrayList<Tunnel>(N);
     for ((a, b) in A.zip(B))
         tunnels.add(Tunnel(a, b));
 
@@ -69,8 +69,8 @@ fun tests(): UInt
     val wrapper = { p: Args -> _getSecondsElapsed(p) };
 
     val args_list: List<Args> = listOf(
-        Args( 10, arrayOf( 1, 6 ), arrayOf( 3, 7 ), 7, 22 ),
-        Args( 50, arrayOf( 39, 19, 28 ), arrayOf( 49, 27, 35 ), 15, 35 ),
+        Args( 10, arrayOf(1, 6), arrayOf(3, 7), 7, 22 ),
+        Args( 50, arrayOf(39, 19, 28), arrayOf(49, 27, 35), 15, 35 ),
         // extra 1
         Args( 50, arrayOf(19, 28, 39), arrayOf(27, 35, 49), 1, 20 ),
         Args( 50, arrayOf(19, 28, 39), arrayOf(27, 35, 49), 8, 27 ),

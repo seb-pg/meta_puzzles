@@ -125,7 +125,6 @@ fun add_entries(N: Int, intervals: ListIntervals)
     var stack = sortedSetOf<Interval>(compareBy<Interval> { it.h });
     stack.add(ground);
 
-    // TODO: complete here!
     var first = 0;  // Iterators are a pain in Kotlin/Java, we are replacing them with integer
     val end = points.size;
     var last_p = Interval();
@@ -140,7 +139,6 @@ fun add_entries(N: Int, intervals: ListIntervals)
                 break;
             ++last;
         }
-
         //
         val p = stack.last();
         if (last_p !== p)
@@ -184,7 +182,6 @@ fun add_entries(N: Int, intervals: ListIntervals)
         intervals[i].xmax = intervals[i + 1].xmin;
     intervals.last().xmax = ground.xmax;
     // fix children by adding drop_point
-    //for (uint32_t i = N + 1, n = static_cast<uint32_t>(intervals.size()); i < n; ++i)
     for (i in N+1 until intervals.size)
     {
         var interval = intervals[i];
@@ -197,13 +194,10 @@ fun populate_costs(N: Int, intervals: ListIntervals)
 {
     // set up weight for entry interval from the sky: O(N)
     for (p in intervals.slice(N+1 until intervals.size))
-    {
         p.weight = if (p.children[0].interval!!.n > 0) p.width() else 0.0;
-    }
 
     // Accumulate costs from top to bottom: O(E) where E is 2*N at most
     var edges = ArrayList<Edge>(2* N);
-
     for (parent in intervals.slice(intervals.size - 1 downTo 0))
     {
         var weight = 0.5 * parent.weight;
@@ -266,8 +260,6 @@ fun calc_dist(N: Int, intervals: ListIntervals): Result
 }
 
 fun getMinExpectedHorizontalTravelDistance(N: Int, H: Array<Int>, A: Array<Int>, B: Array<Int>): Double {
-    if (N > 200_000)  // FIXME: Does not pass test (speed?) for N too big (produces 13 solved, 6 errors)
-        return 0.0;
     val params = Params();
     var intervals = build_intervals(N, H, A, B, params);  // O(N)
     add_entries(N, intervals);  // O(N * log(N))
@@ -285,11 +277,38 @@ class Args(
     override fun get_result(): Double { return res; };
 }
 
+fun make_cases(N: Int): Args
+{
+    val params = Params();
+
+    var H = ArrayList<Int>(N);
+    var A = ArrayList<Int>(N);
+    var B = ArrayList<Int>(N);
+    for (i in 1..N)
+    {
+        H.add(N + 1 - i);
+        A.add(N + 1 - i);
+        B.add(N + i);
+    }
+    var base_cost = 0UL;
+    var width = 2UL * N.toULong() - 1UL;
+    var added_width = 0UL;
+    for (i in 0 until N)
+    {
+        added_width += width;
+        base_cost += added_width;
+        width -= 2UL;
+    }
+    base_cost -= added_width / 2UL;
+    val expected = base_cost.toDouble() / (params.x_max - params.x_min);
+    return Args(H.toTypedArray(), A.toTypedArray(), B.toTypedArray(), expected);
+}
+
 fun tests(): UInt
 {
     val wrapper = { p: Args -> getMinExpectedHorizontalTravelDistance(p.A.size, p.H, p.A, p.B) };
 
-    val args_list: List<Args> = listOf(
+    val args_list = arrayListOf<Args>(
         Args( arrayOf(10, 20), arrayOf(100_000, 400_000), arrayOf(600_000, 800_000), 155_000.0 ),
         Args( arrayOf(2, 8, 5, 9, 4), arrayOf(5_000, 2_000, 7_000, 9_000, 0), arrayOf(7_000, 8_000, 11_000, 11_000, 4_000), 36.5 ),
         // extra1
@@ -309,6 +328,9 @@ fun tests(): UInt
         Args( arrayOf(1, 3, 3, 5), arrayOf(400_000, 200_000,  600_000, 400_000), arrayOf(700_000, 500_000, 1_000_000, 700_000), 213_750.0 ),
         Args( arrayOf(1, 3, 3, 5, 7), arrayOf(400_000, 200_000,  600_000, 400_000, 400_000), arrayOf(700_000, 500_000, 1000_000, 700_000, 600_000), 215_000.0 ),
     );
+    //args_list.add(make_cases(2));
+    args_list.add(make_cases(100_000));
+    //args_list.add(make_cases(2_000_000));
 
     return test.run_all_tests("l4_conveyor_chaos", args_list, wrapper, 0.000_001);
 }

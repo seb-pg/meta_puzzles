@@ -27,7 +27,7 @@ fun maximize_damage(N: Int, H: Array<Int>, D: Array<Int>, info: DamageInfo): Boo
     var has_same_damage: Boolean = true;
     for (i in 0 until N)
     {
-        var j = info.indices[info.order];
+        val j = info.indices[info.order];
         if (j == i)
             continue;
         val Hi = H[i].toULong();  // TODO: Kotlin is not great with casting directly to damage_t
@@ -50,13 +50,13 @@ fun maximize_damage(N: Int, H: Array<Int>, D: Array<Int>, info: DamageInfo): Boo
 }
 
 fun getMaxDamageDealt(N: Int, H: Array<Int>, D: Array<Int>, B: Int): Double {
-    var damage_infos = arrayListOf<DamageInfo>();  // note: no reserve() here
+    val damage_infos = arrayListOf<DamageInfo>();  // note: no reserve() here
     for (order in arrayOf<Int>( 0, 1 ))
     {
-        var damage_info = DamageInfo(order);
+        val damage_info = DamageInfo(order);
         while (true)
         {
-            var has_same_damage = maximize_damage(N, H, D, damage_info);
+            val has_same_damage = maximize_damage(N, H, D, damage_info);
             if (has_same_damage)
                 break;
             damage_info.order = 1 - damage_info.order;

@@ -17,7 +17,7 @@ class Dials(
     var dial2: Int, ) {
 }
 
-typealias solutions_t = MutableMap<Dials, Long>;
+typealias solutions_t = HashMap<Dials, Long>;
 
 fun get_distance(target: Int, position: Int, N: Int): Int
 {
@@ -41,10 +41,10 @@ fun getMinCodeEntryTime(N: Int, _M: Int, C: Array<Int>): Long {
     if (C.isEmpty())
         return 0;
 
-    var solutions: solutions_t = mutableMapOf(Dials(1, 1) to 0);
+    var solutions: solutions_t = hashMapOf(Dials(1, 1) to 0);
     for (target in C)
     {
-        var new_solutions: solutions_t = mutableMapOf();
+        val new_solutions: solutions_t = hashMapOf();
         for ((dials, distance) in solutions)
         {
             // we turn dial1

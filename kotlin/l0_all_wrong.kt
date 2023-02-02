@@ -13,7 +13,7 @@
 package l0_all_wrong
 
 fun getWrongAnswers(N: Int, C: String): String {
-    var ret = StringBuilder();
+    val ret = StringBuilder();
     for (c in C)
         ret.append(if (c == 'A') 'B' else 'A');
     return ret.toString();

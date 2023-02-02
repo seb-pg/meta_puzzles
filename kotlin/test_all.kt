@@ -29,8 +29,13 @@ fun <Args, Ret> run_all_tests(name: String, args_list: List<Args>, fnc: (Args) -
         val res = fnc(args);
         val expected = args.get_result();
         var is_same = false;
-        if (res is Double && expected is Double)
+        if (res is Double && expected is Double) {
+            //println("res=${res.toDouble()}");
+            //println("exp=${expected.toDouble()}");
+            //println("abs=${(res.toDouble() - expected.toDouble()).absoluteValue}");
+            //println("precision=${precision}");
             is_same = (res.toDouble() - expected.toDouble()).absoluteValue < (precision ?: 0.0);
+        }
         else
             is_same = res == expected;
         if (is_same) {

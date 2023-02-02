@@ -48,7 +48,7 @@ class OurPriorityQueue<Priority: Comparable<Priority>, Item>
     fun pop_front(): Pair<Priority, Item>
     {
         val k = m.firstKey();
-        var v = m.remove(k)!!;
+        val v = m.remove(k)!!;
         return Pair<Priority, Item>(k.first, v);
     }
 
@@ -76,18 +76,18 @@ fun add_neighbour(q: PriorityQueue_t, h: HeuristicFunc_t, d: DistFunc_t, node: N
 
 fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
     // set up grid and portal map
-    var grid = GridNodeInfo_t(R);
+    val grid = GridNodeInfo_t(R);
     for (j in 0 until R)
     {
-        var row = ArrayList<NodeInfo>(C);
+        val row = ArrayList<NodeInfo>(C);
         for (i in 0 until C)
             row.add(NodeInfo(j, i, G[j][i]));  // Meta used Array<Array<String>> instead of Array<Array<Char>>!
         grid.add(row);
     }
 
     var start = Coord(0, 0);
-    var ends = ArrayList<Coord>(R * C);
-    var portals = mutableMapOf<Char, ArrayList<NodeInfo>>();
+    val ends = ArrayList<Coord>(R * C);
+    val portals = mutableMapOf<Char, ArrayList<NodeInfo>>();
     for (j in 0 until R)
     {
         val row = G[j];
@@ -106,11 +106,11 @@ fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
             }
         }
     }
-    var start_node = grid[start.row][start.col];
+    val start_node = grid[start.row][start.col];
     start_node.distance = 0;
 
     // set up the grid
-    var q = PriorityQueue_t();  // contains (heuristic score, coordinates)
+    val q = PriorityQueue_t();  // contains (heuristic score, coordinates)
     val h = fun (node: NodeInfo): dist_t { return node.distance; };
     val d = fun (n1: NodeInfo, n2: NodeInfo): dist_t { return n1.distance + 1; };
 
@@ -136,7 +136,7 @@ fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
             val col = node.col + coord.col;
             if ((0 <= row && row < R) && (0 <= col && col < C))
             {
-                var neighbour = grid[row][col];
+                val neighbour = grid[row][col];
                 if (neighbour.node_type != '#')
                     add_neighbour(q, h, d, node, neighbour);
             }
@@ -146,10 +146,10 @@ fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
 }
 
 fun getSecondsRequired(R: Int, C: Int, G: Array<Array<String>>): Int {
-    var H = ArrayList<Array<Char>>(G.size);
+    val H = ArrayList<Array<Char>>(G.size);
     for (in_row in G)
     {
-        var row = ArrayList<Char>(in_row.size);
+        val row = ArrayList<Char>(in_row.size);
         for (c in in_row)
             row.add(if (!c.isEmpty()) c[0] else '.');  // FIXME: Meta's website provide corrupted test data!
         H.add(row.toTypedArray());
@@ -158,10 +158,10 @@ fun getSecondsRequired(R: Int, C: Int, G: Array<Array<String>>): Int {
 }
 
 fun _getSecondsRequiredTest(G: Array<String>): Int {
-    var H = ArrayList<Array<String>>(G.size);
+    val H = ArrayList<Array<String>>(G.size);
     for (in_row in G)
     {
-        var row = ArrayList<String>(in_row.length);
+        val row = ArrayList<String>(in_row.length);
         for (c in in_row)
             row.add(c.toString());
         H.add(row.toTypedArray());

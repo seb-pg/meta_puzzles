@@ -24,8 +24,8 @@ fun <T> _getArtisticPhotographCount(_N: Int, C: String, X: Int, Y: Int): T
 
     // count the number of Ps or Bs till a position i: O(N)
     val w = _Y + 1;
-    var count = Counts( 0, 0 );
-    var counts = ArrayList<Counts>(C.length + w.toInt() * 2);
+    val count = Counts( 0, 0 );
+    val counts = ArrayList<Counts>(C.length + w.toInt() * 2);
     for (i in 0 until w)  // add space at the beginning to avoid special treatment of indices later
         counts.add(Counts( 0, 0 ));
     for (ci in C)
@@ -41,7 +41,7 @@ fun <T> _getArtisticPhotographCount(_N: Int, C: String, X: Int, Y: Int): T
         counts.add(last);
 
     // To make things more readable, we are finding first the point where 'A' is found: O(N)
-    var possible = ArrayList<Int>(C.length);
+    val possible = ArrayList<Int>(C.length);
     var j = w;
     for (ci in C) {
         if (ci == 'A')
@@ -55,17 +55,17 @@ fun <T> _getArtisticPhotographCount(_N: Int, C: String, X: Int, Y: Int): T
     var nb: Long = 0;  // TODO: change type to T
     for (i in possible)
     {
-        var a = (counts[i - _X].p - counts[i - Y1].p).toLong();
-        var b = (counts[i + _Y].b - counts[i + X1].b).toLong();
-        nb += a * b;
+        val a = counts[i - _X].p - counts[i - Y1].p;
+        val b = counts[i + _Y].b - counts[i + X1].b;
+        nb += a.toLong() * b.toLong();
     }
 
     // Count BAPs : O(N)
     for (i in possible)
     {
-        var a = (counts[i - _X].b - counts[i - Y1].b).toLong();
-        var b = (counts[i + _Y].p - counts[i + X1].p).toLong();
-        nb += a * b;
+        val a = counts[i - _X].b - counts[i - Y1].b;
+        val b = counts[i + _Y].p - counts[i + X1].p;
+        nb += a.toLong() * b.toLong();
     }
 
     return nb as T;  // result should always be positive

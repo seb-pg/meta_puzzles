@@ -13,16 +13,15 @@
 package l1_kaitenzushi
 
 fun getMaximumEatenDishCount(N: Int, D: Array<Int>, K: Int): Int {
-    var eaten = BooleanArray(1_000_001);
+    val eaten = BooleanArray(1_000_001);
 
     // The following is O(K) (where K < N)
-    var last_eaten = MutableList<Int>(K) {0};  // circular buffer for last eaten value (0 is not used, as 1 <= Ki <= 1,000,000)
-    var oldest_eaten: Int = 0;
+    val last_eaten = MutableList(K) {0};  // circular buffer for last eaten value (0 is not used, as 1 <= Ki <= 1,000,000)
+    var oldest_eaten = 0;
 
     // The following is O(N)
     var nb: Int = 0;
-    for (_dish in D) {
-        val dish: Int = _dish;
+    for (dish in D) {
         if (!eaten[dish]) {
             oldest_eaten = (oldest_eaten + 1) % K;
             val last_eaten_dish = last_eaten[oldest_eaten];
@@ -48,7 +47,7 @@ fun tests(): UInt
 
     val args_list: List<Args> = listOf(
         Args( arrayOf(1, 2, 3, 3, 2, 1), 1, 5 ),
-        Args( arrayOf(1, 2, 3, 3, 2, 1), 1, 5 ),
+        Args( arrayOf(1, 2, 3, 3, 2, 1), 2, 4 ),
         Args( arrayOf(1, 2, 1, 2, 1, 2, 1), 2, 2 ),
     );
 

@@ -19,14 +19,14 @@ fun getMinimumSecondsRequired(N: Int, R: Array<Int>, A: Int, B: Int): Long {
     if (N == 0 || R.isEmpty())
         return 0;
 
-    var U = R;
+    val U = R.clone();
 
     // Extend the range of input data
     var total_cost = 0L;
-    var costs = ArrayList<Int>(N);
+    val costs = ArrayList<Int>(N);
     repeat(N) { index -> costs.add(0) }
 
-    var intervals = ArrayList<Int>(N);
+    val intervals = ArrayList<Int>(N);
     intervals.add(0);
     for (i in 1 until N)
     {
@@ -54,9 +54,9 @@ fun getMinimumSecondsRequired(N: Int, R: Array<Int>, A: Int, B: Int): Long {
             //
             var nb_pos = 0;
             var min_positive1 = 0;
-            for (curr in first until i + 1)
+            for (curr in first .. i)
             {
-                var value = costs[curr];
+                val value = costs[curr];
                 if (value > 0)
                 {
                     ++nb_pos;
@@ -71,7 +71,7 @@ fun getMinimumSecondsRequired(N: Int, R: Array<Int>, A: Int, B: Int): Long {
             if (cost_change >= 0)
                 break;
             total_cost += cost_change;
-            for (j in first until i + 1)
+            for (j in first..i)
             {
                 costs[j] -= min_positive;
                 U[j] -= min_positive;

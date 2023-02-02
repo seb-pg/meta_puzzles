@@ -13,7 +13,7 @@
 package l0_battleship
 
 fun getHitProbability(R: Int, C: Int, G: Array<Array<Int>>): Double {
-    var numerator: Double = G.fold(0.0) {sum, row -> sum + row.fold(0.0) {sum, elt -> sum + elt } };
+    val numerator: Double = G.fold(0.0) {sum, row -> sum + row.fold(0.0) {sum, elt -> sum + elt } };
     return numerator / (R * C).toDouble();
 }
 
