@@ -52,7 +52,7 @@ class Solution {
                 U[i] += min_inflate;  // fits in 32bits by definition
                 costs[i] = min_inflate;  // fits in 32bits by definition
             }
-            // track continous intervals
+            // track continuous intervals
             if (min_inflate < 0)
             {
                 intervals.Add(i);
