@@ -20,22 +20,27 @@ work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's careers website at https://www.metacareers.com/profile/coding_puzzles/.
 
-The complete solutions are provided in the following languages:
-* Python (3): developed first. [24 out of 24 solutions]
-* C\++ (17): developed second. [24 out of 24 solutions]
+The complete solutions [24 out of 24 solutions] are provided in the following languages:
+* Python (3): developed first.
+* C\++ (17): developed second.
 
 Mostly complete solutions are provided in the following languages and are based on the C\++17 version
-* C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.  [22 out of 24 solutions]
+* C#: compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.
+  * 22 out of 24 solutions
   * l4 solutions are missing because C# does not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) out-of-the-box.
-* Go: tested with version 1.9.4.  [21 out of 24 solutions, l4 are solutions missing]
+* Go: tested with version 1.9.4.
+  * 21 out of 24 solutions, l4 are solutions missing
   * l3_portals and l4 solutions are missing because Go does not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
-* Kotlin: tested with version 1.7.21.  [22 out of 24 solutions should be working, please see notes]
+* Kotlin: tested with version 1.7.21.
+  * 22 out of 24 solutions should be working, please see notes
   * Many test fail on Meta's website but should be working (see comments).
   * l3_rabbit_hole2 and l4_mathematical_art have not yet been implemented but are expected to be implementable out-of-the-box with Kotlin.
-* Rust: tested with version 1.66. [22 out of 24 solutions, l4 solutions are missing]
+* Rust: tested with version 1.66.
+  * 22 out of 24 solutions, l4 solutions are missing
   * l4 solutions are missing because C# does not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)  out-of-the-box.
   * Rust provides [TreeMap (a B-tree implementation)](https://en.wikipedia.org/wiki/B-tree) instead of [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree).  This collection has the same asymptotic complexity as Red-black trees.
-* Scala: tested with version 3.2.1 (and Meta's website uses version <= 2.13).  [19 out of 24 done so far]
+* Scala: tested with version 3.2.1 (and Meta's website uses version <= 2.13).
+  * 19 out of 24 done so far
   * All solutions are expected to be implementable out-of-the-box with Scala.
 
 Languages probably provided in the future
