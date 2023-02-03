@@ -16,7 +16,7 @@ work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 ----
 
-## meta_puzzles
+## Overview
 
 meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's careers website at https://www.metacareers.com/profile/coding_puzzles/.
 
