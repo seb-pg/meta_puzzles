@@ -14,10 +14,10 @@ package l1_kaitenzushi
 
 object Solution {
     def getMaximumEatenDishCount(N: Int, D: Array[Int], K: Int): Int = {
-        var eaten = Array.fill(1000001)(false)  // Meta does not 1_000_001
+        val eaten = Array.fill(1000001)(false)  // Meta does not 1_000_001
 
         // The following is O(K) (where K < N)
-        var last_eaten = Array.fill(K)(0)  // circular buffer for last eaten value (0 is not used, as 1 <= Ki <= 1,000,000)
+        val last_eaten = Array.fill(K)(0)  // circular buffer for last eaten value (0 is not used, as 1 <= Ki <= 1,000,000)
         var oldest_eaten = 0
 
         // The following is O(N)

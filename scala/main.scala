@@ -37,7 +37,7 @@ def main(): Unit = {
     // l3
     nb_errors += l3_boss_fight.Solution.tests()
     //nb_errors += l3_rabbit_hole2.Solution.tests()
-    //nb_errors += l3_slippery_strip.Solution.tests()
+    nb_errors += l3_slippery_strip.Solution.tests()
     nb_errors += l3_stack_stabilization2.Solution.tests()
     // l4
     //nb_errors += l4_conveyor_chaos.Solution.tests()

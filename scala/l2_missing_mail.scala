@@ -48,7 +48,7 @@ object Solution {
             results += new Result(0.0, pickup_value)
         }
 
-        var res = results.foldLeft(Double.MinValue) ((acc, elt) => acc.max(elt.total_value))
+        val res = results.foldLeft(Double.MinValue) ((acc, elt) => acc.max(elt.total_value))
         return res.toFloat
     }
 
