@@ -78,7 +78,7 @@ static ListVertices_t build_children(std::vector<Edge>& edges)
     //
     ListVertices_t vertices;
     vertices.reserve(nb_vertices + 1);
-    for (index_t i = 0; i < nb_vertices + 1; ++i)
+    for (index_t i = 0; i <= nb_vertices; ++i)
         vertices.emplace_back(std::make_shared<Vertex>(Vertex{ i }));
     for (const auto& [v, w] : edges)
     {
@@ -382,7 +382,7 @@ auto tests()
 
     std::vector<NamedTests<Args, int>> tests = {
         { "Meta", {
-                {{{1, 2, 3, 4}, {4, 1, 2, 1}}, 4},
+                { { { 1, 2, 3, 4 }, { 4, 1, 2, 1 } }, 4 },
                 { { { 3, 5, 3, 1, 3, 2 }, { 2, 1, 2, 4, 5, 4 } }, 4 },
                 { { { 3, 2, 5, 9, 10, 3, 3, 9, 4 }, { 9, 5, 7, 8, 6, 4, 5, 3, 9 } }, 5 },
             }

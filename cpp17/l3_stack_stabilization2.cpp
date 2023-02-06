@@ -84,7 +84,7 @@ int64_t getMinimumSecondsRequiredCpp17(uint32_t N, const std::vector<int32_t>& R
             if (cost_change >= 0)
                 break;
             total_cost += cost_change;
-            for (auto j = first; j < i + 1; ++j)
+            for (auto j = first; j <= i; ++j)
             {
                 costs[j] -= min_positive;
                 U[j] -= min_positive;
