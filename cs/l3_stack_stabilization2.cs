@@ -83,7 +83,7 @@ class Solution {
                 if (cost_change >= 0)
                     break;
                 total_cost += cost_change;
-                for (int j = first; j < i + 1; ++j)
+                for (int j = first; j <= i; ++j)
                 {
                     costs[j] -= min_positive;
                     U[j] -= min_positive;

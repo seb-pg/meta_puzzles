@@ -116,7 +116,7 @@ class Solution {
         var nb_vertices = Math.Max(max_elt.v, max_elt.w);
         //
         var vertices = new List<Vertex>(nb_vertices + 1);
-        for (int i = 0; i < nb_vertices + 1; ++i)
+        for (int i = 0; i <= nb_vertices; ++i)
             vertices.Add(new Vertex(i));
         foreach (var edge in edges)
         {
