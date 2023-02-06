@@ -18,8 +18,7 @@ class Vertex(
     var level: UInt = 1U,
     var in_cycle: Boolean = true,
     var cycle_len: UInt = 0U,
-    var next: Vertex? = null, ) {
-}
+    var next: Vertex? = null, )
 
 typealias ListVerticesT = ArrayList<Vertex>;
 

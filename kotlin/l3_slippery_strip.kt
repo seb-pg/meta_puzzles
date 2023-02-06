@@ -15,8 +15,7 @@ package l3_slippery_strip
 class Counts(
     var star: UInt,
     var right: UInt,
-    var down: UInt, ) {
-}
+    var down: UInt, )
 
 typealias row_t = ArrayList<Char>;
 typealias char_counter_t = ArrayList<UInt>;

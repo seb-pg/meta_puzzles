@@ -17,14 +17,10 @@ class Params(
     val x_max: Double = 1_000_000.0,
     val h_min: Int = 0,
     val h_max: Int = 1_000_000, )
-{
-}
 
 class Drop(
     var drop_point: Double = 0.0,
     var interval: Interval? = null, )
-{
-}
 
 class Interval(
     var n: Int = 0,
@@ -50,24 +46,18 @@ class Point(
     var x: Double,
     var i: Interval,
     var op: Int, )
-{
-}
 
 class Edge(
     var parent: Interval,
     var child: Interval,
     var side: Int,
     var weight: Double, )
-{
-}
 
 class Result (
     var base_cost: Double,
     var min_delta: Double,
     var side: Int,
     var interval: Interval, )
-{
-}
 
 typealias ListIntervals = ArrayList<Interval>;
 
@@ -76,10 +66,10 @@ fun build_intervals(N: Int, H: Array<Int>, A: Array<Int>, B: Array<Int>, params:
     val G = N + 1;
 
     val mid = (params.h_max + params.h_min) * 0.5;
-    var intervals = ListIntervals(N + 2);
+    val intervals = ListIntervals(N + 2);
 
     // ground
-    var ground = Interval(0, params.h_min, params.x_min, params.x_max)
+    val ground = Interval(0, params.h_min, params.x_min, params.x_max)
     intervals.add(ground);
 
     // user intervals: O(N)
@@ -102,7 +92,7 @@ fun add_entries(N: Int, intervals: ListIntervals)
 
     // O(N)
     val interval_size = intervals.size;
-    var points = ArrayList<Point>(2 * interval_size - 4);
+    val points = ArrayList<Point>(2 * interval_size - 4);
     for (i in 1 until interval_size - 1)
     {
         val interval = intervals[i];
@@ -122,7 +112,7 @@ fun add_entries(N: Int, intervals: ListIntervals)
     if (points[0].x > ground.xmin)
         intervals.add(Interval( 0, sky_h, ground.xmin, -1.0, arrayListOf(Drop(mid, ground), Drop()) ));
 
-    var stack = sortedSetOf<Interval>(compareBy<Interval> { it.h });
+    val stack = sortedSetOf<Interval>(compareBy<Interval> { it.h });
     stack.add(ground);
 
     var first = 0;  // Iterators are a pain in Kotlin/Java, we are replacing them with integer
@@ -131,7 +121,7 @@ fun add_entries(N: Int, intervals: ListIntervals)
 
     while (first != end)
     {
-        var x = points[first].x;
+        val x = points[first].x;
         var last = first + 1;
         while (last < end)
         {
@@ -184,7 +174,7 @@ fun add_entries(N: Int, intervals: ListIntervals)
     // fix children by adding drop_point
     for (i in N+1 until intervals.size)
     {
-        var interval = intervals[i];
+        val interval = intervals[i];
         interval.n = i - 1;
         interval.children[0].drop_point = interval.middle();
     }
@@ -197,10 +187,10 @@ fun populate_costs(N: Int, intervals: ListIntervals)
         p.weight = if (p.children[0].interval!!.n > 0) p.width() else 0.0;
 
     // Accumulate costs from top to bottom: O(E) where E is 2*N at most
-    var edges = ArrayList<Edge>(2* N);
+    val edges = ArrayList<Edge>(2* N);
     for (parent in intervals.slice(intervals.size - 1 downTo 0))
     {
-        var weight = 0.5 * parent.weight;
+        val weight = 0.5 * parent.weight;
         if (weight == 0.0)
             continue;
         for (side in 0..1)
@@ -223,7 +213,7 @@ fun populate_costs(N: Int, intervals: ListIntervals)
     // Accumulate costs from bottom to top: O(E) where E is 2*N at most
     for (curr in edges.slice(edges.size - 1 downTo 0))
     {
-        var parent = curr.parent;
+        val parent = curr.parent;
         val child = curr.child;
         parent.costs[curr.side] += (child.costs[0] + child.costs[1]) * curr.weight / child.weight;
     }
@@ -232,14 +222,14 @@ fun populate_costs(N: Int, intervals: ListIntervals)
 fun calc_dist(N: Int, intervals: ListIntervals): Result
 {
     // base_cost
-    var res = Result( 0.0, 0.0, 0, Interval() );
+    val res = Result( 0.0, 0.0, 0, Interval() );
     for (i in N + 1 until intervals.size)
         res.base_cost += intervals[i].costs[0];
 
     // calculate min_delta, min_dir, min_p: O(N)
     for (i in 0..N)
     {
-        var interval = intervals[i];
+        val interval = intervals[i];
         var delta = interval.costs[0] - interval.costs[1];
         if (res.min_delta > delta)
         {
@@ -261,7 +251,7 @@ fun calc_dist(N: Int, intervals: ListIntervals): Result
 
 fun getMinExpectedHorizontalTravelDistance(N: Int, H: Array<Int>, A: Array<Int>, B: Array<Int>): Double {
     val params = Params();
-    var intervals = build_intervals(N, H, A, B, params);  // O(N)
+    val intervals = build_intervals(N, H, A, B, params);  // O(N)
     add_entries(N, intervals);  // O(N * log(N))
     populate_costs(N, intervals);  // O(N)
     val res = calc_dist(N, intervals);  // O(N)
@@ -281,9 +271,9 @@ fun make_cases(N: Int): Args
 {
     val params = Params();
 
-    var H = ArrayList<Int>(N);
-    var A = ArrayList<Int>(N);
-    var B = ArrayList<Int>(N);
+    val H = ArrayList<Int>(N);
+    val A = ArrayList<Int>(N);
+    val B = ArrayList<Int>(N);
     for (i in 1..N)
     {
         H.add(N + 1 - i);

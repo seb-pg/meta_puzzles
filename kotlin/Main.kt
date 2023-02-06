@@ -24,11 +24,11 @@ fun main(args: Array<String>) {
     nb_errors += l2_tunnel_time.tests();
     // l3
     nb_errors += l3_boss_fight.tests();
-    //nb_errors += l3_rabbit_hole2.tests();  // TODO
+    //nb_errors += l3_rabbit_hole2.tests();  // FIXME: You solved 15 / 22 test cases. Runtime Error on 7 test cases
     nb_errors += l3_slippery_strip.tests();  // FIXME #A
     nb_errors += l3_stack_stabilization2.tests();
     // l4
-    nb_errors += l4_conveyor_chaos.tests();  // FIXME #B
+    nb_errors += l4_conveyor_chaos.tests();  // FIXME: You solved 17 / 19 test cases. Runtime Error on 2 test cases
     //nb_errors += l4_mathematical_art.tests();  // TODO
 
     // FIXME #A: should be working, but Meta's website seems to provide corrupted input test data
@@ -37,8 +37,6 @@ fun main(args: Array<String>) {
     // FIXME #A: where it used Array<Array<String>> instead.  All String represent a single character, and
     // FIXME #A: each row is shifted to the right, and an empty String is inserted on the left, creating
     // FIXME #A: a mismatch between the expected value for the input data and result value for the shifted input data
-
-    // FIXME #B: should be working, but does not pass all tests on Meta's website.
 
     println("\n${nb_errors} errors found");
 }

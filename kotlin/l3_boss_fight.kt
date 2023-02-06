@@ -17,8 +17,7 @@ typealias damage_t = ULong;
 class DamageInfo(
     var order: Int,
     var indices: Array<Int> = arrayOf( 0, 1 ),
-    var damage: damage_t = 0UL, ) {
-}
+    var damage: damage_t = 0UL, )
 
 fun maximize_damage(N: Int, H: Array<Int>, D: Array<Int>, info: DamageInfo): Boolean
 {

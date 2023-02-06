@@ -19,8 +19,7 @@ fun <T> _getArtisticPhotographCount(_N: Int, C: String, X: Int, Y: Int): T
 
     data class Counts(
         var p: Int,
-        var b: Int, ) {
-    }
+        var b: Int, )
 
     // count the number of Ps or Bs till a position i: O(N)
     val w = _Y + 1;

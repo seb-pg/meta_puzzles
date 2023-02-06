@@ -16,8 +16,7 @@ typealias dist_t = Int;
 
 open class Coord(
     var row: Int,
-    var col: Int, ) {
-}
+    var col: Int, )
 
 class NodeInfo(
     row: Int,
@@ -170,14 +169,14 @@ fun _getSecondsRequiredTest(G: Array<String>): Int {
 }
 
 class Args(
-    val V: Array<String>,
+    val G: Array<String>,
     val res: Int, ) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
 fun tests(): UInt
 {
-    val wrapper = { p: Args -> _getSecondsRequiredTest(p.V) };
+    val wrapper = { p: Args -> _getSecondsRequiredTest(p.G) };
 
     val args_list: List<Args> = listOf(
         Args( arrayOf(".E.", ".#E", ".S#"), 4 ),
