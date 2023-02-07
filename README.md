@@ -24,19 +24,23 @@ The solution to Meta's puzzles will be used in a multi-language comparison and f
 
 This first phase is about comparing basic language ecosystems, i.e. the language itsels with some basic collections out-of-the-box.
 
+:heavy_check_mark:
 
-| Language      | Compatibility       | Number of solutions | L1  | L2  | L3  | L4  | Status |
-| ------------- | ------------------- | ------------------- | --- | --- | --- | --- | ----- |
-| C\++17        | GCC and MSVC        | 24 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Complete |
-| Python 3      |                     | 24 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Complete, but uses sortedcontainers |
-| C#            | .Net 7.0, Core 3.1  | 22 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | Complete |
-| Go            | 1.9.4               | 21 out of 24        | :heavy_check_mark: | :heavy_check_mark: | | | Complete |
-| Java          |                     | 4 out of 24         | :heavy_check_mark: |                    | | | Barely started |
-| Javascript    |                     |                     |                    |                    | | | Not started |
-| Kotlin        | 1.7.21              | 22 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | Ongoing |
-| Rust          | 1.66                | 22 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | Complete |
-| Scala         | 3.2.1               | 19 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :white_check_mark: | | Ongoing |
-| Swift         |                     |                     |                    |                    | | | Not started |
+| Language      | Compatibility       | Total* | L0 | L1 | L2 | L3 | L4 | Status |
+| ------------- | ------------------- | ------ | -- | -- | -- | -- | -- | ------ |
+| Total         | Number of problems  | 24     | 3  | 7  | 8  | 4  | 2  | |
+| C\++17        | GCC and MSVC        | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
+| Python 3      |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete, but uses sortedcontainers |
+| C#            | .Net 7.0, Core 3.1  | 22     | 3  | 7  | 8  | 4  | 0  | Complete |
+| Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
+| Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Barely started |
+| Javascript    |                     |        |    |    |    |    |    | Not started |
+| Kotlin        | 1.7.21              | 22     | 3  | 7  | 8  | 3  | 1  | Ongoing |
+| Rust          | 1.66                | 22     | 3  | 7  | 8  | 4  | 0  | Complete |
+| Scala         | 3.2.1               | 20     | 3  | 7  | 7  | 3  | 0  | Ongoing |
+| Swift         |                     |        |    |    |    |    |    | Not started |
+
+*Total is the number of solution implemented out of 24 problems.
 
 L3 portals solution will not be possible out-of-the-box for languages (Go) who do not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
 
