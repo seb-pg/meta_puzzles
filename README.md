@@ -18,46 +18,33 @@ work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 ## Overview
 
-meta_puzzles are solutions to the Meta/Facebook puzzles available on Meta's careers website at https://www.metacareers.com/profile/coding_puzzles/.
+meta_puzzles are solutions, in multiple languages, to all (24) Meta/Facebook puzzles available on Meta's careers website at https://www.metacareers.com/profile/coding_puzzles/.
 
-The complete solutions [24 out of 24 solutions] are provided in the following languages:
-* Python (3): developed first.
-* C\++ (17): developed second.
+The solution to Meta's puzzles will be used in a multi-language comparison and find which languages would be suitable for different purpose. All solutions provide the unit tests provided by Meta and, possibily, some additional tests.  All solutions have been tested on Meta's website.
 
-Mostly complete solutions are provided in the following languages and are based on the C\++17 version
-* C#
-  * compatible with .Net 7.0 and mostly compatible with .Net Code 3.1.
-  * 22 out of 24 solutions, l4 are solutions missing (no std::lower_bound on std::set equivalent)
-  * l4 solutions are missing because C# does not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) out-of-the-box.
-* Go
-  * tested with version 1.9.4.
-  * 21 out of 24 solutions, l2_portals and l4 are solutions missing (no sorted collections out-of-the-box)
-  * l3_portals and l4 solutions are missing because Go does not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
-* Kotlin
-  * tested with version 1.7.21.
-  * 22 out of 24 solutions should be working, please see notes
-  * Many tests fail on Meta's website but should be working (see comments).
-  * l3_rabbit_hole2 and l4_mathematical_art have not yet been implemented but are expected to be implementable out-of-the-box with Kotlin.
-* Rust
-  * tested with version 1.66.
-  * 22 out of 24 solutions, l4 solutions are missing (no std::lower_bound on std::set equivalent)
-  * l4 solutions are missing because C# does not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)  out-of-the-box.
-  * Rust provides [TreeMap (a B-tree implementation)](https://en.wikipedia.org/wiki/B-tree) instead of [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree).  This collection has the same asymptotic complexity as Red-black trees.
-* Scala
-  * tested with version 3.2.1 (and test on Meta's website with seems to use a version <= 2.13).
-  * 19 out of 24 done so far.
-  * All solutions are expected to be implementable out-of-the-box with Scala.
+This first phase is about comparing basic language ecosystems, i.e. the language itsels with some basic collections out-of-the-box.
 
-Languages probably provided in the future
-* Java: 4 out of 24 done so far. All solutions are expected to be implementable out-of-the-box with Java.
-* Javascript
-* Swift
 
-The intent is to use these solutions in a multi-language comparison and find which languages would be suitable to write quantitative strategies on a wide scale.
+| Language      | Compatibility       | Number of solutions | L1  | L2  | L3  | L4  | Status |
+| ------------- | ------------------- | ------------------- | --- | --- | --- | --- | ----- |
+| C\++17        | GCC and MSVC        | 24 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Complete |
+| Python 3      |                     | 24 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Complete, but uses sortedcontainers |
+| C#            | .Net 7.0, Core 3.1  | 22 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | Complete |
+| Go            | 1.9.4               | 21 out of 24        | :heavy_check_mark: | :heavy_check_mark: | | | Complete |
+| Java          |                     | 4 out of 24         | :heavy_check_mark: |                    | | | Barely started |
+| Javascript    |                     |                     |                    |                    | | | Not started |
+| Kotlin        | 1.7.21              | 22 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | Ongoing |
+| Rust          | 1.66                | 22 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | | Complete |
+| Scala         | 3.2.1               | 19 out of 24        | :heavy_check_mark: | :heavy_check_mark: | :white_check_mark: | | Ongoing |
+| Swift         |                     |                     |                    |                    | | | Not started |
 
-If you are working for a hedge fund (or a bank) and have many people writing trading strategies, one might want to use a common language for that purpose. A possible model is to use an easy language, such as Python, and "productionize" strategies with "real software developer".  Another model is to use a language easy to pick up, less likely to create problem (on a wide scale), offers good performances, and overall, provide a good value for money.
+L3 portals solution will not be possible out-of-the-box for languages (Go) who do not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
 
-This first phase is about comparing basic language ecosystem needs, i.e. just the language with some basic collections.
+L4 solutions will not be possible out-of-the-box for languages (C#, Go, Kotlin, Rust) who do not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) out-of-the-box. Rust does provide [TreeMap (a B-tree implementation)](https://en.wikipedia.org/wiki/B-tree) instead of [Red–black trees] but does not offer std::lower.  C# does provide an equivalent of std::lower but is not in logarithmic time.
+
+Python is using the module sortedcontainers, which is not provided out-of-the-box by the language, but is "almost standard".
+
+Scala and Java are expected to be able to implement solutions to all problems.  Scala version 2.13 was used to test on Meta's website as it did not support later versions (some of the code is incompatible between the two versions, see comments in the code).
 
 
 ----
@@ -74,27 +61,15 @@ While I have had to write code in all sort of languages (including some obscure 
 
 
 <b><u>py3/*</u></b>
-
-The solutions using Python 3 (complete), all tested on Meta's website.
-
-The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
-
-Written in my "quick and dirty" Python style.
-
-"sortedcontainers" has been used to provide "binary tree" like containers/collections needed to solve l4_conveyor_chaos and l4_mathematical_art.
+* Written in "quick and dirty" Python style.
+* "sortedcontainers" has been used to provide "binary tree" like containers/collections needed to solve l4_conveyor_chaos and l4_mathematical_art.
 
 
 <b><u>cpp17/*</u></b>
-
-The solutions using C\++17 (complete).
-
-The solutions provided  are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
-
-C\++20 (or C\++23) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
-
-The code is written using a "plausible" medium developer style (it just works with basic C++), and not much emphasis is spent on optimisation (e.g. using polymorphic allocator would be an obvious low hanging fruit).
+* C\++20 (or C\++23) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
+* The code is written using a "plausible" medium developer style (it just works with basic C++), and not much emphasis is spent on optimisation (e.g. using polymorphic allocator would be an obvious low hanging fruit).
 * Meta passes containers, such as std::vector or std::string by value, rather than reference.  The signature are kept but all functions are calling a more more C\++ style function using reference, which can be used for performance testing.
-* Meta used int and long long and seemed to assume they were, respectively, 32 bits and 64 bits.  int32_t/int64_t are used instead passed Meta's function signature.  
+* Meta used int and long long and seemed to assume they were, respectively, 32 bits and 64 bits.  int32_t/int64_t are used instead passed Meta's function signature.
 * Meta only used signed integer, rather than using the correct signed/unsigned integer (e.g. distances/counts should always be positive). To make code more readable, minimum casting has been used in the code for readibility, even if sometimes, it was tempting to do the right thing in term of sign correctness.
 * shared_ptr are sometimes used, intentionally, even when not needed as it matches the Python's code and provides an additional comparison opportunity.
 * l3_rabbit_hole2: iterative and recursive solutions are provided (could be interested for speed benchmark).
@@ -102,62 +77,31 @@ The code is written using a "plausible" medium developer style (it just works wi
 
 
 <b><u>cs/*</u></b>
-
-The solutions using C#, ported from C++ (mostly complete, 2 solutions missing).
-
-The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
-
-Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does not provided a log(n) equivalent of [C\++] std::lower_bound for [C\++] std::set or std::map equivalents.
-
-Solution l2_missing_mail and l3_rabbit_hole2 will not be working with .Net Code 3.1, respectively because MaxBy and CollectionsMarshal are missing.
+* Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does not provided a log(n) equivalent of [C\++] std::lower_bound for [C\++] std::set or std::map equivalents.
+* Solution l2_missing_mail and l3_rabbit_hole2 will not be working with .Net Code 3.1, respectively because MaxBy and CollectionsMarshal are missing.
 
 
 <b><u>go/*</u></b>
-
-The solutions using Go, "ported" from C++ (mostly complete, 3 solutions are missing).
-
-The solutions provided are passing all Meta's tests on their website (once the generics are removed: they are not supported by Meta's website). Meta's basic tests and some additional are also provided in the source code.
-
-Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing because an equivalent of [C\++] std::set is needed.
+* Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing because an equivalent of [C\++] std::set is needed.
 
 
 <b><u>rs/*</u></b>
-
-The solutions in Rust, "ported" from C++ (mostly complete, 2 solutions are missing).
-
-The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
-
-Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
+* The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
+* Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
 
 
 <b><u>kotlin/*</u></b>
-
-The solutions using Kotlin, "ported" from C++ (mostly complete, 2 solutions are missing, however 3 solutions should be working, but do not work on Meta's website: see below).
-
-The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
-
-Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as  Array<Array<String>>.   The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
-
-Solution l4_conveyor_chaos is provided but is hardcoded to return 0 for N > 200,000 the Kotlin solution seems too slow to run in the given time on Meta's website.
-Solution for l3_rabbit_hole2 and l4_mathematical_art is missing so far.
+* Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as  Array<Array<String>>.   The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
+* Solution l4_conveyor_chaos is provided but is hardcoded to return 0 for N > 200,000 the Kotlin solution seems too slow to run in the given time on Meta's website.
+* Solution for l3_rabbit_hole2 and l4_mathematical_art is missing so far.
 
 
 <b><u>scala/*</u></b>
-
-The solutions using Scala, "ported" from Kotlin as the syntax is similar.
-
-Only 19 out 24 solutions are provided.  
-
-Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
+* Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
 
 
 <b><u>java/*</u></b>
-
-The solutions using Java, "ported" from C++ as the syntax is (not that) similar.
-
-Only 4 out 24 solutions are provided.  
-
-Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
+* Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
 
 
 ----
