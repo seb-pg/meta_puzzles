@@ -26,7 +26,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 
 :heavy_check_mark:
 
-| Language      | Compatibility       | Total* | L0 | L1 | L2 | L3 | L4 | Status |
+| Language      | Compatibility       | Total* | L0 | L1 | L2 | L3 | L4 | Development Status |
 | ------------- | ------------------- | ------ | -- | -- | -- | -- | -- | ------ |
 | Total         | Number of problems  | 24     | 3  | 7  | 8  | 4  | 2  | |
 | C\++17        | GCC and MSVC        | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
