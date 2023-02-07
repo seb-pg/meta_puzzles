@@ -44,7 +44,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 
 L3 portals solution will not be possible out-of-the-box for languages (Go) who do not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
 
-L4 solutions will not be possible out-of-the-box for languages (C#, Go, Kotlin, Rust) who do not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) out-of-the-box. Rust does provide [TreeMap (a B-tree implementation)](https://en.wikipedia.org/wiki/B-tree) instead of [Red–black trees] but does not offer std::lower.  C# does provide an equivalent of std::lower but is not in logarithmic time.
+L4 solutions will not be possible out-of-the-box for languages (C#, Go, Kotlin, Rust) who do not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) out-of-the-box. Rust does provide [TreeMap (a B-tree implementation)](https://en.wikipedia.org/wiki/B-tree) instead of [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) but does not offer std::lower.  C# does provide an equivalent of std::lower but is not in logarithmic time.
 
 Python is using the module sortedcontainers, which is not provided out-of-the-box by the language, but is "almost standard".
 
