@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
     nb_errors += l2_tunnel_time.tests();
     // l3
     nb_errors += l3_boss_fight.tests();
-    //nb_errors += l3_rabbit_hole2.tests();  // FIXME: You solved 15 / 22 test cases. Runtime Error on 7 test cases
+    nb_errors += l3_rabbit_hole2.tests();  // FIXME: You solved 15 / 22 test cases. Runtime Error on 7 test cases
     nb_errors += l3_slippery_strip.tests();  // FIXME #A
     nb_errors += l3_stack_stabilization2.tests();
     // l4

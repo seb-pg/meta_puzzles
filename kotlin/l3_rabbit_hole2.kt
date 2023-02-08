@@ -33,19 +33,44 @@ class Vertex(
     // members for max length calculation
     var inputs: index_t  = 0,  // number of inputs for a given node
     var max_len: index_t = 0,  // used for memoization of max_len at node level
-)
+) : Comparable<Vertex> {
+    override fun compareTo(other: Vertex) = compareValuesBy(this, other,
+        { it.nb }
+    )
+}
 
-class Edge(
+data class Edge(
     var v: index_t,
     var w: index_t,
-)
+) : Comparable<Edge> {
+    override fun compareTo(other: Edge) = compareValuesBy(this, other,
+        { it.v },
+        { it.w }
+    )
+}
 
-fun keep_uniques(edges: ArrayList<Edge>)
+fun <T: Comparable<T>> ArrayList<T>.unique(): Int {
+    if (this.size <= 1)
+        return this.size
+    var last_elt = 0
+    for (elt in this.slice(1 until this.size))
+    {
+        if (elt.equals(this[last_elt]))
+            continue
+        last_elt += 1
+        this[last_elt] = elt
+    }
+    return last_elt + 1
+}
+
+fun <T: Comparable<T>> keep_uniques(elements: ArrayList<T>): ArrayList<T>
 {
-    if (edges.size <= 1)
-        return;
-    edges.distinct();  // TODO: Kotlin is not using a sort followed by a "unique" (or dedup)
-    edges.sortWith(compareBy<Edge> { it.v }.thenBy { it.w });
+    if (elements.size <= 1)
+        return elements;
+    elements.sort();
+    val last = elements.unique();
+    val ret = ArrayList<T>(elements.slice(0 until last));
+    return ret
 }
 
 fun build_children(edges: ArrayList<Edge>): ListVerticesT
@@ -68,7 +93,7 @@ fun build_children(edges: ArrayList<Edge>): ListVerticesT
 
 class Tarjan(var sccs: ArrayList<ListVerticesT> = ArrayList<ListVerticesT>(),
              var stack: ListVerticesT = ListVerticesT(),
-             var index: index_t  = 0, )
+             var index: index_t = 0, )
 {
     fun __init(v: Vertex)
     {
@@ -86,7 +111,7 @@ class Tarjan(var sccs: ArrayList<ListVerticesT> = ArrayList<ListVerticesT>(),
         {
             while (true)
             {
-                var w = stack.removeLast();
+                val w = stack.removeLast();
                 w.low_link = v.low_link;
                 w.on_stack = false;
                 scc.add(w);
@@ -110,8 +135,7 @@ class Tarjan(var sccs: ArrayList<ListVerticesT> = ArrayList<ListVerticesT>(),
                 v.low_link = minOf(v.low_link, w.low_link);
             }
             else if (w.on_stack)
-            v.low_link = minOf(v.low_link, w.index);
-
+                v.low_link = minOf(v.low_link, w.index);
         }
         __end(v);  // found scc
     }
@@ -133,7 +157,7 @@ fun make_dag(vertices: ListVerticesT, sccs: ArrayList<ListVerticesT>)
     {
         val v = scc[0];  // target node (first node in scc)
         v.weight = scc.size;  // update the weight of the Vertex
-        var children = ListVerticesT();  // note: no reserve() here
+        val children = ListVerticesT();  // note: no reserve() here
         for (w in scc)
             for (x in w.children)
                 if (v.low_link != x.low_link)
@@ -154,12 +178,7 @@ fun make_dag(vertices: ListVerticesT, sccs: ArrayList<ListVerticesT>)
             for (w in v.children)
                 children.add(w.target ?: w);
             // remove duplicates
-            //std::sort(std::begin(children), std::end(children), [](const auto& a, const auto& b) { return a.nb < b.nb; });
-            //const auto last = std::unique(std::begin(children), std::end(children), [](const auto& a, const auto& b) { return a.nb == b.nb; });
-            //children.erase(last, std::end(children));
-            children.distinct();  // TODO: Kotlin is not using a sort followed by a "unique" (or dedup)
-            children.sortWith(compareBy<Vertex> { it.nb });
-            v.children = children;
+            v.children = keep_uniques(children);
         }
 }
 
@@ -199,12 +218,11 @@ fun getMaxVisitableWebpages(N: Int, M: Int, A: Array<Int>, B: Array<Int>): Int {
         return 0;
 
     // calculate edges
-    val edges = ArrayList<Edge>(M);
+    var edges = ArrayList<Edge>(M);
     for (i in 0 until M)  // O(E)
         edges.add(Edge( A[i], B[i] ));
-
     //
-    keep_uniques(edges);  // O(E * log(E))
+    edges = keep_uniques(edges);  // O(E * log(E))
     var vertices = build_children(edges);  // O(V + 2*E)
     val sccs = calculate_sccs(vertices);  // O(V + E), calculate strongly connected components
     make_dag(vertices, sccs);  // O(V + E)
@@ -248,5 +266,3 @@ fun tests(): UInt
 
     return test.run_all_tests("l3_rabbit_hole2", args_list, wrapper);
 }
-
-// TODO
