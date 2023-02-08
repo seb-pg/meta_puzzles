@@ -95,6 +95,9 @@ func Accumulate[T Number, R Number](elements []T, init R) R {
 
 func UniquePred[T any](elements []T, pred predicate_t[T]) int {
 	// equivalent of std::unique
+	if (len(elements) <= 1) {
+		return len(elements)
+	}
 	last_elt := 0
 	for _, elt := range elements[1:] {
 		if pred(elt, elements[last_elt]) {
@@ -108,6 +111,9 @@ func UniquePred[T any](elements []T, pred predicate_t[T]) int {
 
 func Unique[T Comparable](elements []T) int {
 	// equivalent of std::unique
+	if (len(elements) <= 1) {
+		return len(elements)
+	}
 	fn := func(lhs, rhs T) bool { return lhs == rhs }
 	return UniquePred(elements, fn)
 }
