@@ -27,13 +27,13 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Language      | Compatibility       | Total* | L0 | L1 | L2 | L3 | L4 | Development Status |
 | ------------- | ------------------- | ------ | -- | -- | -- | -- | -- | ------ |
 | Total         | Number of problems  | 24     | 3  | 7  | 8  | 4  | 2  | |
-| C\++17        | GCC and MSVC        | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
+| C\++17        | GCC, MSVC           | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
 | Python 3      |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete, but uses sortedcontainers |
 | C#            | .Net 7.0, Core 3.1  | 22     | 3  | 7  | 8  | 4  | 0  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
 | Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Barely started |
 | Javascript    |                     |        |    |    |    |    |    | Not started |
-| Kotlin        | 1.7.21              | 23 (19) | 3  | 7  | 8 (7)  | 4 (2)  | 1 (0)  | Ongoing, in parenthesis the solutions working on Meta's website |
+| Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(2)  | 1&nbsp;(0)  | Ongoing, in parenthesis the solutions working on Meta's website |
 | Rust          | 1.66                | 22     | 3  | 7  | 8  | 4  | 0  | Complete |
 | Scala         | 3.2.1               | 20     | 3  | 7  | 7  | 3  | 0  | Ongoing |
 | Swift         |                     |        |    |    |    |    |    | Not started |
