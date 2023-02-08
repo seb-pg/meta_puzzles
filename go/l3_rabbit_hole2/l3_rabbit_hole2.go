@@ -83,7 +83,7 @@ func keep_uniques(edges []Edge) []Edge {
 	}
 	sort.Slice(edges, func(i, j int) bool { return edges[i].Less(edges[j]) })
 	fn := func(lhs, rhs Edge) bool { return lhs.v == rhs.v && lhs.w == rhs.w }
-	edges = edges[0 : std.UniquePred(edges, fn)+1]
+	edges = edges[0 : std.UniquePred(edges, fn)]
 	return edges
 }
 
@@ -199,7 +199,7 @@ func make_dag(vertices ListVertices_t, sccs []ListVertices_t) {
 			fn1 := func(i, j int) bool { return children[i].nb < children[j].nb }
 			sort.Slice(children, fn1)
 			fn2 := func(lhs, rhs *Vertex) bool { return lhs.nb == rhs.nb }
-			children = children[0 : std.UniquePred(children, fn2)+1]
+			children = children[0 : std.UniquePred(children, fn2)]
 			v.children = children
 		}
 	}

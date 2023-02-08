@@ -103,7 +103,7 @@ func UniquePred[T any](elements []T, pred predicate_t[T]) int {
 		last_elt += 1
 		elements[last_elt] = elt
 	}
-	return last_elt
+	return last_elt + 1
 }
 
 func Unique[T Comparable](elements []T) int {
