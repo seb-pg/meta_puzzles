@@ -33,12 +33,12 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
 | Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Barely started |
 | Javascript    |                     |        |    |    |    |    |    | Not started |
-| Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(2)  | 1&nbsp;(0)  | Ongoing, in parenthesis the solutions working on Meta's website |
+| Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(2)  | 1&nbsp;(0)  | Ongoing |
 | Rust          | 1.66                | 22     | 3  | 7  | 8  | 4  | 0  | Complete |
-| Scala         | 3.2.1               | 20     | 3  | 7  | 7  | 3  | 0  | Ongoing |
+| Scala         | 3.2.1               | 21     | 3  | 7  | 8 (7) | 3  | 0  | Ongoing |
 | Swift         |                     |        |    |    |    |    |    | Not started |
 
-*Total is the number of solution implemented out of 24 problems.
+*Total is the number of solution implemented out of 24 problems. In parenthesis the solutions working on Meta's website
 
 L3 portals solution will not be possible out-of-the-box for languages (Go) who do not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
 
