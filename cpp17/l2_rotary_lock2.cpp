@@ -64,9 +64,8 @@ static void insert_solution(solutions_t& new_solutions, int32_t N, int32_t targe
 {
     const auto new_distance = distance + get_distance(target, dial1, N);
     const Dials key = { std::min(dial2, target), std::max(dial2, target) };
-    const auto it = new_solutions.find(key);
-    const auto value = it == std::end(new_solutions) ? std::numeric_limits<int64_t>::max() : it->second;
-    new_solutions[key] = std::min(value, new_distance);
+    auto [it1, inserted] = new_solutions.insert(typename solutions_t::value_type(key, new_distance));
+    it1->second = std::min(inserted ? std::numeric_limits<int64_t>::max() : it1->second, new_distance);
 }
 
 long long getMinCodeEntryTimeCpp17(int32_t N, uint32_t M, const std::vector<int32_t>& C)

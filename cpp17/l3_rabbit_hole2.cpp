@@ -14,6 +14,7 @@
 
 #include <algorithm>
 #include <limits>
+#include <list>
 #include <memory>
 #include <utility>
 #include <vector>
@@ -103,7 +104,7 @@ struct Tarjan
         VertexPtr_t recurse_object = {};
     };
 
-    std::vector<ListVertices_t> sccs;
+    std::list<ListVertices_t> sccs;
     ListVertices_t stack;
     index_t index = 0;
 
@@ -206,7 +207,7 @@ static auto calculate_sccs(ListVertices_t& vertices, bool iterative = false)
     return calc.sccs;
 }
 
-static void make_dag(ListVertices_t& vertices, const std::vector<ListVertices_t>& sccs)
+static void make_dag(ListVertices_t& vertices, const std::list<ListVertices_t>& sccs)
 {
     // merge vertices in each scc
     for (const auto& scc : sccs)  // O(V)
