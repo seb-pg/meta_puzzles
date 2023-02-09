@@ -13,10 +13,11 @@
 package l2_rotary_lock2
 
 import scala.collection.immutable.SortedMap
+import scala.math.Ordered.orderingToOrdered
 
-class Dials( var dial1: Int,
-             var dial2: Int) extends Ordered[Dials] {
-    def compare(rhs: Dials) = if (dial1 != rhs.dial1) (dial1 compare (rhs.dial1)) else (dial2 compare (rhs.dial2))
+class Dials(var dial1: Int,
+            var dial2: Int) extends Ordered[Dials] {
+    def compare(that: Dials) = (this.dial1, this.dial2) compare (that.dial1, that.dial2)
 }
 
 object Solution {

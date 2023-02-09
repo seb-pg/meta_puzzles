@@ -29,9 +29,9 @@ def main(): Unit = {
     nb_errors += l2_director_photography2.Solution.tests()
     nb_errors += l2_hops.Solution.tests()
     nb_errors += l2_missing_mail.Solution.tests()
-    //nb_errors += l2_portals.Solution.tests()
+    nb_errors += l2_portals.Solution.tests()
     nb_errors += l2_rabbit_hole1.Solution.tests()
-    nb_errors += l2_rotary_lock2.Solution.tests()
+    nb_errors += l2_rotary_lock2.Solution.tests() // You solved 28 / 32 test cases., Time Limit Exceeded on 4 test cases
     nb_errors += l2_scoreboard_interference2.Solution.tests()
     nb_errors += l2_tunnel_time.Solution.tests()
     // l3
