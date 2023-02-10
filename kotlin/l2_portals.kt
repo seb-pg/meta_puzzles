@@ -86,7 +86,8 @@ fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
 
     var start = Coord(0, 0);
     val ends = ArrayList<Coord>(R * C);
-    val portals = mutableMapOf<Char, ArrayList<NodeInfo>>();
+    val portals = ArrayList<ArrayList<NodeInfo>>(256);
+    repeat(256) { index -> portals.add(ArrayList<NodeInfo>()) }
     for (j in 0 until R)
     {
         val row = G[j];
@@ -98,11 +99,7 @@ fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
             else if (node_type == 'E')
                 ends.add(Coord( j, i ));  // Ends could be used for a heuristic
             else if ('a' <= node_type && node_type <= 'z')
-            {
-                if (portals[node_type] == null)
-                    portals[node_type] =ArrayList<NodeInfo>();
-                portals[node_type]!!.add(grid[j][i]);  // note: no reserve() here
-            }
+                portals[node_type.code % 256].add(grid[j][i]);  // note: no reserve() here
         }
     }
     val start_node = grid[start.row][start.col];
@@ -124,7 +121,7 @@ fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
         // add portal nodes to node
         if ('a' <= node.node_type && node.node_type <= 'z')
         {
-            for (neighbour in portals[node.node_type]!!)
+            for (neighbour in portals[node.node_type.code % 256])
                 if (neighbour !== node)
                     add_neighbour(q, h, d, node, neighbour);
         }

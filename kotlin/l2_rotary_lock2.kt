@@ -14,7 +14,19 @@ package l2_rotary_lock2
 
 class Dials(
     var dial1: Int,
-    var dial2: Int, )
+    var dial2: Int,
+)
+{
+    companion object
+    {
+        const val magic = 32;
+    }
+
+    override fun hashCode(): Int
+    {
+        return ((dial1 % magic) * magic) or (dial2 % magic);
+    }
+}
 
 typealias solutions_t = HashMap<Dials, Long>;
 
@@ -40,10 +52,11 @@ fun getMinCodeEntryTime(N: Int, _M: Int, C: Array<Int>): Long {
     if (C.isEmpty())
         return 0;
 
-    var solutions: solutions_t = hashMapOf(Dials(1, 1) to 0);
+    var solutions = solutions_t(Dials.magic * Dials.magic);
+    solutions[Dials(1, 1)] = 0;
     for (target in C)
     {
-        val new_solutions: solutions_t = hashMapOf();
+        val new_solutions = solutions_t(Dials.magic * Dials.magic);
         for ((dials, distance) in solutions)
         {
             // we turn dial1
@@ -62,7 +75,8 @@ fun getMinCodeEntryTime(N: Int, _M: Int, C: Array<Int>): Long {
 class Args(
     val N: Int,
     val C: Array<Int>,
-    val res: Long, ) : test.Result<Long> {
+    val res: Long,
+) : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 

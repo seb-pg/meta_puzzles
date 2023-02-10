@@ -12,6 +12,8 @@
 
 package l3_rabbit_hole2
 
+import java.util.LinkedList
+
 typealias index_t = Int;
 val index_not_set: index_t  = index_t.MAX_VALUE;
 
@@ -91,7 +93,7 @@ fun build_children(edges: ArrayList<Edge>): ListVerticesT
     return vertices;
 }
 
-class Tarjan(var sccs: ArrayList<ListVerticesT> = ArrayList<ListVerticesT>(),
+class Tarjan(var sccs: LinkedList<ListVerticesT> = LinkedList(),
              var stack: ListVerticesT = ListVerticesT(),
              var index: index_t = 0, )
 {
@@ -141,7 +143,7 @@ class Tarjan(var sccs: ArrayList<ListVerticesT> = ArrayList<ListVerticesT>(),
     }
 };
 
-fun calculate_sccs(vertices: ListVerticesT): ArrayList<ListVerticesT>
+fun calculate_sccs(vertices: ListVerticesT): LinkedList<ListVerticesT>
 {
     var calc = Tarjan();
     for (v in vertices)
@@ -150,7 +152,7 @@ fun calculate_sccs(vertices: ListVerticesT): ArrayList<ListVerticesT>
     return calc.sccs;
 }
 
-fun make_dag(vertices: ListVerticesT, sccs: ArrayList<ListVerticesT>)
+fun make_dag(vertices: ListVerticesT, sccs: LinkedList<ListVerticesT>)
 {
     // merge vertices in each scc
     for (scc in sccs)  // O(V)

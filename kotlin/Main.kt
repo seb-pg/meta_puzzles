@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
     nb_errors += l2_director_photography2.tests();
     nb_errors += l2_hops.tests();
     nb_errors += l2_missing_mail.tests();
-    nb_errors += l2_portals.tests();  // FIXME #A
+    nb_errors += l2_portals.tests();  // FIXME #A: You solved 22 / 31 test cases, Wrong Answer on 9 test cases
     nb_errors += l2_rabbit_hole1.tests();
     nb_errors += l2_rotary_lock2.tests();
     nb_errors += l2_scoreboard_interference2.tests();
@@ -25,7 +25,7 @@ fun main(args: Array<String>) {
     // l3
     nb_errors += l3_boss_fight.tests();
     nb_errors += l3_rabbit_hole2.tests();  // FIXME: You solved 15 / 22 test cases. Runtime Error on 7 test cases
-    nb_errors += l3_slippery_strip.tests();  // FIXME #A
+    nb_errors += l3_slippery_strip.tests();  // FIXME #A: You solved 8 / 35 test cases., Time Limit Exceeded on 1 test case, Wrong Answer on 26 test cases
     nb_errors += l3_stack_stabilization2.tests();
     // l4
     nb_errors += l4_conveyor_chaos.tests();  // FIXME: You solved 17 / 19 test cases. Runtime Error on 2 test cases
