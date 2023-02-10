@@ -56,16 +56,20 @@ class Solution {
         foreach (var Vi in V)
         {
             // Update the best results for the new day, considering the packages could've stolen in previous round
-            foreach (ref var result in CollectionsMarshal.AsSpan(results))
-                result.mail_room_value *= (1 - S);
+            //foreach (ref var result in CollectionsMarshal.AsSpan(results))  // Not in .Net Core
+            //    result.mail_room_value *= (1 - S);
+            for (int i = 0; i < results.Count; i++)
+                results[i] = new Result(results[i].mail_room_value * (1 - S), results[i].total_value);
 
             // Possibility #1 : pick up packages on this day
             // We need to add the best(max) possible total_value among all saved so far
             var pickup_value = Vi - C + results.Max(obj => obj.both());
 
             // Possibility #2 : do not pick up packages on this day
-            foreach (ref var result in CollectionsMarshal.AsSpan(results))
-                result.mail_room_value += Vi;
+            //foreach (ref var result in CollectionsMarshal.AsSpan(results))
+            //    result.mail_room_value += Vi;
+            for (int i = 0; i < results.Count; i++)
+                results[i] = new Result(results[i].mail_room_value + Vi, results[i].total_value);
 
             results.Add(new Result() { mail_room_value = 0, total_value = pickup_value });
         }

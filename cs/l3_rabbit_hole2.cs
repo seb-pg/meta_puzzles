@@ -112,8 +112,7 @@ class Solution {
     static List<Vertex> build_children(List<Edge> edges)
     {
         // recalculate N as nb_vertices
-        var max_elt = edges.MaxBy(obj => obj.MaxEdge());
-        var nb_vertices = Math.Max(max_elt.v, max_elt.w);
+        var nb_vertices = edges.Max(obj => Math.Max(obj.v, obj.w));
         //
         var vertices = new List<Vertex>(nb_vertices + 1);
         for (int i = 0; i <= nb_vertices; ++i)
@@ -142,13 +141,13 @@ class Solution {
             }
         };
 
-        public List<List<Vertex>> sccs;
+        public LinkedList<List<Vertex>> sccs;
         public List<Vertex> stack;
         public int index = 0;
 
         public Tarjan()
         {
-            sccs = new List<List<Vertex>>();
+            sccs = new LinkedList<List<Vertex>>();
             stack = new List<Vertex>();
             index = 0;
         }
@@ -178,7 +177,7 @@ class Solution {
                 }
             }
             if (scc.Count > 1)
-                sccs.Add(scc);
+                sccs.AddLast(scc);
         }
 
         public void recurse(Vertex v)
@@ -198,43 +197,9 @@ class Solution {
             }
             __end(v);  // found scc
         }
-
-        /*public void iterate(Vertex v)
-        {
-            var call_stack = new List<Frame1>();
-            call_stack.Add(new Frame1(v));
-            while (call_stack.Count > 0)
-            {
-                var f = call_stack[^1];
-                v = f.v;
-                // call __init only when we enter the node
-                if (v.index < 0)
-                    __init(v);
-                // if we are at the end of the loop
-                if (f.child_nb >= v.children.size())
-                {
-                    __end(v);
-                    call_stack.pop_back();
-                    continue;
-                }
-                // we are in the loop
-                auto w = v.children[f.child_nb];
-                if (f.recurse_object.get() == w.get())
-                    v.low_link = std::min(v.low_link, w.low_link);
-                else if (w.index == -1)
-                {
-                    f.recurse_object = w;
-                    call_stack.emplace_back(Frame1{ w });  // enter recursion
-                    continue;
-                }
-                else if (w.on_stack)
-                    v.low_link = std::min(v.low_link, w.index);
-                ++f.child_nb;
-            }
-        }*/
     };
 
-    static List<List<Vertex>> calculate_sccs(List<Vertex> vertices, bool iterative = false)
+    static LinkedList<List<Vertex>> calculate_sccs(List<Vertex> vertices, bool iterative = false)
     {
         var calc = new Tarjan();
         foreach (var v in vertices)
@@ -248,7 +213,7 @@ class Solution {
         return calc.sccs;
     }
 
-    static void make_dag(List<Vertex> vertices, List<List<Vertex>> sccs)
+    static void make_dag(List<Vertex> vertices, LinkedList<List<Vertex>> sccs)
     {
         // merge vertices in each scc
         foreach (var scc in sccs)  // O(V)
@@ -309,12 +274,7 @@ class Solution {
         foreach (var v in vertices)
         {
             if (v.weight > 0 && v.inputs == 0)
-            {
-                //if (iterative)
-                //    ret = Math.Max(ret, dag_max_len_iterate(v));
-                //else
-                    ret = Math.Max(ret, dag_max_len_recurse(v));
-            }
+                ret = Math.Max(ret, dag_max_len_recurse(v));
         }
         return ret;
     }

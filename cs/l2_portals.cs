@@ -12,10 +12,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Xml.Linq;
 
 namespace l2_portals
 {
@@ -113,7 +110,9 @@ class Solution {
 
         var start = new Coord(0, 0);
         var ends = new List<Coord>(R * C);
-        var portals = new Dictionary<char, List<NodeInfo>>();
+        var portals = new List<List<NodeInfo>>(256);
+        for (int j = 0; j < 256; ++j)
+            portals.Add(new List<NodeInfo>());  // note: no reserve() here
         for (int j = 0; j < R; ++j)
         {
             for (int i = 0; i < C; ++i)
@@ -124,11 +123,7 @@ class Solution {
                 else if (node_type == 'E')
                     ends.Add(new Coord( j, i ));  // Ends could be used for a heuristic
                 else if ('a' <= node_type && node_type <= 'z')
-                {
-                    if (!portals.ContainsKey(node_type))
-                        portals[node_type] = new List<NodeInfo>();  // note: no reserve() here
                     portals[node_type].Add(grid[j][i]);
-                }
             }
         }
         var start_node = grid[start.row][start.col];

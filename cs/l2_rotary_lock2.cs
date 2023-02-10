@@ -12,21 +12,30 @@
 
 using System;
 using System.Collections.Generic;
-
 namespace l2_rotary_lock2
 {
-
 class Solution {
 
-    struct Dials
+    struct Dials : IEquatable<Dials>
     {
         public int dial1;
         public int dial2;
+        public const int magic = 32;  // If used (as C++ does), C# will fail to pass tests because of speed
 
         public Dials(int _dial1 = 0, int _dial2 = 0)
         {
             dial1 = _dial1;
             dial2 = _dial2;
+        }
+
+        public bool Equals(Dials rhs)
+        {
+            return (dial1 == rhs.dial1) && (dial2 == rhs.dial2);
+        }
+
+        public override int GetHashCode()
+        {
+            return ((dial1 % magic) * magic) | (dial2 % magic);
         }
     }
 
@@ -47,7 +56,8 @@ class Solution {
         new_solutions[key1] = Math.Min(value1, distance1);
     }
 
-    public long getMinCodeEntryTime(int N, int M, int[] C) {
+    public long getMinCodeEntryTime(int N, int M, int[] C)
+    {
         // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1637008989815525
         // Constraints:
         //      3 ≤ N ≤ 1,000,000,000   N is the number of integers
@@ -58,11 +68,13 @@ class Solution {
         if (C.Length == 0)
             return 0;
         var max_value = long.MaxValue;
-        var solutions = new Dictionary<Dials, long>();
+        var solutions = new Dictionary<Dials, long>(Dials.magic * Dials.magic);  // C# is going to use prime numbers (i.e. 1103 here)
+        //var solutions = new Dictionary<Dials, long>();
         solutions[new Dials(1, 1)] = 0;
         foreach (var target in C)
         {
-            var new_solutions = new Dictionary<Dials, long>();
+            var new_solutions = new Dictionary<Dials, long>(Dials.magic * Dials.magic);
+            //var new_solutions = new Dictionary<Dials, long>();
             foreach (var dials_distance in solutions)
             {
                 var dials = dials_distance.Key;
