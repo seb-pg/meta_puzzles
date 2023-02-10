@@ -22,6 +22,10 @@ struct Dials
     dial2: i32,
 }
 
+impl Dials {
+    const MAGIC: i32 = 32;
+}
+
 impl PartialEq for Dials {
     fn eq(&self, other: &Self) -> bool {
         return self.dial1 == other.dial1 && self.dial2 == other.dial2;
@@ -30,12 +34,12 @@ impl PartialEq for Dials {
 
 impl Hash for Dials {
     fn hash<H: Hasher>(&self, state: &mut H) {
-        self.dial1.hash(state);
-        self.dial2.hash(state);
+        let value = ((self.dial1 % Dials::MAGIC) * Dials::MAGIC) | (self.dial2 % Dials::MAGIC);
+        value.hash(state);
     }
 }
 
-type SolutionsT = std::collections::HashMap<Dials, i64>;
+type SolutionsT = std::collections::HashMap<Dials, i64>;  // A [hash map] implemented with quadratic probing and SIMD lookup.
 
 fn get_distance(target: i32, position: i32, N: i32) -> i32 {
     let mut positive_move = (target - position) % N;
@@ -60,10 +64,10 @@ pub fn getMinCodeEntryTime(N: i32, _M: i32, C: &Vec<i32>) -> i64 {
         return 0;
     }
     let max_value = i64::MAX;
-    let mut solutions = SolutionsT::default();
+    let mut solutions = SolutionsT::with_capacity((Dials::MAGIC * Dials::MAGIC) as usize);
     solutions.insert(Dials{ dial1: 1, dial2: 1 }, 0);
     for &target in C {
-        let mut new_solutions = SolutionsT::default();
+        let mut new_solutions = SolutionsT::with_capacity((Dials::MAGIC * Dials::MAGIC) as usize);
         for (dials, &distance) in &solutions {
             // we turn dial1
             insert_solution(&mut new_solutions, N, target, dials.dial1, dials.dial2, distance);

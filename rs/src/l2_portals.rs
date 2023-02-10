@@ -97,7 +97,7 @@ type GridNodeInfoT = Vec<Vec<NodeInfoSP>>;
 type PriorityQueueT = OurPriorityQueue<DistT, NodeInfoSP>;
 type HeuristicFuncT = fn(&NodeInfoSP) -> DistT;
 type DistFuncT = fn(&NodeInfoSP, &NodeInfoSP) -> DistT;
-type PortalsT = std::collections::HashMap<char, Vec<NodeInfoSP>>;
+type PortalsT = Vec<Vec<NodeInfoSP>>;
 
 fn add_neighbour(q: &mut PriorityQueueT, h: &HeuristicFuncT, d: &DistFuncT,
     node: &NodeInfoSP, neighbour: &mut NodeInfoSP)
@@ -130,7 +130,10 @@ pub fn getSecondsRequired(R: i32, C: i32, G: &Vec<Vec<char>>) -> i32 {
 
     let mut start = Coord{ row: 0, col: 0 };
     let mut ends = Vec::<Coord>::with_capacity((R * C) as usize);
-    let mut portals: PortalsT = PortalsT::default();
+    let mut portals: PortalsT = PortalsT::with_capacity(256);
+    for _ in 0..256 {
+        portals.push(vec![]);
+    }
     for j in 0..R {
         let row = &G[j as usize];
         for i in 0..C {
@@ -142,9 +145,7 @@ pub fn getSecondsRequired(R: i32, C: i32, G: &Vec<Vec<char>>) -> i32 {
                 ends.push(Coord{ row: j, col: i });  // Ends could be used for a heuristic
             }
             else if 'a' <= node_type && node_type <= 'z' {
-                let v = portals.entry(node_type).or_default();
-                let sp =  &mut grid[j as usize][i as usize];
-                v.push(sp.clone());
+                portals[(node_type as usize) & 255].push(grid[j as usize][i as usize].clone());
             }
         }
     }
@@ -167,7 +168,7 @@ pub fn getSecondsRequired(R: i32, C: i32, G: &Vec<Vec<char>>) -> i32 {
         }
         // add portal nodes to node
         if 'a' <= node.node_type && node.node_type <= 'z' {
-            for neighbour_sp in portals.get_mut(&node.node_type).unwrap() {
+            for neighbour_sp in &mut portals[(node.node_type as usize) & 255] {
                 if neighbour_sp.as_ptr() != node_sp.as_ptr() {
                     add_neighbour(&mut q, &h, &d, &node_sp, neighbour_sp);
                 }
