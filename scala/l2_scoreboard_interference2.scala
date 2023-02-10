@@ -65,28 +65,28 @@ object Solution {
         val wrapper = (p: Args) => getMinProblemCount(p.S.size, p.S)
 
         val args_list = Array[Args](
-            Args(Array[Int](1, 2, 3, 4, 5), 3),
-            Args(Array[Int](1, 2, 3, 4, 5), 3),
-            Args(Array[Int](1, 2, 3, 4, 5), 3),
-            Args(Array[Int](1, 2, 3, 4, 5), 3),
+            new Args(Array[Int](1, 2, 3, 4, 5), 3),
+            new Args(Array[Int](1, 2, 3, 4, 5), 3),
+            new Args(Array[Int](1, 2, 3, 4, 5), 3),
+            new Args(Array[Int](1, 2, 3, 4, 5), 3),
             // extra1
-            Args(Array[Int](4, 3, 3, 4), 2),
-            Args(Array[Int](2, 4, 6, 8), 4),
-            Args(Array[Int](8), 3),
-            Args(Array[Int](1, 2, 3), 2),
-            Args(Array[Int](5, 7), 3),
-            Args(Array[Int](5, 9, 10), 5),
-            Args(Array[Int](5, 9, 11), 4),
-            Args(Array[Int](2, 4, 6), 3),
-            Args(Array[Int](2, 4, 7), 4),
+            new Args(Array[Int](4, 3, 3, 4), 2),
+            new Args(Array[Int](2, 4, 6, 8), 4),
+            new Args(Array[Int](8), 3),
+            new Args(Array[Int](1, 2, 3), 2),
+            new Args(Array[Int](5, 7), 3),
+            new Args(Array[Int](5, 9, 10), 5),
+            new Args(Array[Int](5, 9, 11), 4),
+            new Args(Array[Int](2, 4, 6), 3),
+            new Args(Array[Int](2, 4, 7), 4),
             // extra2
-            Args(Array[Int](1, 2, 4), 3),
-            Args(Array[Int](2, 4), 2),
-            Args(Array[Int](4, 5), 3),
-            Args(Array[Int](9, 12), 4),
-            Args(Array[Int](11, 13), 5),
+            new Args(Array[Int](1, 2, 4), 3),
+            new Args(Array[Int](2, 4), 2),
+            new Args(Array[Int](4, 5), 3),
+            new Args(Array[Int](9, 12), 4),
+            new Args(Array[Int](11, 13), 5)
         )
 
-        return test.TestAll().run_all_tests("l2_scoreboard_interference2", args_list, wrapper)
+        return test.TestAll.run_all_tests("l2_scoreboard_interference2", args_list, wrapper)
     }
 }

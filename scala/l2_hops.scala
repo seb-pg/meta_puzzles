@@ -31,10 +31,10 @@ object Solution {
         val wrapper = (p: Args) => getSecondsRequired(p.N, p.P.size, p.P)
 
         val args_list = Array[Args](
-            Args(3, Array[Long](1), 2),
-            Args(6, Array[Long](5, 2, 4), 4),
+            new Args(3, Array[Long](1), 2),
+            new Args(6, Array[Long](5, 2, 4), 4)
         )
 
-        return test.TestAll().run_all_tests("l2_hops", args_list, wrapper)
+        return test.TestAll.run_all_tests("l2_hops", args_list, wrapper)
     }
 }

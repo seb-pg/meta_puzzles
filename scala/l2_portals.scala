@@ -12,9 +12,9 @@
 
 package l2_portals
 
-import scala.collection.mutable.ArrayBuffer
 import scala.collection.immutable.SortedMap
-import scala.math.Ordering
+import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.Map  // getOrElseUpdate not supported on mutable.HashMap on Meta's website
 
 class Coord(var row: Int,
             var col: Int) {
@@ -76,25 +76,24 @@ object Solution {
             for (j <- 0 until R) {
                 val row = new ArrayBuffer[NodeInfo](C)
                 for (i <- 0 until C)
-                    row += NodeInfo(j, i, G(j)(i)) // Meta used Array<Array<String>> instead of Array<Array<Char>>!
+                    row += new NodeInfo(j, i, G(j)(i)) // Meta used Array<Array<String>> instead of Array<Array<Char>>!
                 grid += row
             }
 
-            var start = Coord(0, 0)
+            var start = new Coord(0, 0)
             val ends = new ArrayBuffer[Coord](R * C)
-            var portals = scala.collection.immutable.Map[Char, ArrayBuffer[NodeInfo]]()
+            val portals = Map[Char, ArrayBuffer[NodeInfo]]()
             for (j <- 0 until R) {
                 val row = G(j)
                 for (i <- 0 until C) {
                     val node_type = row(i)
                     if (node_type == 'S')
-                        start = Coord(j, i)
+                        start = new Coord(j, i)
                     else if (node_type == 'E')
-                        ends += Coord(j, i) // Ends could be used for a heuristic
+                        ends += new Coord(j, i) // Ends could be used for a heuristic
                     else if ('a' <= node_type && node_type <= 'z') {
-                        if (!portals.contains(node_type))
-                            portals = portals.updated(node_type, new ArrayBuffer[NodeInfo]())
-                        portals(node_type) += grid(j)(i) // note: no reserve() here
+                        val values = portals.getOrElseUpdate(node_type, new ArrayBuffer[NodeInfo]()) // note: no reserve() here
+                        values += grid(j)(i)
                     }
                 }
             }
@@ -106,7 +105,7 @@ object Solution {
             val h = (node: NodeInfo) => node.distance
             val d = (n1: NodeInfo, n2: NodeInfo) => n1.distance + 1
 
-            val neighbours_directions = Array(Coord(-1, 0), Coord(1, 0), Coord(0, -1), Coord(0, 1))
+            val neighbours_directions = Array(new Coord(-1, 0), new Coord(1, 0), new Coord(0, -1), new Coord(0, 1))
 
             q.insert(h(start_node), start_node)
             while (!q.empty()) {
@@ -165,13 +164,13 @@ object Solution {
         val wrapper = (p: Args) => _getSecondsRequiredTest(p.G)
 
         val args_list = Array[Args](
-            Args(Array[String](".E.", ".#E", ".S#"), 4),
-            Args(Array[String]("a.Sa", "####", "Eb.b"), -1),
-            Args(Array[String]("aS.b", "####", "Eb.a"), 4),
-            Args(Array[String]("xS..x..Ex"), 3),
+            new Args(Array[String](".E.", ".#E", ".S#"), 4),
+            new Args(Array[String]("a.Sa", "####", "Eb.b"), -1),
+            new Args(Array[String]("aS.b", "####", "Eb.a"), 4),
+            new Args(Array[String]("xS..x..Ex"), 3)
         )
 
-        return test.TestAll().run_all_tests("l2_portals", args_list, wrapper)
+        return test.TestAll.run_all_tests("l2_portals", args_list, wrapper)
     }
 }
 

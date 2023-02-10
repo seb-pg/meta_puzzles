@@ -46,10 +46,10 @@ object Solution {
         val wrapper = (p: Args) => getMaxAdditionalDinersCount(p.N, p.K, p.S.size, p.S)
 
         val args_list = Array[Args](
-            Args( 10, 1, Array[Long](2, 6), 3 ),
-            Args( 15, 2, Array[Long](11, 6, 14), 1 ),
+            new Args( 10, 1, Array[Long](2, 6), 3 ),
+            new Args( 15, 2, Array[Long](11, 6, 14), 1 )
         )
 
-        return test.TestAll().run_all_tests("l1_cafeteria", args_list, wrapper)
+        return test.TestAll.run_all_tests("l1_cafeteria", args_list, wrapper)
     }
 }

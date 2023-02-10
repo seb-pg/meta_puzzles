@@ -37,10 +37,10 @@ object Solution {
         val wrapper = (p: Args) => getMinCodeEntryTime(p.N, p.C.size, p.C)
 
         val args_list = Array[Args](
-            Args( 3, Array[Int](1, 2, 3), 2 ),
-            Args( 10, Array[Int](9, 4, 4, 8), 11 ),
+            new Args( 3, Array[Int](1, 2, 3), 2 ),
+            new Args( 10, Array[Int](9, 4, 4, 8), 11 )
         )
 
-        return test.TestAll().run_all_tests("l1_rotary_lock1", args_list, wrapper)
+        return test.TestAll.run_all_tests("l1_rotary_lock1", args_list, wrapper)
     }
 }

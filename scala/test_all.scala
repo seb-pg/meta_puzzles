@@ -12,10 +12,11 @@
 
 package test
 
-trait Result[T]:
+trait Result[T] {
   def get_result(): T
+}
 
-class TestAll {
+object TestAll {
 
 def run_all_tests[Args <: Result[Ret], Ret](name: String, args_list: Array[Args], fnc: (Args) => Ret): Int =
 {

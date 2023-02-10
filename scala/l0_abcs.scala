@@ -29,11 +29,11 @@ object Solution {
         val wrapper = (p: Args) => getSum(p.A, p.B, p.C)
 
         val args_list = Array[Args](
-            Args(1, 2, 3, 6),
-            Args(100, 100, 100, 300),
-            Args(85, 16, 93, 194),
+            new Args(1, 2, 3, 6),
+            new Args(100, 100, 100, 300),
+            new Args(85, 16, 93, 194)
         )
 
-        return test.TestAll().run_all_tests("l0_abcs", args_list, wrapper)
+        return test.TestAll.run_all_tests("l0_abcs", args_list, wrapper)
     }
 }

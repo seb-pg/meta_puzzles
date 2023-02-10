@@ -84,11 +84,11 @@ object Solution {
         val wrapper = (p: Args) => getArtisticPhotographCount(p.C.length, p.C, p.X, p.Y)
 
         val args_list = Array[Args](
-            Args( "APABA", 1, 2, 1 ),
-            Args( "APABA", 2, 3, 0 ),
-            Args( ".PBAAP.B", 1, 3, 3 ),
+            new Args( "APABA", 1, 2, 1 ),
+            new Args( "APABA", 2, 3, 0 ),
+            new Args( ".PBAAP.B", 1, 3, 3 )
         )
 
-        return test.TestAll().run_all_tests("l1_director_photography1", args_list, wrapper)
+        return test.TestAll.run_all_tests("l1_director_photography1", args_list, wrapper)
     }
 }

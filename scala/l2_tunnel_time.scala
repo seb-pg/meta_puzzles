@@ -71,18 +71,18 @@ object Solution {
         val wrapper = (p: Args) => _getSecondsElapsed(p)
 
         val args_list = Array[Args](
-            Args(10, Array[Long](1, 6), Array[Long](3, 7), 7, 22),
-            Args(50, Array[Long](39, 19, 28), Array[Long](49, 27, 35), 15, 35),
+            new Args(10, Array[Long](1, 6), Array[Long](3, 7), 7, 22),
+            new Args(50, Array[Long](39, 19, 28), Array[Long](49, 27, 35), 15, 35),
             // extra 1
-            Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 1, 20),
-            Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 8, 27),
-            Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 9, 29),
-            Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 15, 35),
-            Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 16, 40),
-            Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 25, 49),
-            Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 26, 70),
+            new Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 1, 20),
+            new Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 8, 27),
+            new Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 9, 29),
+            new Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 15, 35),
+            new Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 16, 40),
+            new Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 25, 49),
+            new Args(50, Array[Long](19, 28, 39), Array[Long](27, 35, 49), 26, 70)
         )
 
-        return test.TestAll().run_all_tests("l2_tunnel_time", args_list, wrapper)
+        return test.TestAll.run_all_tests("l2_tunnel_time", args_list, wrapper)
     }
 }

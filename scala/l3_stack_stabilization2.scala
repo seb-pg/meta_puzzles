@@ -107,29 +107,29 @@ object Solution {
         val wrapper = (p: Args) => _getSecondsElapsed(p)
 
         val args_list = Array[Args](
-            Args(Array[Int](2, 5, 3, 6, 5), 1, 1, 5),
-            Args(Array[Int](100, 100, 100), 2, 3, 5),
-            Args(Array[Int](100, 100, 100), 7, 3, 9),
-            Args(Array[Int](6, 5, 4, 3), 10, 1, 19),
-            Args(Array[Int](100, 100, 1, 1), 2, 1, 207),
-            Args(Array[Int](6, 5, 2, 4, 4, 7), 1, 1, 10),
+            new Args(Array[Int](2, 5, 3, 6, 5), 1, 1, 5),
+            new Args(Array[Int](100, 100, 100), 2, 3, 5),
+            new Args(Array[Int](100, 100, 100), 7, 3, 9),
+            new Args(Array[Int](6, 5, 4, 3), 10, 1, 19),
+            new Args(Array[Int](100, 100, 1, 1), 2, 1, 207),
+            new Args(Array[Int](6, 5, 2, 4, 4, 7), 1, 1, 10),
             // extra1
-            Args(Array[Int](10, 6, 2), 2, 1, 15),
-            Args(Array[Int](1, 2, 3, 4, 5, 6), 1, 1, 0),
-            Args(Array[Int](6, 5, 4, 3, 2, 1), 1, 1, 18),
+            new Args(Array[Int](10, 6, 2), 2, 1, 15),
+            new Args(Array[Int](1, 2, 3, 4, 5, 6), 1, 1, 0),
+            new Args(Array[Int](6, 5, 4, 3, 2, 1), 1, 1, 18),
             // extra2
-            Args(Array[Int](4, 6, 2), 2, 1, 9),
-            Args(Array[Int](6, 5, 2, 4, 4, 7), 1, 1, 10),
-            Args(Array[Int](2, 5, 3, 6, 5), 1, 1, 5),
-            Args(Array[Int](2, 3, 8, 1, 7, 6), 2, 1, 15),
-            Args(Array[Int](5, 4, 3, 6, 8, 1, 10, 11, 6, 1), 4, 1, 85),
-            Args(Array[Int](3, 4, 7, 8, 2), 4, 1, 24),
-            Args(Array[Int](1, 1, 1, 1, 1), 4, 1, 40),
-            Args(Array[Int](1, 1, 1, 1, 1), 1, 4, 10),
-            Args(Array[Int](8, 6, 4, 2), 1, 4, 18),
-            Args(Array[Int](1_000_000_000, 500_000_000, 200_000_000, 1_000_000), 1, 4, 2_299_000_006L),
+            new Args(Array[Int](4, 6, 2), 2, 1, 9),
+            new Args(Array[Int](6, 5, 2, 4, 4, 7), 1, 1, 10),
+            new Args(Array[Int](2, 5, 3, 6, 5), 1, 1, 5),
+            new Args(Array[Int](2, 3, 8, 1, 7, 6), 2, 1, 15),
+            new Args(Array[Int](5, 4, 3, 6, 8, 1, 10, 11, 6, 1), 4, 1, 85),
+            new Args(Array[Int](3, 4, 7, 8, 2), 4, 1, 24),
+            new Args(Array[Int](1, 1, 1, 1, 1), 4, 1, 40),
+            new Args(Array[Int](1, 1, 1, 1, 1), 1, 4, 10),
+            new Args(Array[Int](8, 6, 4, 2), 1, 4, 18),
+            new Args(Array[Int](1_000_000_000, 500_000_000, 200_000_000, 1_000_000), 1, 4, 2_299_000_006L)
         )
 
-        return test.TestAll().run_all_tests("l3_stack_stabilization2", args_list, wrapper)
+        return test.TestAll.run_all_tests("l3_stack_stabilization2", args_list, wrapper)
     }
 }

@@ -66,22 +66,22 @@ object Solution {
         val wrapper = (p: Args) => getUniformIntegerCountInInterval(p.A, p.B)
 
         val args_list = Array[Args](
-            Args(75, 300, 5),
-            Args(1, 9, 9),
+            new Args(75, 300, 5),
+            new Args(1, 9, 9),
             // extra1
-            Args(1, 1_000_000_000_000L, 108),
+            new Args(1, 1_000_000_000_000L, 108),
             // extra2
-            Args(10, 99, 9),
-            Args(11, 98, 8),
-            Args(21, 89, 7),
-            Args(22, 88, 7),
-            Args(23, 87, 5),
+            new Args(10, 99, 9),
+            new Args(11, 98, 8),
+            new Args(21, 89, 7),
+            new Args(22, 88, 7),
+            new Args(23, 87, 5),
             // extra3
-            Args(11, 88, 8),
-            Args(11, 98, 8),
-            Args(11, 99, 9),
+            new Args(11, 88, 8),
+            new Args(11, 98, 8),
+            new Args(11, 99, 9)
         )
 
-        return test.TestAll().run_all_tests("l1_uniform_integers", args_list, wrapper)
+        return test.TestAll.run_all_tests("l1_uniform_integers", args_list, wrapper)
     }
 }

@@ -87,14 +87,14 @@ object Solution {
         val wrapper = (p: Args) => getMaxDamageDealt(p.H.size, p.H, p.D, p.B)
 
         val args_list = Array[Args](
-            Args( Array[Int](2, 1, 4), Array[Int](3, 1, 2), 4, 6.5 ),
-            Args( Array[Int](1, 1, 2, 100), Array[Int](1, 2, 1, 3), 8, 62.75 ),
-            Args( Array[Int](1, 1, 2, 3), Array[Int](1, 2, 1, 100), 8, 62.75 ),
+            new Args( Array[Int](2, 1, 4), Array[Int](3, 1, 2), 4, 6.5f ),
+            new Args( Array[Int](1, 1, 2, 100), Array[Int](1, 2, 1, 3), 8, 62.75f ),
+            new Args( Array[Int](1, 1, 2, 3), Array[Int](1, 2, 1, 100), 8, 62.75f ),
             // extra1
-            Args( Array[Int](1, 1, 2, 100, 3), Array[Int](1, 2, 1, 4, 100), 8, 1337.5 ),
-            Args( Array[Int](9, 1, 3, 4), Array[Int](0, 10, 4, 3), 1, 100.0 ),
+            new Args( Array[Int](1, 1, 2, 100, 3), Array[Int](1, 2, 1, 4, 100), 8, 1337.5f ),
+            new Args( Array[Int](9, 1, 3, 4), Array[Int](0, 10, 4, 3), 1, 100.0f )
         )
 
-        return test.TestAll().run_all_tests("l3_boss_fight", args_list, wrapper)
+        return test.TestAll.run_all_tests("l3_boss_fight", args_list, wrapper)
     }
 }

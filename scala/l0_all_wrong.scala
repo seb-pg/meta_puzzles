@@ -27,10 +27,10 @@ object Solution {
         val wrapper = (p: Args) => getWrongAnswers(p.C.length, p.C)
 
         val args_list = Array[Args](
-          Args("ABA", "BAB"),
-          Args("BBBBB", "AAAAA"),
+          new Args("ABA", "BAB"),
+          new Args("BBBBB", "AAAAA")
         )
 
-      return test.TestAll().run_all_tests("l0_all_wrong", args_list, wrapper)
+      return test.TestAll.run_all_tests("l0_all_wrong", args_list, wrapper)
   }
 }

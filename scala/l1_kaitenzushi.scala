@@ -46,11 +46,11 @@ object Solution {
         val wrapper = (p: Args) => getMaximumEatenDishCount(p.D.size, p.D, p.K)
 
         val args_list = Array[Args](
-            Args( Array[Int](1, 2, 3, 3, 2, 1), 1, 5 ),
-            Args( Array[Int](1, 2, 3, 3, 2, 1), 2, 4 ),
-            Args( Array[Int](1, 2, 1, 2, 1, 2, 1), 2, 2 ),
+            new Args( Array[Int](1, 2, 3, 3, 2, 1), 1, 5 ),
+            new Args( Array[Int](1, 2, 3, 3, 2, 1), 2, 4 ),
+            new Args( Array[Int](1, 2, 1, 2, 1, 2, 1), 2, 2 )
         )
 
-        return test.TestAll().run_all_tests("l1_kaitenzushi", args_list, wrapper)
+        return test.TestAll.run_all_tests("l1_kaitenzushi", args_list, wrapper)
     }
 }

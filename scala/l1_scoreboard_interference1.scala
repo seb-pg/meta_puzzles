@@ -35,11 +35,11 @@ object Solution {
         val wrapper = (p: Args) => getMinProblemCount(p.S.size, p.S)
 
         val args_list = Array[Args](
-            Args( Array[Int](1, 2, 3, 4, 5, 6), 4 ),
-            Args( Array[Int](4, 3, 3, 4), 3 ),
-            Args( Array[Int](2, 4, 6, 8), 4 ),
+            new Args( Array[Int](1, 2, 3, 4, 5, 6), 4 ),
+            new Args( Array[Int](4, 3, 3, 4), 3 ),
+            new Args( Array[Int](2, 4, 6, 8), 4 )
         )
 
-        return test.TestAll().run_all_tests("l1_scoreboard_interference1", args_list, wrapper)
+        return test.TestAll.run_all_tests("l1_scoreboard_interference1", args_list, wrapper)
     }
 }

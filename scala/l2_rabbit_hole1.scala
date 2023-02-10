@@ -107,11 +107,11 @@ object Solution {
         val wrapper = (p: Args) => getMaxVisitableWebpages(p.L.size, p.L)
 
         val args_list = Array[Args](
-              Args(Array[Int](4, 1, 2, 1), 4),
-              Args(Array[Int](4, 3, 5, 1, 2), 3),
-              Args(Array[Int](2, 4, 2, 2, 3), 4),
+            new Args(Array[Int](4, 1, 2, 1), 4),
+            new Args(Array[Int](4, 3, 5, 1, 2), 3),
+            new Args(Array[Int](2, 4, 2, 2, 3), 4)
         )
 
-        return test.TestAll().run_all_tests("l2_rabbit_hole1", args_list, wrapper)
+        return test.TestAll.run_all_tests("l2_rabbit_hole1", args_list, wrapper)
     }
 }

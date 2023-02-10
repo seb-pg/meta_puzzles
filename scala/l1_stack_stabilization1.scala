@@ -43,11 +43,11 @@ object Solution {
         val wrapper = (p: Args) => getMinimumDeflatedDiscCount(p.S.size, p.S)
 
         val args_list = Array[Args](
-            Args( Array[Int](2, 5, 3, 6, 5), 3 ),
-            Args( Array[Int](100, 100, 100), 2 ),
-            Args( Array[Int](6, 5, 4, 3), -1 ),
+            new Args( Array[Int](2, 5, 3, 6, 5), 3 ),
+            new Args( Array[Int](100, 100, 100), 2 ),
+            new Args( Array[Int](6, 5, 4, 3), -1 )
         )
 
-        return test.TestAll().run_all_tests("l1_stack_stabilization1", args_list, wrapper)
+        return test.TestAll.run_all_tests("l1_stack_stabilization1", args_list, wrapper)
     }
 }

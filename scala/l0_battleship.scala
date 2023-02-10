@@ -29,12 +29,12 @@ object Solution {
         val wrapper = (p: Args) => getHitProbability(p.G.size, p.G(0).size, p.G)
 
         val args_list = Array[Args](
-            Args( Array[Array[Int]]( Array[Int](0, 0, 1), Array[Int](1, 0, 1) ), 0.5 ),
-            Args( Array[Array[Int]]( Array[Int](1, 1), Array[Int](1, 1) ), 1.0 ),
+            new Args( Array[Array[Int]]( Array[Int](0, 0, 1), Array[Int](1, 0, 1) ), 0.5f ),
+            new Args( Array[Array[Int]]( Array[Int](1, 1), Array[Int](1, 1) ), 1.0f ),
             // extra1
-            Args( Array[Array[Int]]( Array[Int](0, 1, 0, 0), Array[Int](1, 1, 0, 0), Array[Int](0, 0, 0, 0) ), 0.25 ),
+            new Args( Array[Array[Int]]( Array[Int](0, 1, 0, 0), Array[Int](1, 1, 0, 0), Array[Int](0, 0, 0, 0) ), 0.25f )
         )
 
-        return test.TestAll().run_all_tests("l0_battleship", args_list, wrapper)
+        return test.TestAll.run_all_tests("l0_battleship", args_list, wrapper)
     }
 }

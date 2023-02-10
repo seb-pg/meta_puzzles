@@ -65,12 +65,12 @@ object Solution {
         val wrapper = ((p: Args) => getMaxExpectedProfit(p.V.size, p.V, p.C, p.S))
 
         val args_list = Array[Args](
-            Args(Array[Int](10, 2, 8, 6, 4), 5, 0.0, 25.0),
-            Args(Array[Int](10, 2, 8, 6, 4), 5, 1.0, 9.0),
-            Args(Array[Int](10, 2, 8, 6, 4), 3, 0.5, 17.0),
-            Args(Array[Int](10, 2, 8, 6, 4), 3, 0.15, 20.10825),
+            new Args(Array[Int](10, 2, 8, 6, 4), 5, 0.0, 25.0f),
+            new Args(Array[Int](10, 2, 8, 6, 4), 5, 1.0, 9.0f),
+            new Args(Array[Int](10, 2, 8, 6, 4), 3, 0.5, 17.0f),
+            new Args(Array[Int](10, 2, 8, 6, 4), 3, 0.15, 20.10825f)
         )
 
-        return test.TestAll().run_all_tests("l2_missing_mail", args_list, wrapper)
+        return test.TestAll.run_all_tests("l2_missing_mail", args_list, wrapper)
     }
 }
