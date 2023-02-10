@@ -12,7 +12,7 @@
 
 #include "test_all.h"
 
-#include <memory>
+#include <array>
 #include <cstdint>  // int**_t
 #include <functional>
 #include <limits>
@@ -37,7 +37,7 @@ struct Coord
 
 struct NodeInfo : Coord
 {
-    char node_type;
+    uint8_t node_type;
     dist_t distance = std::numeric_limits<dist_t>::max();
     bool is_inserted = false;
 };
@@ -70,7 +70,8 @@ private:
 };
 
 using NodeInfoPtr_t = std::shared_ptr<NodeInfo>;
-using GridNodeInfo_t = std::vector<std::vector<NodeInfoPtr_t>>;
+using VectorNodeInfo_t = std::vector<NodeInfoPtr_t>;
+using GridNodeInfo_t = std::vector<VectorNodeInfo_t>;
 using PriorityQueue_t = OurPriorityQueue<dist_t, NodeInfoPtr_t>;
 using HeuristicFunc_t = std::function<dist_t(NodeInfoPtr_t)>;
 using DistFunc_t = std::function<dist_t(NodeInfoPtr_t, NodeInfoPtr_t)>;
@@ -105,13 +106,13 @@ int getSecondsRequiredCpp17(uint32_t R, uint32_t C, const std::vector<std::vecto
         auto& row = grid.emplace_back();
         row.reserve(C);
         for (uint32_t i = 0; i < C; ++i)
-            row.emplace_back(std::make_shared<NodeInfo>(NodeInfo{ { j, i }, G[j][i] }));
+            row.emplace_back(std::make_shared<NodeInfo>(NodeInfo{ { j, i }, static_cast<uint8_t>(G[j][i]) }));
     }
 
     Coord start{ 0, 0 };
     std::vector<Coord> ends;
     ends.reserve(R * C);
-    std::unordered_map<char, std::vector<NodeInfoPtr_t>> portals;
+    std::array<VectorNodeInfo_t, 256> portals{};
     for (uint32_t j = 0; j < R; ++j)
     {
         const auto& row = G[j];
@@ -123,7 +124,7 @@ int getSecondsRequiredCpp17(uint32_t R, uint32_t C, const std::vector<std::vecto
             else if (node_type == 'E')
                 ends.emplace_back(Coord{ j, i });  // Ends could be used for a heuristic
             else if ('a' <= node_type && node_type <= 'z')
-                portals[node_type].emplace_back(grid[j][i]);  // note: no reserve() here
+                portals[node_type & 255u].emplace_back(grid[j][i]);  // note: no reserve() here
         }
     }
     auto& start_node = grid[start.row][start.col];

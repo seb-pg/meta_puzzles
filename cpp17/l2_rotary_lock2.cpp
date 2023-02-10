@@ -22,12 +22,18 @@ namespace l2_rotary_lock2 {
 
 struct Dials
 {
+    constexpr static int32_t magic = 32;
     int32_t dial1;
     int32_t dial2;
 
     bool operator==(const Dials& rhs) const
     {
         return std::tie(dial1, dial2) == std::tie(rhs.dial1, rhs.dial2);
+    }
+
+    constexpr int32_t hash() const
+    {
+        return ((dial1 % magic) * magic) | (dial2 % magic);
     }
 };
 
@@ -39,9 +45,9 @@ namespace std
 template <>
 struct hash<l2_rotary_lock2::Dials>
 {
-    int32_t operator()(const l2_rotary_lock2::Dials& dial) const
+    auto operator()(const l2_rotary_lock2::Dials& dial) const
     {
-        return dial.dial1 ^ dial.dial2;
+        return dial.hash();
     }
 };
 
@@ -82,10 +88,11 @@ long long getMinCodeEntryTimeCpp17(int32_t N, uint32_t M, const std::vector<int3
     if (C.empty())
         return 0;
 
-    solutions_t solutions = { {{1, 1}, 0} };
+    solutions_t solutions(Dials::magic * Dials::magic);
+    solutions[{1, 1}] = 0;
     for (const auto& target : C)
     {
-        solutions_t new_solutions;
+        solutions_t new_solutions(Dials::magic * Dials::magic);
         for (const auto& [dials, distance] : solutions)
         {
             const auto [dial1, dial2] = dials;
