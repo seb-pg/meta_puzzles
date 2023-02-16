@@ -77,7 +77,7 @@ func DefaultVertex(nb index_t) Vertex {
 	return v
 }
 
-func keep_uniques(edges []Edge) []Edge {
+func keep_unique(edges []Edge) []Edge {
 	if len(edges) <= 1 {
 		return edges
 	}
@@ -252,7 +252,7 @@ func getMaxVisitableWebpages(N int32, M int32, A []int32, B []int32) int32 {
 	}
 
 	//
-	edges = keep_uniques(edges)       // O(E * log(E))
+	edges = keep_unique(edges)        // O(E * log(E))
 	vertices := build_children(edges) // O(V + 2*E)
 	sccs := calculate_sccs(vertices)  // O(V + E), calculate strongly connected components
 	make_dag(vertices, sccs)          // O(V + E)
