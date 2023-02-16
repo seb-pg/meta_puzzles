@@ -100,7 +100,7 @@ class Solution {
 
     }
 
-    static List<Edge> keep_uniques(List<Edge> edges)
+    static List<T> keep_unique<T>(List<T> edges)
     {
         if (edges.Count <= 1)
             return edges;
@@ -239,10 +239,9 @@ class Solution {
             {
                 var children = new List<Vertex>(v.children.Count);
                 foreach (var w in v.children)
-                    children.Add(!Object.ReferenceEquals(w.target, null) ? w.target : w);
+                children.Add(!Object.ReferenceEquals(w.target, null) ? w.target : w);
                 // remove duplicates
-                children.Sort();
-                children = children.Distinct().ToList();
+                children = keep_unique(children);
                 v.children = children;
             }
     }
@@ -299,7 +298,7 @@ class Solution {
         for (int i = 0; i < M; ++i)
             edges.Add(new Edge( A[i], B[i] ));  // O(E)
                                                         //
-        edges = keep_uniques(edges);  // O(E * log(E))
+        edges = keep_unique(edges);  // O(E * log(E))
         var vertices = build_children(edges);  // O(V + 2*E)
         var sccs = calculate_sccs(vertices, iterative);  // O(V + E), calculate strongly connected components
         make_dag(vertices, sccs);  // O(V + E)

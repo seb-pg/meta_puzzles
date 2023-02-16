@@ -20,7 +20,7 @@ class Solution {
     {
         public int dial1;
         public int dial2;
-        public const int magic = 32;  // If used (as C++ does), C# will fail to pass tests because of speed
+        public const int nb_buckets = 1024;
 
         public Dials(int _dial1 = 0, int _dial2 = 0)
         {
@@ -35,7 +35,7 @@ class Solution {
 
         public override int GetHashCode()
         {
-            return ((dial1 % magic) * magic) | (dial2 % magic);
+            return dial1 + dial2;
         }
     }
 
@@ -68,13 +68,11 @@ class Solution {
         if (C.Length == 0)
             return 0;
         var max_value = long.MaxValue;
-        var solutions = new Dictionary<Dials, long>(Dials.magic * Dials.magic);  // C# is going to use prime numbers (i.e. 1103 here)
-        //var solutions = new Dictionary<Dials, long>();
+        var solutions = new Dictionary<Dials, long>(Dials.nb_buckets);  // C# is going to use prime numbers (i.e. 1103 here)
         solutions[new Dials(1, 1)] = 0;
         foreach (var target in C)
         {
-            var new_solutions = new Dictionary<Dials, long>(Dials.magic * Dials.magic);
-            //var new_solutions = new Dictionary<Dials, long>();
+            var new_solutions = new Dictionary<Dials, long>(Dials.nb_buckets);
             foreach (var dials_distance in solutions)
             {
                 var dials = dials_distance.Key;
