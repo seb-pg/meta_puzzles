@@ -23,7 +23,7 @@ struct Dials
 }
 
 impl Dials {
-    const MAGIC: i32 = 32;
+    const BUCKETS: usize = 1024;
 }
 
 impl PartialEq for Dials {
@@ -34,7 +34,7 @@ impl PartialEq for Dials {
 
 impl Hash for Dials {
     fn hash<H: Hasher>(&self, state: &mut H) {
-        let value = ((self.dial1 % Dials::MAGIC) * Dials::MAGIC) | (self.dial2 % Dials::MAGIC);
+        let value = self.dial1 + self.dial2;
         value.hash(state);
     }
 }
@@ -64,10 +64,10 @@ pub fn getMinCodeEntryTime(N: i32, _M: i32, C: &Vec<i32>) -> i64 {
         return 0;
     }
     let max_value = i64::MAX;
-    let mut solutions = SolutionsT::with_capacity((Dials::MAGIC * Dials::MAGIC) as usize);
+    let mut solutions = SolutionsT::with_capacity(Dials::BUCKETS);
     solutions.insert(Dials{ dial1: 1, dial2: 1 }, 0);
     for &target in C {
-        let mut new_solutions = SolutionsT::with_capacity((Dials::MAGIC * Dials::MAGIC) as usize);
+        let mut new_solutions = SolutionsT::with_capacity(Dials::BUCKETS);
         for (dials, &distance) in &solutions {
             // we turn dial1
             insert_solution(&mut new_solutions, N, target, dials.dial1, dials.dial2, distance);

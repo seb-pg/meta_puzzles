@@ -134,12 +134,12 @@ impl Hash for Edge {
     }
 }
 
-fn keep_uniques(edges: &mut Vec<Edge>) {
-    if edges.len() <= 1 {
+fn keep_unique<T>(elements: &mut Vec<T>) where T: PartialEq + std::cmp::Ord {
+    if elements.len() <= 1 {
         return
     }
-    edges.sort();
-    edges.dedup();
+    elements.sort();
+    elements.dedup();
 }
 
 fn build_children(edges: &Vec<Edge>) -> ListVerticesT {
@@ -272,8 +272,7 @@ fn make_dag(vertices: &mut ListVerticesT, sccs: &Vec<ListVerticesT>) {
                 children.push(w.borrow().target.as_ref().unwrap_or(w).clone());
             }
             // remove duplicates
-            children.sort();
-            children.dedup();
+            keep_unique(&mut children);
             v.borrow_mut().children = children;
         }
 
@@ -326,7 +325,7 @@ pub fn getMaxVisitableWebpages(_N: i32, M: i32, A: &Vec<i32>, B: &Vec<i32>) -> i
     }
 
     //
-    keep_uniques(&mut edges);  // O(E * log(E))
+    keep_unique(&mut edges);  // O(E * log(E))
     let mut vertices = build_children(&edges);  // O(V + 2*E)
     let sccs = calculate_sccs(&vertices);  // O(V + E), calculate strongly connected components
     make_dag(&mut vertices, &sccs);  // O(V + E)
