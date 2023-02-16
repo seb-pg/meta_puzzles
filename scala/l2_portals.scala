@@ -12,7 +12,7 @@
 
 package l2_portals
 
-import scala.collection.immutable.SortedMap
+import scala.collection.immutable.TreeMap
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.Map  // getOrElseUpdate not supported on mutable.HashMap on Meta's website
 
@@ -48,7 +48,7 @@ class OurPriorityQueue[Priority: Numeric, Item] {
     }
 
     private var nb = 0L // this could wrap at some point (if it was running forever), and makes it not really a multimap equivalent
-    private var m = SortedMap[KeyT, Item]()
+    private var m = new TreeMap[KeyT, Item]()
 }
 
 object Solution {

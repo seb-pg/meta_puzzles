@@ -16,13 +16,14 @@ import scala.collection.mutable.ArrayBuffer
 import scala.util.control.Breaks._
 
 class Tunnel(val a: Long,
-             val b: Long) {
+             val b: Long) extends Ordered[Tunnel] {
     @`inline` def length = b - a
+    def compare(that: Tunnel): Int = this.a compare that.a
 }
 
 object Solution {
     def getSecondsElapsed(C: Long, N: Int, A: Array[Long], B: Array[Long], K: Long): Long = {
-        var tunnels = new ArrayBuffer[Tunnel](N)
+        val tunnels = new ArrayBuffer[Tunnel](N)
         for ((a, b) <- A.zip(B))
             tunnels += new Tunnel(a, b)
 
@@ -37,7 +38,7 @@ object Solution {
         if (total_time_left == 0L)
             travel_time -= C - B.max // O(N)
         else {
-            tunnels = tunnels.sortBy(x => x.a)
+            tunnels.sortInPlace()
             breakable {
                 for (tunnel <- tunnels) {
                     val tunnel_length = tunnel.length

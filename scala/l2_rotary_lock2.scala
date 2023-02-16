@@ -12,22 +12,24 @@
 
 package l2_rotary_lock2
 
-import scala.collection.immutable.TreeMap
+import java.util.LinkedList
 import scala.collection.immutable.HashMap
+import scala.collection.immutable.TreeMap
+import scala.collection.mutable.ArrayBuffer
 import scala.math.Ordered.orderingToOrdered
 
 class Dials(var dial1: Int,
             var dial2: Int) extends Ordered[Dials] {
-    def compare(that: Dials) = (this.dial1, this.dial2) compare (that.dial1, that.dial2)
-    override def hashCode: Int = ((dial1 % Dials.magic) * Dials.magic) | (dial2 % Dials.magic)
+    def compare(that: Dials): Int = (this.dial1, this.dial2) compare (that.dial1, that.dial2)
+    override def hashCode: Int = dial1 + dial2
 }
 
 object Dials {
-    val magic = 32
+    val buckets = 1024
 }
-
 object Solution {
     def getMinCodeEntryTime(N: Int, M: Int, C: Array[Int]): Long = {
+        //type solutions_t = HashMap[Dials, Long]
         type solutions_t = TreeMap[Dials, Long]
 
         def get_distance(target: Int, position: Int, N: Int): Int = {
@@ -42,7 +44,6 @@ object Solution {
         def insert_solution(new_solutions: solutions_t, N: Int, target: Int, dial1: Int, dial2: Int, distance: Long): solutions_t = {
             val new_distance = distance + get_distance(target, dial1, N)
             val key = new Dials(dial2.min(target), dial2.max(target))
-            //new_solutions(key) = new_solutions.getOrElse(key, Long.MaxValue).min(new_distance)  // Not available on Meta's website
             return new_solutions.updated(key, new_solutions.getOrElse(key, Long.MaxValue).min(new_distance))
         }
 
@@ -50,11 +51,11 @@ object Solution {
             return 0
         }
 
-        var solutions = new TreeMap[Dials, Long]()
-        solutions = solutions.updated(new Dials(1, 1), 0)
+        var solutions = new solutions_t()
+        solutions = solutions.updated(new Dials(1, 1), 0 )
         for (target <- C)
         {
-            var new_solutions = new TreeMap[Dials, Long]()
+            var new_solutions = new solutions_t()
             for ((dials, distance) <- solutions)
             {
                 // we turn dial1
