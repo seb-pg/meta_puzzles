@@ -45,29 +45,41 @@ struct Vertex
     // members for max length calculation
     index_t inputs = 0;  // number of inputs for a given node
     index_t max_len = 0;  // used for memoization of max_len at node level
+
+    inline bool operator<(const Vertex& rhs) const
+    {
+        return nb < rhs.nb;
+    }
 };
 
 struct Edge
 {
     index_t v;
     index_t w;
-    bool operator<(const Edge& rhs) const
+    inline bool operator<(const Edge& rhs) const
     {
         return std::tie(v, w) < std::tie(rhs.v, rhs.w);
     }
-    bool operator==(const Edge& rhs) const
+    inline bool operator==(const Edge& rhs) const
     {
         return std::tie(v, w) == std::tie(rhs.v, rhs.w);
     }
 };
 
-static void keep_uniques(std::vector<Edge>& edges)
+template<typename T>
+static inline bool operator<(const std::shared_ptr<T>& rhs, const std::shared_ptr<T>& lhs)
 {
-    if (edges.size() <= 1)
+    return *rhs < *lhs;
+}
+
+template<typename T>
+static void keep_unique(std::vector<T>& elements)
+{
+    if (elements.size() <= 1)
         return;
-    std::sort(std::begin(edges), std::end(edges));
-    const auto last = std::unique(std::begin(edges), std::end(edges));
-    edges.erase(last, std::end(edges));
+    std::sort(std::begin(elements), std::end(elements));
+    const auto last = std::unique(std::begin(elements), std::end(elements));
+    elements.erase(last, std::end(elements));
 }
 
 static ListVertices_t build_children(std::vector<Edge>& edges)
@@ -236,9 +248,7 @@ static void make_dag(ListVertices_t& vertices, const std::list<ListVertices_t>& 
             for (const auto& w : v->children)
                 children.emplace_back(w->target.get() ? w->target : w);
             // remove duplicates
-            std::sort(std::begin(children), std::end(children), [](const auto& a, const auto& b) { return a->nb < b->nb; });
-            const auto last = std::unique(std::begin(children), std::end(children), [](const auto& a, const auto& b) { return a->nb == b->nb; });
-            children.erase(last, std::end(children));
+            keep_unique(children);
             v->children = std::move(children);
         }
 }
@@ -350,7 +360,7 @@ int32_t getMaxVisitableWebpagesCpp17(uint32_t N, uint32_t M, const std::vector<i
         edges.emplace_back(Edge{ static_cast<index_t>(A[i]), static_cast<index_t>(B[i]) });
 
     //
-    keep_uniques(edges);  // O(E * log(E))
+    keep_unique(edges);  // O(E * log(E))
     auto vertices = build_children(edges);  // O(V + 2*E)
     const auto sccs = calculate_sccs(vertices, iterative);  // O(V + E), calculate strongly connected components
     make_dag(vertices, sccs);  // O(V + E)

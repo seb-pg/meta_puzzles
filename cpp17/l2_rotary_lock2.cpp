@@ -22,7 +22,7 @@ namespace l2_rotary_lock2 {
 
 struct Dials
 {
-    constexpr static int32_t magic = 32;
+    constexpr static int32_t nb_buckets = 1024;
     int32_t dial1;
     int32_t dial2;
 
@@ -33,7 +33,7 @@ struct Dials
 
     constexpr int32_t hash() const
     {
-        return ((dial1 % magic) * magic) | (dial2 % magic);
+        return dial1 + dial2;
     }
 };
 
@@ -88,11 +88,11 @@ long long getMinCodeEntryTimeCpp17(int32_t N, uint32_t M, const std::vector<int3
     if (C.empty())
         return 0;
 
-    solutions_t solutions(Dials::magic * Dials::magic);
+    solutions_t solutions(Dials::nb_buckets);
     solutions[{1, 1}] = 0;
     for (const auto& target : C)
     {
-        solutions_t new_solutions(Dials::magic * Dials::magic);
+        solutions_t new_solutions(Dials::nb_buckets);
         for (const auto& [dials, distance] : solutions)
         {
             const auto [dial1, dial2] = dials;
