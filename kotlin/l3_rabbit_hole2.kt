@@ -57,7 +57,7 @@ fun <T: Comparable<T>> ArrayList<T>.unique(): Int {
     var last_elt = 0
     for (elt in this.slice(1 until this.size))
     {
-        if (elt.equals(this[last_elt]))
+        if (elt == this[last_elt])
             continue
         last_elt += 1
         this[last_elt] = elt
@@ -65,7 +65,7 @@ fun <T: Comparable<T>> ArrayList<T>.unique(): Int {
     return last_elt + 1
 }
 
-fun <T: Comparable<T>> keep_uniques(elements: ArrayList<T>): ArrayList<T>
+fun <T: Comparable<T>> keep_unique(elements: ArrayList<T>): ArrayList<T>
 {
     if (elements.size <= 1)
         return elements;
@@ -108,7 +108,7 @@ class Tarjan(var sccs: LinkedList<ListVerticesT> = LinkedList(),
 
     fun __end(v: Vertex)
     {
-        var scc =  ListVerticesT();
+        val scc =  ListVerticesT();
         if (v.low_link == v.index)
         {
             while (true)
@@ -145,7 +145,7 @@ class Tarjan(var sccs: LinkedList<ListVerticesT> = LinkedList(),
 
 fun calculate_sccs(vertices: ListVerticesT): LinkedList<ListVerticesT>
 {
-    var calc = Tarjan();
+    val calc = Tarjan();
     for (v in vertices)
         if (v.index == index_not_set)
             calc.recurse(v);
@@ -180,7 +180,7 @@ fun make_dag(vertices: ListVerticesT, sccs: LinkedList<ListVerticesT>)
             for (w in v.children)
                 children.add(w.target ?: w);
             // remove duplicates
-            v.children = keep_uniques(children);
+            v.children = keep_unique(children);
         }
 }
 
@@ -224,8 +224,8 @@ fun getMaxVisitableWebpages(N: Int, M: Int, A: Array<Int>, B: Array<Int>): Int {
     for (i in 0 until M)  // O(E)
         edges.add(Edge( A[i], B[i] ));
     //
-    edges = keep_uniques(edges);  // O(E * log(E))
-    var vertices = build_children(edges);  // O(V + 2*E)
+    edges = keep_unique(edges);  // O(E * log(E))
+    val vertices = build_children(edges);  // O(V + 2*E)
     val sccs = calculate_sccs(vertices);  // O(V + E), calculate strongly connected components
     make_dag(vertices, sccs);  // O(V + E)
     val res = dag_max_len(vertices);  // O(V + E)

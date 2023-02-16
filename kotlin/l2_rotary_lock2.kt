@@ -19,12 +19,12 @@ class Dials(
 {
     companion object
     {
-        const val magic = 32;
+        const val buckets = 1024;
     }
 
     override fun hashCode(): Int
     {
-        return ((dial1 % magic) * magic) or (dial2 % magic);
+        return dial1 + dial2;
     }
 }
 
@@ -52,11 +52,11 @@ fun getMinCodeEntryTime(N: Int, _M: Int, C: Array<Int>): Long {
     if (C.isEmpty())
         return 0;
 
-    var solutions = solutions_t(Dials.magic * Dials.magic);
+    var solutions = solutions_t(Dials.buckets);
     solutions[Dials(1, 1)] = 0;
     for (target in C)
     {
-        val new_solutions = solutions_t(Dials.magic * Dials.magic);
+        val new_solutions = solutions_t(Dials.buckets);
         for ((dials, distance) in solutions)
         {
             // we turn dial1
