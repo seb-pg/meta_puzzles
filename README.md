@@ -38,15 +38,15 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Scala         | 3.2.1               | 21     | 3  | 7  | 8&nbsp;(7,&nbsp;1) | 3  | 0  | Ongoing |
 | Swift         |                     |        |    |    |    |    |    | Not started |
 
-*Total is the number of solution implemented out of 24 problems. When provided, in parenthesis the solutions fully working on Meta's website (within time limits), and eventually the number of solutions failing within time limit.
+*Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
 
-L3 portals solution will not be possible out-of-the-box for languages (Go) who do not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
+L3 "portals" solution will not be possible out-of-the-box for languages (such as Go) which do not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
 
 L4 solutions will not be possible out-of-the-box for languages (C#, Go, Kotlin, Rust) who do not provide O(log(n)) lower_bound/upper_bound on [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) out-of-the-box. Rust does provide [TreeMap (a B-tree implementation)](https://en.wikipedia.org/wiki/B-tree) instead of [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) but does not offer std::lower.  C# does provide an equivalent of std::lower but is not in logarithmic time.
 
 Python is using the module sortedcontainers, which is not provided out-of-the-box by the language, but is "almost standard".
 
-Scala and Java are expected to be able to implement solutions to all problems.  Scala version 2.13 was used to test on Meta's website as it did not support later versions (some of the code is incompatible between the two versions, see comments in the code).
+Scala and Java are expected to be able to implement solutions to all problems.  Scala version 2.13 was used to test on Meta's website as it did not support later versions (some of the code is incompatible between the two versions, see comments in the code).  Java is not really provided as I have a dislike for the language and prefer to not encourage its use.
 
 Kotlin solutions are all working using the test provided, however, Meta's website introduces errors in the inputs (portals, slippery_strip) introducing a zero character at the beginning of each row and shifting data, while mot changing the expected solution (Meta was notified). Some other solutions are not working on Meta's website, but given they are ported from other languages working on Meta's website, they are assumed to be correct.
 
@@ -70,11 +70,11 @@ While I have had to write code in all sort of languages (including some obscure 
 
 <b><u>cpp17/*</u></b>
 * C\++20 (or C\++23) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
-* The code is written using a "plausible" medium developer style (it just works with basic C++), and not much emphasis is spent on optimisation (e.g. using polymorphic allocator would be an obvious low hanging fruit).
+* The code is written using a "plausible" medium developer style (it just works with basic C++ knowledge), and not much emphasis is spent on optimisation (e.g. using polymorphic allocator would be an obvious low hanging fruit).
 * Meta passes containers, such as std::vector or std::string by value, rather than reference.  The signature are kept but all functions are calling a more more C\++ style function using reference, which can be used for performance testing.
 * Meta used int and long long and seemed to assume they were, respectively, 32 bits and 64 bits.  int32_t/int64_t are used instead passed Meta's function signature.
 * Meta only used signed integer, rather than using the correct signed/unsigned integer (e.g. distances/counts should always be positive). To make code more readable, minimum casting has been used in the code for readibility, even if sometimes, it was tempting to do the right thing in term of sign correctness.
-* shared_ptr are sometimes used, intentionally, even when not needed as it matches the Python's code and provides an additional comparison opportunity.
+* While shared_ptr was not necessary to solved the problem, it was used to match the Python's code and provides an additional comparison opportunity (and provided an interesting opportunity of to compare them with Rust's std::rc::Rc).
 * l3_rabbit_hole2: iterative and recursive solutions are provided (could be interested for speed benchmark).
 * l4_mathematical_art: for GCC, the  solution can use "order_of_key" on std::set to match Python's code as std::distance in STL is linear on std::set, not logarithmic.
 
