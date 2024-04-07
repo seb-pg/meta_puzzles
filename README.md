@@ -13,6 +13,7 @@ to meta_puzzles.
 You should have received a copy of the CC0 legalcode along with this
 work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
+The author has not registered any patent or trademark about the work provided, which was written from scratch, without any inspiration from any other works.
 
 ----
 
