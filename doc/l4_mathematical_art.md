@@ -6,15 +6,15 @@ The problem is composed of two separate problems:
 * Counting crosses for the merged overlapping segments
 
 ## Merging overlapping segments sub-problem in O(n*log(n)):
-The algorithm used is similar to the “<a href="https://en.wikipedia.org/wiki/Shadow_volume">shadow volume</a>” algorithm in computer graphics.
+The algorithm used is similar to the “[shadow volume](https://en.wikipedia.org/wiki/Shadow_volume)” algorithm in computer graphics.
 
 Assuming horizontal segment (y, x0, x1) sharing the same y coordinate, where x0 < x1, the algorithm is as follow...
 
 For each segment opening (x0), we assign a value of -1 -> (x0, -1).
 For each segment closing (x1), we assign a value of +1 -> (x1, +1).
-We create an array with those pairs, and we sorted it.
+We create an array with those pairs, and we sorted it.[l4_conveyor_chaos.md](l4_conveyor_chaos.md)
 
-Parsing the area from left to right (smallest x to higher x), we accumulate the pairs’ second value:
+Parsing the area from left t[l4_conveyor_chaos.md](l4_conveyor_chaos.md)o right (smallest x to higher x), we accumulate the pairs’ second value:
 * Any value below 0 means we have more opening than closing (we are inside a merge segment), and
 * the value of 0 means we are outside a segment (so, we the value is zero, were store the merged segment).
 * values above zero are not possible here
