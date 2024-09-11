@@ -66,10 +66,9 @@ Any contribution (code, comments, criticism) is more than welcome.
 While I have had to write code in all sort of languages (including some obscure Ada,Cobol, Prolog, Lisp, Pascal, etc) during my academic or professional life, I am mostly a C\++ and Python programmer these days, so if you feel I mistreated a particular language, please contribute!
 
 
-----[readme.md](doc%2Freadme.md)
+----
 
 ## Comments
-
 
 <b><u>py3/*</u></b>
 * Written in "quick and dirty" Python style.
