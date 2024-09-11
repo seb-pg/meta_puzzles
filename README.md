@@ -53,6 +53,12 @@ Kotlin solutions are all working using the test provided, however, Meta's websit
 
 ----
 
+## Solutions Explanations
+
+Solutions are explained [here](doc%2Freadme.md)
+
+----
+
 ## Want to contribute?
 
 Any contribution (code, comments, criticism) is more than welcome.
@@ -60,7 +66,8 @@ Any contribution (code, comments, criticism) is more than welcome.
 While I have had to write code in all sort of languages (including some obscure Ada,Cobol, Prolog, Lisp, Pascal, etc) during my academic or professional life, I am mostly a C\++ and Python programmer these days, so if you feel I mistreated a particular language, please contribute!
 
 
-----
+----[readme.md](doc%2Freadme.md)
+
 ## Comments
 
 
