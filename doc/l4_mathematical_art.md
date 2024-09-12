@@ -42,11 +42,17 @@ For an ordered set, we can use two binary search to find:
 * which first horizontal segment crosses the vertical line (bottom green line), and
 * which last horizontal segment crosses the vertical line (top green line)
 
+It is important to not that while the ordered set enables an O(log(n)) fast insert/deletion/search of y values, usually, they do not provide a O(log(n)) distance function between elements.
+
+For example, std::distance(iterator1, iterator2) in C++ will be O(n) (there is a gnu hack to do it in O(log(n)) in the source code provided).
+
+It is possible to speed up distance function, by treating edge cases where one of the value in the min, or the max, or both.
+
 ![](./l4_mathematical_art1.png)
 
 Should it be possible to maintain efficiently such an ordered set, we would have our log(n).
 
-<h3>Algorithm used</h3>
+<h3>Algorithm used:</h3>
 We can transform the inner loop our previous algorithm to achieve this result, by maintaining two ordered lists:
 * one list for the left side of horizontal strokes (opening),
 * one list for the right side of the horizontal strokes (closing).
