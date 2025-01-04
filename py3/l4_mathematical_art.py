@@ -67,28 +67,28 @@ def count_crosses(ver_strokes, hor_strokes):
 
     class StrokeProcessor:
 
-        def __init__(self, hor_strokes):
-            self.hor_strokes = hor_strokes
-            self.hor_idx = 0
-            self.hor_len = len(hor_strokes)
+        def __init__(self, strokes):
+            self.strokes = strokes
+            self.idx = 0
+            self.len = len(strokes)
             return
 
         def add_heights(self, heights, hpos):
-            while self.hor_idx < self.hor_len:
-                x, vpos = self.hor_strokes[self.hor_idx]
-                if hpos <= x:
+            while self.idx < self.len:
+                x0, vpos, x1 = self.strokes[self.idx]
+                if hpos <= x0:
                     break
-                heights.add(vpos)
-                self.hor_idx += 1
+                heights.add((vpos, x0))
+                self.idx += 1
             return
 
         def rem_heights(self, heights, hpos):
-            while self.hor_idx < self.hor_len:
-                x, vpos = self.hor_strokes[self.hor_idx]
-                if hpos < x:
+            while self.idx < self.len:
+                x1, vpos, x0 = self.strokes[self.idx]
+                if hpos < x1:
                     break
-                heights.remove(vpos)
-                self.hor_idx += 1
+                heights.remove((vpos, x0))
+                self.idx += 1
             return
 
     # trivial optimisation
@@ -102,8 +102,8 @@ def count_crosses(ver_strokes, hor_strokes):
 
     # we need to create a list of height to insert (we cannot have consecutive x's for a given height)
     # O(n*log(N))
-    hor_strokes_in = sorted((x0, h) for h, x0, x1 in hor_strokes)  # O(N*log(N))
-    hor_strokes_out = sorted((x1, h) for h, x0, x1 in hor_strokes)  # O(N*log(N))
+    hor_strokes_in = sorted((x0, h, x1) for h, x0, x1 in hor_strokes)  # O(N*log(N))
+    hor_strokes_out = sorted((x1, h, x0) for h, x0, x1 in hor_strokes)  # O(N*log(N))
 
     # count crosses
     sp_in = StrokeProcessor(hor_strokes_in)
@@ -115,8 +115,8 @@ def count_crosses(ver_strokes, hor_strokes):
     for hpos, y0, y1 in ver_strokes:  # N iterations
         sp_in.add_heights(heights, hpos)  # log(N)  (at most N times over the N iterations)
         sp_out.rem_heights(heights, hpos)  # log(N)  (at most N times over the N iterations)
-        i = heights.bisect_right(y0)  # log(N), index of first point strictly greater than y0
-        j = heights.bisect_left(y1)  # log(N), index of first point slower greater than y1 (+1)
+        i = heights.bisect_right((y0, 0))  # log(N), index of first point strictly greater than y0
+        j = heights.bisect_left((y1, 0))  # log(N), index of first point slower greater than y1 (+1)
         nb += j - i
     return nb
 
@@ -141,6 +141,15 @@ def getPlusSignCount(N: int, L: List[int], D: str) -> int:
     # O(N)
     hor_strokes = merge_strokes(hor_strokes)
     ver_strokes = merge_strokes(ver_strokes)
+
+    #
+    if False:
+        import matplotlib.pyplot as plt
+        for y, x0, x1 in hor_strokes:
+            plt.plot([x0, x1], [y, y], marker='o')
+        for x, y0, y1 in ver_strokes:
+            plt.plot([x, x], [y0, y1], marker='o')
+        plt.show()
 
     # O(N*log(N))
     nb = count_crosses(ver_strokes, hor_strokes)
@@ -222,6 +231,8 @@ def tests():
         (([1, 1, 1, 1, 1, 1, 1, 1], "RDLUULDR", ), 1),
         (([1, 2, 2, 1, 1, 2, 2, 1], "UDUDLRLR", ), 1),
         (([1, 1, 1, 1, 1, 1], "RDURLU", ), 1),
+        (([1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1], "ULRUDRULUDLRD ",), 2),
+        (([1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1],  "RDURLURDLRDUR",), 2),
     ]
     extra1_cases = "extra1", [
         build_test('grid', 100_000),
