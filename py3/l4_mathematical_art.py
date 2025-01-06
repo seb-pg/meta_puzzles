@@ -10,35 +10,36 @@
 # You should have received a copy of the CC0 legalcode along with this
 # work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-from typing import List
+from typing import Any, List, Tuple
 from sortedcontainers import SortedSet
 
 
-def read_strokes(N, L, D):
+def read_strokes(N: int, L: List[int], D: str) -> Tuple[List[Tuple[int, int, int]], List[Tuple[int, int, int]]]:
     # O(N)
     hor_strokes, ver_strokes = [], []
     x0, y0 = 0, 0
     for length, direction in zip(L[:N], D[:N]):
         if direction == 'R':
             x1, y1 = x0 + length, y0
-            hor_strokes.append((y0, x0, -1))
-            hor_strokes.append((y0, x1, +1))
+            hor_strokes.append((y0, x0, x1))
         elif direction == 'L':
             x1, y1 = x0 - length, y0
-            hor_strokes.append((y0, x1, -1))
-            hor_strokes.append((y0, x0, +1))
+            hor_strokes.append((y0, x1, x0))
         elif direction == 'U':
             x1, y1 = x0, y0 + length
-            ver_strokes.append((x0, y0, -1))
-            ver_strokes.append((x0, y1, +1))
+            ver_strokes.append((x0, y0, y1))
         elif direction == 'D':
             x1, y1 = x0, y0 - length
-            ver_strokes.append((x0, y1, -1))
-            ver_strokes.append((x0, y0, +1))
+            ver_strokes.append((x0, y1, y0))
         else:
             raise NotImplementedError("direction '%s' is not processed" % direction)
         x0, y0 = x1, y1
     return hor_strokes, ver_strokes
+
+
+def convert_strokes(strokes: List[Tuple[int, int, int]]) -> List[Tuple[int, int, int]]:
+    # O(N)
+    return [(fixed, start, -1) for fixed, start, _ in strokes] + [(fixed, end, +1) for fixed, _, end in strokes]
 
 
 def merge_strokes(strokes):
@@ -121,16 +122,7 @@ def count_crosses(ver_strokes, hor_strokes):
     return nb
 
 
-def getPlusSignCount(N: int, L: List[int], D: str) -> int:
-    # https://www.metacareers.com/portal/coding_puzzles/?puzzle=587690079288608
-    # Constraints:
-    #   2 <= N <= 2,000
-    #   1 <= Li <= 1,000,000,000
-    #   Di ∈ {U, D, L, R}
-    # Complexity: O(N*log(N))
-
-    # O(N)
-    hor_strokes, ver_strokes = read_strokes(N, L, D)
+def getPlusSignCountCommon(hor_strokes: List[Tuple[int, int, int]], ver_strokes: List[Tuple[int, int, int]]) -> int:
     if len(hor_strokes) == 0 or len(ver_strokes) == 0:
         return 0
 
@@ -154,6 +146,28 @@ def getPlusSignCount(N: int, L: List[int], D: str) -> int:
     # O(N*log(N))
     nb = count_crosses(ver_strokes, hor_strokes)
     return nb
+
+
+def getPlusSignCount(N: int, L: List[int], D: str) -> int:
+    # https://www.metacareers.com/portal/coding_puzzles/?puzzle=587690079288608
+    # Constraints:
+    #   2 <= N <= 2,000
+    #   1 <= Li <= 1,000,000,000
+    #   Di ∈ {U, D, L, R}
+    # Complexity: O(N*log(N))
+    hor_strokes, ver_strokes = read_strokes(N, L, D)
+    hor_strokes = convert_strokes(hor_strokes)
+    ver_strokes = convert_strokes(ver_strokes)
+    return getPlusSignCountCommon(hor_strokes, ver_strokes)
+
+
+def getPlusSignCountEx(hor_strokes, ver_strokes) -> int:
+    if isinstance(ver_strokes, str):
+        L, D = hor_strokes, ver_strokes
+        return getPlusSignCount(len(L), L, D)
+    hor_strokes = convert_strokes(hor_strokes)
+    ver_strokes = convert_strokes(ver_strokes)
+    return getPlusSignCountCommon(hor_strokes, ver_strokes)
 
 
 def build_test(test=None, N=2_000_000):
@@ -225,20 +239,22 @@ def build_test(test=None, N=2_000_000):
 
 
 def tests():
-    def fn(L, D): return len(L), L, D
+    def fn(*args): return args
     meta_cases = "meta", [
         (([6, 3, 4, 5, 1, 6, 3, 3, 4], "ULDRULURD", ), 4),
         (([1, 1, 1, 1, 1, 1, 1, 1], "RDLUULDR", ), 1),
         (([1, 2, 2, 1, 1, 2, 2, 1], "UDUDLRLR", ), 1),
         (([1, 1, 1, 1, 1, 1], "RDURLU", ), 1),
         (([1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1], "ULRUDRULUDLRD ",), 2),
-        (([1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1],  "RDURLURDLRDUR",), 2),
+        (([1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1], "RDURLURDLRDUR",), 2),
+        (([(0, 0, 2), (0, 3, 4), (0, 5, 6), (0, 7, 9)], [(1, -1, 1), (8, -1, 1)]), 2),
+        (([(1, -1, 1), (8, -1, 1)], [(0, 0, 2), (0, 3, 4), (0, 5, 6), (0, 7, 9)]), 2),
     ]
     extra1_cases = "extra1", [
         build_test('grid', 100_000),
     ]
 
-    return getPlusSignCount, fn, [meta_cases, extra1_cases]
+    return getPlusSignCountEx, fn, [meta_cases, extra1_cases]
 
 
 # End
