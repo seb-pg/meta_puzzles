@@ -97,7 +97,7 @@ While I have had to write code in all sort of languages (including some obscure 
 
 <b><u>rs/*</u></b>
 * The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
-* Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art.
+* Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art. Also, as of version 1.83.0 the [btree_set lower bound](https://doc.rust-lang.org/std/collections/btree_set/struct.BTreeSet.html#method.lower_bound) method is still a "nightly-only experimental API".
 
 
 <b><u>kotlin/*</u></b>
