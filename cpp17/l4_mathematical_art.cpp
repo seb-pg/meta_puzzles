@@ -37,7 +37,7 @@ int64_t distance(const T& container, typename T::value_type y0, typename T::valu
     // order_of_key() would be used
     // https://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_data_structures_design.html#container.tree.interface)
     // https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_order_statistics_node_update.html
-    return container.order_of_key(y1) - container.order_of_key(y0 + 1);  // heights.lower_bound(y1) - heights.upper_bound(y0)
+    return container.order_of_key(y1) - container.order_of_key(std::make_tuple(std::get<0>(y0) + 1, -1));  // heights.lower_bound(y1) - heights.upper_bound(y0)
 }
 
 }  // namespace l4_mathematical_art
@@ -82,7 +82,7 @@ int64_t distance(const T& container, typename T::value_type y0, typename T::valu
 namespace l4_mathematical_art {
 
 using Stroke = std::tuple<int64_t, int64_t, int64_t>;
-using StrokeEnd = std::tuple<int64_t, int64_t>;
+using StrokeEnd = std::tuple<int64_t, int64_t, int64_t>;
 
 static std::tuple<std::vector<Stroke>, std::vector<Stroke>> read_strokes(uint32_t N, const std::vector<int32_t>& L, const std::string& D)
 {
@@ -180,15 +180,15 @@ static int64_t count_crosses(std::vector<Stroke>& ver_strokes, std::vector<Strok
     hor_strokes_out.reserve(hor_strokes.size());
     for (const auto& [h, x0, x1] : hor_strokes)
     {
-        hor_strokes_in.emplace_back(StrokeEnd{ x0, h });
-        hor_strokes_out.emplace_back(StrokeEnd{ x1, h });
+        hor_strokes_in.emplace_back(StrokeEnd{ x0, h, x1 });
+        hor_strokes_out.emplace_back(StrokeEnd{ x1, h, x0 });
     }
     std::sort(std::begin(hor_strokes_in), std::end(hor_strokes_in));
     std::sort(std::begin(hor_strokes_out), std::end(hor_strokes_out));
 
     // count crosses
     int64_t nb = 0;
-    ordered_set<int64_t> heights;
+    ordered_set<std::tuple<int64_t, int64_t>> heights;
     auto it_in = std::cbegin(hor_strokes_in);
     const auto it_in_end = std::cend(hor_strokes_in);
     auto it_out = std::cbegin(hor_strokes_out);
@@ -198,22 +198,22 @@ static int64_t count_crosses(std::vector<Stroke>& ver_strokes, std::vector<Strok
         // add input height
         while (it_in != it_in_end)
         {
-            const auto& [x, vpos] = *it_in;
-            if (hpos <= x)
+            const auto& [x0, vpos, x1] = *it_in;
+            if (hpos <= x0)
                 break;
-            heights.insert(vpos);
+            heights.insert(std::make_tuple(vpos, x0));
             ++it_in;
         }
         // remove output heights
         while (it_out != it_out_end)
         {
-            const auto& [x, vpos] = *it_out;
-            if (hpos < x)
+            const auto& [x1, vpos, x0] = *it_out;
+            if (hpos < x1)
                 break;
-            heights.erase(vpos);
+            heights.erase(std::make_tuple(vpos, x0));
             ++it_out;
         }
-        nb += distance(heights, y0, y1);
+        nb += distance(heights, std::make_tuple(y0, 0), std::make_tuple(y1, 0));
     }
     return nb;
 }
@@ -309,6 +309,8 @@ auto tests()
         },
         { "extra1", {
                 { { { 1, 1, 1, 1, 1, 1 }, "RDURLU" }, 1 },
+                { { { 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1 }, "ULRUDRULUDLRD" }, 2 },
+                { { { 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1 }, "RDURLURDLRDUR" }, 2 },
             }
         },
     };
