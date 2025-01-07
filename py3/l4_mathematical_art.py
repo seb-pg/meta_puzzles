@@ -135,8 +135,7 @@ def getPlusSignCountCommon(hor_strokes: List[Tuple[int, int, int]], ver_strokes:
     ver_strokes = merge_strokes(ver_strokes)
 
     #
-    if False:
-        import matplotlib.pyplot as plt
+    if False and (len(hor_strokes) + len(ver_strokes) < 20):
         for y, x0, x1 in hor_strokes:
             plt.plot([x0, x1], [y, y], marker='o')
         for x, y0, y1 in ver_strokes:
@@ -249,7 +248,10 @@ def tests():
         (([1, 1, 1, 1, 1, 1], "RDURLU", ), 1),
         (([1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1], "ULRUDRULUDLRD ",), 2),
         (([1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1], "RDURLURDLRDUR",), 2),
-        (([(0, 0, 2), (0, 3, 4), (0, 5, 6), (0, 7, 9)], [(1, -1, 1), (8, -1, 1)]), 2),
+        (([(0, 0, 2), (0, 3, 4), (0, 6, 7), (0, 8, 10)], [(1, -1, 1), (9, -1, 1)]), 2),
+        (([(0, 0, 2), (0, 3, 4), (0, 6, 7), (0, 8, 10)], [(1, -1, 1), (8, -1, 1)]), 1),
+        (([(0, 0, 2), (0, 3, 4), (0, 6, 7), (0, 8, 10)], [(0, -1, 1), (9, -1, 1)]), 1),
+        (([(0, 0, 2), (0, 3, 4), (0, 6, 7), (0, 8, 10)], [(2, -1, 1), (8, -1, 1)]), 0),
         (([(1, -1, 1), (8, -1, 1)], [(0, 0, 2), (0, 3, 4), (0, 5, 6), (0, 7, 9)]), 2),
         build_test('grid', 100_000),
     ]
