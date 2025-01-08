@@ -36,6 +36,8 @@ mod l3_rabbit_hole2;
 mod l3_slippery_strip;
 mod l3_stack_stabilization2;
 
+mod l4_mathematical_art;
+
 pub trait Result<T> {
     fn get_result(&self) -> T;
 }
@@ -123,7 +125,7 @@ fn main() {
     nb_errors += l3_stack_stabilization2::tests();
     // l4 (not done yet)
     //nb_errors += l4_conveyor_chaos::tests();  // TODO: not implemented yet
-    //nb_errors += l4_mathematical_art::tests();  // TODO: not implemented yet
+    nb_errors += l4_mathematical_art::tests();
 
     println!("\n{} errors found",  nb_errors);
 }

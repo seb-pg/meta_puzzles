@@ -35,7 +35,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Barely started |
 | Javascript    |                     |        |    |    |    |    |    | Not started |
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1,&nbsp;1)  | 1&nbsp;(0) | Ongoing |
-| Rust          | 1.66                | 22     | 3  | 7  | 8  | 4  | 0  | Complete |
+| Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
 | Scala         | 3.2.1               | 21     | 3  | 7  | 8&nbsp;(7,&nbsp;1) | 3  | 0  | Ongoing |
 | Swift         |                     |        |    |    |    |    |    | Not started |
 
@@ -70,7 +70,7 @@ While I have had to write code in all sort of languages (including some obscure 
 
 ## Comments
 
-<b><u>py3/*</u></b>
+<b><u>py3/*</u> (Python)</b>
 * Written in "quick and dirty" Python style.
 * "sortedcontainers" has been used to provide "binary tree" like containers/collections needed to solve l4_conveyor_chaos and l4_mathematical_art.
 
@@ -86,7 +86,7 @@ While I have had to write code in all sort of languages (including some obscure 
 * l4_mathematical_art: for GCC, the  solution can use "order_of_key" on std::set to match Python's code as std::distance in STL is linear on std::set, not logarithmic.
 
 
-<b><u>cs/*</u></b>
+<b><u>cs/*</u> (C#)</b>
 * Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does not provided a log(n) equivalent of [C\++] std::lower_bound for [C\++] std::set or std::map equivalents.
 * Solution l2_missing_mail and l3_rabbit_hole2 will not be working with .Net Code 3.1, respectively because MaxBy and CollectionsMarshal are missing.
 
@@ -95,9 +95,10 @@ While I have had to write code in all sort of languages (including some obscure 
 * Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing because an equivalent of [C\++] std::set is needed.
 
 
-<b><u>rs/*</u></b>
+<b><u>rs/*</u> (Rust)</b>
 * The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
-* Solutions l4_conveyor_chaos and l4_mathematical_art are missing because it is not (yet) obvious if Rust is providing a (log(n)) equivalent of [C\++] std::lower_bound for std::set, where it is necessary (because of speed requirement) for l4_conveyor_chaos and l4_mathematical_art. Also, as of version 1.83.0 the [btree_set lower bound](https://doc.rust-lang.org/std/collections/btree_set/struct.BTreeSet.html#method.lower_bound) method is still a "nightly-only experimental API".
+* l4_mathematical_art is provided, however it is using BTreeSet. The implementation relies on BTreeSet::range::count() instead of using std::lower_bound/std::upper_bound ("nightly-only experimental API"). A distance function is introduce to calculate the distance between the 2 cursors and relies on BTreeSet::range::count().  It is not clear at the time of writing what the time complexity of this function is (the C++ optimisation to optimise the O(n) std::distance function are not used).
+* l4_conveyor_chaos is still missing but should be doable.
 
 
 <b><u>kotlin/*</u></b>
