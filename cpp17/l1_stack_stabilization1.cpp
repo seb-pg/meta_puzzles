@@ -25,7 +25,8 @@ int32_t getMinimumDeflatedDiscCountCpp17(uint32_t N, const std::vector<int32_t>&
     //      1 ≤ Ri ≤ 1,000,000,000      Ri is a disc radius
     // Complexity: O(N)
 
-    (void)N;
+    if (N == 0)
+        return 0;
 
     int32_t nb = 0;
     auto it = std::crbegin(R);

@@ -1,10 +1,13 @@
-
 .vscode
+
 py3/__pycache__
+
+cpp17/build
 cpp17/CMakeFiles
 cpp17/CMakeCache.txt
 cpp17/cmake_install.cmake
 cpp17/Makefile
 cpp17/bin
 cpp17/compile_commands.json
+
 rs/target
