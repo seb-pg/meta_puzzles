@@ -60,12 +60,14 @@ int64_t distance(const T& container, typename T::value_type y0, typename T::valu
     const auto hi = *it_last;
     if (y1 < lo || y0 > hi)
         return 0;
+    const auto size = static_cast<int64_t>(container.size());
+    if (y0 < lo && hi < y1)
+        return size;
+    // The following is equivalent to Rust's container.range((Bound::Excluded(y0), Bound::Excluded(y1)))
     const auto it_end = std::cend(container);
     const auto it_i = y0 < lo ? it_beg : container.upper_bound(y0);
     const auto it_j = y1 > hi ? it_end : container.lower_bound(y1);
-    const auto size = static_cast<int64_t>(container.size());
-    if (it_i == it_beg && it_j == it_end)
-        return size;
+    // This counts the number of elements between it_i and it_j (both included)
     // the following are std optimisation (keeping in mind std::distance is linear),
     if (it_i == it_beg)
         return std::distance(it_beg, it_j);
@@ -258,15 +260,13 @@ struct Args
     std::string D;
 };
 
-auto build_grid(uint32_t N, int32_t inc = 1)
+auto build_grid(uint32_t N, bool positive_inc = true)
 {
     std::vector<int32_t> l;
     std::string d;
+    uint32_t inc = positive_inc ? 1 : -1;
     const auto n = (N + 7) / 8;
     auto w = n * 2 + 1;
-    if (inc == -1)
-        //w = w + 2 * n + 1;
-        w += n + 1;
     for (auto i = 0u; i < n; ++i)
     {
         d += "RULU";
@@ -277,6 +277,7 @@ auto build_grid(uint32_t N, int32_t inc = 1)
         l.emplace_back(1);
         w += inc;
     }
+    w = n * 2 + 1;
     for (auto i = 0u; i < n; ++i)
     {
         d += "RDRU";
@@ -289,8 +290,8 @@ auto build_grid(uint32_t N, int32_t inc = 1)
     }
     if (inc == 1)
         l[n * 4] = static_cast<int32_t>(n + 1);
-    const auto expected = 4 * n * n;
-    return std::make_tuple(l, d, expected);
+    const auto expected = static_cast<uint64_t>(4) * n * n;
+    return std::make_pair(Args{l, d}, expected);
 }
 
 auto tests()
@@ -313,11 +314,12 @@ auto tests()
                 { { { 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1 }, "RDURLURDLRDUR" }, 2 },
             }
         },
+        { "additional", {
+                build_grid(100'000, true),
+                build_grid(2'000'000, true),
+            }
+        }
     };
-
-    //auto [L, D, e] = build_grid(2'000'000);
-    //auto [L, D, e] = build_grid(100'000, -1);
-    //auto n = getPlusSignCount((int)D.size(), L, D);
 
     return run_all_tests("l4_mathematical_art", tests, wrapper);
 }

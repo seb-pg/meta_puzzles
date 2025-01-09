@@ -101,7 +101,6 @@ fn distance(container: &BTreeSet::<(i64, i64)>, y0: &(i64, i64), y1: &(i64, i64)
     if y1 < lo || y0 > hi {
         return 0;
     }
-    // code is slightly different from C++
     if y0 < lo && hi < y1 {
         return container.len() as i64;
     }
