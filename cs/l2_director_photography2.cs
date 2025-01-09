@@ -37,7 +37,7 @@ class Solution {
 
     public static T _getArtisticPhotographCount<T>(int N, string C, int X, int Y) where T : unmanaged
     {
-        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=870874083549040
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=156565259776376
         // Constraints
         //      1 ≤ N ≤ 200         N is the number of cells in a row
         //      1 ≤ X ≤ Y ≤ N       X,Y are the distance between a photograph and an actor

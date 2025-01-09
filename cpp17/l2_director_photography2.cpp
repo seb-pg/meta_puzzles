@@ -22,7 +22,7 @@ namespace l2_director_photography2 {
 template<typename T>
 static inline T _getArtisticPhotographCountCpp17(uint32_t N, const std::string& C, int32_t X, int32_t Y)
 {
-    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=870874083549040
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=156565259776376
     // Constraints
     //      1 ≤ N ≤ 200         N is the number of cells in a row
     //      1 ≤ X ≤ Y ≤ N       X,Y are the distance between a photograph and an actor

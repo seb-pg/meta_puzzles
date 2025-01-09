@@ -220,7 +220,7 @@ static int64_t count_crosses(std::vector<Stroke>& ver_strokes, std::vector<Strok
 
 int64_t getPlusSignCountCpp17(uint32_t N, const std::vector<int32_t>& L, const std::string& D)
 {
-    // https://www.metacareers.com/portal/coding_puzzles/?puzzle=587690079288608
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=587690079288608
     // Constraints:
     //   2 ≤ N ≤ 2,000
     //   1 ≤ Li ≤ 1,000,000,000

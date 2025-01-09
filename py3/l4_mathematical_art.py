@@ -148,7 +148,7 @@ def getPlusSignCountCommon(hor_strokes: List[Tuple[int, int, int]], ver_strokes:
 
 
 def getPlusSignCount(N: int, L: List[int], D: str) -> int:
-    # https://www.metacareers.com/portal/coding_puzzles/?puzzle=587690079288608
+    # https://www.metacareers.com/profile/coding_puzzles/?puzzle=587690079288608
     # Constraints:
     #   2 <= N <= 2,000
     #   1 <= Li <= 1,000,000,000

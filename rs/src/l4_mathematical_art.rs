@@ -173,7 +173,7 @@ fn count_crosses(ver_strokes: &Vec::<Stroke>, hor_strokes: &Vec::<Stroke>) -> i6
 }
 
 pub fn getPlusSignCount(N: usize, L: &Vec<i64>, D: &str) -> i64 {
-    // https://www.metacareers.com/portal/coding_puzzles/?puzzle=587690079288608
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=587690079288608
     // Constraints:
     //   2 ≤ N ≤ 2,000
     //   1 ≤ Li ≤ 1,000,000,000

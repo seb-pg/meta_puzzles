@@ -37,12 +37,6 @@ class Solution {
 
     public static T _getArtisticPhotographCount<T>(int N, string C, int X, int Y) where T : unmanaged
     {
-        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=870874083549040
-        // Constraints
-        //      1 ≤ N ≤ 200         N is the number of cells in a row
-        //      1 ≤ X ≤ Y ≤ N       X,Y are the distance between a photograph and an actor
-        // Complexity: O(N) ~ O(N * (Y-X+1)) because Y-X << N
-
         // Note: the solution is not really elegant speed-wise, but focuses on the algorithm
         // The solution calculates the pairs of sub string (of width w), surrounding 'A' characters, this is O(N)
         var w = Y + 1;  // w = width of the interval
