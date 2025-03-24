@@ -32,11 +32,11 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Python&nbsp;3 |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete, but uses sortedcontainers |
 | C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(2,&nbsp;1)  | 1&nbsp;(1)  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
-| Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Barely started |
-| Javascript    |                     |        |    |    |    |    |    | Not started |
-| Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1,&nbsp;1)  | 1&nbsp;(0) | Ongoing |
+| Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete (see comments) |
+| Javascript    | nodejs v18.19.1     | 19     | 3  | 7  | 7  | 2  |    | Started |
+| Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1,&nbsp;1)  | 1&nbsp;(0) | Complete |
 | Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
-| Scala         | 3.2.1               | 21     | 3  | 7  | 8&nbsp;(7,&nbsp;1) | 3  | 0  | Ongoing |
+| Scala         | 3.2.1               | 21     | 3  | 7  | 8&nbsp;(7,&nbsp;1) | 3  | 0  | Complete |
 | Swift         |                     |        |    |    |    |    |    | Not started |
 
 *Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
@@ -50,6 +50,8 @@ Python is using the module sortedcontainers, which is not provided out-of-the-bo
 Scala and Java are expected to be able to implement solutions to all problems.  Scala version 2.13 was used to test on Meta's website as it did not support later versions (some of the code is incompatible between the two versions, see comments in the code).  Java is not really provided as I have a dislike for the language and prefer to not encourage its use.
 
 Kotlin solutions are all working using the test provided, however, Meta's website introduces errors in the inputs (portals, slippery_strip) introducing a zero character at the beginning of each row and shifting data, while mot changing the expected solution (Meta was notified). Some other solutions are not working on Meta's website, but given they are ported from other languages working on Meta's website, they are assumed to be correct.
+
+Javascript solutions were initially generated using https://www.codeconvert.ai/. Some minors changes were needed for some puzzles but most of it was a great time saver. I have been using codeconvert recently to translate Python to Rust, and I must say that while the tool is failing to convert some simple things (e.g. tuple)  the tool is rather impressive overall.
 
 ----
 
