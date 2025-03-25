@@ -1,4 +1,6 @@
-# meta_puzzles by Sebastien Rubens
+#!/usr/bin/env python3
+
+# # meta_puzzles by Sebastien Rubens
 #
 # Please go to https://github.com/seb-pg/meta_puzzles/README.md
 # for more information
