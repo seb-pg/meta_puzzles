@@ -33,7 +33,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(2,&nbsp;1)  | 1&nbsp;(1)  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
 | Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete (see comments) |
-| Javascript    | nodejs v18.19.1     | 19     | 3  | 7  | 7  | 2  |    | Started |
+| Javascript    | nodejs v18.19.1     | 21     | 3  | 7  | 8  | 3  |    | Started |
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1,&nbsp;1)  | 1&nbsp;(0) | Complete |
 | Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
 | Scala         | 3.2.1               | 21     | 3  | 7  | 8&nbsp;(7,&nbsp;1) | 3  | 0  | Complete |
@@ -116,6 +116,11 @@ While I have had to write code in all sort of languages (including some obscure 
 <b><u>java/*</u></b>
 * Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
 
+
+<b><u>js/*</u></b>
+* 99% (maybe more) of the code in Javascript was a straight conversion of Python to Javascript using https://www.codeconvert.ai/ (free version)
+* I have used the website recently to convert some Python to Rust, where the Rust solution worked immediately after conversion. My estimate is it would have taken me about 30min to do the same manually.
+* I did try code conversion using the public ChatGpt website ("GPT-4o-mini variant"), and the conversion was not as good (in my opinion) but still usable.
 
 ----
 
