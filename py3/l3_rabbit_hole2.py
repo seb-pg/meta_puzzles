@@ -32,6 +32,9 @@ class Vertex:
     inputs: int = 0  # number of inputs for a given node
     max_len: int = 0  # used for memoization of max_len at node level
 
+    def __hash__(self):  # for sortedcontainers.SortedSet
+        return hash(self.nb)
+
     def __repr__(self):
         #return 'Vertex(nb=%d, weight=%d, inputs=%d, children=%s)' %\
         #       (self.nb, self.weight, self.inputs, [v.nb for v in self.children])
@@ -52,7 +55,7 @@ def keep_unique(edges):  # O(E*log(E))
 
 
 def build_children(edges):  # O(V + E)
-    nb_vertices = max(max(v1 for v1, v2 in edges), max(v2 for v1, v2 in edges))  # O(2*E), we do not count it
+    nb_vertices = max(max(v1, v2) for v1, v2 in edges)  # O(2*E), we do not count it
     vertices = [Vertex(i) for i in range(nb_vertices + 1)]  # O(V)
     for v, w in edges:  # O(E)
         vertices[v].children.append(vertices[w])
@@ -160,7 +163,7 @@ def make_dag(vertices, sccs):  # O(V + E)  ~ kind of (remapping not counted, wil
     for v in vertices:  # O(V + E)
         if v.children:
             v.children = [w.target or w for w in v.children]
-            v.children = list(dict((id(w), w) for w in v.children).values())  # remove duplicates (could be more efficient)
+            v.children = list(set(v.children))  # remove duplicates
     return
 
 

@@ -118,7 +118,7 @@ While I have had to write code in all sort of languages (including some obscure 
 
 
 <b><u>js/*</u></b>
-* 99% (maybe more) of the code in Javascript was a straight conversion of Python to Javascript using https://www.codeconvert.ai/ (free version)
+* 99% (maybe more) of the code in Javascript was a straight conversion from Python to Javascript using https://www.codeconvert.ai/ (free version).
 * I have used the website recently to convert some Python to Rust, where the Rust solution worked immediately after conversion. My estimate is it would have taken me about 30min to do the same manually.
 * I did try code conversion using the public ChatGpt website ("GPT-4o-mini variant"), and the conversion was not as good (in my opinion) but still usable.
 

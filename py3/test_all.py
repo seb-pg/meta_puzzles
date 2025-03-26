@@ -19,7 +19,7 @@ def get_local_modules():
     dirname = os.path.dirname(__file__)
     w = os.walk(dirname)
     files = next(w)[2]
-    pattern = re.compile("^l\d_.*.py$")
+    pattern = re.compile(r"^l\d_.*.py$")
     #files = sorted(os.sep.join([dirname, f]) for f in files if pattern.search(f) is not None)
     files = sorted(f[:-3] for f in files if pattern.search(f) is not None)
     tests_fns = []
