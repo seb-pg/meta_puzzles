@@ -33,7 +33,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(2,&nbsp;1)  | 1&nbsp;(1)  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
 | Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete (see comments) |
-| Javascript    | nodejs v18.19.1     | 21     | 3  | 7  | 8  | 3  |    | Complete |
+| Javascript    | nodejs v18.19.1     | 22&nbsp;(21)  | 3  | 7  | 8  | 4&nbsp;(3)  |    | Complete |
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1,&nbsp;1)  | 1&nbsp;(0) | Complete |
 | Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
 | Scala         | 3.2.1               | 21     | 3  | 7  | 8&nbsp;(7,&nbsp;1) | 3  | 0  | Complete |
