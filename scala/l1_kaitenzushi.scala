@@ -14,6 +14,13 @@ package l1_kaitenzushi
 
 object Solution {
     def getMaximumEatenDishCount(N: Int, D: Array[Int], K: Int): Int = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=958513514962507
+        // Constraints
+        //      1 ≤ N ≤ 500,000         N is the number of dishes
+        //      1 ≤ K ≤ N               K is the number of previous dishes needed to be different
+        //      1 ≤ Di ≤ 1,000,000      Di is a dish
+        // Complexity: O(N) ~ O(max(N, 1_000_001))   (as asymptotically, N -> +inf)
+
         val eaten = Array.fill(1000001)(false)  // Meta does not 1_000_001
 
         // The following is O(K) (where K < N)

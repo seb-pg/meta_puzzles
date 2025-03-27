@@ -14,6 +14,12 @@ package l1_stack_stabilization1
 
 object Solution {
     def getMinimumDeflatedDiscCount(N: Int, R: Array[Int]): Int = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=183894130288005
+        // Constraints
+        //      1 ≤ N  ≤ 50                 N is the number of inflatable discs
+        //      1 ≤ Ri ≤ 1,000,000,000      Ri is a disc radius
+        // Complexity: O(N)
+
         var nb: Int = 0
         val iter = R.reverseIterator
         iter.hasNext

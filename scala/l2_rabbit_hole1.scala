@@ -25,7 +25,14 @@ class Vertex(var _nb: Int,
 }
 
 object Solution {
-    def  getMaxVisitableWebpages(N: Int, L: Array[Int]): Int = {
+    def getMaxVisitableWebpages(N: Int, L: Array[Int]): Int = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=316794079975021
+        // Constraints:
+        //      2 ≤ N ≤ 500,000
+        //      1 ≤ Li ≤ N
+        //      Li ≠ i
+        //  Complexity: O(N)
+
         val vertices = new ArrayBuffer[Vertex](N)
         for (i <- 0 until N)
             vertices += new Vertex(i + 1)

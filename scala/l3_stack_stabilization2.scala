@@ -17,6 +17,13 @@ import scala.util.control.Breaks._
 
 object Solution {
     def getMinimumSecondsRequired(N: Int, R: Array[Int], A: Int, B: Int): Long = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=290955626029019
+        // Constraints :
+        //      1 ≤ N    ≤ 50
+        //      1 ≤ Ri   ≤ 1,000,000,000
+        //      1 ≤ A, B ≤ 100
+        // Complexity: O(N ^ 2)
+
         val _A = A.toLong
         val _B = B.toLong
 

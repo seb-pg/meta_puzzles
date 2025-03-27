@@ -14,6 +14,13 @@ package l1_uniform_integers
 
 object Solution {
     def getUniformIntegerCountInInterval(A: Long, B: Long): Int = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=228269118726856
+        // Constraints:
+        //      1 ≤ A ≤ B ≤ 10^12
+        // Complexity: O(log(max(A, B)))
+        //      logarithmic on the number of digits to represent the integers
+        //      The python version works using integer<->string conversion, which is not great
+
         def len_str(_nb: Long): Int = {
             if (_nb == 0L) // not necessary due to problem definition
                 return 1

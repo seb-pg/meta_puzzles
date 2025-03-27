@@ -53,6 +53,12 @@ class OurPriorityQueue[Priority: Numeric, Item] {
 
 object Solution {
     def getSecondsRequired(R: Int, C: Int, G: Array[Array[String]]): Int = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=544961100246576
+        // Constraints:
+        //      1 ≤ R,C ≤ 50
+        //      Gi,j ∈ {".", "S", "E", "#", "a"..."z"}
+        // Complexity: see A* search algorithm (https://en.wikipedia.org/wiki/A*_search_algorithm)
+
         type dist_t = Int
         type GridNodeInfo_t = ArrayBuffer[ArrayBuffer[NodeInfo]]
         type PriorityQueue_t = OurPriorityQueue[dist_t, NodeInfo]

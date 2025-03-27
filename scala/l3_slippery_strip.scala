@@ -21,6 +21,12 @@ class Counts(var star: Int,
 
 object Solution {
     def getMaxCollectableCoins(R: Int, C: Int, G: Array[Array[String]]): Int = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=2881982598796847
+        // Constraints
+        //      2 ≤ R, C ≤ 400, 000
+        //      R∗C ≤ 800, 000
+        //      Gi, j ∈{ ".", "*", ">", "v" }
+        //      Complexity: O(N), where N = R * C
 
         type char_counter_t = ArrayBuffer[Int]
 

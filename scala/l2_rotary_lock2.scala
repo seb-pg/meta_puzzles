@@ -29,6 +29,13 @@ object Dials {
 }
 object Solution {
     def getMinCodeEntryTime(N: Int, M: Int, C: Array[Int]): Long = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1637008989815525
+        // Constraints:
+        //      3 ≤ N ≤ 1,000,000,000   N is the number of integers
+        //      1 ≤ M ≤ 3,000           M is the number of locks
+        //      1 ≤ Ci ≤ N              Ci is the combination
+        // Complexity: O(M^2)
+
         //type solutions_t = HashMap[Dials, Long]
         type solutions_t = TreeMap[Dials, Long]
 

@@ -22,6 +22,13 @@ class DamageInfo(var order: Int,
 
 object Solution {
     def getMaxDamageDealt(N: Int, H: Array[Int], D: Array[Int], B: Int): Float = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=149169347195386
+        // Constraints :
+        //      2 ≤ N  ≤ 500,000
+        //      1 ≤ Hi ≤ 1,000,000,000
+        //      1 ≤ Di ≤ 1,000,000,000
+        //      1 ≤ B  ≤ 1,000,000,000
+        // Complexity: O(N^2)
 
         def maximize_damage(N: Int, H: Array[Int], D: Array[Int], info: DamageInfo): Boolean = {
             // this maximizes damage for a fixed index(max_i if order is True, otherwise max_j)

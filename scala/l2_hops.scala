@@ -14,6 +14,13 @@ package l2_hops
 
 object Solution {
     def getSecondsRequired(N: Long, _F: Int, P: Array[Long]): Long = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=977526253003069
+        // Constraints:
+        //      2 ≤ N ≤ 10^12
+        //      1 ≤ F ≤ 500,000
+        //      1 ≤ Pi ≤ N−1
+        // Complexity: O(N), but could be O(1) if P was sorted
+
         if (P.isEmpty)
             return 0
         return N - P.min

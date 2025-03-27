@@ -14,6 +14,12 @@ package l0_battleship
 
 object Solution {
     def getHitProbability(R: Int, C: Int, G: Array[Array[Int]]): Float = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=3641006936004915
+        // Constraints
+        //      1 ≤ R,C ≤ 100       R,C is the number of rows,columns
+        //      0 ≤ Gi,j ≤ 1
+        // Complexity: O(N), where N=R*C
+
         val sum = G.foldLeft(0) ((acc, row) => acc + row.foldLeft(0) ((acc_row, elt) => acc_row + elt))
         return sum.toFloat / (R * C).toFloat
     }

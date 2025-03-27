@@ -14,6 +14,13 @@ package l1_rotary_lock1
 
 object Solution {
     def getMinCodeEntryTime(N: Int, M: Int, C: Array[Int]): Long = {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=990060915068194
+        // Constraints
+        //      3 ≤ N ≤ 50,000,000      N is the number of integers
+        //      1 ≤ M ≤ 1,000           M is the number of locks
+        //      1 ≤ Ci ≤ N              Ci is the combination
+        // Complexity: O(M)
+
         var pos = 1
         var nb = 0L
         for (target <- C) {
