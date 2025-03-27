@@ -15,6 +15,12 @@ package l0_all_wrong
 import "meta_puzzles/test"
 
 func getWrongAnswers(N int32, C string) string {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1082217288848574
+    // Constraints
+    //   1 ≤ N ≤ 100         N is the number of characters of string C
+    //   Ci ∈ { "A", "B" }
+    // Complexity: O(N)
+
 	var ret string
 	for _, ch := range C {
 		if ch == 'A' {

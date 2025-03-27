@@ -68,6 +68,12 @@ func _getArtisticPhotographCount[T int64 | int32](N int32, C string, X int32, Y 
 }
 
 func getArtisticPhotographCount(N int32, C string, X int32, Y int32) int32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=870874083549040
+    // Constraints
+    //      1 ≤ N ≤ 200         N is the number of cells in a row
+    //      1 ≤ X ≤ Y ≤ N       X,Y are the distance between a photograph and an actor
+    // Complexity: O(N) ~ O(N * (Y-X+1)) because Y-X << N
+
 	return _getArtisticPhotographCount[int32](N, C, X, Y)
 }
 

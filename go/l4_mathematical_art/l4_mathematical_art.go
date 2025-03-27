@@ -13,6 +13,13 @@
 package l4_mathematical_art
 
 func getPlusSignCount(N int32, L []int32, D string) int64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=587690079288608
+    // Constraints:
+    //   2 ≤ N ≤ 2,000
+    //   1 ≤ Li ≤ 1,000,000,000
+    //   Di ∈ {U, D, L, R}
+    // Complexity: O(N*log(N))
+
 	// Write your code here
 	return 0
 }

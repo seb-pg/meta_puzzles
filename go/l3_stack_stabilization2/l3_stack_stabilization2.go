@@ -18,6 +18,13 @@ import (
 )
 
 func getMinimumSecondsRequired(N int32, R []int32, A int32, B int32) int64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=290955626029019
+    // Constraints :
+    //      1 ≤ N    ≤ 50
+    //      1 ≤ Ri   ≤ 1,000,000,000
+    //      1 ≤ A, B ≤ 100
+    // Complexity: O(N ^ 2)
+
 	type total_cost_t = int64
 	type unit_cost_t = int32
 	_A := total_cost_t(A)

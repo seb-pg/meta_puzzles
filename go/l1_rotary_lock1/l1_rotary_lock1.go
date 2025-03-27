@@ -18,6 +18,13 @@ import (
 )
 
 func getMinCodeEntryTime(N int32, M int32, C []int32) int64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=990060915068194
+    // Constraints
+    //      3 ≤ N ≤ 50,000,000      N is the number of integers
+    //      1 ≤ M ≤ 1,000           M is the number of locks
+    //      1 ≤ Ci ≤ N              Ci is the combination
+    // Complexity: O(M)
+
 	pos := int32(1)
 	nb := int64(0)
 	for _, target := range C {

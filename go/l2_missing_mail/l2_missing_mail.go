@@ -28,6 +28,14 @@ func (r Result) both() float64 {
 }
 
 func getMaxExpectedProfit(N int32, V []int32, C int32, S float64) float64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=401886137594615
+    // Constraints:
+    //      1   ≤ N  ≤ 4,000    N is the number of parcels
+    //      0   ≤ Vi ≤ 1,000    Vi is the value of a parcel
+    //      1   ≤ C  ≤ 1,000    C is the cost the enter a room
+    //      0.0 ≤ S   ≤ 1.0     S is the probability the content of the mailroom is stolen
+    // Complexity: O(N^2)
+
 	if S == 0 {
 		return std.Accumulate(V, 0.0) - float64(C)
 	}

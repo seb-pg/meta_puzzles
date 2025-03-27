@@ -13,6 +13,13 @@
 package l4_conveyor_chaos
 
 func getMinExpectedHorizontalTravelDistance(N int32, H []int32, A []int32, B []int32) float64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=280063030479374
+    // Constraints :
+    //    1 ≤ N ≤ 500, 000
+    //    1 ≤ Hi ≤ 999, 999
+    //    1 ≤ Ai < Bi ≤ 1, 000, 000
+    // Complexity: O(N * log(N))
+
 	return 0.0
 }
 

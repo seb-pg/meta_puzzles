@@ -28,6 +28,14 @@ func (t Tunnel) length() int64 {
 }
 
 func getSecondsElapsed(C int64, N int32, A []int64, B []int64, K int64) int64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1492699897743843
+    // Constraints:
+    //      3 ≤ C ≤ 10^12       C is the circumference
+    //      1 ≤ N ≤ 500,000     N is the number of tunnels
+    //      1 ≤ Ai < Bi ≤ C     Ai and Bi are the start and end of the tunnels
+    //      1 ≤ K ≤ 10^12       K is the time spent in tunnels
+    // Complexity: O(N*log(N)), would be O(N) if tunnels were sorted
+
 	tunnels := make([]Tunnel, N)
 	for i := int32(0); i < N; i += 1 {
 		tunnels = append(tunnels, Tunnel{A[i], B[i]})

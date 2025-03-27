@@ -62,6 +62,12 @@ func add_neighbour(q PriorityQueue_t, h HeuristicFunc_t, d DistFunc_t, node Node
 }
 
 func getSecondsRequired(R int32, C int32, G [][]byte) int32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=544961100246576
+    // Constraints:
+    //      1 ≤ R,C ≤ 50
+    //      Gi,j ∈ {".", "S", "E", "#", "a"..."z"}
+    // Complexity: see A* search algorithm (https://en.wikipedia.org/wiki/A*_search_algorithm)
+
 	grid := make(GridNodeInfo_t, 0, R)
 	for j := int32(0); j < R; j += 1 {
 		row := make([]NodeInfoPtr_t, 0, C)

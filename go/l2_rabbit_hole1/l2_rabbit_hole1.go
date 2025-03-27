@@ -29,6 +29,13 @@ type Vertex struct {
 }
 
 func getMaxVisitableWebpages(N int32, L []int32) int32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=316794079975021
+    // Constraints:
+    //      2 ≤ N ≤ 500,000
+    //      1 ≤ Li ≤ N
+    //      Li ≠ i
+    //  Complexity: O(N)
+
 	// Note: as a vertex is always followed by 1 vertex, we always end up in a cycle
 	vertices := make(ListVertices_t, 0, N)
 	for i := uint32(0); i < uint32(N); i += 1 {

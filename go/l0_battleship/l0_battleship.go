@@ -18,6 +18,12 @@ import (
 )
 
 func getHitProbability(R int32, C int32, G [][]int32) float64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=3641006936004915
+    // Constraints
+    //      1 ≤ R,C ≤ 100       R,C is the number of rows,columns
+    //      0 ≤ Gi,j ≤ 1
+    // Complexity: O(N), where N=R*C
+
 	var ret int32 = 0
 	for _, row := range G {
 		for _, elt := range row {

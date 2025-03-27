@@ -15,6 +15,12 @@ package l2_scoreboard_interference2
 import "meta_puzzles/test"
 
 func getMinProblemCount(N int32, S []int32) int32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=503122501113518
+    // Constraints:
+    //      1 ≤ N ≤ 500,000
+    //      1 ≤ i ≤ 1,000,000,000
+    // Complexity: O(N)
+
 	max_score := int32(0)
 	second_max_score := int32(0)
 	two_remainder := int32(0)

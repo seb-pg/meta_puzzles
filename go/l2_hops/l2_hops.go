@@ -18,6 +18,13 @@ import (
 )
 
 func getSecondsRequired(N int64, F int32, P []int64) int64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=977526253003069
+    // Constraints:
+    //      2 ≤ N ≤ 10^12
+    //      1 ≤ F ≤ 500,000
+    //      1 ≤ Pi ≤ N−1
+    // Complexity: O(N), but could be O(1) if P was sorted
+
 	// When you think about it, the solution is very simple!
 	if len(P) == 0 {
 		return 0

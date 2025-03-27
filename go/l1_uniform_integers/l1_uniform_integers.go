@@ -36,6 +36,13 @@ func ones(log_value int) int64 {
 }
 
 func getUniformIntegerCountInInterval(A int64, B int64) int32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=228269118726856
+    // Constraints:
+    //      1 ≤ A ≤ B ≤ 10^12
+    // Complexity: O(log(max(A, B)))
+    //      logarithmic on the number of digits to represent the integers
+    //      The python version works using integer<->string conversion, which is not great
+
 	// Each of the following lines is O(log(max(A, B)))
 	len_a := len_str(A)
 	len_b := len_str(B)

@@ -45,6 +45,13 @@ func insert_solution(new_solutions solutions_t, N int32, target int32, dial1 int
 }
 
 func getMinCodeEntryTime(N int32, M int32, C []int32) int64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1637008989815525
+    // Constraints:
+    //      3 ≤ N ≤ 1,000,000,000   N is the number of integers
+    //      1 ≤ M ≤ 3,000           M is the number of locks
+    //      1 ≤ Ci ≤ N              Ci is the combination
+    // Complexity: O(M^2)
+
 	if len(C) == 0 {
 		return 0
 	}

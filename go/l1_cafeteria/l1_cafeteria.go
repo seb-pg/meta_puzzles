@@ -18,6 +18,14 @@ import (
 )
 
 func getMaxAdditionalDinersCount(N int64, K int64, M int32, S []int64) int64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=203188678289677
+    // Constraints
+    //      1 ≤ N ≤ 10^15       N is the number of seats
+    //      1 ≤ K ≤ N           K is the number of empty seats needed between occupied seats
+    //      1 ≤ M ≤ 500,000     M is the number of diners
+    //      1 ≤ Si ≤ N          Si is a seat
+    // Complexity: O(M*log(M)), but the complexity could be O(M) if S was sorted
+
 	d := K + 1
 	taken := make([]int64, 0, len(S)+2)
 	taken = append(taken, 0-K)

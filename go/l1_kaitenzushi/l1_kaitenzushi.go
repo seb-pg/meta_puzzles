@@ -15,6 +15,13 @@ package l1_kaitenzushi
 import "meta_puzzles/test"
 
 func getMaximumEatenDishCount(N int32, D []int32, K int32) int32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=958513514962507
+    // Constraints
+    //      1 ≤ N ≤ 500,000         N is the number of dishes
+    //      1 ≤ K ≤ N               K is the number of previous dishes needed to be different
+    //      1 ≤ Di ≤ 1,000,000      Di is a dish
+    // Complexity: O(N) ~ O(max(N, 1_000_001))   (as asymptotically, N -> +inf)
+
 	eaten := make([]bool, 1_000_001)
 	last_eaten := make([]uint, K, K)
 	oldest_eaten := int32(0)

@@ -22,6 +22,12 @@ type Counts struct {
 }
 
 func _getArtisticPhotographCount[T int64 | int32](N int32, C string, X int32, Y int32) T {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=156565259776376
+    // Constraints
+    //      1 ≤ N ≤ 200         N is the number of cells in a row
+    //      1 ≤ X ≤ Y ≤ N       X,Y are the distance between a photograph and an actor
+    // Complexity: O(N) ~ O(N * (Y-X+1)) because Y-X << N
+
 	w := Y + 1
 	count := Counts{0, 0}
 	counts := make([]Counts, 0, len(C)+int(w*2))

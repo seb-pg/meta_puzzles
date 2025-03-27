@@ -55,6 +55,15 @@ func maximize_damage(N uint32, H []int32, D []int32, info *DamageInfo) bool {
 }
 
 func getMaxDamageDealt(N int32, H []int32, D []int32, B int32) float64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=149169347195386
+    // Constraints :
+    //      2 ≤ N  ≤ 500,000
+    //      1 ≤ Hi ≤ 1,000,000,000
+    //      1 ≤ Di ≤ 1,000,000,000
+    //      1 ≤ B  ≤ 1,000,000,000
+    // Complexity: O(N^2)
+
+    // we are maximizing H[i] * D[i] + H[i] * D[j] + H[j] * D[j] where i < j
 	damage_infos := make([]DamageInfo, 0) // note: no reserve() here
 	for _, order := range [2]uint32{0, 1} {
 		damage_info := DamageInfo{order, [2]uint32{0, 0}, 0}
