@@ -13,6 +13,12 @@
 #![allow(non_snake_case)]
 
 pub fn getHitProbability(R: i32, C: i32, G: &Vec<Vec<i32>>) -> f64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=3641006936004915
+    // Constraints
+    //      1 ≤ R,C ≤ 100       R,C is the number of rows,columns
+    //      0 ≤ Gi,j ≤ 1
+    // Complexity: O(N), where N=R*C
+
     let sum = G.iter().fold(0, |acc, row| acc + row.iter().sum::<i32>());
     let div = R * C;
     return (sum as f64) / (div as f64);

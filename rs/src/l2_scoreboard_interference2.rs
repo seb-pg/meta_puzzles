@@ -13,6 +13,12 @@
 #![allow(non_snake_case)]
 
 pub fn getMinProblemCount(_N: i32, S: &Vec<i32>) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=503122501113518
+    // Constraints:
+    //      1 ≤ N ≤ 500,000
+    //      1 ≤ i ≤ 1,000,000,000
+    // Complexity: O(N)
+
     let mut max_score = 0;
     let mut second_max_score = 0;
     let mut two_remainder = 0;

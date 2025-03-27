@@ -60,6 +60,13 @@ fn insert_solution(new_solutions: &mut SolutionsT, N: i32, target: i32, dial1: i
 }
 
 pub fn getMinCodeEntryTime(N: i32, _M: i32, C: &Vec<i32>) -> i64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1637008989815525
+    // Constraints:
+    //      3 ≤ N ≤ 1,000,000,000   N is the number of integers
+    //      1 ≤ M ≤ 3,000           M is the number of locks
+    //      1 ≤ Ci ≤ N              Ci is the combination
+    // Complexity: O(M^2)
+
     if C.is_empty() {
         return 0;
     }

@@ -13,6 +13,13 @@
 #![allow(non_snake_case)]
 
 pub fn getMinimumSecondsRequired(N: i32, R: &Vec<i32>, A: i32, B: i32) -> i64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=290955626029019
+    // Constraints :
+    //      1 ≤ N    ≤ 50
+    //      1 ≤ Ri   ≤ 1,000,000,000
+    //      1 ≤ A, B ≤ 100
+    // Complexity: O(N ^ 2)
+
     use std::cmp;
 
     if N == 0 || R.is_empty() {

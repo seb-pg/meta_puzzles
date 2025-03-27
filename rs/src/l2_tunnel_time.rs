@@ -58,6 +58,14 @@ impl PartialEq for Tunnel {
 }
 
 pub fn getSecondsElapsed(C: i64, N: i32, A: &Vec<i64>, B: &Vec<i64>, K: i64) -> i64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1492699897743843
+    // Constraints:
+    //      3 ≤ C ≤ 10^12       C is the circumference
+    //      1 ≤ N ≤ 500,000     N is the number of tunnels
+    //      1 ≤ Ai < Bi ≤ C     Ai and Bi are the start and end of the tunnels
+    //      1 ≤ K ≤ 10^12       K is the time spent in tunnels
+    // Complexity: O(N*log(N)), would be O(N) if tunnels were sorted
+
     let mut tunnels = Vec::<Tunnel>::with_capacity(N as usize);
     for (&a, &b) in A.iter().zip(B.iter()) {
         tunnels.push(Tunnel{ a: a, b: b });

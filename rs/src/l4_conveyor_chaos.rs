@@ -13,5 +13,13 @@
 
 #![allow(non_snake_case)]
 
+// https://www.metacareers.com/profile/coding_puzzles/?puzzle=280063030479374
+// Constraints :
+//    1 ≤ N ≤ 500, 000
+//    1 ≤ Hi ≤ 999, 999
+//    1 ≤ Ai < Bi ≤ 1, 000, 000
+// Complexity: O(N * log(N))
+
+
 
 // TODO: uses smart pointers

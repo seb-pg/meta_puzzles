@@ -13,6 +13,13 @@
 #![allow(non_snake_case)]
 
 pub fn getMaximumEatenDishCount(_N: i32, D: &Vec<i32>, K: i32) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=958513514962507
+    // Constraints
+    //      1 ≤ N ≤ 500,000         N is the number of dishes
+    //      1 ≤ K ≤ N               K is the number of previous dishes needed to be different
+    //      1 ≤ Di ≤ 1,000,000      Di is a dish
+    // Complexity: O(N) ~ O(max(N, 1_000_001))   (as asymptotically, N -> +inf)
+
     // The following is O(1_000_001)
     let mut eaten: Vec<bool> = vec![false; 1_000_001];
 

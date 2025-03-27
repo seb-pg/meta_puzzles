@@ -55,6 +55,14 @@ fn maximize_damage(N: i32, H: &Vec<i32>, D: &Vec<i32>, info: &mut DamageInfo) ->
 }
 
 pub fn getMaxDamageDealt(N: i32, H: &Vec<i32>, D: &Vec<i32>, B: i32) -> f64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=149169347195386
+    // Constraints :
+    //      2 ≤ N  ≤ 500,000
+    //      1 ≤ Hi ≤ 1,000,000,000
+    //      1 ≤ Di ≤ 1,000,000,000
+    //      1 ≤ B  ≤ 1,000,000,000
+    // Complexity: O(N^2)
+
     let mut damage_infos = Vec::<DamageInfo>::new();
     for order in 0..2 {
         let mut damage_info = DamageInfo::new(order);

@@ -39,6 +39,13 @@ fn get_next(v: &Vertex) -> VertexSP {
 }
 
 pub fn getMaxVisitableWebpages(N: i32, L: &Vec<i32>) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=316794079975021
+    // Constraints:
+    //      2 ≤ N ≤ 500,000
+    //      1 ≤ Li ≤ N
+    //      Li ≠ i
+    //  Complexity: O(N)
+
     use std::cmp;
 
     let _N = N as usize;

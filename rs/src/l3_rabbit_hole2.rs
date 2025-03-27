@@ -314,6 +314,14 @@ fn dag_max_len(vertices: &ListVerticesT) -> IndexT {
 }
 
 pub fn getMaxVisitableWebpages(_N: i32, M: i32, A: &Vec<i32>, B: &Vec<i32>) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=254501763097320
+    // Constraints :
+    //      2 ≤ N ≤ 500,000   N different web pages
+    //      1 ≤ M ≤ 500,000   M links present across the pages
+    //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Aiand links to a different page Bi
+    //      Ai ≠ Bi           a page cannot link to itself
+    //      Complexity: O(V + E * log(E))  because of call to keep_unique()
+
     if A.is_empty() || B.is_empty() {
         return 0;
     }

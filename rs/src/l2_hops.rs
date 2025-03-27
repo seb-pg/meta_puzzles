@@ -13,6 +13,13 @@
 #![allow(non_snake_case)]
 
 pub fn getSecondsRequired(N: i64, _F: i32, P: &Vec<i64>) -> i64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=977526253003069
+    // Constraints:
+    //      2 ≤ N ≤ 10^12
+    //      1 ≤ F ≤ 500,000
+    //      1 ≤ Pi ≤ N−1
+    // Complexity: O(N), but could be O(1) if P was sorted
+
     if P.is_empty() {
         return 0;
     }

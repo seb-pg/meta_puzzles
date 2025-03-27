@@ -13,6 +13,13 @@
 #![allow(non_snake_case)]
 
 pub fn getMinCodeEntryTime(N: i32, _M: i32, C: &Vec<i32>) -> i64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=990060915068194
+    // Constraints
+    //      3 ≤ N ≤ 50,000,000      N is the number of integers
+    //      1 ≤ M ≤ 1,000           M is the number of locks
+    //      1 ≤ Ci ≤ N              Ci is the combination
+    // Complexity: O(M)
+
     use std::cmp;
 
     let mut pos: i32 = 1;

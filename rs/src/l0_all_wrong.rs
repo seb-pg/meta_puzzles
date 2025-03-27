@@ -13,6 +13,12 @@
 #![allow(non_snake_case)]
 
 pub fn getWrongAnswers(_N: i32, C: &str) -> String {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1082217288848574
+    // Constraints
+    //   1 ≤ N ≤ 100         N is the number of characters of string C
+    //   Ci ∈ { "A", "B" }
+    // Complexity: O(N)
+
     // We are not using something like match c { 'A' => 'B', 'B' => 'A', _ => c }
 
     // Alternative 1

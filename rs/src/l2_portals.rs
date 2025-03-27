@@ -116,6 +116,12 @@ fn add_neighbour(q: &mut PriorityQueueT, h: &HeuristicFuncT, d: &DistFuncT,
 }
 
 pub fn getSecondsRequired(R: i32, C: i32, G: &Vec<Vec<char>>) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=544961100246576
+    // Constraints:
+    //      1 ≤ R,C ≤ 50
+    //      Gi,j ∈ {".", "S", "E", "#", "a"..."z"}
+    // Complexity: see A* search algorithm (https://en.wikipedia.org/wiki/A*_search_algorithm)
+
     // set up grid and portal map
     let mut grid: GridNodeInfoT = Vec::with_capacity(R as usize);
     for j in 0..R {

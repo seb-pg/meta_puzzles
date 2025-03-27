@@ -13,6 +13,12 @@
 #![allow(non_snake_case)]
 
 pub fn getMinProblemCount(_N: i32, S: &Vec<i32>) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=348371419980095
+    // Constraints
+    //      1 ≤ N ≤ 500,000             N is the number of scores
+    //      1 ≤ Si ≤ 1,000,000,000      Si is a score
+    // Complexity: O(N)
+
     use std::cmp;
 
     let mut min_number_of_twos: i32 = 0;

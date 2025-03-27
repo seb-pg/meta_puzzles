@@ -28,6 +28,14 @@ impl Both for Result {
 }
 
 pub fn getMaxExpectedProfit(_N: i32, V: &Vec<i32>, C: i32, S: f64) -> f64 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=401886137594615
+    // Constraints:
+    //      1   ≤ N  ≤ 4,000    N is the number of parcels
+    //      0   ≤ Vi ≤ 1,000    Vi is the value of a parcel
+    //      1   ≤ C  ≤ 1,000    C is the cost the enter a room
+    //      0.0 ≤ S   ≤ 1.0     S is the probability the content of the mailroom is stolen
+    // Complexity: O(N^2)
+
     if S == 0.0 {
         let mut ret: f64 = 0.0;
         for &Vi in V {

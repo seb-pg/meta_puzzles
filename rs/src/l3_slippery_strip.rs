@@ -84,6 +84,13 @@ fn get_nb_coins_right_then_down3(row: &Vec<char>, _count_down: i32, _count_right
 }
 
 pub fn getMaxCollectableCoins(_R: i32, C: i32, G: &Vec<Vec<char>>) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=2881982598796847
+    // Constraints
+    //      2 ≤ R, C ≤ 400, 000
+    //      R∗C ≤ 800, 000
+    //      Gi, j ∈{ ".", "*", ">", "v" }
+    //      Complexity: O(N), where N = R * C
+
     let mut counts: CharCounterT = [0; 256];
     let mut res = 0;
     for i in 0..G.len() {

@@ -15,6 +15,12 @@
 pub fn _getArtisticPhotographCount<T>(N: i32, C: &str, X: i32, Y: i32) -> T
     where T: std::default::Default + From<i32> + std::ops::AddAssign + std::ops::Mul<Output=T>
 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=156565259776376
+    // Constraints
+    //      1 ≤ N ≤ 200         N is the number of cells in a row
+    //      1 ≤ X ≤ Y ≤ N       X,Y are the distance between a photograph and an actor
+    // Complexity: O(N) ~ O(N * (Y-X+1)) because Y-X << N
+
     type Index = usize;
     let _N = N as Index;
     let _X = X as Index;

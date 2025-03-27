@@ -13,6 +13,11 @@
 #![allow(non_snake_case)]
 
 pub fn getSum(A: i32, B: i32, C: i32) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=513411323351554
+    // Constraints
+    //   1 ≤ A,B,C ≤ 100
+    // Complexity: O(1)
+
     return A + B + C;
 }
 

@@ -13,6 +13,12 @@
 #![allow(non_snake_case)]
 
 pub fn getMinimumDeflatedDiscCount(_N: i32, R: &Vec<i32>) -> i32 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=183894130288005
+    // Constraints
+    //      1 ≤ N  ≤ 50                 N is the number of inflatable discs
+    //      1 ≤ Ri ≤ 1,000,000,000      Ri is a disc radius
+    // Complexity: O(N)
+
     use std::cmp;
 
     let mut nb: i32 = 0;
