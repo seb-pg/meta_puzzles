@@ -80,7 +80,7 @@ While I have had to write code in all sort of languages (including some obscure 
 * "sortedcontainers" has been used to provide "binary tree" like containers/collections needed to solve l4_conveyor_chaos and l4_mathematical_art.
 
 
-<b><u>cpp17/*</u></b>
+<b><u>cpp17/*</u> (C+++17)</b>
 * C\++20 (or C\++23) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
 * The code is written using a "plausible" medium developer style (it just works with basic C++ knowledge), and not much emphasis is spent on optimisation (e.g. using polymorphic allocator would be an obvious low hanging fruit).
 * Meta passes containers, such as std::vector or std::string by value, rather than reference.  The signature are kept but all functions are calling a more more C\++ style function using reference, which can be used for performance testing.
@@ -96,34 +96,37 @@ While I have had to write code in all sort of languages (including some obscure 
 * Solution l2_missing_mail and l3_rabbit_hole2 will not be working with .Net Code 3.1, respectively because MaxBy and CollectionsMarshal are missing.
 
 
-<b><u>go/*</u></b>
+<b><u>go/*</u> (Golang)</b>
 * Solutions l2_portals, l4_conveyor_chaos and l4_mathematical_art are missing because an equivalent of [C\++] std::set is needed.
 
 
 <b><u>rs/*</u> (Rust)</b>
 * The solutions provided are passing all Meta's tests on their website. Meta's basic tests and some additional are also provided in the source code.
 * l4_mathematical_art is provided, however it is using BTreeSet. The implementation relies on BTreeSet::range::count() instead of using std::lower_bound/std::upper_bound ("nightly-only experimental API"). A distance function is introduce to calculate the distance between the 2 cursors and relies on BTreeSet::range::count().  It is not clear at the time of writing what the time complexity of this function is (the C++ optimisation to optimise the O(n) std::distance function are not used).
-* l4_conveyor_chaos is still missing but should be doable.
+* l4_conveyor_chaos is still missing but should be doable (Will probably be done at some point).
 
 
-<b><u>kotlin/*</u></b>
+<b><u>kotlin/*</u> (Kotlin)</b>
 * Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as  Array<Array<String>>.   The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
 * Solution l4_conveyor_chaos is provided but is hardcoded to return 0 for N > 200,000 the Kotlin solution seems too slow to run in the given time on Meta's website.
 * Solution for l3_rabbit_hole2 and l4_mathematical_art is missing so far.
 
 
-<b><u>scala/*</u></b>
+<b><u>scala/*</u> (Scala)</b>
 * Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
 
 
-<b><u>java/*</u></b>
+<b><u>java/*</u> (Java)</b>
 * Solution l2_rotary_lock2 is working on Meta's website, finishing in the given time, which suggest the Meta's Kotlin environment is an issue (both languages are using JVM, which is why this test was done in both languages: the JVM does not appear to be the issue).
 
 
-<b><u>js/*</u></b>
+<b><u>js/*</u> (Javascript / NodeJS)</b>
 * 99% (maybe more) of the code in Javascript was a straight conversion from Python to Javascript using https://www.codeconvert.ai/ (free version).
 * I have used the website recently to convert some Python to Rust, where the Rust solution worked immediately after conversion. My estimate is it would have taken me about 30min to do the same manually.
 * I did try code conversion using the public ChatGpt website ("GPT-4o-mini variant"), and the conversion was not as good (in my opinion) but still usable.
+
+<b><u>swift/*</u> (Swift)</b>
+* This is ongoing...
 
 ----
 
