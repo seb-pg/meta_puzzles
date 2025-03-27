@@ -1,9 +1,20 @@
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
 // This was converted from Python to Javascript using https://www.codeconvert.ai/
 // Conversion did not work immediately (G.map((row, j))
 // Then
 //      You solved 16 / 31 test cases.
 //      Wrong Answer on 15 test cases
-
 
 class NodeInfo {
     constructor(row, col, nodeType, distance = Number.MAX_SAFE_INTEGER, source = null) {
@@ -38,6 +49,12 @@ function addNeighbour(q, h, d, node, neighbour) {
 }
 
 function getSecondsRequired(R, C, G) {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=544961100246576
+    // Constraints:
+    //      1 ≤ R,C ≤ 50
+    //      Gi,j ∈ {".", "S", "E", "#", "a"..."z"}
+    // Complexity: see A* search algorithm (https://en.wikipedia.org/wiki/A*_search_algorithm)
+
     // codeconvert does not "map" correctly string
     //const grid = G.map((row, j) => row.map((elt, i) => new NodeInfo(j, i, elt)));
     const grid = G.map((row, j) => Array.from(row).map((elt, i) => new NodeInfo(j, i, elt)));

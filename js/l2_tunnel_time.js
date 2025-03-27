@@ -1,6 +1,26 @@
+// meta_puzzles by Sebastien Rubens
+//
+// Please go to https://github.com/seb-pg/meta_puzzles/README.md
+// for more information
+//
+// To the extent possible under law, the person who associated CC0 with
+// meta_puzzles has waived all copyright and related or neighboring rights
+// to meta_puzzles.
+//
+// You should have received a copy of the CC0 legalcode along with this
+// work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+
 // This was converted from Python to Javascript using https://www.codeconvert.ai/
 
 function getSecondsElapsed(C, N, A, B, K) {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1492699897743843
+    // Constraints:
+    //      3 ≤ C ≤ 10^12       C is the circumference
+    //      1 ≤ N ≤ 500,000     N is the number of tunnels
+    //      1 ≤ Ai < Bi ≤ C     Ai and Bi are the start and end of the tunnels
+    //      1 ≤ K ≤ 10^12       K is the time spent in tunnels
+    // Complexity: O(N*log(N)), would be O(N) if tunnels were sorted
+
     const tunnel_time_total = A.reduce((sum, a, i) => sum + (B[i] - a), 0); // O(N)
     const number_of_complete_track = Math.floor(K / tunnel_time_total); // O(1)
     let total_time_left = K - number_of_complete_track * tunnel_time_total; // O(1)
