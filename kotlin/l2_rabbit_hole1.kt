@@ -23,6 +23,13 @@ class Vertex(
 typealias ListVerticesT = ArrayList<Vertex>;
 
 fun getMaxVisitableWebpages(N: Int, L: Array<Int>): Int {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=316794079975021
+    // Constraints:
+    //      2 ≤ N ≤ 500,000
+    //      1 ≤ Li ≤ N
+    //      Li ≠ i
+    //  Complexity: O(N)
+
     val vertices = ListVerticesT(N);
     for (i in 0 until N) {
         vertices.add(Vertex(i + 1));

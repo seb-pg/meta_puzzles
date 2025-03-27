@@ -85,6 +85,13 @@ fun _getMaxCollectableCoins(R: Int, C: Int, G: Array<Array<Char>>): Int {
 }
 
 fun getMaxCollectableCoins(R: Int, C: Int, G: Array<Array<String>>): Int {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=2881982598796847
+    // Constraints
+    //      2 ≤ R, C ≤ 400, 000
+    //      R∗C ≤ 800, 000
+    //      Gi, j ∈{ ".", "*", ">", "v" }
+    //      Complexity: O(N), where N = R * C
+
     val H = ArrayList<Array<Char>>(G.size);
     for (in_row in G)
     {

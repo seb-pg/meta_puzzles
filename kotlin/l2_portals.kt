@@ -142,6 +142,12 @@ fun _getSecondsRequired(R: Int, C: Int, G: Array<Array<Char>>): Int {
 }
 
 fun getSecondsRequired(R: Int, C: Int, G: Array<Array<String>>): Int {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=544961100246576
+    // Constraints:
+    //      1 ≤ R,C ≤ 50
+    //      Gi,j ∈ {".", "S", "E", "#", "a"..."z"}
+    // Complexity: see A* search algorithm (https://en.wikipedia.org/wiki/A*_search_algorithm)
+
     val H = ArrayList<Array<Char>>(G.size);
     for (in_row in G)
     {

@@ -250,6 +250,13 @@ fun calc_dist(N: Int, intervals: ListIntervals): Result
 }
 
 fun getMinExpectedHorizontalTravelDistance(N: Int, H: Array<Int>, A: Array<Int>, B: Array<Int>): Double {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=280063030479374
+    // Constraints :
+    //    1 ≤ N ≤ 500, 000
+    //    1 ≤ Hi ≤ 999, 999
+    //    1 ≤ Ai < Bi ≤ 1, 000, 000
+    // Complexity: O(N * log(N))
+
     val params = Params();
     val intervals = build_intervals(N, H, A, B, params);  // O(N)
     add_entries(N, intervals);  // O(N * log(N))

@@ -13,6 +13,12 @@
 package l2_scoreboard_interference2
 
 fun getMinProblemCount(N: Int, S: Array<Int>): Int {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=503122501113518
+    // Constraints:
+    //      1 ≤ N ≤ 500,000
+    //      1 ≤ i ≤ 1,000,000,000
+    // Complexity: O(N)
+
     var max_score = 0;
     var second_max_score = 0;
     var two_remainder = 0;

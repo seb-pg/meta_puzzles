@@ -13,6 +13,12 @@
 package l0_all_wrong
 
 fun getWrongAnswers(N: Int, C: String): String {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1082217288848574
+    // Constraints
+    //   1 ≤ N ≤ 100         N is the number of characters of string C
+    //   Ci ∈ { "A", "B" }
+    // Complexity: O(N)
+
     val ret = StringBuilder();
     for (c in C)
         ret.append(if (c == 'A') 'B' else 'A');

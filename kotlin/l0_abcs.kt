@@ -13,6 +13,11 @@
 package l0_abcs
 
 fun getSum(A: Int, B: Int, C: Int): Int {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=513411323351554
+    // Constraints
+    //   1 ≤ A,B,C ≤ 100
+    // Complexity: O(1)
+
 	return A + B + C
 }
 

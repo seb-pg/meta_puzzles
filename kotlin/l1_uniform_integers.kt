@@ -35,6 +35,13 @@ fun ones(log_value: Int): Long {
 }
 
 fun getUniformIntegerCountInInterval(A: Long, B: Long): Int {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=228269118726856
+    // Constraints:
+    //      1 ≤ A ≤ B ≤ 10^12
+    // Complexity: O(log(max(A, B)))
+    //      logarithmic on the number of digits to represent the integers
+    //      The python version works using integer<->string conversion, which is not great
+
     // Each of the following lines is O(log(max(A, B)))
     val len_a = len_str(A);
     val len_b = len_str(B);

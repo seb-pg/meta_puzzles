@@ -14,6 +14,12 @@ package l2_director_photography2
 
 fun <T> _getArtisticPhotographCount(_N: Int, C: String, X: Int, Y: Int): T
 {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=156565259776376
+    // Constraints
+    //      1 ≤ N ≤ 200         N is the number of cells in a row
+    //      1 ≤ X ≤ Y ≤ N       X,Y are the distance between a photograph and an actor
+    // Complexity: O(N) ~ O(N * (Y-X+1)) because Y-X << N
+
     val _X = X;
     val _Y = Y;
 

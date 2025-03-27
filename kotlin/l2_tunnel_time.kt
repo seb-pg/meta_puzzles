@@ -22,6 +22,14 @@ class Tunnel(
 }
 
 fun getSecondsElapsed(C: Long, N: Int, A: Array<Long>, B: Array<Long>, K: Long): Long {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1492699897743843
+    // Constraints:
+    //      3 ≤ C ≤ 10^12       C is the circumference
+    //      1 ≤ N ≤ 500,000     N is the number of tunnels
+    //      1 ≤ Ai < Bi ≤ C     Ai and Bi are the start and end of the tunnels
+    //      1 ≤ K ≤ 10^12       K is the time spent in tunnels
+    // Complexity: O(N*log(N)), would be O(N) if tunnels were sorted
+
     val tunnels = ArrayList<Tunnel>(N);
     for ((a, b) in A.zip(B))
         tunnels.add(Tunnel(a, b));

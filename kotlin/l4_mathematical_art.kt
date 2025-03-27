@@ -13,6 +13,13 @@
 package l4_mathematical_art
 
 fun getPlusSignCount(N: Int, L: Array<Int>, D: String): Long {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=587690079288608
+    // Constraints:
+    //   2 ≤ N ≤ 2,000
+    //   1 ≤ Li ≤ 1,000,000,000
+    //   Di ∈ {U, D, L, R}
+    // Complexity: O(N*log(N))
+
     return 0L;
 }
 

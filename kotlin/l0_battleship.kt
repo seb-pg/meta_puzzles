@@ -13,6 +13,12 @@
 package l0_battleship
 
 fun getHitProbability(R: Int, C: Int, G: Array<Array<Int>>): Double {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=3641006936004915
+    // Constraints
+    //      1 ≤ R,C ≤ 100       R,C is the number of rows,columns
+    //      0 ≤ Gi,j ≤ 1
+    // Complexity: O(N), where N=R*C
+
     val numerator: Double = G.fold(0.0) {sum, row -> sum + row.fold(0.0) {sum, elt -> sum + elt } };
     return numerator / (R * C).toDouble();
 }

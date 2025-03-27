@@ -49,6 +49,14 @@ fun maximize_damage(N: Int, H: Array<Int>, D: Array<Int>, info: DamageInfo): Boo
 }
 
 fun getMaxDamageDealt(N: Int, H: Array<Int>, D: Array<Int>, B: Int): Double {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=149169347195386
+    // Constraints :
+    //      2 ≤ N  ≤ 500,000
+    //      1 ≤ Hi ≤ 1,000,000,000
+    //      1 ≤ Di ≤ 1,000,000,000
+    //      1 ≤ B  ≤ 1,000,000,000
+    // Complexity: O(N^2)
+
     val damage_infos = arrayListOf<DamageInfo>();  // note: no reserve() here
     for (order in arrayOf<Int>( 0, 1 ))
     {

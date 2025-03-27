@@ -13,6 +13,14 @@
 package l1_cafeteria
 
 fun getMaxAdditionalDinersCount(N: Long, K: Long, _M: Int, S: Array<Long>): Long {
+    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=203188678289677
+    // Constraints
+    //      1 ≤ N ≤ 10^15       N is the number of seats
+    //      1 ≤ K ≤ N           K is the number of empty seats needed between occupied seats
+    //      1 ≤ M ≤ 500,000     M is the number of diners
+    //      1 ≤ Si ≤ N          Si is a seat
+    // Complexity: O(M*log(M)), but the complexity could be O(M) if S was sorted
+
     val d: Long = K + 1;
 
     val taken = ArrayList<Long>(S.size + 1);
