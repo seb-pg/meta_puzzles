@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <array>
 #include <cstdint>  // int**_t
+#include <memory>
 #include <string>
 #include <set>
 #include <vector>

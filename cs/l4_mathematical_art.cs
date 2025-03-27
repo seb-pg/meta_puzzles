@@ -97,6 +97,13 @@ class Solution {
     }
 
     public long getPlusSignCount(int N, int[] L, string D) {
+        // https://www.metacareers.com/profile/coding_puzzles/?puzzle=587690079288608
+        // Constraints:
+        //   2 ≤ N ≤ 2,000
+        //   1 ≤ Li ≤ 1,000,000,000
+        //   Di ∈ {U, D, L, R}
+        // Complexity: O(N*log(N))
+
         return 0;
     }
 
