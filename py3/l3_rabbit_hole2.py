@@ -32,7 +32,7 @@ class Vertex:
     inputs: int = 0  # number of inputs for a given node
     max_len: int = 0  # used for memoization of max_len at node level
 
-    def __hash__(self):  # for sortedcontainers.SortedSet
+    def __hash__(self):  # used in set()
         return hash(self.nb)
 
     def __repr__(self):
