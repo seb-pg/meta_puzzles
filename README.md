@@ -33,11 +33,11 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(2,&nbsp;1)  | 1&nbsp;(1)  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
 | Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete (see comments) |
-| Javascript    | nodejs v18.19.1     | 21     | 3  | 7  | 8  | 3  |    | Started |
+| Javascript    | nodejs v18.19.1     | 21     | 3  | 7  | 8  | 3  |    | Complete |
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1,&nbsp;1)  | 1&nbsp;(0) | Complete |
 | Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
 | Scala         | 3.2.1               | 21     | 3  | 7  | 8&nbsp;(7,&nbsp;1) | 3  | 0  | Complete |
-| Swift         |                     |        |    |    |    |    |    | Not started |
+| Swift         |                     | 13     | 3  | 6  | 4  |    |    | started |
 
 *Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
 
@@ -52,6 +52,9 @@ Scala and Java are expected to be able to implement solutions to all problems.  
 Kotlin solutions are all working using the test provided, however, Meta's website introduces errors in the inputs (portals, slippery_strip) introducing a zero character at the beginning of each row and shifting data, while mot changing the expected solution (Meta was notified). Some other solutions are not working on Meta's website, but given they are ported from other languages working on Meta's website, they are assumed to be correct.
 
 Javascript solutions were initially generated using https://www.codeconvert.ai/. Some minors changes were needed for some puzzles but most of it was a great time saver. I have been using codeconvert recently to translate Python to Rust, and I must say that while the tool is failing to convert some simple things (e.g. tuple)  the tool is rather impressive overall.
+l3_rabbit_hole2 does not finish on time, and l4 puzzles are unlikely to be possible.
+
+Swift solutions were initially generated using https://www.codeconvert.ai/. Most of the conversion worked immediately after conversion.
 
 ----
 
