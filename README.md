@@ -51,10 +51,10 @@ Scala and Java are expected to be able to implement solutions to all problems.  
 
 Kotlin solutions are all working using the test provided, however, Meta's website introduces errors in the inputs (portals, slippery_strip) introducing a zero character at the beginning of each row and shifting data, while mot changing the expected solution (Meta was notified). Some other solutions are not working on Meta's website, but given they are ported from other languages working on Meta's website, they are assumed to be correct.
 
-Javascript solutions were initially generated using https://www.codeconvert.ai/. Some minors changes were needed for some puzzles but most of it was a great time saver. I have been using codeconvert recently to translate Python to Rust, and I must say that while the tool is failing to convert some simple things (e.g. tuple)  the tool is rather impressive overall.
+Javascript solutions were initially generated using [codeconvert.ai](https://www.codeconvert.ai/). Some minors changes were needed for some puzzles but most of it was a great time saver. I have been using codeconvert recently to translate Python to Rust, and I must say that while the tool is failing to convert some simple things (e.g. tuple)  the tool is rather impressive overall.
 l3_rabbit_hole2 does not finish on time, and l4 puzzles are unlikely to be possible.
 
-Swift solutions were initially generated using https://www.codeconvert.ai/. Most of the conversion worked immediately after conversion.
+Swift solutions were initially generated using [codeconvert.ai](https://www.codeconvert.ai/). Most of the conversion worked immediately after conversion.
 
 ----
 
