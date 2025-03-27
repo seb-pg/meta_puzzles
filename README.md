@@ -30,7 +30,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Total         | Number&nbsp;of&nbsp;problems  | 24     | 3  | 7  | 8  | 4  | 2  | |
 | C\++17        | GCC,&nbsp;MSVC      | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
 | Python&nbsp;3 |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete, but uses sortedcontainers |
-| C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 23&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(3)  | 1&nbsp;(0)  | Complete |
+| C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 23&nbsp;(21 or 20) | 3  | 7  | 8  | 4&nbsp;(3 or 2)  | 1&nbsp;(0)  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
 | Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete (see comments) |
 | Javascript    | nodejs v18.19.1     | 22&nbsp;(21)  | 3  | 7  | 8  | 4&nbsp;(3)  |    | Complete |
@@ -94,6 +94,7 @@ While I have had to write code in all sort of languages (including some obscure 
 <b><u>cs/*</u> (C#)</b>
 * Solutions l4_conveyor_chaos and l4_mathematical_art are missing because C# does not provided a log(n) equivalent of [C\++] std::lower_bound for [C\++] std::set or std::map equivalents.
 * Solution l2_missing_mail and l3_rabbit_hole2 will not be working with .Net Code 3.1, respectively because MaxBy and CollectionsMarshal are missing.
+* l3_rabbit_hole2 is the only test not working on Meta's website
 
 
 <b><u>go/*</u> (Golang)</b>
