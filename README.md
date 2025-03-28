@@ -37,7 +37,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1)  | 1&nbsp;(0) | Complete |
 | Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
 | Scala         | 3.2.1               | 21&nbsp;(20)     | 3  | 7  | 8&nbsp;(7) | 3  | 0  | Complete |
-| Swift         | 6.0.0               | 13     | 3  | 6  | 4  |    |    | started |
+| Swift         | 6.0.0               | 17     | 3  | 6  | 7  | 1  |    | started |
 
 *Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
 
@@ -51,7 +51,7 @@ Scala and Java are expected to be able to implement solutions to all problems.  
 
 Kotlin solutions are all working using the test provided, however, Meta's website introduces errors in the inputs (portals, slippery_strip) introducing a zero character at the beginning of each row and shifting data, while mot changing the expected solution (Meta was notified). Some other solutions are not working on Meta's website, but given they are ported from other languages working on Meta's website, they are assumed to be correct.
 
-Javascript solutions were initially generated using [codeconvert.ai](https://www.codeconvert.ai/). Some minors changes were needed for some puzzles but most of it was a great time saver. I have been using codeconvert recently to translate Python to Rust, and I must say that while the tool is failing to convert some simple things (e.g. tuple)  the tool is rather impressive overall.
+Javascript solutions were initially generated using [codeconvert.ai](https://www.codeconvert.ai/). Some minors changes were needed for some puzzles but most of it was a great time saver. I have been using codeconvert recently to translate Python to Rust, and I must say that while the tool is failing to convert some simple things (e.g. tuple) the tool is rather impressive overall.
 l3_rabbit_hole2 does not finish on time, and l4 puzzles are unlikely to be possible.
 
 Swift solutions were initially generated using [codeconvert.ai](https://www.codeconvert.ai/). Most of the conversion worked immediately after conversion.
@@ -88,7 +88,7 @@ While I have had to write code in all sort of languages (including some obscure 
 * Meta only used signed integer, rather than using the correct signed/unsigned integer (e.g. distances/counts should always be positive). To make code more readable, minimum casting has been used in the code for readibility, even if sometimes, it was tempting to do the right thing in term of sign correctness.
 * While shared_ptr was not necessary to solved the problem, it was used to match the Python's code and provides an additional comparison opportunity (and provided an interesting opportunity of to compare them with Rust's std::rc::Rc).
 * l3_rabbit_hole2: iterative and recursive solutions are provided (could be interested for speed benchmark).
-* l4_mathematical_art: for GCC, the  solution can use "order_of_key" on std::set to match Python's code as std::distance in STL is linear on std::set, not logarithmic.
+* l4_mathematical_art: for GCC, the solution can use "order_of_key" on std::set to match Python's code as std::distance in STL is linear on std::set, not logarithmic.
 
 
 <b><u>cs/*</u> (C#)</b>
@@ -108,7 +108,7 @@ While I have had to write code in all sort of languages (including some obscure 
 
 
 <b><u>kotlin/*</u> (Kotlin)</b>
-* Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as  Array<Array<String>>.   The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
+* Solutions l2_portals and l3_slippery_strip should be working (all provided tests are working) but Meta's website seem to have a bug. The common pattern is that a grid of character is the input.  It could be provided as Array<String> or Array<Array<Char>> (to be the similar to the tests in other languages) but has been provided as Array<Array<String>>.  The first string of each row can be null in the data provided by Meta in their test framework, and the grids seem to be shifted on element to the right, which makes the expected result wrong on Meta's website.  Meta has been notified.
 * Solution l4_conveyor_chaos is provided but is hardcoded to return 0 for N > 200,000 the Kotlin solution seems too slow to run in the given time on Meta's website.
 * Solution for l3_rabbit_hole2 and l4_mathematical_art is missing so far.
 
@@ -133,4 +133,4 @@ While I have had to write code in all sort of languages (including some obscure 
 
 ## Notes
 
-The solutions are  provided "as is". While the author is happy to provide reasonable assistance, there is no guarantee any assistance will be provided.
+The solutions are provided "as is". While the author is happy to provide reasonable assistance, there is no guarantee any assistance will be provided.
