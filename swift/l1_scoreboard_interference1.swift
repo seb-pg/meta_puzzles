@@ -32,12 +32,23 @@ func getMinProblemCount(N: Int, S: [Int]) -> Int {
     return minNumberOfTwos + minNumberOfOnes
 }
 
-func tests() -> (getMinProblemCount: (Int, [Int]) -> Int, fn: ([Int]) -> (Int, [Int]), metaCases: [(String, [(Int, Int)])]) {
-    func fn(S: [Int]) -> (Int, [Int]) { return (S.count, S) }
-    let metaCases: [(String, [(Int, Int)])] = [
-        ("meta", [([1, 2, 3, 4, 5, 6], 4),
-                  ([4, 3, 3, 4], 3),
-                  ([2, 4, 6, 8], 4)])
+// ---------------------------------------
+
+struct TestArgsType {
+    var S: [Int]
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(S: [1, 2, 3, 4, 5, 6]), 4),
+            (TestArgsType(S: [4, 3, 3, 4]), 3),
+            (TestArgsType(S: [2, 4, 6, 8]), 4),
+        ])
     ]
-    return (getMinProblemCount, fn, metaCases)
+    let wrapper: (TestArgsType) -> RetType = { args in getMinProblemCount(N: args.S.count, S: args.S) }
+    return (wrapper, metaCases)
 }

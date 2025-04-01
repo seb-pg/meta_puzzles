@@ -25,11 +25,23 @@ func getSecondsRequired(N: Int, F: Int, P: [Int]) -> Int {
     return N - P.prefix(F).min()!
 }
 
-func tests() -> (getSecondsRequired: (Int, Int, [Int]) -> Int, fn: (Int, [Int]) -> (Int, Int, [Int]), metaCases: [(String, [(Int, Int)])]) {
-    func fn(N: Int, P: [Int]) -> (Int, Int, [Int]) { return (N, P.count, P) }
-    let metaCases: [(String, [(Int, Int)])] = [
-        ("meta", [((3, [1]), 2),
-                  ((6, [5, 2, 4]), 4)])
+// ---------------------------------------
+
+struct TestArgsType {
+    var N: Int
+    var P: [Int]
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(N: 3, P: [1]), 2),
+            (TestArgsType(N: 6, P: [5, 2, 4]), 4),
+        ])
     ]
-    return (getSecondsRequired, fn, metaCases)
+    let wrapper: (TestArgsType) -> RetType = { args in getSecondsRequired(N: args.N, F: args.P.count, P: args.P) }
+    return (wrapper, metaCases)
 }

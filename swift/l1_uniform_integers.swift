@@ -38,21 +38,45 @@ func getUniformIntegerCountInInterval(A: Int, B: Int) -> Int {
     return nb
 }
 
-func tests() -> (getUniformIntegerCountInInterval: (Int, Int) -> Int, fn: (Int, Int) -> (Int, Int), metaCases: [(String, [(Int, Int)])]) {
-    func fn(A: Int, B: Int) -> (Int, Int) { return (A, B) }
-    let metaCases: [(String, [(Int, Int)])] = [
-        ("meta", [((75, 300), 5),
-                  ((1, 9), 9),
-                  ((999999999999, 999999999999), 1)]),
-        ("extra1", [((1, 1_000_000_000_000), 108)]),
-        ("extra2", [((10, 99), 9),
-                    ((11, 98), 8),
-                    ((21, 89), 7),
-                    ((22, 88), 7),
-                    ((23, 87), 5)]),
-        ("extra3", [((11, 88), 8),
-                    ((11, 98), 8),
-                    ((11, 99), 9)])
+// ---------------------------------------
+
+struct TestArgsType {
+    var A: Int
+    var B: Int
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(A: 75, B: 300), 5),
+            (TestArgsType(A: 1, B: 9), 9),
+            (TestArgsType(A: 999999999999, B: 999999999999), 1),
+        ])
     ]
-    return (getUniformIntegerCountInInterval, fn, metaCases)
+    let extra1Cases: MetaCasesT = [
+        ("extra1", [
+            (TestArgsType(A: 1, B: 1_000_000_000_000), 108),
+        ])
+    ]
+    let extra2Cases: MetaCasesT = [
+        ("extra2", [
+            (TestArgsType(A: 10, B: 99), 9),
+            (TestArgsType(A: 11, B: 98), 8),
+            (TestArgsType(A: 21, B: 89), 7),
+            (TestArgsType(A: 22, B: 88), 7),
+            (TestArgsType(A: 23, B: 87), 5),
+        ])
+    ]
+    let extra3Cases: MetaCasesT = [
+        ("extra3", [
+            (TestArgsType(A: 11, B: 88), 8),
+            (TestArgsType(A: 11, B: 98), 8),
+            (TestArgsType(A: 11, B: 99), 9),
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getUniformIntegerCountInInterval(A: args.A, B: args.B) }
+    return (wrapper, metaCases + extra1Cases + extra2Cases + extra3Cases)
 }

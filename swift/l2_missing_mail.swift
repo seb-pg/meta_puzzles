@@ -47,18 +47,26 @@ func getMaxExpectedProfit(_ N: Int, _ V: [Int], _ C: Int, _ S: Float) -> Float {
     return Float(getMaxExpectedProfitDouble(N: N, V: V, C: C, S: Double(S)))
 }
 
-func tests() -> (getMaxExpectedProfit: (Int, [Int], Int, Double) -> Double, fn: ([Int], Int, Double) -> (Int, [Int], Int, Double), cases: [(String, [(Int, Double)])], validate: (Double, Double) -> Bool) {
-    let fn: ([Int], Int, Double) -> (Int, [Int], Int, Double) = { V, C, S in (V.count, V, C, S) }
-    let metaCases = "meta", [
-        ([10, 2, 8, 6, 4], 5, 0.0, 25.),
-        ([10, 2, 8, 6, 4], 5, 1.0, 9.),
-        ([10, 2, 8, 6, 4], 3, 0.5, 17.),
-        ([10, 2, 8, 6, 4], 3, 0.15, 20.10825),
-    ]
-    return (getMaxExpectedProfitDouble, fn, [metaCases], { abs($0 - $1) < 0.000001 })
+// ---------------------------------------
+
+struct TestArgsType {
+    var V: [Int]
+    var C: Int
+    var S: Double
 }
 
-func getSecondsElapsed(C: Int, N: Int, A: [Int], B: [Int], K: Int) -> Int {
-    // Implementation for getSecondsElapsed function
-    return 0 // Placeholder return
+typealias RetType = Double
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(V: [10, 2, 8, 6, 4], C: 5, S: 0.0), 25.0),
+            (TestArgsType(V: [10, 2, 8, 6, 4], C: 5, S: 1.0), 9.0),
+            (TestArgsType(V: [10, 2, 8, 6, 4], C: 3, S: 0.5), 17.0),
+            (TestArgsType(V: [10, 2, 8, 6, 4], C: 3, S: 0.15), 20.10825),
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getMaxExpectedProfitDouble(N: args.V.count, V: args.V, C: args.C, S: args.S) }
+    return (wrapper, metaCases)
 }

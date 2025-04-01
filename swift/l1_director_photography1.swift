@@ -43,15 +43,25 @@ func getArtisticPhotographCount(N: Int, C: String, X: Int, Y: Int) -> Int {
     return nb
 }
 
-func tests() -> ( (String, Int, Int) -> Int, (String, Int, Int) -> (Int, String, Int, Int), [[(String, Int, Int), Int]]) {
-    let fn: (String, Int, Int) -> (Int, String, Int, Int) = { C, X, Y in (C.count, C, X, Y) }
-    let meta_cases: [(String, Int, Int), Int] = [
-        (("APABA", 1, 2), 1),
-        (("APABA", 2, 3), 0),
-        ((".PBAAP.B", 1, 3), 3),
+// ---------------------------------------
+
+struct TestArgsType {
+    var C: String
+    var X: Int
+    var Y: Int
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(C: "APABA", X: 1, Y: 2), 1),
+            (TestArgsType(C: "APABA", X: 2, Y: 3), 0),
+            (TestArgsType(C: ".PBAAP.B", X: 1, Y: 3), 3),
+        ])
     ]
-    let extra1_cases: [(String, Int, Int), Int] = [
-        // (("PP.A.BB.B", 1, 3), 2),
-    ]
-    return (getArtisticPhotographCount, fn, [meta_cases, extra1_cases])
+    let wrapper: (TestArgsType) -> RetType = { args in getArtisticPhotographCount(N: args.C.count, C: args.C, X: args.X, Y: args.Y) }
+    return (wrapper, metaCases)
 }

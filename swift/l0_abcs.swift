@@ -23,10 +23,25 @@ func getSum(A: Int, B: Int, C: Int) -> Int {
     return A + B + C
 }
 
-func tests() -> (getSum: (Int, Int, Int) -> Int, fn: (Int, Int, Int) -> (Int, Int, Int), metaCases: [(String, [(Int, Int, Int, Int)])]) {
-    let fn: (Int, Int, Int) -> (Int, Int, Int) = { a, b, c in (a, b, c) }
-    let metaCases: [(String, [(Int, Int, Int, Int)])] = [
-        ("meta", [ (1, 2, 3, 6), (100, 100, 100, 300), (85, 16, 93, 194) ])
+// ---------------------------------------
+
+struct TestArgsType {
+    var A: Int
+    var B: Int
+    var C: Int
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(A: 1, B: 2, C: 3), 6),
+            (TestArgsType(A: 100, B: 100, C: 100), 300),
+            (TestArgsType(A: 85, B: 16, C: 93), 194),
+        ])
     ]
-    return (getSum, fn, metaCases)
+    let wrapper: (TestArgsType) -> RetType = { args in getSum(A: args.A, B: args.B, C: args.C) }
+    return (wrapper, metaCases)
 }

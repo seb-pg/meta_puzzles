@@ -35,13 +35,23 @@ func getMinimumDeflatedDiscCount(N: Int, R: [Int]) -> Int {
     return nb
 }
 
-func tests() -> (getMinimumDeflatedDiscCount: (Int, [Int]) -> Int, fn: ([Int]) -> (Int, [Int]), metaCases: [(String, [(Int, Int)])]) {
-    func fn(S: [Int]) -> (Int, [Int]) { return (S.count, S) }
-    let metaCases: [(String, [(Int, Int)])] = [
-        ("meta", [([2, 5, 3, 6, 5], 3),
-                  ([100, 100, 100], 2),
-                  ([6, 5, 4, 3], -1)])
-    ]
-    return (getMinimumDeflatedDiscCount, fn, metaCases)
+// ---------------------------------------
+
+struct TestArgsType {
+    var R: [Int]
 }
 
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(R: [2, 5, 3, 6, 5]), 3),
+            (TestArgsType(R: [100, 100, 100]), 2),
+            (TestArgsType(R: [6, 5, 4, 3]), -1),
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getMinimumDeflatedDiscCount(N: args.R.count, R: args.R) }
+    return (wrapper, metaCases)
+}

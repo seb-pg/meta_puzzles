@@ -6,13 +6,13 @@ func _getMinimumSecondsRequired(N: Int, _R: [Int], A: Int, B: Int) -> Int {
     //      1 ≤ A, B ≤ 100
     // Complexity: O(N ^ 2)
 
+    var R = _R;  // codeconvert had an issue with the immutability of _R
     if N == 0 || R.isEmpty {
         return 0
     }
     var cost = 0
     var costs = Array(repeating: 0, count: N)
     var intervals = [0]
-    var R = _R;  // codeconvert had an issue with the immutability of _R
     
     for i in 1..<N {
         let minInflate = R[i - 1] + 1 - R[i]
@@ -68,42 +68,53 @@ func _getMinimumSecondsRequired(N: Int, _R: [Int], A: Int, B: Int) -> Int {
     return cost
 }
 
-func getMinimumSecondsRequired(N: Int, _R: [Int], A: Int, B: Int) -> Int {
+func getMinimumSecondsRequired(N: Int, R: [Int], A: Int, B: Int) -> Int {
     return _getMinimumSecondsRequired(N: N, _R: R, A: A, B: B)
 }
 
-func tests() -> (getMinimumSecondsRequired: (Int, [Int], Int, Int) -> Int, fn: ( [Int], Int, Int) -> (Int, [Int], Int, Int), cases: [(String, [(([Int], Int, Int), Int)])]) ) {
-    func fn(R: [Int], A: Int, B: Int) -> (Int, [Int], Int, Int) {
-        return (R.count, R, A, B)
-    }
+// ---------------------------------------
 
-    let meta_cases = ("meta", [
-        (([2, 5, 3, 6, 5], 1, 1), 5),
-        (([100, 100, 100], 2, 3), 5),
-        (([100, 100, 100], 7, 3), 9),
-        (([6, 5, 4, 3], 10, 1), 19),
-        (([100, 100, 1, 1], 2, 1), 207),
-        (([6, 5, 2, 4, 4, 7], 1, 1), 10),
-    ])
-    
-    let extra1_cases = ("extra1", [
-        (([10, 6, 2], 2, 1), 15),
-        (([1, 2, 3, 4, 5, 6], 1, 1), 0),
-        (([6, 5, 4, 3, 2, 1], 1, 1), 18),
-    ])
-    
-    let extra2_cases = ("extra2", [
-        (([4, 6, 2], 2, 1), 9),
-        (([6, 5, 2, 4, 4, 7], 1, 1), 10),
-        (([2, 5, 3, 6, 5], 1, 1), 5),
-        (([2, 3, 8, 1, 7, 6], 2, 1), 15),
-        (([5, 4, 3, 6, 8, 1, 10, 11, 6, 1], 4, 1), 85),
-        (([3, 4, 7, 8, 2], 4, 1), 24),
-        (([1, 1, 1, 1, 1], 4, 1), 40),
-        (([1, 1, 1, 1, 1], 1, 4), 10),
-        (([8, 6, 4, 2], 1, 4), 18),
-        (([1_000_000_000, 500_000_000, 200_000_000, 1_000_000], 1, 4), 2_299_000_006),
-    ])
-    
-    return (getMinimumSecondsRequired, fn, [meta_cases, extra1_cases, extra2_cases])
+struct TestArgsType {
+    var R: [Int]
+    var A: Int
+    var B: Int
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(R: [2, 5, 3, 6, 5], A: 1, B: 1), 5),  // -2, +1
+            (TestArgsType(R: [100, 100, 100], A: 2, B: 3), 5),
+            (TestArgsType(R: [100, 100, 100], A: 7, B: 3), 9),
+            (TestArgsType(R: [6, 5, 4, 3], A: 10, B: 1), 19),
+            (TestArgsType(R: [100, 100, 1, 1], A: 2, B: 1), 207),
+            (TestArgsType(R: [6, 5, 2, 4, 4, 7], A: 1, B: 1), 10),
+        ])
+    ]
+    let extra1Cases: MetaCasesT = [
+        ("extra1", [
+            (TestArgsType(R: [10, 6, 2], A: 2, B: 1), 15),
+            (TestArgsType(R: [1, 2, 3, 4, 5, 6], A: 1, B: 1), 0),
+            (TestArgsType(R: [6, 5, 4, 3, 2, 1], A: 1, B: 1), 18),
+        ])
+    ]
+    let extra2Cases: MetaCasesT = [
+        ("extra2", [
+            (TestArgsType(R: [4, 6, 2], A: 2, B: 1), 9),
+            (TestArgsType(R: [6, 5, 2, 4, 4, 7], A: 1, B: 1), 10),
+            (TestArgsType(R: [2, 5, 3, 6, 5], A: 1, B: 1), 5),  // -2, +1
+            (TestArgsType(R: [2, 3, 8, 1, 7, 6], A: 2, B: 1), 15),  // -2, +1
+            (TestArgsType(R: [5, 4, 3, 6, 8, 1, 10, 11, 6, 1], A: 4, B: 1), 85),
+            (TestArgsType(R: [3, 4, 7, 8, 2], A: 4, B: 1), 24),
+            (TestArgsType(R: [1, 1, 1, 1, 1], A: 4, B: 1), 40),
+            (TestArgsType(R: [1, 1, 1, 1, 1], A: 1, B: 4), 10),
+            (TestArgsType(R: [8, 6, 4, 2], A: 1, B: 4), 18),
+            (TestArgsType(R: [1_000_000_000, 500_000_000, 200_000_000, 1_000_000], A: 1, B: 4), 2_299_000_006),
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getMinimumSecondsRequired(N: args.R.count, R: args.R, A: args.A, B: args.B) }
+    return (wrapper, metaCases + extra1Cases + extra2Cases)
 }

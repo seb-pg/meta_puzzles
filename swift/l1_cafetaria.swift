@@ -30,11 +30,24 @@ func getMaxAdditionalDinersCount(N: Int, K: Int, M: Int, S: [Int]) -> Int {
     return nb
 }
 
-func tests() -> (getMaxAdditionalDinersCount: (Int, Int, Int, [Int]) -> Int, fn: (Int, Int, [Int]) -> (Int, Int, Int, [Int]), metaCases: [(String, [(Int, Int, [Int], Int)])]) {
-    let fn: (Int, Int, [Int]) -> (Int, Int, Int, [Int]) = { N, K, S in (N, K, S.count, S) }
-    let metaCases: [(String, [(Int, Int, [Int], Int)])] = [
-        ("meta", [ (10, 1, [2, 6], 3), (15, 2, [11, 6, 14], 1) ])
-    ]
-    return (getMaxAdditionalDinersCount, fn, metaCases)
+// ---------------------------------------
+
+struct TestArgsType {
+    var N: Int
+    var K: Int
+    var S: [Int]
 }
 
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(N: 10, K: 1, S: [2, 6]), 3),
+            (TestArgsType(N: 15, K: 2, S: [11, 6, 14]), 1),
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getMaxAdditionalDinersCount(N: args.N, K: args.K, M: args.S.count, S: args.S) }
+    return (wrapper, metaCases)
+}

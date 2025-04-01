@@ -66,32 +66,47 @@ func getMinProblemCount(N: Int, S: [Int]) -> Int {
     return count
 }
 
-func tests() -> (getMinProblemCount: (Int, [Int]) -> Int, fn: ([Int]) -> (Int, [Int]), cases: [(String, [((Int, [Int]), Int)])]) {
-    let fn: ([Int]) -> (Int, [Int]) = { S in (S.count, S) }
-    let metaCases: (String, [((Int, [Int]), Int)]) = ("meta", [
-        ((5, [1, 2, 3, 4, 5]), 3),       // problems would be [1, 1, 3]
-        ((4, [4, 3, 3, 4]), 2),          // problems would be [1, 3]
-        ((4, [2, 4, 6, 8]), 4),          // problems would be [2, 2, 2, 2]
-        ((1, [8]), 3),                   // problems would be [2, 3, 3]
-    ])
-    let extra1Cases: (String, [((Int, [Int]), Int)]) = ("extra1", [
-        ((5, [1, 2, 3, 4, 5]), 3),       // problems would be [1, 1, 3]
-        ((4, [4, 3, 3, 4]), 2),          // problems would be [1, 3]
-        ((4, [2, 4, 6, 8]), 4),          // problems would be [2, 2, 2, 2]
-        ((1, [8]), 3),                   // problems would be [2, 3, 3]
-        ((3, [1, 2, 3]), 2),             // problems would be [2, 2, 2]
-        ((2, [5, 7]), 3),                // problems would be [(3+2), (3+2+2)]
-        ((3, [5, 9, 10]), 5),            // problems would be [(3+0+2+0), (3+3+0+0), (3+3+0+1)]
-        ((3, [5, 9, 11]), 4),            // problems would be [(3+0+2), (3+3+0), (3+3+2)]
-        ((3, [2, 4, 6]), 3),             // problems would be [(2+0+0), (2+2+0), (2+2+2)]
-        ((3, [2, 4, 7]), 4),             // problems would be [(2+0+0), (2+2+0), (2+2+3)]
-    ])
-    let extra2Cases: (String, [((Int, [Int]), Int)]) = ("extra2", [
-        ((3, [1, 2, 4]), 3),  // problems would be [(1+0+0+0), (0+2+0+0), (0+2+2)]
-        ((2, [2, 4]), 2),  // problems would be [(2+0), (2+2)]
-        ((2, [4, 5]), 3),  // problems would be [(2+2), (2+2+1) or (2+3)]
-        ((2, [9, 12]), 4),  // problems would be [(3+3+3), (3+3+3+3)]
-        ((2, [11, 13]), 5),  // problems would be [(3+3+3+2), (3+3+3+3+1=3+3+3+2+2)]
-    ])
-    return (getMinProblemCount, fn, [metaCases, extra1Cases, extra2Cases])
+// ---------------------------------------
+
+struct TestArgsType {
+    var S: [Int]
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(S: [1, 2, 3, 4, 5]), 3),       // problems would be [1, 1, 3]
+            (TestArgsType(S: [4, 3, 3, 4]), 2),          // problems would be [1, 3]
+            (TestArgsType(S: [2, 4, 6, 8]), 4),          // problems would be [2, 2, 2, 2]
+            (TestArgsType(S: [8]), 3),                   // problems would be [2, 3, 3]
+        ])
+    ]
+    let extra1Cases: MetaCasesT = [
+        ("extra1", [
+            (TestArgsType(S: [1, 2, 3, 4, 5]), 3),       // problems would be [1, 1, 3]
+            (TestArgsType(S: [4, 3, 3, 4]), 2),          // problems would be [1, 3]
+            (TestArgsType(S: [2, 4, 6, 8]), 4),          // problems would be [2, 2, 2, 2]
+            (TestArgsType(S: [8]), 3),                   // problems would be [2, 3, 3]
+            (TestArgsType(S: [1, 2, 3]), 2),             // problems would be [2, 2, 2]
+            (TestArgsType(S: [5, 7]), 3),                // problems would be [(3+2), (3+2+2)]
+            (TestArgsType(S: [5, 9, 10]), 5),            // problems would be [(3+0+2+0), (3+3+0+0), (3+3+0+1)]
+            (TestArgsType(S: [5, 9, 11]), 4),            // problems would be [(3+0+2), (3+3+0), (3+3+2)]
+            (TestArgsType(S: [2, 4, 6]), 3),             // problems would be [(2+0+0), (2+2+0), (2+2+2)]
+            (TestArgsType(S: [2, 4, 7]), 4),             // problems would be [(2+0+0), (2+2+0), (2+2+3)]
+        ])
+    ]
+    let extra2Cases: MetaCasesT = [
+        ("extra2", [
+            (TestArgsType(S: [1, 2, 4]), 3),  // problems would be [(1+0+0+0), (0+2+0+0), (0+2+2)]
+            (TestArgsType(S: [2, 4]), 2),  // problems would be [(2+0), (2+2)]
+            (TestArgsType(S: [4, 5]), 3),  // problems would be [(2+2), (2+2+1) or (2+3)]
+            (TestArgsType(S: [9, 12]), 4),  // problems would be [(3+3+3), (3+3+3+3)]
+            (TestArgsType(S: [11, 13]), 5),  // problems would be [(3+3+3+2), (3+3+3+3+1=3+3+3+2+2)]
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getMinProblemCount(N: args.S.count, S: args.S) }
+    return (wrapper, metaCases + extra1Cases + extra2Cases)
 }

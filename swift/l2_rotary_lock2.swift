@@ -63,62 +63,40 @@ func getMinCodeEntryTime(N: Int, M: Int, C: [Int]) -> Int {
     return solutions.values.min() ?? 0
 }
 
+// ---------------------------------------
 
-func getMinCodeEntryTimeOriginalConversionTooSlow(N: Int, M: Int, C: [Int]) -> Int {
-    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=1637008989815525
-    // Constraints:
-    //      3 ≤ N ≤ 1,000,000,000   N is the number of integers
-    //      1 ≤ M ≤ 3,000           M is the number of locks
-    //      1 ≤ Ci ≤ N              Ci is the combination
-    // Complexity: O(M^2)
-
-    if C.isEmpty {
-        return 0
-    }
-    // Uding codeconvert.ai, the key is transformed to a string (like in Javascript) and this is too slow
-    var solutions: [String: Int] = ["1,1": 0]
-    for (i, target) in C.prefix(M).enumerated() {
-        var newSolutions: [String: Int] = [:]
-        for (key, distance) in solutions {
-            let components = key.split(separator: ",").map { Int($0)! }
-            let dial1 = components[0]
-            let dial2 = components[1]
-            
-            // we turn dial1
-            let distance1 = distance + getDistance(target: target, position: dial1, N: N)
-            let key1 = "\(min(dial2, target)),\(max(dial2, target))"
-            newSolutions[key1] = min(newSolutions[key1] ?? Int.max, distance1)
-            
-            // we turn dial2
-            let distance2 = distance + getDistance(target: target, position: dial2, N: N)
-            let key2 = "\(min(dial1, target)),\(max(dial1, target))"
-            newSolutions[key2] = min(newSolutions[key2] ?? Int.max, distance2)
-        }
-        solutions = newSolutions
-    }
-    return solutions.values.min() ?? 0
+struct TestArgsType {
+    var N: Int
+    var C: [Int]
 }
 
-func tests2() -> (getMinCodeEntryTime: (Int, Int, [Int]) -> Int, fn: (Int, [Int]) -> (Int, Int, [Int]), cases: [(String, [(Int, [Int])])]) {
-    func fn(N: Int, C: [Int]) -> (Int, Int, [Int]) {
-        return (N, C.count, C)
-    }
-    let metaCases: (String, [(Int, [Int])]) = ("meta", [
-        (3, [1, 2, 3]),
-        (10, [9, 4, 4, 8]),
-    ])
-    let extra1Cases: (String, [(Int, [Int])]) = ("extra1", [
-        (0, []),
-        (3, []),
-        (10, []),
-        (10, [4]),
-        (10, [9]),
-        (10, [9, 9, 9, 9]),
-    ])
-    let extra2Cases: (String, [(Int, [Int])]) = ("extra2", [
-        (10, [6, 2, 4, 8]),
-        (10, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]),
-        (4, [4, 3, 2, 1, 2, 3, 4]),
-    ])
-    return (getMinCodeEntryTime, fn, [metaCases, extra1Cases, extra2Cases])
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(N: 3, C: [1, 2, 3]), 2),
+            (TestArgsType(N: 10, C: [9, 4, 4, 8]), 6),
+        ])
+    ]
+    let extra1Cases: MetaCasesT = [
+        ("extra1", [
+            (TestArgsType(N: 0, C: []), 0),
+            (TestArgsType(N: 3, C: []), 0),
+            (TestArgsType(N: 10, C: []), 0),
+            (TestArgsType(N: 10, C: [4]), 3),
+            (TestArgsType(N: 10, C: [9]), 2),
+            (TestArgsType(N: 10, C: [9, 9, 9, 9]), 2),
+        ])
+    ]
+    let extra2Cases: MetaCasesT = [
+        ("extra2", [
+            (TestArgsType(N: 10, C: [6, 2, 4, 8]), 10),  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+            (TestArgsType(N: 10, C: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 9),  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+            (TestArgsType(N: 4, C: [4, 3, 2, 1, 2, 3, 4]), 5),  // <- this is a case highlighting issue: best (1,+5), (2,+1), (2,+2), (1,-2)
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getMinCodeEntryTime(N: args.N, M: args.C.count, C: args.C) }
+    return (wrapper, metaCases + extra1Cases + extra2Cases)
 }

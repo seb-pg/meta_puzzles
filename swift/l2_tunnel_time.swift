@@ -44,25 +44,36 @@ func getSecondsElapsed(C: Int, N: Int, A: [Int], B: [Int], K: Int) -> Int {
     return travelTime
 }
 
-func tests1() -> (getSecondsElapsed: (Int, Int, [Int], [Int], Int) -> Int, fn: (Int, [Int], [Int], Int) -> (Int, Int, [Int], [Int], Int), cases: [(String, [((Int, [Int], [Int], Int), Int)])]) ) {
-    func fn(C: Int, A: [Int], B: [Int], K: Int) -> (Int, Int, [Int], [Int], Int) {
-        return (C, min(A.count, B.count), A, B, K)
-    }
-    
-    let meta_cases = ("meta", [
-        ((10, [1, 6], [3, 7], 7), 22),
-        ((50, [39, 19, 28], [49, 27, 35], 15), 35),
-    ])
-    
-    let extra1_cases = ("extra1", [
-        ((50, [19, 28, 39], [27, 35, 49], 1), 20),
-        ((50, [19, 28, 39], [27, 35, 49], 8), 27),
-        ((50, [19, 28, 39], [27, 35, 49], 9), 29),
-        ((50, [19, 28, 39], [27, 35, 49], 15), 35),
-        ((50, [19, 28, 39], [27, 35, 49], 16), 40),
-        ((50, [19, 28, 39], [27, 35, 49], 25), 49),
-        ((50, [19, 28, 39], [27, 35, 49], 26), 50 + 20),
-    ])
-    
-    return (getSecondsElapsed, fn, [meta_cases, extra1_cases])
+// ---------------------------------------
+
+struct TestArgsType {
+    var C: Int
+    var A: [Int]
+    var B: [Int]
+    var K: Int
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(C: 10, A: [1, 6], B: [3, 7], K: 7), 22),
+            (TestArgsType(C: 50, A: [39, 19, 28], B: [49, 27, 35], K: 15), 35),
+        ])
+    ]
+    let extra1Cases: MetaCasesT = [
+        ("extra1", [
+            (TestArgsType(C: 50, A: [19, 28, 39], B: [27, 35, 49], K: 1), 20),  // tunnel length = 25 [8, 7, 10]
+            (TestArgsType(C: 50, A: [19, 28, 39], B: [27, 35, 49], K: 8), 27),
+            (TestArgsType(C: 50, A: [19, 28, 39], B: [27, 35, 49], K: 9), 29),
+            (TestArgsType(C: 50, A: [19, 28, 39], B: [27, 35, 49], K: 15), 35),
+            (TestArgsType(C: 50, A: [19, 28, 39], B: [27, 35, 49], K: 16), 40),
+            (TestArgsType(C: 50, A: [19, 28, 39], B: [27, 35, 49], K: 25), 49),
+            (TestArgsType(C: 50, A: [19, 28, 39], B: [27, 35, 49], K: 26), 50 + 20),
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getSecondsElapsed(C: args.C, N: min(args.A.count, args.B.count), A: args.A, B: args.B, K: args.K) }
+    return (wrapper, metaCases + extra1Cases)
 }

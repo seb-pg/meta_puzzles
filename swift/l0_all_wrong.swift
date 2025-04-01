@@ -24,10 +24,22 @@ func getWrongAnswers(N: Int, C: String) -> String {
     return String(C.prefix(N).map { $0 == "A" ? "B" : "A" })
 }
 
-func tests() -> (getWrongAnswers: (Int, String) -> String, fn: (String) -> (Int, String), metaCases: [(String, [(String, String)])]) {
-    let fn: (String) -> (Int, String) = { C in (C.count, C) }
-    let metaCases: [(String, [(String, String)])] = [
-        ("meta", [("ABA", "BAB"), ("BBBBB", "AAAAA")])
+// ---------------------------------------
+
+struct TestArgsType {
+    var C: String
+}
+
+typealias RetType = String
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(C: "ABA"), "BAB"),
+            (TestArgsType(C: "BBBBB"), "AAAAA")
+        ])
     ]
-    return (getWrongAnswers, fn, metaCases)
+    let wrapper: (TestArgsType) -> RetType = { args in getWrongAnswers(N: args.C.length, C: args.C) }
+    return (wrapper, metaCases)
 }

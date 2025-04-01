@@ -40,10 +40,23 @@ func getMinCodeEntryTime(N: Int, M: Int, C: [Int]) -> Int {
     return nb
 }
 
-func tests() -> (getMinCodeEntryTime: (Int, Int, [Int]) -> Int, fn: (Int, [Int]) -> (Int, Int, [Int]), metaCases: [(String, [(Int, [Int], Int)])]) {
-    let fn: (Int, [Int]) -> (Int, Int, [Int]) = { N, C in (N, C.count, C) }
-    let metaCases: [(String, [(Int, [Int], Int)])] = [
-        ("meta", [ (3, [1, 2, 3], 2), (10, [9, 4, 4, 8], 11) ])
+// ---------------------------------------
+
+struct TestArgsType {
+    var N: Int
+    var C: [Int]
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(N: 3, C: [1, 2, 3]), 2),
+            (TestArgsType(N: 10, C: [9, 4, 4, 8]), 11),
+        ])
     ]
-    return (getMinCodeEntryTime, fn, metaCases)
+    let wrapper: (TestArgsType) -> RetType = { args in getMinCodeEntryTime(N: args.N, M: args.C.count, C: args.C) }
+    return (wrapper, metaCases)
 }

@@ -92,40 +92,57 @@ func getMaxVisitableWebpages(N: Int, L: [Int]) -> Int {
     return maxChain
 }
 
-func tests() -> ( (Int, [Int]) -> Int, ([(Int, [Int])]) -> (Int, [Int]) ) {
-    let fn: (Int, [Int]) -> Int = { getMaxVisitableWebpages(N: $0, L: $1) }
-    let metaCases = [
-        (([4, 1, 2, 1], ), 4),
-        (([4, 3, 5, 1, 2], ), 3),
-        (([2, 4, 2, 2, 3], ), 4),
+// ---------------------------------------
+
+struct TestArgsType {
+    var L: [Int]
+}
+
+typealias RetType = Int
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(L: [4, 1, 2, 1]), 4),
+            (TestArgsType(L: [4, 3, 5, 1, 2]), 3),
+            (TestArgsType(L: [2, 4, 2, 2, 3]), 4),
+        ])
     ]
-    let extra1Cases = [
-        (([1], ), 1),
-        (([1, 2], ), 1),
-        (([2, 1], ), 2),
-        (([3, 3, 4, 3], ), 3),
-        (([4, 5, 6, 5, 6, 4], ), 4),
-        (([6, 5, 4, 5, 6, 4], ), 4),
-        (([3, 3, 4, 1], ), 4),
-        (([2, 3, 2], ), 3),
-        (([2, 4, 2, 2, 3], ), 4),
-        (([6, 5, 4, 3, 2, 1], ), 2),
+    let extra1Cases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(L: [1]), 1),
+            (TestArgsType(L: [1, 2]), 1),
+            (TestArgsType(L: [2, 1]), 2),
+            (TestArgsType(L: [3, 3, 4, 3]), 3),
+            (TestArgsType(L: [4, 5, 6, 5, 6, 4]), 4),
+            (TestArgsType(L: [6, 5, 4, 5, 6, 4]), 4),
+            (TestArgsType(L: [3, 3, 4, 1]), 4),
+            (TestArgsType(L: [2, 3, 2]), 3),
+            (TestArgsType(L: [2, 4, 2, 2, 3]), 4),
+            (TestArgsType(L: [6, 5, 4, 3, 2, 1]), 2),
+        ])
     ]
-    let extra2Cases = [
-        (([4, 1, 2, 1], ), 4),
-        (([4, 3, 5, 1, 2], ), 3),
-        (([4, 1, 2, 1], ), 4),
-        (([2, 1, 4, 3], ), 2),
-        (([2, 4, 2, 2, 4, 5], ), 4),
-        (([4, 1, 2, 1], ), 4),
-        (([4, 3, 5, 1, 2], ), 3),
-        (([2, 4, 2, 2, 4], ), 3),
-        (([2, 3, 4, 2, 2, 3, 6, 9, 8], ), 5),
+    let extra2Cases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(L: [4, 1, 2, 1]), 4),
+            (TestArgsType(L: [4, 3, 5, 1, 2]), 3),
+            (TestArgsType(L: [4, 1, 2, 1]), 4),
+            (TestArgsType(L: [2, 1, 4, 3]), 2),
+            (TestArgsType(L: [2, 4, 2, 2, 4, 5]), 4),
+            (TestArgsType(L: [4, 1, 2, 1]), 4),
+            (TestArgsType(L: [4, 3, 5, 1, 2]), 3),
+            (TestArgsType(L: [2, 4, 2, 2, 4]), 3),
+            (TestArgsType(L: [2, 3, 4, 2, 2, 3, 6, 9, 8]), 5),
+        ])
     ]
-    let cycles = [8, 9, 10, 11, 12, 7]
-    let extra3Cases = [
-        (([2, 4, 2, 2, 3, 4] + cycles, ), 6),
-        (([2, 4, 2, 2, 4, 5] + cycles, ), 6),
+    let cycles: [Int] = [8, 9, 10, 11, 12, 7]
+    let extra3Cases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(L: [2, 4, 2, 2, 3, 4] + cycles), 6),
+            (TestArgsType(L: [2, 4, 2, 2, 4, 5] + cycles), 6),
+        ])
     ]
-    return (fn, [metaCases, extra1Cases, extra2Cases, extra3Cases])
+    let wrapper: (TestArgsType) -> RetType = { args in getMaxVisitableWebpages(N: args.L.count, L: args.L) }
+    return (wrapper, metaCases + extra1Cases + extra2Cases + extra3Cases)
 }

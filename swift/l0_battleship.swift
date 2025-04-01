@@ -25,14 +25,27 @@ func getHitProbability(R: Int, C: Int, G: [[Int]]) -> Double {
     return Double(total) / Double(R * C)  // Meta's code returns a Float
 }
 
-func tests() -> (getHitProbability: (Int, Int, [[Int]]) -> Double, fn: ([[Int]]) -> (Int, Int, [[Int]]), metaCases: [(String, [( [[Int]], Double)])], extraCases: [(String, [( [[Int]], Double)])]) {
-    let fn: ([[Int]]) -> (Int, Int, [[Int]]) = { G in (G.count, G[0].count, G) }
-    let metaCases: [(String, [( [[Int]], Double)])] = [
-        ("meta", [([[0, 0, 1], [1, 0, 1]], 0.5), ([[1, 1], [1, 1]], 1.0)])
-    ]
-    let extra1Cases: [(String, [( [[Int]], Double)])] = [
-        ("extra1", [([[0, 1, 0, 0], [1, 1, 0, 0], [0, 0, 0, 0]], 0.25)])
-    ]
-    return (getHitProbability, fn, metaCases, extra1Cases)
+// ---------------------------------------
+
+struct TestArgsType {
+    var G: [[Int]]
 }
 
+typealias RetType = Double
+typealias MetaCasesT = [(String, [(TestArgsType, RetType)])]
+
+func tests() -> ((TestArgsType) -> RetType, MetaCasesT) {
+    let metaCases: MetaCasesT = [
+        ("meta", [
+            (TestArgsType(G: [[0, 0, 1], [1, 0, 1]]), 0.5),
+            (TestArgsType(G: [[1, 1], [1, 1]]), 1.0)
+        ])
+    ]
+    let extra1Cases: MetaCasesT = [
+        ("extra1", [
+            (TestArgsType(G: [[0, 1, 0, 0], [1, 1, 0, 0], [0, 0, 0, 0]]), 0.25)
+        ])
+    ]
+    let wrapper: (TestArgsType) -> RetType = { args in getHitProbability(R: args.G.count, C: args.G[0].count, G: args.G) }
+    return (wrapper, metaCases + extra1Cases)
+}
