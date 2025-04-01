@@ -37,7 +37,7 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1)  | 1&nbsp;(0) | Complete |
 | Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
 | Scala         | 3.2.1               | 21&nbsp;(20)     | 3  | 7  | 8&nbsp;(7) | 3  | 0  | Complete |
-| Swift         | 6.0.0               | 17     | 3  | 6  | 7  | 1  |    | started |
+| Swift         | 6.0.0               | 20     | 3  | 7  | 8  | 2  |    | started |
 
 *Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
 
@@ -128,6 +128,7 @@ While I have had to write code in all sort of languages (including some obscure 
 
 <b><u>swift/*</u> (Swift)</b>
 * This is ongoing...
+* l2_portals cannot yet be converted because it uses priority queue
 
 ----
 
