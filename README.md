@@ -32,12 +32,12 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Python&nbsp;3 |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete, but uses sortedcontainers |
 | C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 23&nbsp;(21 or 20) | 3  | 7  | 8  | 4&nbsp;(3 or 2)  | 1&nbsp;(0)  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
-| Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete (see comments) |
-| Javascript    | nodejs v18.19.1     | 22&nbsp;(21)  | 3  | 7  | 8  | 4&nbsp;(3)  |    | Complete |
+| Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete&nbsp;(see&nbsp;comments) |
+| Javascript    | nodejs v18.19.1     | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(3)  |    | Complete |
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1)  | 1&nbsp;(0) | Complete |
 | Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
-| Scala         | 3.2.1               | 21&nbsp;(20)     | 3  | 7  | 8&nbsp;(7) | 3  | 0  | Complete |
-| Swift         | 6.0.0               | 20     | 3  | 7  | 8  | 2  |    | started |
+| Scala         | 3.2.1               | 21&nbsp;(20) | 3  | 7  | 8&nbsp;(7) | 3  | 0  | Complete |
+| Swift         | 6.0.0               | 21&nbsp;(20) | 3  | 7  | 7  | 4&nbsp;(3)  |    | started |
 
 *Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
 
@@ -81,7 +81,7 @@ While I have had to write code in all sort of languages (including some obscure 
 
 
 <b><u>cpp17/*</u> (C+++17)</b>
-* C\++20 (or C\++23) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
+* C\++20 (or above) would have helped making the code shorter and easier to read, but Meta's website is stuck in C\++17.
 * The code is written using a "plausible" medium developer style (it just works with basic C++ knowledge), and not much emphasis is spent on optimisation (e.g. using polymorphic allocator would be an obvious low hanging fruit).
 * Meta passes containers, such as std::vector or std::string by value, rather than reference.  The signature are kept but all functions are calling a more more C\++ style function using reference, which can be used for performance testing.
 * Meta used int and long long and seemed to assume they were, respectively, 32 bits and 64 bits.  int32_t/int64_t are used instead passed Meta's function signature.
@@ -128,7 +128,10 @@ While I have had to write code in all sort of languages (including some obscure 
 
 <b><u>swift/*</u> (Swift)</b>
 * This is ongoing...
-* l2_portals cannot yet be converted because it uses priority queue
+* l2_portals cannot be converted because it uses priority queue (maybe this will change in the future)
+* l3_slippery_trip should be working but does not in Meta's website (it seems this is the same underlying issue as the Kotlin's solution)
+* l4_conveyor_chaos cannot be converted because an equivalent of SortedSet cannot be used (maybe this will change in the future)
+* l4_mathematical_art cannot be converted because an equivalent of SortedSet cannot be used (maybe this will change in the future)
 
 ----
 
