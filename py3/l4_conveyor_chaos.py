@@ -103,7 +103,7 @@ def add_entries(N, intervals):  # O(N*log(N))
         for _, p, op in rows:
             if op == +1:  # add interval
                 stack.add(p)  # O(log(N))
-        intervals[-1] = Interval(0, sky_h, x, -1,  [(0, stack[-1])])  # we do not know xmax at that stage
+        intervals[-1] = Interval(0, sky_h, x, -1, [(0, stack[-1])])  # we do not know xmax at that stage
         #
         first = last
     #
