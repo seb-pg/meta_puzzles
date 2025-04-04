@@ -35,11 +35,15 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | Javascript    | nodejs&nbsp;v18.19.1     | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(3)  | 0  | Complete |
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1)  | 1&nbsp;(0) | Complete |
 | Python&nbsp;3 |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
-| Rust          | 1.83.0              | 24     | 3  | 7  | 8  | 4  | 2  | Ongoing |
+| Rust          | 1.83.0              | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
 | Scala         | 3.2.1               | 21&nbsp;(20) | 3  | 7  | 8&nbsp;(7) | 3  | 0  | Complete |
 | Swift         | 6.0.0               | 21&nbsp;(20) | 3  | 7  | 7  | 4&nbsp;(3)  | 0  | Complete |
 
 *Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
+
+C++ and Rust are the only 2 languages have collections to implement all solutions out of the box.
+
+Python can implement all solutions by using [sortedcontainers](https://pypi.org/project/sortedcontainers/), which is almost standard.
 
 L3 "portals" solution will not be possible out-of-the-box for languages (such as Go) which do not provide [Red–black trees](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) trees out-of-the-box.
 
