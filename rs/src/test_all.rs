@@ -36,6 +36,7 @@ mod l3_rabbit_hole2;
 mod l3_slippery_strip;
 mod l3_stack_stabilization2;
 
+mod l4_conveyor_chaos;
 mod l4_mathematical_art;
 
 pub trait Result<T> {
@@ -62,7 +63,7 @@ result_equality_impl! { usize u8 u16 u32 u64 u128 isize i8 i16 i32 i64 i128 Stri
 
 impl ResultEquality for f64 {
     fn compare(&self, rhs: &f64, precision: Option<f64>) -> bool {
-        return (*self - *rhs) < precision.unwrap();
+        return (*self - *rhs).abs() < precision.unwrap();
     }
 }
 
@@ -124,7 +125,7 @@ fn main() {
     nb_errors += l3_slippery_strip::tests();
     nb_errors += l3_stack_stabilization2::tests();
     // l4 (not done yet)
-    //nb_errors += l4_conveyor_chaos::tests();  // TODO: not implemented yet
+    nb_errors += l4_conveyor_chaos::tests();
     nb_errors += l4_mathematical_art::tests();
 
     println!("\n{} errors found",  nb_errors);

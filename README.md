@@ -29,15 +29,15 @@ This first phase is about comparing basic language ecosystems, i.e. the language
 | ------------- | ------------------- | ------ | -- | -- | -- | -- | -- | ------ |
 | Total         | Number&nbsp;of&nbsp;problems  | 24     | 3  | 7  | 8  | 4  | 2  | |
 | C\++17        | GCC,&nbsp;MSVC      | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
-| Python&nbsp;3 |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete, but uses sortedcontainers |
 | C#            | .Net&nbsp;7.0,&nbsp;Core&nbsp;3.1  | 23&nbsp;(21 or 20) | 3  | 7  | 8  | 4&nbsp;(3 or 2)  | 1&nbsp;(0)  | Complete |
 | Go            | 1.9.4               | 21     | 3  | 7  | 7  | 4  | 0  | Complete |
-| Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete&nbsp;(see&nbsp;comments) |
-| Javascript    | nodejs v18.19.1     | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(3)  |    | Complete |
+| Java          |                     | 4      | 3  | 0  | 1  | 0  | 0  | Complete |
+| Javascript    | nodejs&nbsp;v18.19.1     | 22&nbsp;(21) | 3  | 7  | 8  | 4&nbsp;(3)  | 0  | Complete |
 | Kotlin        | 1.7.21              | 23&nbsp;(19) | 3  | 7  | 8&nbsp;(7)  | 4&nbsp;(1)  | 1&nbsp;(0) | Complete |
-| Rust          | 1.83.0              | 23     | 3  | 7  | 8  | 4  | 1  | Ongoing |
+| Python&nbsp;3 |                     | 24     | 3  | 7  | 8  | 4  | 2  | Complete |
+| Rust          | 1.83.0              | 24     | 3  | 7  | 8  | 4  | 2  | Ongoing |
 | Scala         | 3.2.1               | 21&nbsp;(20) | 3  | 7  | 8&nbsp;(7) | 3  | 0  | Complete |
-| Swift         | 6.0.0               | 21&nbsp;(20) | 3  | 7  | 7  | 4&nbsp;(3)  |    | started |
+| Swift         | 6.0.0               | 21&nbsp;(20) | 3  | 7  | 7  | 4&nbsp;(3)  | 0  | Complete |
 
 *Total is the number of solution implemented out of 24 problems. When provided, in parenthesis is the number of solutions fully working on Meta's website (i.e. within time limits).
 
@@ -78,6 +78,7 @@ While I have had to write code in all sort of languages (including some obscure 
 <b><u>py3/*</u> (Python)</b>
 * Written in "quick and dirty" Python style.
 * "sortedcontainers" has been used to provide "binary tree" like containers/collections needed to solve l4_conveyor_chaos and l4_mathematical_art.
+* "sortedcontainers" is not provided out-of-the-box by the language but is "almost standard".
 
 
 <b><u>cpp17/*</u> (C+++17)</b>
