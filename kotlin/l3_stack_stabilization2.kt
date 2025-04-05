@@ -26,7 +26,7 @@ fun getMinimumSecondsRequired(N: Int, R: Array<Int>, A: Int, B: Int): Long {
     if (N == 0 || R.isEmpty())
         return 0;
 
-    val U = R.clone();
+    val U = R.copyOf();
 
     // Extend the range of input data
     var total_cost = 0L;
@@ -99,11 +99,11 @@ class Args(
     val R: Array<Int>,
     val A: Int,
     val B: Int,
-    val res: Long, )  : test.Result<Long> {
+    val res: Long)  : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMinimumSecondsRequired(p.R.size, p.R, p.A, p.B) };
 
@@ -128,7 +128,7 @@ fun tests(): UInt
         Args(arrayOf(1, 1, 1, 1, 1), 4, 1, 40),
         Args(arrayOf(1, 1, 1, 1, 1), 1, 4, 10),
         Args(arrayOf(8, 6, 4, 2), 1, 4, 18),
-        Args(arrayOf(1_000_000_000, 500_000_000, 200_000_000, 1_000_000), 1, 4, 2_299_000_006),
+        Args(arrayOf(1_000_000_000, 500_000_000, 200_000_000, 1_000_000), 1, 4, 2_299_000_006)
     );
 
     return test.run_all_tests("l3_stack_stabilization2", args_list, wrapper);

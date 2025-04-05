@@ -16,12 +16,12 @@ typealias dist_t = Int;
 
 open class Coord(
     var row: Int,
-    var col: Int, )
+    var col: Int)
 
 class NodeInfo(
     row: Int,
     col: Int,
-    var node_type: Char, ) : Coord(row, col)
+    var node_type: Char) : Coord(row, col)
 {
     var distance: dist_t = dist_t.MAX_VALUE;
     var is_inserted: Boolean = false;
@@ -47,7 +47,7 @@ class OurPriorityQueue<Priority: Comparable<Priority>, Item>
     fun pop_front(): Pair<Priority, Item>
     {
         val k = m.firstKey();
-        val v = m.remove(k)!!;
+        val v: Item = m.removeAt(k)!!;
         return Pair<Priority, Item>(k.first, v);
     }
 
@@ -173,11 +173,11 @@ fun _getSecondsRequiredTest(G: Array<String>): Int {
 
 class Args(
     val G: Array<String>,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> _getSecondsRequiredTest(p.G) };
 
@@ -185,7 +185,7 @@ fun tests(): UInt
         Args( arrayOf(".E.", ".#E", ".S#"), 4 ),
         Args( arrayOf("a.Sa", "####", "Eb.b"), -1 ),
         Args( arrayOf("aS.b", "####", "Eb.a"), 4 ),
-        Args( arrayOf("xS..x..Ex"), 3 ),
+        Args( arrayOf("xS..x..Ex"), 3 )
     );
 
     return test.run_all_tests("l2_portals", args_list, wrapper);

@@ -38,18 +38,18 @@ fun getMinimumDeflatedDiscCount(N: Int, R: Array<Int>): Int {
 
 class Args(
     val R: Array<Int>,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMinimumDeflatedDiscCount(p.R.size, p.R) };
 
     val args_list: List<Args> = listOf(
         Args( arrayOf(2, 5, 3, 6, 5), 3 ),
         Args( arrayOf(100, 100, 10), 2 ),
-        Args( arrayOf(6, 5, 4, 3), -1 ),
+        Args( arrayOf(6, 5, 4, 3), -1 )
     );
 
     return test.run_all_tests("l1_stack_stabilization1", args_list, wrapper);

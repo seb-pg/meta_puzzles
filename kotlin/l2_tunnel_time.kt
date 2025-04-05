@@ -14,7 +14,7 @@ package l2_tunnel_time
 
 class Tunnel(
     val a: Long,
-    val b: Long, ) {
+    val b: Long) {
 
     fun length(): Long {
         return b - a;
@@ -64,11 +64,11 @@ class Args(
     val A: Array<Long>,
     val B: Array<Long>,
     val K: Long,
-    val res: Long, ) : test.Result<Long> {
+    val res: Long) : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     fun _getSecondsElapsed(p: Args): Long {
         val min_len = minOf(p.A.size, p.B.size);
@@ -86,7 +86,7 @@ fun tests(): UInt
         Args( 50, arrayOf(19, 28, 39), arrayOf(27, 35, 49), 15, 35 ),
         Args( 50, arrayOf(19, 28, 39), arrayOf(27, 35, 49), 16, 40 ),
         Args( 50, arrayOf(19, 28, 39), arrayOf(27, 35, 49), 25, 49 ),
-        Args( 50, arrayOf(19, 28, 39), arrayOf(27, 35, 49), 26, 70 ),
+        Args( 50, arrayOf(19, 28, 39), arrayOf(27, 35, 49), 26, 70 )
     );
 
     return test.run_all_tests("l2_tunnel_time", args_list, wrapper);

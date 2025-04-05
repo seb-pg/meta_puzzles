@@ -61,11 +61,11 @@ fun getUniformIntegerCountInInterval(A: Long, B: Long): Int {
 class Args(
     val A: Long,
     val B: Long,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getUniformIntegerCountInInterval(p.A, p.B) };
 
@@ -84,7 +84,7 @@ fun tests(): UInt
         // extra3
         Args( 11, 88, 8 ),
         Args( 11, 98, 8 ),
-        Args( 11, 99, 9 ),
+        Args( 11, 99, 9 )
     );
 
     return test.run_all_tests("l1_uniform_integers", args_list, wrapper);

@@ -25,18 +25,18 @@ class Args (
 	val A: Int,
 	val B: Int,
 	val C: Int,
-	val res: Int, ) : test.Result<Int> {
+	val res: Int) : test.Result<Int> {
 	override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
 	val wrapper = { p: Args -> getSum(p.A, p.B, p.C) };
 
 	val args_list: List<Args> = listOf(
 		Args( 1, 2, 3, 6 ),
 		Args( 100, 100, 100, 300 ),
-		Args( 85, 16, 93, 194 ),
+		Args( 85, 16, 93, 194 )
 	);
 
 	return test.run_all_tests("l0_abcs", args_list, wrapper);

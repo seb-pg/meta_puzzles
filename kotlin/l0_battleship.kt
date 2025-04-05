@@ -25,11 +25,11 @@ fun getHitProbability(R: Int, C: Int, G: Array<Array<Int>>): Double {
 
 class Args(
     val G: Array<Array<Int>>,
-    val res: Double, ) : test.Result<Double> {
+    val res: Double) : test.Result<Double> {
     override fun get_result(): Double { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getHitProbability(p.G.size, p.G[0].size, p.G) };
 
@@ -37,7 +37,7 @@ fun tests(): UInt
         Args( arrayOf(arrayOf(0, 0, 1), arrayOf(1, 0, 1) ), 0.5 ),
         Args( arrayOf(arrayOf(1, 1), arrayOf(1, 1) ), 1.0 ),
         // extra1
-        Args( arrayOf(arrayOf(0, 1, 0, 0), arrayOf(1, 1, 0, 0), arrayOf(0, 0, 0, 0) ), 0.25 ),
+        Args( arrayOf(arrayOf(0, 1, 0, 0), arrayOf(1, 1, 0, 0), arrayOf(0, 0, 0, 0) ), 0.25 )
     );
 
     return test.run_all_tests("l0_battleship", args_list, wrapper, 0.000_001);

@@ -43,17 +43,17 @@ class Args(
     val N: Long,
     val K: Long,
     val S: Array<Long>,
-    val res: Long, ) : test.Result<Long> {
+    val res: Long) : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMaxAdditionalDinersCount(p.N, p.K, p.S.size, p.S) };
 
     val args_list: List<Args> = listOf(
         Args( 10, 1, arrayOf(2, 6), 3),
-        Args( 15, 2, arrayOf(11, 6, 14), 1),
+        Args( 15, 2, arrayOf(11, 6, 14), 1)
     );
 
     return test.run_all_tests("l1_cafeteria", args_list, wrapper);

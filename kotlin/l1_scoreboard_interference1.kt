@@ -32,18 +32,18 @@ fun getMinProblemCount(N: Int, S: Array<Int>): Int {
 
 class Args(
     val S: Array<Int>,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMinProblemCount(p.S.size, p.S) };
 
     val args_list: List<Args> = listOf(
         Args( arrayOf(1, 2, 3, 4, 5, 6), 4 ),
         Args( arrayOf(4, 3, 3, 4), 3 ),
-        Args( arrayOf(2, 4, 6, 8), 4 ),
+        Args( arrayOf(2, 4, 6, 8), 4 )
     );
 
     return test.run_all_tests("l1_scoreboard_interference1", args_list, wrapper);

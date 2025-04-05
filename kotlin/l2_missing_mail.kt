@@ -14,7 +14,7 @@ package l2_missing_mail
 
 class Result(
     var mail_room_value: Double,
-    var total_value: Double, ) {
+    var total_value: Double) {
 
     fun both(): Double {
         return mail_room_value + total_value;
@@ -65,11 +65,11 @@ class Args(
     val V: Array<Int>,
     val C: Int,
     val S: Double,
-    val res: Double, ) : test.Result<Double> {
+    val res: Double) : test.Result<Double> {
     override fun get_result(): Double { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMaxExpectedProfit(p.V.size, p.V, p.C, p.S) };
 
@@ -77,7 +77,7 @@ fun tests(): UInt
         Args( arrayOf(10, 2, 8, 6, 4), 5, 0.0, 25.0 ),
         Args( arrayOf(10, 2, 8, 6, 4), 5, 1.0, 9.0 ),
         Args( arrayOf(10, 2, 8, 6, 4), 3, 0.5, 17.0 ),
-        Args( arrayOf(10, 2, 8, 6, 4), 3, 0.15, 20.10825 ),
+        Args( arrayOf(10, 2, 8, 6, 4), 3, 0.15, 20.10825 )
     );
 
     return test.run_all_tests("l2_missing_mail", args_list, wrapper, 0.000_001);

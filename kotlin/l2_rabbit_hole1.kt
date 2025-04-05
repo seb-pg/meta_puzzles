@@ -14,11 +14,11 @@ package l2_rabbit_hole1
 
 class Vertex(
     var _nb: Int,
-    var inputs: UInt = 0U,
-    var level: UInt = 1U,
+    var inputs: Int = 0,
+    var level: Int = 1,
     var in_cycle: Boolean = true,
-    var cycle_len: UInt = 0U,
-    var next: Vertex? = null, )
+    var cycle_len: Int = 0,
+    var next: Vertex? = null)
 
 typealias ListVerticesT = ArrayList<Vertex>;
 
@@ -38,14 +38,14 @@ fun getMaxVisitableWebpages(N: Int, L: Array<Int>): Int {
     // count the number of inputs for each vertex, and set next vertex: O(N)
     for (i in 0 until N) {
         val next_vertex = vertices[L[i] - 1];
-        next_vertex.inputs += 1U;
+        next_vertex.inputs += 1;
         vertices[i].next = next_vertex;
     }
 
     // find the entrance vertices (could be []): O(N)
     val entrance_vertices = ListVerticesT(N);
     for (vertex in vertices) {
-        if (vertex.inputs == 0U)
+        if (vertex.inputs == 0)
             entrance_vertices.add(vertex);
     }
 
@@ -55,21 +55,21 @@ fun getMaxVisitableWebpages(N: Int, L: Array<Int>): Int {
         curr_vertex.in_cycle = false;
         //
         val next_vertex = curr_vertex.next!!;
-        next_vertex.level = maxOf(next_vertex.level, curr_vertex.level + 1U);
-        next_vertex.inputs -= 1U;
-        if (next_vertex.inputs == 0U)
+        next_vertex.level = maxOf(next_vertex.level, curr_vertex.level + 1);
+        next_vertex.inputs -= 1;
+        if (next_vertex.inputs == 0)
             entrance_vertices.add(next_vertex);
     }
 
     // calculate length of cycles of the different cycle: O(N)
     for (vertex in vertices) {
-        if (!vertex.in_cycle || vertex.cycle_len > 0U)
+        if (!vertex.in_cycle || vertex.cycle_len > 0)
             continue;
         // count length of cycle
-        var cycle_len = 1U;
+        var cycle_len = 1;
         var curr = vertex.next!!;
         while (curr !== vertex) {
-            cycle_len += 1U;
+            cycle_len += 1;
             curr = curr.next!!;
         }
         // assign length of cycle to vertices
@@ -82,7 +82,7 @@ fun getMaxVisitableWebpages(N: Int, L: Array<Int>): Int {
     }
 
     // Now calculate the maximum length: O(N)
-    var max_chain = 0U;
+    var max_chain = 0;
     for (vertex in vertices) {
         if (vertex.in_cycle) // Note: if the vertex is self-referencing, in_cycle will be true
             max_chain = maxOf(max_chain, vertex.cycle_len);
@@ -97,11 +97,11 @@ fun getMaxVisitableWebpages(N: Int, L: Array<Int>): Int {
 
 class Args(
     val L: Array<Int>,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMaxVisitableWebpages(p.L.size, p.L) };
 
@@ -132,7 +132,7 @@ fun tests(): UInt
         Args( arrayOf(2, 3, 4, 2, 2, 3, 6, 9, 8), 5 ),
         // extra3
         Args( arrayOf(2, 4, 2, 2, 3, 4, 8, 9, 10, 11, 12, 7), 6 ),
-        Args( arrayOf(2, 4, 2, 2, 4, 5, 8, 9, 10, 11, 12, 7), 6 ),
+        Args( arrayOf(2, 4, 2, 2, 4, 5, 8, 9, 10, 11, 12, 7), 6 )
     );
 
     return test.run_all_tests("l2_rabbit_hole1", args_list, wrapper);

@@ -44,18 +44,18 @@ fun getMaximumEatenDishCount(N: Int, D: Array<Int>, K: Int): Int {
 class Args(
     val D: Array<Int>,
     val K: Int,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMaximumEatenDishCount(p.D.size, p.D, p.K) };
 
     val args_list: List<Args> = listOf(
         Args( arrayOf(1, 2, 3, 3, 2, 1), 1, 5 ),
         Args( arrayOf(1, 2, 3, 3, 2, 1), 2, 4 ),
-        Args( arrayOf(1, 2, 1, 2, 1, 2, 1), 2, 2 ),
+        Args( arrayOf(1, 2, 1, 2, 1, 2, 1), 2, 2 )
     );
 
     return test.run_all_tests("l1_kaitenzushi", args_list, wrapper);

@@ -16,11 +16,11 @@ class Params(
     val x_min: Double = 0.0,
     val x_max: Double = 1_000_000.0,
     val h_min: Int = 0,
-    val h_max: Int = 1_000_000, )
+    val h_max: Int = 1_000_000)
 
 class Drop(
     var drop_point: Double = 0.0,
-    var interval: Interval? = null, )
+    var interval: Interval? = null)
 
 class Interval(
     var n: Int = 0,
@@ -29,7 +29,7 @@ class Interval(
     var xmax: Double = 0.0,
     var children: ArrayList<Drop> = arrayListOf<Drop>(Drop(), Drop()),
     var weight: Double = 0.0,
-    var costs: ArrayList<Double> = arrayListOf<Double>( .0, 0.0), )
+    var costs: ArrayList<Double> = arrayListOf<Double>( .0, 0.0))
 : Comparable<Interval>
 {
     fun width(): Double { return xmax - xmin; }
@@ -45,19 +45,19 @@ class Interval(
 class Point(
     var x: Double,
     var i: Interval,
-    var op: Int, )
+    var op: Int)
 
 class Edge(
     var parent: Interval,
     var child: Interval,
     var side: Int,
-    var weight: Double, )
+    var weight: Double)
 
 class Result (
     var base_cost: Double,
     var min_delta: Double,
     var side: Int,
-    var interval: Interval, )
+    var interval: Interval)
 
 typealias ListIntervals = ArrayList<Interval>;
 
@@ -270,7 +270,7 @@ class Args(
     val H: Array<Int>,
     val A: Array<Int>,
     val B: Array<Int>,
-    val res: Double, ) : test.Result<Double> {
+    val res: Double) : test.Result<Double> {
     override fun get_result(): Double { return res; };
 }
 
@@ -301,7 +301,7 @@ fun make_cases(N: Int): Args
     return Args(H.toTypedArray(), A.toTypedArray(), B.toTypedArray(), expected);
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMinExpectedHorizontalTravelDistance(p.A.size, p.H, p.A, p.B) };
 
@@ -323,7 +323,7 @@ fun tests(): UInt
         Args( arrayOf(1), arrayOf(0), arrayOf(1_000_000), 500_000.0 ),
         Args( arrayOf(1), arrayOf(250_000), arrayOf(750_000), 125_000.0 ),
         Args( arrayOf(1, 3, 3, 5), arrayOf(400_000, 200_000,  600_000, 400_000), arrayOf(700_000, 500_000, 1_000_000, 700_000), 213_750.0 ),
-        Args( arrayOf(1, 3, 3, 5, 7), arrayOf(400_000, 200_000,  600_000, 400_000, 400_000), arrayOf(700_000, 500_000, 1000_000, 700_000, 600_000), 215_000.0 ),
+        Args( arrayOf(1, 3, 3, 5, 7), arrayOf(400_000, 200_000,  600_000, 400_000, 400_000), arrayOf(700_000, 500_000, 1000_000, 700_000, 600_000), 215_000.0 )
     );
     //args_list.add(make_cases(2));
     args_list.add(make_cases(100_000));

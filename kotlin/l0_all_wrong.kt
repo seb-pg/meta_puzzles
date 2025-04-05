@@ -27,17 +27,17 @@ fun getWrongAnswers(N: Int, C: String): String {
 
 class Args(
     val C: String,
-    val res: String, ) : test.Result<String> {
+    val res: String) : test.Result<String> {
     override fun get_result(): String { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getWrongAnswers(p.C.length, p.C) };
 
     val args_list: List<Args> = listOf(
         Args( "ABA", "BAB" ),
-        Args( "BBBBB", "AAAAA" ),
+        Args( "BBBBB", "AAAAA" )
     );
 
     return test.run_all_tests("l0_all_wrong", args_list, wrapper);

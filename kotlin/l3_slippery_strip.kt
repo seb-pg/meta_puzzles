@@ -13,18 +13,18 @@
 package l3_slippery_strip
 
 class Counts(
-    var star: UInt,
-    var right: UInt,
-    var down: UInt, )
+    var star: Int,
+    var right: Int,
+    var down: Int)
 
 typealias row_t = ArrayList<Char>;
-typealias char_counter_t = ArrayList<UInt>;
+typealias char_counter_t = ArrayList<Int>;
 
 fun get_counts(row: Array<Char>, counts: char_counter_t): Counts
 {
-    counts['*'.code] = 0U;
-    counts['>'.code] = 0U;
-    counts['v'.code] = 0U;
+    counts['*'.code] = 0;
+    counts['>'.code] = 0;
+    counts['v'.code] = 0;
     for (c in row)
     {
         var d = c.code;
@@ -35,11 +35,11 @@ fun get_counts(row: Array<Char>, counts: char_counter_t): Counts
     return Counts(counts['*'.code], counts['>'.code], counts['v'.code])
 }
 
-fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: UInt, _count_right: UInt): UInt
+fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: Int, _count_right: Int): Int
 {
     // complexity : O(C)
-    if (_count_down == 0U)
-        return 0U;
+    if (_count_down == 0)
+        return 0;
     val k = row.indexOf('v');
     val j = if (k != -1) (k + 1) else 0;
     val new_row = row_t();
@@ -47,37 +47,37 @@ fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: UInt, _count_ri
     new_row.addAll(new_row.size, row.slice(0 until j));
     var count_down = _count_down;
     var count_right = _count_right;
-    var nb_coins_right_then_down = 0U;
+    var nb_coins_right_then_down = 0;
     val size = new_row.size;
     var last = 0;
-    while (count_right * count_down != 0U)
+    while (count_right * count_down != 0)
     {
         val first = new_row.slice(last until size).indexOf('>') + last;
         last = new_row.slice(first until size).indexOf('v') + 1 + first;
-        nb_coins_right_then_down = maxOf(nb_coins_right_then_down, new_row.slice(first until last).count() {it == '*'}.toUInt())
-        count_down -= 1U;
-        count_right -= new_row.slice(first until last).count() { it == '>' }.toUInt();
+        nb_coins_right_then_down = maxOf(nb_coins_right_then_down, new_row.slice(first until last).count() {it == '*'}.toInt())
+        count_down -= 1;
+        count_right -= new_row.slice(first until last).count() { it == '>' }.toInt();
     }
     return nb_coins_right_then_down;
 }
 
 fun _getMaxCollectableCoins(R: Int, C: Int, G: Array<Array<Char>>): Int {
     val counts = char_counter_t(256);
-    repeat(256) { index -> counts.add(0U) }
-    var res = 0U;
+    repeat(256) { index -> counts.add(0) }
+    var res = 0;
     for (i in 0 until G.size)
     {
         val row = G[G.size - i - 1];
         val count = get_counts(row, counts);
-        val nb_coins_immediately_down = minOf(count.star, 1u);
-        if (count.right == C.toUInt())
-            res = 0U;
-        else if (count.right == 0U)
+        val nb_coins_immediately_down = minOf(count.star, 1);
+        if (count.right == C.toInt())
+            res = 0;
+        else if (count.right == 0)
             res += nb_coins_immediately_down;
         else
         {
             val nb_coins_right_then_down = get_nb_coins_right_then_down3(row, count.down, count.right);
-            val nb_coins_right_forever = if (count.down == 0U) count.star else 0U;
+            val nb_coins_right_forever = if (count.down == 0) count.star else 0;
             res = maxOf(nb_coins_immediately_down + res, maxOf(nb_coins_right_then_down + res, nb_coins_right_forever));
         }
     }
@@ -117,11 +117,11 @@ fun _getMaxCollectableCoinsTest(G: Array<String>): Int {
 
 class Args(
     val G: Array<String>,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> _getMaxCollectableCoinsTest(p.G) };
 
@@ -151,7 +151,7 @@ fun tests(): UInt
         Args( arrayOf("vvvv", "....", ">>>>"), 0 ),
         // extra4
         Args( arrayOf("******", "......", ">*>vvv", "......"), 2 ),
-        Args( arrayOf("*****", ".....", ">>vvv", "....."), 1 ),
+        Args( arrayOf("*****", ".....", ">>vvv", "....."), 1 )
     );
 
     return test.run_all_tests("l3_slippery_strip", args_list, wrapper);

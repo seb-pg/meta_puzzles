@@ -28,17 +28,17 @@ fun getSecondsRequired(N: Long, _F: Int, P: Array<Long>): Long {
 class Args(
     val N: Long,
     val P: Array<Long>,
-    val res: Long, ) : test.Result<Long> {
+    val res: Long) : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getSecondsRequired(p.N, p.P.size, p.P) };
 
     val args_list: List<Args> = listOf(
         Args( 3, arrayOf(1), 2 ),
-        Args( 6, arrayOf(5, 2, 4), 4 ),
+        Args( 6, arrayOf(5, 2, 4), 4 )
     );
 
     return test.run_all_tests("l2_hops", args_list, wrapper);

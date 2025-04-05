@@ -82,12 +82,11 @@ fun getMinCodeEntryTime(N: Int, _M: Int, C: Array<Int>): Long {
 class Args(
     val N: Int,
     val C: Array<Int>,
-    val res: Long,
-) : test.Result<Long> {
+    val res: Long) : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMinCodeEntryTime(p.N, p.C.size, p.C) };
 
@@ -104,7 +103,7 @@ fun tests(): UInt
         // extra2
         Args( 10, arrayOf(6, 2, 4, 8), 10 ),
         Args( 10, arrayOf(10, 9, 8, 7, 6, 5, 4, 3, 2, 1), 9 ),
-        Args( 4, arrayOf(4, 3, 2, 1, 2, 3, 4), 5 ),
+        Args( 4, arrayOf(4, 3, 2, 1, 2, 3, 4), 5 )
     );
 
     return test.run_all_tests("l2_rotary_lock2", args_list, wrapper);

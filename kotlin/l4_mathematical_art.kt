@@ -26,11 +26,11 @@ fun getPlusSignCount(N: Int, L: Array<Int>, D: String): Long {
 class Args(
     val L: Array<Int>,
     val D: String,
-    val res: Long, ) : test.Result<Long> {
+    val res: Long) : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getPlusSignCount(p.L.size, p.L, p.D) };
 
@@ -39,7 +39,7 @@ fun tests(): UInt
         Args( arrayOf(1, 1, 1, 1, 1, 1, 1, 1), "RDLUULDR", 1 ),
         Args( arrayOf(1, 2, 2, 1, 1, 2, 2, 1), "UDUDLRLR", 1 ),
         // extra1
-        Args( arrayOf(1, 1, 1, 1, 1, 1), "RDURLU", 1 ),
+        Args( arrayOf(1, 1, 1, 1, 1, 1), "RDURLU", 1 )
     );
 
     return test.run_all_tests("l4_mathematical_art", args_list, wrapper);

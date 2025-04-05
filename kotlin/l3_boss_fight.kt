@@ -17,7 +17,7 @@ typealias damage_t = ULong;
 class DamageInfo(
     var order: Int,
     var indices: Array<Int> = arrayOf( 0, 1 ),
-    var damage: damage_t = 0UL, )
+    var damage: damage_t = 0UL)
 
 fun maximize_damage(N: Int, H: Array<Int>, D: Array<Int>, info: DamageInfo): Boolean
 {
@@ -81,11 +81,11 @@ class Args(
     val H: Array<Int>,
     val D: Array<Int>,
     val B: Int,
-    val res: Double, ) : test.Result<Double> {
+    val res: Double) : test.Result<Double> {
     override fun get_result(): Double { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getMaxDamageDealt(p.H.size, p.H, p.D, p.B) };
 
@@ -95,7 +95,7 @@ fun tests(): UInt
         Args( arrayOf(1, 1, 2, 3), arrayOf(1, 2, 1, 100), 8, 62.75 ),
         // extra1
         Args( arrayOf(1, 1, 2, 100, 3), arrayOf(1, 2, 1, 4, 100), 8, 1337.5 ),
-        Args( arrayOf(9, 1, 3, 4), arrayOf(0, 10, 4, 3), 1, 100.0 ),
+        Args( arrayOf(9, 1, 3, 4), arrayOf(0, 10, 4, 3), 1, 100.0 )
     );
 
     return test.run_all_tests("l3_boss_fight", args_list, wrapper, 0.000_001);

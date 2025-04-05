@@ -25,7 +25,7 @@ fun <T> _getArtisticPhotographCount(_N: Int, C: String, X: Int, Y: Int): T
 
     data class Counts(
         var p: Int,
-        var b: Int, )
+        var b: Int)
 
     // count the number of Ps or Bs till a position i: O(N)
     val w = _Y + 1;
@@ -84,11 +84,11 @@ class Args(
     val C: String,
     val X: Int,
     val Y: Int,
-    val res: Long, ) : test.Result<Long> {
+    val res: Long) : test.Result<Long> {
     override fun get_result(): Long { return res; };
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> getArtisticPhotographCount(p.C.length, p.C, p.X, p.Y) };
 
@@ -97,7 +97,7 @@ fun tests(): UInt
         Args( "APABA", 2, 3, 0 ),
         Args( ".PBAAP.B", 1, 3, 3 ),
         // extra1
-        Args( "PP.A.BB.B", 1, 3, 4 ),
+        Args( "PP.A.BB.B", 1, 3, 4 )
     );
 
     return test.run_all_tests("l2_director_photography2", args_list, wrapper);

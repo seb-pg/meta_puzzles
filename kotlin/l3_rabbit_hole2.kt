@@ -95,7 +95,7 @@ fun build_children(edges: ArrayList<Edge>): ListVerticesT
 
 class Tarjan(var sccs: LinkedList<ListVerticesT> = LinkedList(),
              var stack: ListVerticesT = ListVerticesT(),
-             var index: index_t = 0, )
+             var index: index_t = 0)
 {
     fun __init(v: Vertex)
     {
@@ -243,7 +243,7 @@ fun getMaxVisitableWebpages(N: Int, M: Int, A: Array<Int>, B: Array<Int>): Int {
 class Args(
     val A: Array<Int>,
     val B: Array<Int>,
-    val res: Int, ) : test.Result<Int> {
+    val res: Int) : test.Result<Int> {
     override fun get_result(): Int { return res; };
 }
 
@@ -254,7 +254,7 @@ fun _getMaxVisitableWebpagesTest(A: Array<Int>, B: Array<Int>): Int {
     return getMaxVisitableWebpages(max_len, A.size, A, B);
 }
 
-fun tests(): UInt
+fun tests(): Int
 {
     val wrapper = { p: Args -> _getMaxVisitableWebpagesTest(p.A, p.B) };
 
@@ -271,7 +271,7 @@ fun tests(): UInt
         Args( arrayOf(2, 1), arrayOf(1, 2), 2 ),
         Args( arrayOf(3, 5, 3, 1, 3, 2), arrayOf(2, 2, 2, 4, 5, 4), 4 ),
         Args( arrayOf(3, 5, 3, 1, 3, 2), arrayOf(2, 2, 5, 4, 5, 4), 4 ),  // 3 is referencing twice 5
-        Args( arrayOf(3, 5, 3, 1, 3, 2), arrayOf(2, 2, 3, 4, 5, 4), 4 ),  // 3 is self referencing
+        Args( arrayOf(3, 5, 3, 1, 3, 2), arrayOf(2, 2, 3, 4, 5, 4), 4 )  // 3 is self referencing
     );
 
     return test.run_all_tests("l3_rabbit_hole2", args_list, wrapper);

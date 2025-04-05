@@ -18,17 +18,17 @@ interface Result<T> {
     fun get_result(): T;
 }
 
-fun <Args, Ret> run_all_tests(name: String, args_list: List<Args>, fnc: (Args) -> Ret, precision: Double? = 0.0): UInt
+fun <Args, Ret> run_all_tests(name: String, args_list: List<Args>, fnc: (Args) -> Ret, precision: Double? = 0.0): Int
     where Args: Result<Ret>
 {
-    var nb_errors: UInt = 0u;
+    var nb_errors: Int = 0;
     println("\n$name");
-    var nb: UInt = 1u;
+    var nb: Int = 1;
     for (args in args_list)
     {
         val res = fnc(args);
         val expected = args.get_result();
-        var is_same = false;
+        var is_same: Boolean;
         if (res is Double && expected is Double) {
             //println("res=${res.toDouble()}");
             //println("exp=${expected.toDouble()}");
