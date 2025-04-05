@@ -50,8 +50,10 @@ object Solution {
             val k = row.indexOf('v')
             val j = if (k != -1) (k + 1) else 0
             val new_row = new ArrayBuffer[Char]()
-            new_row.addAll(row.slice(j, row.size))
-            new_row.addAll(row.slice(0, j))
+            //new_row.addAll(row.slice(j, row.size)) // does not work on Meta's website
+            new_row ++= row.slice(j, row.size)
+            //new_row.addAll(row.slice(0, j)) // does not work on Meta's website
+            new_row ++= row.slice(0, j)
             var count_down = _count_down
             var count_right = _count_right
             var nb_coins_right_then_down = 0
