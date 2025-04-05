@@ -33,10 +33,6 @@ class Vertex {
         this.inputs = 0; // number of inputs for a given node
         this.max_len = 0; // used for memoization of max_len at node level
     }
-
-    toString() {
-        return `Vertex(nb=${this.nb}, weight=${this.weight}, inputs=${this.inputs}, index=${this.index}, low_link=${this.low_link}, children=[${this.children.map(v => v.nb).join(', ')}])`;
-    }
 }
 
 function keepUnique(edges) { // O(E*log(E))
@@ -108,7 +104,7 @@ class Tarjan {
     }
 }
 
-function calculateSCCs(vertices, iterative) { // Tarjan's algorithm
+function calculateSCCs(vertices) { // Tarjan's algorithm
     const calc = new Tarjan(vertices);
     const fn = calc.recurse.bind(calc);
     for (let v of calc.vertices) {
@@ -142,7 +138,7 @@ function makeDAG(vertices, sccs) { // O(V + E)
     }
 }
 
-function dagMaxLen(vertices, iterative) {  // O(V + E)
+function dagMaxLen(vertices) {  // O(V + E)
 
     function recurse(v) {
         let max_len = 0;
@@ -181,19 +177,14 @@ function getMaxVisitableWebpages(N, M, A, B) {
     //      Ai ≠ Bi           a page cannot link to itself
     //      Complexity: O(V + E * log(E))  because of call to keep_unique()
 
-    let iterative = false;  // iterative SCC is too slow to pass tests (almost expected and sad)
-    if (!iterative) {
-        // No direct equivalent for sys.setrecursionlimit in JavaScript
-    }
-
     A = A.slice(0, M);
     B = B.slice(0, M);  // Just in case
     edges = A.map((a, i) => [a, B[i]]);  // O(E)  [note: codeconvert declare "const edges"]
-    edges = keepUni que(edges);  // O(E*log(E))
+    edges = keepUnique(edges);  // O(E*log(E))
     const vertices = buildChildren(edges);  // O(V + 2*E)
-    const sccs = calculateSCCs(vertices, iterative);  // O(V + E), calculate strongly connected components
+    const sccs = calculateSCCs(vertices);  // O(V + E), calculate strongly connected components
     makeDAG(vertices, sccs);  // O(V + E)
-    const res = dagMaxLen(vertices, iterative);  // O(V + E)
+    const res = dagMaxLen(vertices);  // O(V + E)
     return res;
 }
 
