@@ -18,6 +18,25 @@ import (
 	"meta_puzzles/test"
 )
 
+/*
+// Add these to make it work on Meta's website (and remove std. in the code below)
+
+type predicate_t func(x DamageInfo, y DamageInfo) bool
+
+func MaxMinElement(elements []DamageInfo, pred predicate_t) *DamageInfo {
+	// For anything
+	last_pos := 0
+	last_elt := &elements[0]
+	for pos, elt := range elements[1:] {
+		if pred(elt, *last_elt) {
+			last_pos = pos + 1
+			last_elt = &elements[last_pos]
+		}
+	}
+	return &elements[last_pos]
+}
+*/
+
 type damage_t = uint64
 
 type DamageInfo struct {

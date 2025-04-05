@@ -12,6 +12,21 @@
 
 package l2_rabbit_hole1
 
+/*
+// Add these to make it work on Meta's website (and remove std. in the code below)
+
+func Greater(x, y uint32) bool {
+	return x > y
+}
+
+func Max(x, y uint32) uint32 {
+	if Greater(x, y) {
+		return x
+	}
+	return y
+}
+*/
+
 import (
 	"meta_puzzles/std"
 	"meta_puzzles/test"

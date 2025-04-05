@@ -19,6 +19,94 @@ import (
 	"sort"
 )
 
+/*
+// Add these to make it work on Meta's website (and remove std. in the code below)
+
+func Greater(x, y uint32) bool {
+	return x > y
+}
+
+func Less(x, y uint32) bool {
+	return x < y
+}
+
+func Max(x, y uint32) uint32 {
+	if Greater(x, y) {
+		return x
+	}
+	return y
+}
+
+func Min(x, y uint32) uint32 {
+	if Less(x, y) {
+		return x
+	}
+	return y
+}
+
+type binary_predicate_t func(x Edge, y Edge) bool
+
+func _minmax_element(elements []Edge, pred binary_predicate_t) *Edge {
+	// similar to C++ std::max_element
+	last_pos := 0
+	last_elt := &elements[0]
+	for pos, elt := range elements[1:] {
+		if pred(elt, *last_elt) {
+			last_pos = pos + 1
+			last_elt = &elements[last_pos]
+		}
+	}
+	return &elements[last_pos]
+}
+
+func MaxMinElement(elements []Edge, pred binary_predicate_t) *Edge {
+	// For anything
+	last_pos := 0
+	last_elt := &elements[0]
+	for pos, elt := range elements[1:] {
+		if pred(elt, *last_elt) {
+			last_pos = pos + 1
+			last_elt = &elements[last_pos]
+		}
+	}
+	return &elements[last_pos]
+}
+
+func UniquePred(elements []Edge, pred binary_predicate_t) int {
+	// equivalent of std::unique
+	if (len(elements) <= 1) {
+		return len(elements)
+	}
+	last_elt := 0
+	for _, elt := range elements[1:] {
+		if pred(elt, elements[last_elt]) {
+			continue
+		}
+		last_elt += 1
+		elements[last_elt] = elt
+	}
+	return last_elt + 1
+}
+
+type binary_predicate_vertex_t func(x *Vertex, y *Vertex) bool
+
+func UniquePredVertex(elements []*Vertex, pred binary_predicate_vertex_t) int {
+	// equivalent of std::unique
+	if (len(elements) <= 1) {
+		return len(elements)
+	}
+	last_elt := 0
+	for _, elt := range elements[1:] {
+		if pred(elt, elements[last_elt]) {
+			continue
+		}
+		last_elt += 1
+		elements[last_elt] = elt
+	}
+	return last_elt + 1
+}
+*/
+
 type index_t = uint32
 type VertexPtr_t = *Vertex
 type ListVertices_t = []VertexPtr_t

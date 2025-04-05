@@ -17,18 +17,35 @@ import (
 	"meta_puzzles/test"
 )
 
-type row_t = []byte
-type char_counter_t = [256]int
+/*
+// Add these to make it work on Meta's website (and remove std. in the code below)
 
-type Counts struct {
-	star  int
-	right int
-	down  int
+type unary_predicate_t func(x byte) bool
+type binary_predicate_t func(x int, y int) bool
+
+func Greater(x, y int) bool {
+	return x > y
 }
 
-type predicate_t[T any] func(x T) bool
+func Less(x, y int) bool {
+	return x < y
+}
 
-func Count[T std.Comparable](elements []T, value T) int {
+func Max(x, y int) int {
+	if Greater(x, y) {
+		return x
+	}
+	return y
+}
+
+func Min(x, y int) int {
+	if Less(x, y) {
+		return x
+	}
+	return y
+}
+
+func Count(elements []byte, value byte) int {
 	// similar to C++ std::count
 	nb := 0
 	for _, elt := range elements {
@@ -39,7 +56,7 @@ func Count[T std.Comparable](elements []T, value T) int {
 	return nb
 }
 
-func _find_element[T any](elements []T, pred predicate_t[T]) int {
+func _find_element(elements []byte, pred unary_predicate_t) int {
 	for pos, elt := range elements {
 		if pred(elt) {
 			return pos
@@ -48,10 +65,20 @@ func _find_element[T any](elements []T, pred predicate_t[T]) int {
 	return len(elements)
 }
 
-func Find[T std.Comparable](elements []T, value T) int {
+func Find(elements []byte, value byte) int {
 	// similar to C++ std::find
-	fn := func(x T) bool { return x == value }
+	fn := func(x byte) bool { return x == value }
 	return _find_element(elements, fn)
+}
+*/
+
+type row_t = []byte
+type char_counter_t = [256]int
+
+type Counts struct {
+	star  int
+	right int
+	down  int
 }
 
 func get_counts(row row_t, counts *char_counter_t) Counts {
@@ -73,22 +100,18 @@ func get_nb_coins_right_then_down3(row row_t, count_down int, count_right int) i
 	if count_down == 0 {
 		return 0
 	}
-	k := Find(row, 'v')
-	j := 0
-	if k != len(row) {
-		j = k + 1
-	}
+	j := std.Find(row, 'v') + 1
 	new_row := make(row_t, 0, len(row))
 	new_row = append(new_row, row[j:]...)
 	new_row = append(new_row, row[:j]...)
 	nb_coins_right_then_down := 0
 	last := 0
 	for count_right*count_down != 0 {
-		first := last + Find(new_row[last:], '>')
-		last := first + Find(new_row[first:], 'v')
-		nb_coins_right_then_down = std.Max(nb_coins_right_then_down, Count(new_row[first:last], '*'))
+		first := last + std.Find(new_row[last:], '>')
+		last := first + std.Find(new_row[first:], 'v')
+		nb_coins_right_then_down = std.Max(nb_coins_right_then_down, std.Count(new_row[first:last], '*'))
 		count_down -= 1
-		count_right -= Count(new_row[first:last], '>')
+		count_right -= std.Count(new_row[first:last], '>')
 	}
 	return nb_coins_right_then_down
 }

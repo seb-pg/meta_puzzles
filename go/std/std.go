@@ -14,21 +14,21 @@ package std
 
 type Number interface {
 	~uintptr |
-		~int | ~int8 | ~int32 | ~int64 |
-		~uint | ~uint8 | ~uint32 | ~uint64 |
-		~float32 | ~float64
+	~int | ~int8 | ~int32 | ~int64 |
+	~uint | ~uint8 | ~uint32 | ~uint64 |
+	~float32 | ~float64
 }
 
 type Comparable interface {
 	Number | ~string
 }
 
-func Less[T Comparable](x, y T) bool {
-	return x < y
-}
-
 func Greater[T Comparable](x, y T) bool {
 	return x > y
+}
+
+func Less[T Comparable](x, y T) bool {
+	return x < y
 }
 
 func Max[T Number](x, y T) T {
@@ -45,9 +45,10 @@ func Min[T Number](x, y T) T {
 	return y
 }
 
-type predicate_t[T any] func(x T, y T) bool
+type unary_predicate_t[T any] func(x T) bool
+type binary_predicate_t[T any] func(x T, y T) bool
 
-func _minmax_element[T Comparable](elements []T, pred predicate_t[T]) *T {
+func _minmax_element[T Comparable](elements []T, pred binary_predicate_t[T]) *T {
 	// similar to C++ std::max_element
 	last_pos := 0
 	last_elt := &elements[0]
@@ -60,7 +61,7 @@ func _minmax_element[T Comparable](elements []T, pred predicate_t[T]) *T {
 	return &elements[last_pos]
 }
 
-func MaxMinElement[T any](elements []T, pred predicate_t[T]) *T {
+func MaxMinElement[T any](elements []T, pred binary_predicate_t[T]) *T {
 	// For anything
 	last_pos := 0
 	last_elt := &elements[0]
@@ -93,7 +94,7 @@ func Accumulate[T Number, R Number](elements []T, init R) R {
 	return init
 }
 
-func UniquePred[T any](elements []T, pred predicate_t[T]) int {
+func UniquePred[T any](elements []T, pred binary_predicate_t[T]) int {
 	// equivalent of std::unique
 	if (len(elements) <= 1) {
 		return len(elements)
@@ -116,4 +117,31 @@ func Unique[T Comparable](elements []T) int {
 	}
 	fn := func(lhs, rhs T) bool { return lhs == rhs }
 	return UniquePred(elements, fn)
+}
+
+
+func Count[T Comparable](elements []T, value T) int {
+	// similar to C++ std::count
+	nb := 0
+	for _, elt := range elements {
+		if elt == value {
+			nb += 1
+		}
+	}
+	return nb
+}
+
+func _find_element[T any](elements []T, pred unary_predicate_t[T]) int {
+	for pos, elt := range elements {
+		if pred(elt) {
+			return pos
+		}
+	}
+	return len(elements)
+}
+
+func Find[T Comparable](elements []T, value T) int {
+	// similar to C++ std::find
+	fn := func(x T) bool { return x == value }
+	return _find_element(elements, fn)
 }

@@ -17,6 +17,21 @@ import (
 	"meta_puzzles/test"
 )
 
+/*
+// Add these to make it work on Meta's website (and remove std. in the code below)
+
+func Less(x, y int32) bool {
+	return x < y
+}
+
+func Min(x, y int32) int32 {
+	if Less(x, y) {
+		return x
+	}
+	return y
+}
+*/
+
 func getMinimumSecondsRequired(N int32, R []int32, A int32, B int32) int64 {
     // https://www.metacareers.com/profile/coding_puzzles/?puzzle=290955626029019
     // Constraints :

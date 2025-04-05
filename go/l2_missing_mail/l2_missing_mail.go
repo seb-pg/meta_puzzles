@@ -18,6 +18,33 @@ import (
 	"meta_puzzles/test"
 )
 
+/*
+// Add these to make it work on Meta's website (and remove std. in the code below)
+
+func Accumulate(elements []int32, init float64) R {
+	// similar to C++ std::accumulate
+	for _, elt := range elements {
+		init += float64(elt)
+	}
+	return init
+}
+
+type predicate_t func(x Result, y Result) bool
+
+func MaxMinElement(elements []Result, pred predicate_t) *Result {
+	// For anything
+	last_pos := 0
+	last_elt := &elements[0]
+	for pos, elt := range elements[1:] {
+		if pred(elt, *last_elt) {
+			last_pos = pos + 1
+			last_elt = &elements[last_pos]
+		}
+	}
+	return &elements[last_pos]
+}
+*/
+
 type Result struct {
 	mail_room_value float64
 	total_value     float64
