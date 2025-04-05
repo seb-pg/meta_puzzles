@@ -35,7 +35,7 @@ def get_nb_coins_right_then_down3(row, count_down, count_right):
         return 0
     j = row.index('v') + 1
     new_row = row[j:] + row[:j]  # transform the string the end with 'v'
-    nb_coins_right_then_down, nb_coins, last = 0, 0, 0
+    nb_coins_right_then_down, last = 0, 0
     while count_right * count_down != 0:
         first = new_row.index('>', last)
         last = new_row.index('v', first) + 1
