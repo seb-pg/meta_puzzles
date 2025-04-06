@@ -47,7 +47,8 @@ class OurPriorityQueue<Priority: Comparable<Priority>, Item>
     fun pop_front(): Pair<Priority, Item>
     {
         val k = m.firstKey();
-        val v: Item = m.removeAt(k)!!;
+        //val v: Item = m.removeAt(k)!!; // kotlinc-native
+        val v: Item = m.remove(k)!!; // kotlinc-jvm
         return Pair<Priority, Item>(k.first, v);
     }
 

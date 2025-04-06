@@ -17,7 +17,7 @@ class Counts(
     var right: Int,
     var down: Int)
 
-typealias row_t = ArrayList<Char>;
+typealias row_t = Array<Char>;
 typealias char_counter_t = ArrayList<Int>;
 
 fun get_counts(row: Array<Char>, counts: char_counter_t): Counts
@@ -42,9 +42,11 @@ fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: Int, _count_rig
         return 0;
     val k = row.indexOf('v');
     val j = if (k != -1) (k + 1) else 0;
-    val new_row = row_t();
-    new_row.addAll(row.slice(j until row.size));
-    new_row.addAll(new_row.size, row.slice(0 until j));
+
+    val new_row = row_t(row.size) { ' ' };  // Set capacity
+    row.copyInto(new_row, 0, j, row.size);  // "rotate"
+    row.copyInto(new_row, row.size - j, 0, j);  // "rotate"
+
     var count_down = _count_down;
     var count_right = _count_right;
     var nb_coins_right_then_down = 0;
@@ -53,10 +55,11 @@ fun get_nb_coins_right_then_down3(row: Array<Char>, _count_down: Int, _count_rig
     while (count_right * count_down != 0)
     {
         val first = new_row.slice(last until size).indexOf('>') + last;
-        last = new_row.slice(first until size).indexOf('v') + 1 + first;
-        nb_coins_right_then_down = maxOf(nb_coins_right_then_down, new_row.slice(first until last).count() {it == '*'}.toInt())
+        last = new_row.slice(first until size).indexOf('v') + first;
+        val tmp = new_row.slice(first until last);
+        nb_coins_right_then_down = maxOf(nb_coins_right_then_down, tmp.count() {it == '*'}.toInt())
         count_down -= 1;
-        count_right -= new_row.slice(first until last).count() { it == '>' }.toInt();
+        count_right -= tmp.count() { it == '>' }.toInt();
     }
     return nb_coins_right_then_down;
 }

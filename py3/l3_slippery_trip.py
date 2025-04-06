@@ -38,10 +38,11 @@ def get_nb_coins_right_then_down3(row, count_down, count_right):
     nb_coins_right_then_down, last = 0, 0
     while count_right * count_down != 0:
         first = new_row.index('>', last)
-        last = new_row.index('v', first) + 1
-        nb_coins_right_then_down = max(nb_coins_right_then_down, new_row[first: last].count('*'))
+        last = new_row.index('v', first)
+        tmp = new_row[first: last]
+        nb_coins_right_then_down = max(nb_coins_right_then_down, tmp.count('*'))
         count_down -= 1
-        count_right -= new_row[first: last].count('>')
+        count_right -= tmp.count('>')
     return nb_coins_right_then_down
 
 
