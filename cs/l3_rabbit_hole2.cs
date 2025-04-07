@@ -239,7 +239,7 @@ class Solution {
             {
                 var children = new List<Vertex>(v.children.Count);
                 foreach (var w in v.children)
-                children.Add(!Object.ReferenceEquals(w.target, null) ? w.target : w);
+                    children.Add(!Object.ReferenceEquals(w.target, null) ? w.target : w);
                 // remove duplicates
                 children = keep_unique(children);
                 v.children = children;
@@ -283,7 +283,7 @@ class Solution {
         // Constraints :
         //      2 ≤ N ≤ 500,000   N different web pages
         //      1 ≤ M ≤ 500,000   M links present across the pages
-        //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Aiand links to a different page Bi
+        //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Ai and links to a different page Bi
         //      Ai ≠ Bi           a page cannot link to itself
         //      Complexity: O(V + E * log(E))  because of call to keep_unique()
 
@@ -297,7 +297,7 @@ class Solution {
         var edges = new List<Edge>(M);
         for (int i = 0; i < M; ++i)
             edges.Add(new Edge( A[i], B[i] ));  // O(E)
-                                                        //
+        //
         edges = keep_unique(edges);  // O(E * log(E))
         var vertices = build_children(edges);  // O(V + 2*E)
         var sccs = calculate_sccs(vertices, iterative);  // O(V + E), calculate strongly connected components

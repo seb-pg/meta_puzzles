@@ -171,7 +171,7 @@ func keep_unique(edges []Edge) []Edge {
 	}
 	sort.Slice(edges, func(i, j int) bool { return edges[i].Less(edges[j]) })
 	fn := func(lhs, rhs Edge) bool { return lhs.v == rhs.v && lhs.w == rhs.w }
-	edges = edges[0 : std.UniquePred(edges, fn)]
+	edges = edges[0:std.UniquePred(edges, fn)]
 	return edges
 }
 
@@ -287,7 +287,7 @@ func make_dag(vertices ListVertices_t, sccs []ListVertices_t) {
 			fn1 := func(i, j int) bool { return children[i].nb < children[j].nb }
 			sort.Slice(children, fn1)
 			fn2 := func(lhs, rhs *Vertex) bool { return lhs.nb == rhs.nb }
-			children = children[0 : std.UniquePred(children, fn2)]
+			children = children[0:std.UniquePred(children, fn2)]
 			v.children = children
 		}
 	}
@@ -328,13 +328,13 @@ func dag_max_len(vertices ListVertices_t) index_t {
 }
 
 func getMaxVisitableWebpages(N int32, M int32, A []int32, B []int32) int32 {
-    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=254501763097320
-    // Constraints :
-    //      2 ≤ N ≤ 500,000   N different web pages
-    //      1 ≤ M ≤ 500,000   M links present across the pages
-    //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Aiand links to a different page Bi
-    //      Ai ≠ Bi           a page cannot link to itself
-    //      Complexity: O(V + E * log(E))  because of call to keep_unique()
+	// https://www.metacareers.com/profile/coding_puzzles/?puzzle=254501763097320
+	// Constraints :
+	//      2 ≤ N ≤ 500,000   N different web pages
+	//      1 ≤ M ≤ 500,000   M links present across the pages
+	//      1 ≤ Ai, Bi ≤ N    ith of which is present on page Ai and links to a different page Bi
+	//      Ai ≠ Bi           a page cannot link to itself
+	//      Complexity: O(V + E * log(E))  because of call to keep_unique()
 
 	// just in case
 	if len(A) == 0 || len(B) == 0 {

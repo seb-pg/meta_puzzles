@@ -342,7 +342,7 @@ int32_t getMaxVisitableWebpagesCpp17(uint32_t N, uint32_t M, const std::vector<i
     // Constraints :
     //      2 ≤ N ≤ 500,000   N different web pages
     //      1 ≤ M ≤ 500,000   M links present across the pages
-    //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Aiand links to a different page Bi
+    //      1 ≤ Ai, Bi ≤ N    ith of which is present on page Ai and links to a different page Bi
     //      Ai ≠ Bi           a page cannot link to itself
     //      Complexity: O(V + E * log(E))  because of call to keep_unique()
 
