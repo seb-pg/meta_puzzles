@@ -100,11 +100,7 @@ func getMaxCollectableCoins(R: Int, C: Int, G: [[String]]) -> Int {
 
     var H: [String] = [];
     for in_row in G {
-        for elt in in_row {
-            H.append(elt)
-            break
-        }
-        //H.append(in_row.joined())
+        H.append(in_row[0])
     }
     return getMaxCollectableCoinsAsExpected(R: R, C: C, G: H)
 }
