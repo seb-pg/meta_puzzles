@@ -28,7 +28,8 @@ class Dials(
     }
 }
 
-typealias solutions_t = HashMap<Dials, Long>;
+//typealias solutions_t = HashMap<Dials, Long>;  // Does not work on Meta's website
+typealias solutions_t = MutableMap<Dials, Long>;  // 30 passed, 32 Time Limit Exceeded
 
 fun get_distance(target: Int, position: Int, N: Int): Int
 {
@@ -58,12 +59,16 @@ fun getMinCodeEntryTime(N: Int, _M: Int, C: Array<Int>): Long {
 
     if (C.isEmpty())
         return 0;
+    //if (N > 10_000)
+    //    return 0;
 
-    var solutions = solutions_t(Dials.buckets);
+    //var solutions = solutions_t(Dials.buckets);  // Dials
+    var solutions = mutableMapOf<Dials, Long>();  // MutableMap
     solutions[Dials(1, 1)] = 0;
     for (target in C)
     {
-        val new_solutions = solutions_t(Dials.buckets);
+        //val new_solutions = solutions_t(Dials.buckets);  // Dials
+        var new_solutions = mutableMapOf<Dials, Long>();  // MutableMap
         for ((dials, distance) in solutions)
         {
             // we turn dial1

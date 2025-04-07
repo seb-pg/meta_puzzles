@@ -12,10 +12,8 @@
 
 package l2_rotary_lock2
 
-import java.util.LinkedList
 import scala.collection.immutable.HashMap
 import scala.collection.immutable.TreeMap
-import scala.collection.mutable.ArrayBuffer
 import scala.math.Ordered.orderingToOrdered
 
 class Dials(var dial1: Int,
@@ -36,8 +34,8 @@ object Solution {
         //      1 ≤ Ci ≤ N              Ci is the combination
         // Complexity: O(M^2)
 
-        //type solutions_t = HashMap[Dials, Long]
-        type solutions_t = TreeMap[Dials, Long]
+        //type solutions_t = HashMap[Dials, Long]  // Run out of time on Meta's website (open addressing is almost surely the issue)
+        type solutions_t = TreeMap[Dials, Long]  // Better, but still not 100%: "You solved 30 / 32 test cases., Time Limit Exceeded on 2 test cases"
 
         def get_distance(target: Int, position: Int, N: Int): Int = {
             var positive_move = (target - position) % N
