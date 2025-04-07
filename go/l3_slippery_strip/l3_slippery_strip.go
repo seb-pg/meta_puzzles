@@ -82,6 +82,7 @@ type Counts struct {
 }
 
 func get_counts(row row_t, counts *char_counter_t) Counts {
+	// complexity: O(C)
 	counts['*'] = 0
 	counts['>'] = 0
 	counts['v'] = 0
@@ -107,22 +108,23 @@ func get_nb_coins_right_then_down3(row row_t, count_down int, count_right int) i
 	nb_coins_right_then_down := 0
 	last := 0
 	for count_right*count_down != 0 {
-		first := last + std.Find(new_row[last:], '>')
-		last := first + std.Find(new_row[first:], 'v')
-		nb_coins_right_then_down = std.Max(nb_coins_right_then_down, std.Count(new_row[first:last], '*'))
+		first := std.Find(new_row[last:], '>') + last
+		last := std.Find(new_row[first:], 'v') + first
+		tmp := new_row[first:last]
+		nb_coins_right_then_down = std.Max(nb_coins_right_then_down, std.Count(tmp, '*'))
 		count_down -= 1
-		count_right -= std.Count(new_row[first:last], '>')
+		count_right -= std.Count(tmp, '>')
 	}
 	return nb_coins_right_then_down
 }
 
 func getMaxCollectableCoins(R int32, C int32, G [][]byte) int32 {
-    // https://www.metacareers.com/profile/coding_puzzles/?puzzle=2881982598796847
-    // Constraints
-    //      2 ≤ R, C ≤ 400, 000
-    //      R∗C ≤ 800, 000
-    //      Gi, j ∈{ ".", "*", ">", "v" }
-    //      Complexity: O(N), where N = R * C
+	// https://www.metacareers.com/profile/coding_puzzles/?puzzle=2881982598796847
+	// Constraints
+	//      2 ≤ R, C ≤ 400, 000
+	//      R∗C ≤ 800, 000
+	//      Gi, j ∈{ ".", "*", ">", "v" }
+	//      Complexity: O(N), where N = R * C
 
 	counts := char_counter_t{}
 	res := 0
@@ -140,7 +142,8 @@ func getMaxCollectableCoins(R int32, C int32, G [][]byte) int32 {
 			if count.down == 0 {
 				nb_coins_right_forever = count.star
 			}
-			res = std.Max(nb_coins_immediately_down+res, std.Max(nb_coins_right_then_down+res, nb_coins_right_forever))
+			res += std.Max(nb_coins_immediately_down, nb_coins_right_then_down)
+			res = std.Max(nb_coins_right_forever, res)
 		}
 	}
 	return int32(res) // result should always be positive

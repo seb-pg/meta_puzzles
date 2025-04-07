@@ -14,9 +14,9 @@ package std
 
 type Number interface {
 	~uintptr |
-	~int | ~int8 | ~int32 | ~int64 |
-	~uint | ~uint8 | ~uint32 | ~uint64 |
-	~float32 | ~float64
+		~int | ~int8 | ~int32 | ~int64 |
+		~uint | ~uint8 | ~uint32 | ~uint64 |
+		~float32 | ~float64
 }
 
 type Comparable interface {
@@ -96,7 +96,7 @@ func Accumulate[T Number, R Number](elements []T, init R) R {
 
 func UniquePred[T any](elements []T, pred binary_predicate_t[T]) int {
 	// equivalent of std::unique
-	if (len(elements) <= 1) {
+	if len(elements) <= 1 {
 		return len(elements)
 	}
 	last_elt := 0
@@ -112,13 +112,12 @@ func UniquePred[T any](elements []T, pred binary_predicate_t[T]) int {
 
 func Unique[T Comparable](elements []T) int {
 	// equivalent of std::unique
-	if (len(elements) <= 1) {
+	if len(elements) <= 1 {
 		return len(elements)
 	}
 	fn := func(lhs, rhs T) bool { return lhs == rhs }
 	return UniquePred(elements, fn)
 }
-
 
 func Count[T Comparable](elements []T, value T) int {
 	// similar to C++ std::count
