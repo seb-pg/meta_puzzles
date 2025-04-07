@@ -37,6 +37,6 @@ object Solution {
           new Args("BBBBB", "AAAAA")
         )
 
-      return test.TestAll.run_all_tests("l0_all_wrong", args_list, wrapper)
+        return test.TestAll.run_all_tests("l0_all_wrong", args_list, wrapper)
   }
 }

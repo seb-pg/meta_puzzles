@@ -1,0 +1,6 @@
+.bsp
+.scala-build
+**/*.class
+**/*.tasty
+**/l*/
+test/**

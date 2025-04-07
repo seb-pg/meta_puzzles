@@ -52,8 +52,8 @@ object Solution {
 
             // https://www.scala-lang.org/api/current/scala/collection/mutable/ArrayBuffer.html
             val new_row = new ArrayBuffer[Char]()
-            new_row ++= row.view(j, row.size)  // Note: addAll does not work on Meta's website
-            new_row ++= row.view(0, j)  // Note: slice copies data, so view is used
+            new_row ++= row.slice(j, row.size)  // Note: addAll does not work on Meta's website
+            new_row ++= row.slice(0, j)  // Note: slice copies data, so view is used
 
             var count_down = _count_down
             var count_right = _count_right
@@ -62,7 +62,7 @@ object Solution {
             var last = 0
             while (count_right * count_down != 0) {
                 val first = new_row.view(last, size).indexOf('>') + last
-                last = new_row.view(first, size).indexOf('v') + 1 + first
+                last = new_row.view(first, size).indexOf('v') + first
                 var tmp = new_row.view(first, last)
                 nb_coins_right_then_down = nb_coins_right_then_down.max(tmp.count((c: Char) => c == '*'))
                 count_down -= 1

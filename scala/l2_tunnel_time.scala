@@ -31,7 +31,7 @@ object Solution {
         //      1 ≤ K ≤ 10^12       K is the time spent in tunnels
         // Complexity: O(N*log(N)), would be O(N) if tunnels were sorted
 
-        val tunnels = new ArrayBuffer[Tunnel](N)
+        var tunnels = new ArrayBuffer[Tunnel](N)
         for ((a, b) <- A.zip(B))
             tunnels += new Tunnel(a, b)
 
@@ -46,7 +46,8 @@ object Solution {
         if (total_time_left == 0L)
             travel_time -= C - B.max // O(N)
         else {
-            tunnels.sortInPlace()
+            //tunnels.sortInPlace()  # Not available on Meta's website
+            tunnels = tunnels.sortBy(x => x.a)
             breakable {
                 for (tunnel <- tunnels) {
                     val tunnel_length = tunnel.length
